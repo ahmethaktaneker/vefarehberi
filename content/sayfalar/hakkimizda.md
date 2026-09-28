@@ -15,7 +15,7 @@ Türkiye'de her yıl yaklaşık 490 bin kişi vefat ediyor (TÜİK, 2025). Her v
 
 ## Kim hazırlıyor
 
-Vefa Rehberi, Ahmet Haktan Eker tarafından hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
+Vefa Rehberi, hukuk öğrencisi Ahmet Haktan Eker tarafından hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
 
 <!-- Buraya isterseniz kendi hikâyenizi ekleyebilirsiniz: bu siteyi neden yaptığınız. -->
 
@@ -29,7 +29,7 @@ Bilmeniz gereken her şey ücretsizdir ve öyle kalacak: yapılacaklar listesi, 
 - Başka ailelerin deneyimlerini de paylaşıyoruz, ama bunları "kullanıcı deneyimi" olarak resmi bilgiden ayrı gösteriyoruz.
 - Yıllık değişen tutarları (cenaze ödeneği, vergi istisnaları gibi) her yıl Ocak ve Temmuz'da kontrol ediyoruz.
 
-**Avukat değiliz.** Vefa Rehberi, işlerinizi kendiniz yaparken kullanabileceğiniz genel bir bilgi ve hatırlatma aracıdır; hukuki danışmanlık vermez. Durumunuz karmaşıksa (borç, anlaşmazlık, vasiyetname, yurtdışında mal varlığı, şirket payı) bir avukata danışmanızı öneririz.
+Vefa Rehberi, işlerinizi kendiniz yaparken yanınızda olan bir bilgi ve hatırlatma aracıdır. Durumunuz karmaşıksa (borç, anlaşmazlık, vasiyetname, yurtdışında mal varlığı, şirket payı) size özel bir değerlendirme için bir avukatla görüşmenizi öneririz.
 
 ## Kişisel bilgileriniz
 

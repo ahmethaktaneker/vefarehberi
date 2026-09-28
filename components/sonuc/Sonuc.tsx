@@ -99,16 +99,16 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
     <div className="space-y-12">
       <header>
         <h1 className="font-serif text-3xl font-semibold leading-tight">Size özel listeniz</h1>
-        <p className="mt-3 text-metin-ikincil">
-          Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)} ·{" "}
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p className="text-metin-ikincil">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}</p>
           <Link
             href="/liste"
             onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")}
-            className="text-vurgu-koyu underline underline-offset-4"
+            className="yazdirma-gizle inline-flex min-h-11 items-center rounded-lg border border-cizgi bg-yuzey px-4 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
           >
             Cevaplarımı değiştir
           </Link>
-        </p>
+        </div>
         <Ozet liste={liste} yapilanlar={yapilanlar} />
         <p className="mt-4 text-base text-metin-ikincil">
           {KONTROL_ROZETLERI && <>&ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi. </>}

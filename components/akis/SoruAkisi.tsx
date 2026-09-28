@@ -121,12 +121,19 @@ export function SoruAkisi() {
 
       <div className="mt-10">
         {sira > 0 ? (
-          <button type="button" onClick={geri} className="text-base text-vurgu-koyu underline underline-offset-4">
-            <span aria-hidden="true">← </span>Önceki soru
+          <button
+            type="button"
+            onClick={geri}
+            className="inline-flex min-h-12 items-center rounded-lg border border-cizgi bg-yuzey px-5 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
+          >
+            <span aria-hidden="true">←&nbsp;</span>Önceki soru
           </button>
         ) : (
-          <Link href="/" className="text-base text-vurgu-koyu underline underline-offset-4">
-            <span aria-hidden="true">← </span>Ana sayfa
+          <Link
+            href="/"
+            className="inline-flex min-h-12 items-center rounded-lg border border-cizgi bg-yuzey px-5 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
+          >
+            <span aria-hidden="true">←&nbsp;</span>Ana sayfa
           </Link>
         )}
       </div>
