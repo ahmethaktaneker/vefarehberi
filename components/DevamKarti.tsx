@@ -12,11 +12,11 @@ export function DevamKarti() {
   if (!ham || Object.keys(cevaplar).length === 0) return null;
   const tamam = akisTamam(cevaplar);
   return (
-    <div className="mb-8 rounded-lg border border-vurgu bg-vurgu-acik p-5">
+    <div className="mb-8 max-w-2xl rounded-2xl border-l-4 border-altin bg-yuzey p-5 shadow-yuksek">
       <p className="text-lg">{tamam ? "Bu cihazda daha önce oluşturduğunuz bir liste var." : "Sorulara daha önce başlamıştınız."}</p>
       <Link
         href={tamam ? "/liste/sonuc" : "/liste"}
-        className="mt-3 inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-6 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
+        className="mt-3 dugme dugme-birincil"
       >
         {tamam ? "Listenize dönün" : "Kaldığınız yerden devam edin"}
       </Link>

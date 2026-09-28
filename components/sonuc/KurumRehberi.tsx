@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import type { Belge, Kurum, KurumTuru } from "@/lib/icerik/sema";
 import { KONTROL_ROZETLERI } from "@/lib/marka";
 
@@ -11,32 +14,26 @@ const TUR_ETIKETLERI: Record<KurumTuru, string> = {
   diger: "Diğer",
 };
 
-/** Adım kartlarından bir kuruma gidilirken kartı açar. */
-export function kurumaGit(id: string) {
-  const detay = document.getElementById(`kurum-${id}`)?.querySelector("details");
-  if (detay) detay.open = true;
-}
-
 const ISLEM_ETIKETLERI = { devir: "Devir", iptal: "İptal", genel: "Genel bilgi" } as const;
 
-export function KurumRehberi({ kurumlar, belgeler }: { kurumlar: Kurum[]; belgeler: Record<string, Belge> }) {
+export function KurumRehberi({ kurumlar, belgeler, acikId }: { kurumlar: Kurum[]; belgeler: Record<string, Belge>; acikId?: string }) {
   const turler = (Object.keys(TUR_ETIKETLERI) as KurumTuru[]).filter((t) => kurumlar.some((k) => k.tur === t));
   return (
     <div className="space-y-8">
-      <p className="-mt-2 text-base text-metin-ikincil">
+      <p className="text-base text-metin-ikincil">
         Elektrik ve doğalgaz şirketinizin adı faturanızda yazar. Kurumların kendi sitelerinde yazanlar ile
         kullanıcı deneyimleri ayrı gösterilir. İşleme gitmeden önce kurumdan teyit edin.
       </p>
       {turler.map((tur) => (
         <section key={tur} aria-labelledby={`kurum-${tur}`}>
-          <h3 id={`kurum-${tur}`} className="mb-3 text-lg font-semibold text-metin-ikincil">
+          <h3 id={`kurum-${tur}`} className="mb-3 font-serif text-lg font-semibold text-vurgu-koyu">
             {TUR_ETIKETLERI[tur]}
           </h3>
           <ul className="space-y-3">
             {kurumlar
               .filter((k) => k.tur === tur)
               .map((k) => (
-                <KurumKarti key={k.id} kurum={k} belgeler={belgeler} />
+                <KurumKarti key={k.id} kurum={k} belgeler={belgeler} acik={k.id === acikId} />
               ))}
           </ul>
         </section>
@@ -45,11 +42,15 @@ export function KurumRehberi({ kurumlar, belgeler }: { kurumlar: Kurum[]; belgel
   );
 }
 
-function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<string, Belge> }) {
+function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Record<string, Belge>; acik: boolean }) {
+  const ref = useRef<HTMLLIElement>(null);
+  useEffect(() => {
+    if (acik) ref.current?.scrollIntoView({ block: "start" });
+  }, [acik]);
   const resmiBilgiVar = k.islemler.some((i) => i.notlar_resmi.length || i.kanal.length) || k.guvence_bedeli_iadesi.length > 0;
   return (
-    <li id={`kurum-${k.id}`} className="scroll-mt-24 rounded-lg border border-cizgi bg-yuzey">
-      <details className="group p-4">
+    <li ref={ref} id={`kurum-${k.id}`} className="scroll-mt-4 rounded-2xl border border-cizgi bg-yuzey">
+      <details className="group p-4" open={acik}>
         <summary className="min-h-12 cursor-pointer list-none">
           <span className="text-lg font-semibold">{k.ad}</span>
           <span className="mt-1 flex flex-wrap items-center gap-2">

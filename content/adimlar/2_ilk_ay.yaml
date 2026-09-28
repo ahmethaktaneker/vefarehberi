@@ -38,6 +38,7 @@
     - "https://avukatmurataydar.com/blog/veraset-ilami-mirascilik-belgesi-nasil-alinir/"
     - "Noterlik Kanunu m.71/B"
     - "Proje sahibinin saha deneyimi (28.09.2026)"
+  yer: noter_mahkeme
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -62,6 +63,8 @@
     - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
     - "https://www.turkiye.gov.tr/varis-hizmetleri"
   kurum_turleri: [banka]
+  yer: ev
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -82,6 +85,7 @@
   baglantilar:
     - { ad: "Web Tapu", url: "https://webtapu.tkgm.gov.tr" }
   kaynak: ["https://www.spaceistanbul.com/tr/blog/mirascisi_oldugum_tasinmazlar:_e-devlet_uzerinden_sorgulama_ve_tapu_intikali_rehberi/165"]
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -105,6 +109,7 @@
   kaynak:
     - "https://www.turkiye.gov.tr/sbvgm-hayat-sigortasi-police-ve-tazminat-bilgileri-sorgulama-mirascisi-oldugunuz-kisi-adina"
     - "https://sigortacigazetesi.com.tr/turkiye-sigorta-birliginden-onemli-duyuru/"
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -126,6 +131,8 @@
   nereye: "Türkiye Bankalar Birliği Risk Merkezi"
   belgeler: [mirascilik_belgesi]
   kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
+  yer: risk_merkezi
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -161,6 +168,7 @@
     - "https://www.sigortavantaj.com/kredi-borclusu-vefat-ederse-borcu-kim-oder.html"
     - "https://www.sikayetvar.com/hayat-sigortasi/vefat"
   kurum_turleri: [banka]
+  yer: banka
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -186,6 +194,8 @@
     - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
   sablonlar: [abonelik_iptal]
   kurum_turleri: [enerji, dogalgaz, su]
+  yer: kurumlar
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -220,6 +230,7 @@
     - "https://www.hancizadehukuk.com/yurt-disinda-yasayanlarin-turkiyedeki-miras-islemleri/"
     - "https://acikgozlawcom.wordpress.com/2020/10/21/yurt-disindan-vekalet-nasil-cikarilir-nelere-dikkat-edilmelidir/"
     - "https://www.tripadvisor.com/ShowTopic-g293969-i367-k14085671-Collecting_inheritance_in_Istanbul-Turkiye.html"
+  yer: konsolosluk
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -241,6 +252,7 @@
   kaynak:
     - "https://www.turkiye.gov.tr/varis-hizmetleri"
     - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -259,6 +271,7 @@
   kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 11 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
   sablonlar: [otomatik_odeme_iptal]
   kurum_turleri: [banka]
+  yer: banka
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -284,6 +297,8 @@
     - "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
   sablonlar: [abonelik_iptal]
   kurum_turleri: [operator]
+  yer: kurumlar
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

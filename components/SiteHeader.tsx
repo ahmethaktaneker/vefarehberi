@@ -63,11 +63,14 @@ export function SiteHeader() {
   const aktif = (href: string) => yol === href || yol.startsWith(href + "/");
 
   return (
-    <header className="border-b border-cizgi bg-zemin">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" onClick={() => setMenuAcik(false)} className="min-w-0 rounded-md no-underline">
-          <span className="block font-serif text-xl font-semibold text-vurgu-koyu">{URUN_ADI}</span>
-          <span className="block text-base leading-snug text-metin-ikincil">{URUN_ALT_BASLIK}</span>
+    <header className="relative z-20 bg-vurgu text-white shadow-[0_4px_14px_rgb(20_35_60/0.25)]">
+      <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Link href="/" onClick={() => setMenuAcik(false)} className="flex min-w-0 items-center gap-3 rounded-md no-underline">
+          <Logo />
+          <span className="min-w-0">
+            <span className="block font-serif text-xl font-semibold leading-tight">{URUN_ADI}</span>
+            <span className="block text-base leading-snug text-white/80">{URUN_ALT_BASLIK}</span>
+          </span>
         </Link>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -75,8 +78,8 @@ export function SiteHeader() {
             href={listeHref}
             onClick={() => setMenuAcik(false)}
             aria-current={listedeyiz ? "page" : undefined}
-            className={`inline-flex min-h-12 items-center rounded-lg px-4 text-base font-semibold ${
-              listedeyiz ? "bg-vurgu-acik text-vurgu-koyu ring-1 ring-vurgu" : "bg-vurgu text-white hover:bg-vurgu-koyu"
+            className={`inline-flex min-h-12 items-center rounded-xl px-4 text-base font-bold transition-colors ${
+              listedeyiz ? "bg-white/15 text-white ring-1 ring-white/50" : "bg-altin text-vurgu-koyu hover:bg-[#d6b574]"
             }`}
           >
             {listeVar ? "Listem" : "Başla"}
@@ -86,7 +89,7 @@ export function SiteHeader() {
             onClick={() => setMenuAcik(!menuAcik)}
             aria-expanded={menuAcik}
             aria-controls="ana-menu"
-            className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-cizgi bg-yuzey px-3 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
+            className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/40 px-3 text-base font-bold text-white hover:bg-white/10"
           >
             <span aria-hidden="true" className="text-xl leading-none">
               {menuAcik ? "×" : "☰"}
@@ -97,32 +100,27 @@ export function SiteHeader() {
       </div>
 
       {menuAcik && (
-        <nav id="ana-menu" aria-label="Ana menü" className="border-t border-cizgi bg-yuzey">
-          <ul className="mx-auto max-w-3xl divide-y divide-cizgi px-4 sm:px-6">
+        <nav id="ana-menu" aria-label="Ana menü" className="absolute inset-x-0 top-full border-t border-white/10 bg-yuzey text-metin shadow-yuksek">
+          <ul className="mx-auto grid max-w-4xl gap-x-6 px-4 py-2 sm:grid-cols-2 sm:px-6 sm:py-4">
             {MENU.map((m) => (
-              <li key={m.href}>
+              <li key={m.href} className="border-b border-cizgi sm:border-b-0">
                 <Link
                   href={m.href}
                   onClick={() => setMenuAcik(false)}
                   aria-current={aktif(m.href) ? "page" : undefined}
-                  className="flex min-h-16 items-center gap-3 py-3"
+                  className="flex min-h-16 flex-col justify-center rounded-xl py-3 sm:px-3 sm:hover:bg-zemin"
                 >
-                  <span className="flex-1">
-                    <span className={`block text-lg ${aktif(m.href) ? "font-semibold text-vurgu-koyu" : "font-semibold"}`}>{m.ad}</span>
-                    <span className="block text-base text-metin-ikincil">{m.aciklama}</span>
-                  </span>
-                  <span aria-hidden="true" className="text-vurgu-koyu">
-                    →
-                  </span>
+                  <span className={`text-lg font-bold ${aktif(m.href) ? "text-vurgu underline underline-offset-4" : "text-vurgu-koyu"}`}>{m.ad}</span>
+                  <span className="text-base text-metin-ikincil">{m.aciklama}</span>
                 </Link>
               </li>
             ))}
-            <li className="py-3">
+            <li className="py-3 sm:col-span-2 sm:px-3">
               <button
                 type="button"
                 onClick={yaziDegistir}
                 aria-pressed={buyuk}
-                className="flex min-h-14 w-full items-center justify-between gap-3 rounded-lg border border-cizgi px-4 text-left text-lg hover:border-vurgu"
+                className="flex min-h-14 w-full items-center justify-between gap-3 rounded-xl border border-cizgi bg-zemin px-4 text-left text-lg hover:border-vurgu"
               >
                 <span>
                   <span aria-hidden="true" className="mr-2 font-serif font-semibold">
@@ -130,12 +128,24 @@ export function SiteHeader() {
                   </span>
                   Yazı boyutu
                 </span>
-                <span className="font-semibold text-vurgu-koyu">{buyuk ? "Büyük" : "Normal"}</span>
+                <span className="font-bold text-vurgu">{buyuk ? "Büyük" : "Normal"}</span>
               </button>
             </li>
           </ul>
         </nav>
       )}
     </header>
+  );
+}
+
+/** Yazı işareti: yol üzerinde iki durak. Sitenin "yolculuk" motifi. */
+function Logo() {
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden="true" className="hidden size-10 shrink-0 sm:block">
+      <rect width="40" height="40" rx="10" fill="rgb(255 255 255 / 0.1)" />
+      <path d="M9 30 C 16 29, 15 20, 21 19 S 28 12, 31 9" fill="none" stroke="#c9a45c" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="1.5 4.5" />
+      <circle cx="9" cy="30" r="3.2" fill="#c9a45c" />
+      <circle cx="31" cy="9" r="3.2" fill="none" stroke="#ffffff" strokeWidth="2" />
+    </svg>
   );
 }

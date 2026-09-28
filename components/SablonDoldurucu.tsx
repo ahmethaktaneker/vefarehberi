@@ -7,7 +7,7 @@ import { sablonDoldur } from "@/lib/sablonlar/doldur";
 type Alan = { id: string; etiket: string; ornek?: string; cok_satirli?: boolean };
 
 const dugme =
-  "inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-5 py-3 text-base font-semibold text-vurgu-koyu hover:border-vurgu";
+  "dugme dugme-ikincil";
 
 /**
  * Şablonu kullanıcının cihazında doldurur (Brief 9). Girilen bilgiler hiçbir yere gönderilmez ve

@@ -124,14 +124,14 @@ export function SoruAkisi() {
           <button
             type="button"
             onClick={geri}
-            className="inline-flex min-h-12 items-center rounded-lg border border-cizgi bg-yuzey px-5 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
+            className="dugme dugme-ikincil"
           >
             <span aria-hidden="true">←&nbsp;</span>Önceki soru
           </button>
         ) : (
           <Link
             href="/"
-            className="inline-flex min-h-12 items-center rounded-lg border border-cizgi bg-yuzey px-5 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
+            className="dugme dugme-ikincil"
           >
             <span aria-hidden="true">←&nbsp;</span>Ana sayfa
           </Link>
@@ -316,7 +316,7 @@ function DevamDugmesi({ etkin, onClick, tip = "button" }: { etkin: boolean; onCl
       type={tip}
       disabled={!etkin}
       onClick={onClick}
-      className="mt-6 inline-flex min-h-12 items-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white transition-colors hover:bg-vurgu-koyu disabled:cursor-not-allowed disabled:bg-cizgi disabled:text-metin-ikincil"
+      className="mt-6 dugme dugme-birincil disabled:cursor-not-allowed disabled:bg-cizgi disabled:text-metin-ikincil"
     >
       Devam
     </button>
@@ -331,14 +331,14 @@ function HazirPaneli({ onGozdenGecir }: { onGozdenGecir: () => void }) {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/liste/sonuc"
-          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
+          className="dugme dugme-birincil"
         >
           Listemi gör
         </Link>
         <button
           type="button"
           onClick={onGozdenGecir}
-          className="inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-7 py-3 text-lg font-semibold text-vurgu-koyu hover:border-vurgu"
+          className="dugme dugme-ikincil"
         >
           Cevaplarımı değiştir
         </button>

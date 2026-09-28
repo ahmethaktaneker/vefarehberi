@@ -1,21 +1,29 @@
 @import "tailwindcss";
 
 /*
- * Tasarım temeli: sakin, açık zemin, yumuşak nötrler, tek vurgu rengi (adaçayı yeşili).
- * Kırmızı (--uyari) yalnızca gerçek son tarih uyarılarında kullanılır.
+ * Görsel yön: lacivert ve kum (2026-09-29).
+ * Lacivert güven ve ciddiyet; kum zemin ve altın ayrıntılar sıcaklık verir.
+ * Kırmızı (--uyari) yalnızca gerçek son tarihlerde. Altın yalnızca "şu an" ve ilerleme gibi küçük vurgularda.
+ * Ana metin kontrastı ~14:1; tüm yazılar en az 4.5:1.
  */
 :root {
-  --zemin: #faf8f4;
+  --zemin: #f3f1ec;
   --yuzey: #ffffff;
-  --metin: #26241f;
-  --metin-ikincil: #5c5850;
-  --cizgi: #e4dfd5;
-  --vurgu: #3f6b56;
-  --vurgu-koyu: #2f5242;
-  --vurgu-acik: #e8f0eb;
-  --uyari: #a4312a;
-  --uyari-acik: #fbeceb;
-  --bilgi-acik: #f3efe6;
+  --metin: #1a2130;
+  --metin-ikincil: #4f5664;
+  --cizgi: #dcd8ce;
+  --vurgu: #1f3d63;
+  --vurgu-koyu: #16304f;
+  --vurgu-acik: #e6ecf4;
+  --altin: #c9a45c;
+  --altin-koyu: #7a5c22;
+  --altin-acik: #f4ecda;
+  --uyari: #a3261f;
+  --uyari-acik: #fbeeec;
+  --bilgi-acik: #ebe7de;
+  --golge-1: 0 1px 2px rgb(20 35 60 / 0.06);
+  --golge-2: 0 2px 4px rgb(20 35 60 / 0.05), 0 12px 28px rgb(20 35 60 / 0.1);
+  --golge-dugme: 0 6px 14px rgb(31 61 99 / 0.24);
 }
 
 @theme inline {
@@ -27,9 +35,15 @@
   --color-vurgu: var(--vurgu);
   --color-vurgu-koyu: var(--vurgu-koyu);
   --color-vurgu-acik: var(--vurgu-acik);
+  --color-altin: var(--altin);
+  --color-altin-koyu: var(--altin-koyu);
+  --color-altin-acik: var(--altin-acik);
   --color-uyari: var(--uyari);
   --color-uyari-acik: var(--uyari-acik);
   --color-bilgi-acik: var(--bilgi-acik);
+  --shadow-kart: var(--golge-1);
+  --shadow-yuksek: var(--golge-2);
+  --shadow-dugme: var(--golge-dugme);
   --font-sans: var(--font-govde);
   --font-serif: var(--font-baslik);
 }
@@ -47,25 +61,179 @@ body {
   line-height: 1.65;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 :focus-visible {
-  outline: 3px solid var(--vurgu);
+  outline: 3px solid var(--altin);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 6px;
+}
+
+/* Ortak düğmeler */
+@layer components {
+  .dugme {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      transform 120ms ease,
+      background-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+  .dugme:active {
+    transform: translateY(1px);
+  }
+  .dugme-birincil {
+    background: var(--vurgu);
+    color: #fff;
+    box-shadow: var(--golge-dugme);
+  }
+  .dugme-birincil:hover {
+    background: var(--vurgu-koyu);
+  }
+  .dugme-ikincil {
+    background: var(--yuzey);
+    color: var(--vurgu);
+    border: 1px solid var(--cizgi);
+  }
+  .dugme-ikincil:hover {
+    border-color: var(--vurgu);
+  }
+  .dugme:disabled {
+    cursor: not-allowed;
+    background: var(--bilgi-acik);
+    color: var(--metin-ikincil);
+    box-shadow: none;
+  }
+  .baglanti {
+    color: var(--vurgu);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+  .baglanti:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* Alttan açılan panel (dialog). Telefonda alttan, geniş ekranda ortada. */
+dialog.panel {
+  margin: auto auto 0;
+  width: 100%;
+  max-width: 44rem;
+  max-height: 92dvh;
+  border: 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 0;
+  background: var(--zemin);
+  color: var(--metin);
+  box-shadow: 0 -8px 40px rgb(15 25 40 / 0.25);
+}
+@media (min-width: 640px) {
+  dialog.panel {
+    margin: auto;
+    border-radius: 1.25rem;
+    max-height: 86dvh;
+  }
+}
+dialog.panel::backdrop {
+  background: rgb(15 25 40 / 0.45);
+}
+dialog.panel[open] {
+  animation: panel-ac 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes panel-ac {
+  from {
+    transform: translateY(24px);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Onay işareti çizilerek belirir (kullanıcı eylemine yanıt) */
+.tik path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 0;
+}
+.tik-ciz path {
+  animation: tik-ciz 380ms ease-out both;
+}
+@keyframes tik-ciz {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Tek orkestra anı: sayfa açılışında odak kartı ve giriş yolu bir kez */
+.bir-kez-yuksel {
+  animation: yuksel 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes yuksel {
+  from {
+    opacity: 0.001;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.yol-ciz {
+  stroke-dasharray: 2 10;
+  animation: yol-ciz 1400ms ease-out both;
+}
+@keyframes yol-ciz {
+  from {
+    stroke-dashoffset: 240;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
     transition: none !important;
   }
 }
 
 /* Markdown rehber sayfaları */
+.metin {
+  max-width: 68ch;
+  line-height: 1.7;
+}
 .metin h2 {
-  margin-top: 2rem;
+  margin-top: 2.25rem;
   margin-bottom: 0.75rem;
   font-family: var(--font-baslik), serif;
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  line-height: 1.3;
+  color: var(--vurgu-koyu);
 }
 .metin p {
   margin-bottom: 1rem;
@@ -76,18 +244,28 @@ body {
   list-style: disc;
 }
 .metin li {
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+.metin li::marker {
+  color: var(--altin-koyu);
 }
 .metin li > ul {
-  margin-top: 0.375rem;
+  margin-top: 0.5rem;
+}
+.metin a {
+  color: var(--vurgu);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.metin strong {
+  color: var(--metin);
 }
 
-/* Yazdırma: yalnızca dilekçe metni */
+/* Yazdırma: dilekçe sayfasında yalnızca dilekçe metni */
 @media print {
   body > a,
   header,
   footer,
-  h1,
   .yazdirma-gizle {
     display: none !important;
   }
@@ -97,43 +275,23 @@ body {
   .yazdirilacak {
     border: 0 !important;
     padding: 0 !important;
+    box-shadow: none !important;
     font-size: 12pt;
   }
 }
 
-/* "Listeyi yazdır": yalnızca belge listesi çıkar */
-@media print {
-  body.yazdir-belgeler main * {
-    visibility: hidden;
-  }
-  body.yazdir-belgeler .belge-yazdir,
-  body.yazdir-belgeler .belge-yazdir * {
-    visibility: visible;
-  }
-  body.yazdir-belgeler .belge-yazdir {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-  body.yazdir-belgeler .belge-yazdir .yazdirma-gizle {
-    display: none !important;
-  }
+/* Liste sayfası yazdırma: yalnızca yazdırma için hazırlanmış tam liste */
+.yazdirma-listesi {
+  display: none;
 }
-
-/* "Tüm listeyi yazdır": etkileşimli öğeler gizlenir, kartlar açık yazdırılır */
 @media print {
-  body.yazdir-liste .yazdirma-gizle,
-  body.yazdir-liste input[type="checkbox"],
-  body.yazdir-liste button,
-  body.yazdir-liste summary > span:last-child {
+  body.yazdir-liste .ekran-icerik {
     display: none !important;
   }
-  body.yazdir-liste #bolum-kurum-rehberi,
-  body.yazdir-liste #bolum-paylaş-ve-hatırla {
-    display: none !important;
+  body.yazdir-liste .yazdirma-listesi {
+    display: block;
   }
-  body.yazdir-liste li {
+  .yazdirma-listesi li {
     break-inside: avoid;
   }
 }

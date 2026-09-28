@@ -70,7 +70,7 @@ export function RehberSayfasi({
           <p className="text-lg">Size özel yapılacaklar listesini ve son tarihlerinizi görmek için birkaç soruya cevap verin.</p>
           <Link
             href="/liste"
-            className="mt-4 inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
+            className="mt-4 dugme dugme-birincil"
           >
             Listemi oluştur
           </Link>

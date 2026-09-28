@@ -7,9 +7,9 @@ import { SITE_URL } from "@/lib/marka";
 import { PAYLASIM_ANAHTARI, paylasimKodla } from "@/lib/paylasim";
 import type { Cevaplar } from "@/lib/sorular";
 import { icsOlustur } from "@/lib/takvim";
+import { listeyiYazdir } from "@/lib/yazdir";
 
-const dugme =
-  "inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-5 py-3 text-base font-semibold text-vurgu-koyu hover:border-vurgu disabled:cursor-not-allowed disabled:text-metin-ikincil";
+const dugme = "dugme dugme-ikincil";
 
 export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar; sonTarihliler: HesaplanmisAdim[] }) {
   const [durum, setDurum] = useState<string>("");
@@ -57,24 +57,10 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
     olay("takvime_eklendi");
   }
 
-  function listeyiYazdir() {
-    const kartlar = [...document.querySelectorAll<HTMLDetailsElement>("#bolum-adım-adım-liste details")];
-    const kapalilar = kartlar.filter((d) => !d.open);
-    kapalilar.forEach((d) => (d.open = true));
-    document.body.classList.add("yazdir-liste");
-    const geriAl = () => {
-      kapalilar.forEach((d) => (d.open = false));
-      document.body.classList.remove("yazdir-liste");
-      window.removeEventListener("afterprint", geriAl);
-    };
-    window.addEventListener("afterprint", geriAl);
-    window.print();
-  }
-
   return (
     <div className="space-y-8">
       <div>
-        <h3 className="text-lg font-semibold">Aileyle paylaşın</h3>
+        <h3 className="font-serif text-lg font-semibold text-vurgu-koyu">Aileyle paylaşın</h3>
         <p className="mt-2 text-base text-metin-ikincil">
           Bağlantıyı açan kişi aynı listeyi görür. Bağlantı yalnızca verdiğiniz cevapları içerir; isim veya kimlik
           bilgisi içermez ve sunucumuza gönderilmez. &ldquo;Yaptım&rdquo; işaretleri herkesin kendi cihazında kalır.
@@ -101,7 +87,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold">Son tarihleri takviminize ekleyin</h3>
+        <h3 className="font-serif text-lg font-semibold text-vurgu-koyu">Son tarihleri takviminize ekleyin</h3>
         <p className="mt-2 text-base text-metin-ikincil">
           {yaklasanlar.length > 0
             ? `${yaklasanlar.length} son tarih, 7 gün ve 1 gün önce hatırlatmayla takviminize eklenir.`
@@ -113,7 +99,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold">Kâğıda dökün</h3>
+        <h3 className="font-serif text-lg font-semibold text-vurgu-koyu">Kâğıda dökün</h3>
         <p className="mt-2 text-base text-metin-ikincil">
           Tüm adımlar, ayrıntılarıyla birlikte yazdırılır. Yazdırma ekranında &ldquo;PDF olarak kaydet&rdquo;i seçerek
           dosya olarak da saklayabilirsiniz.

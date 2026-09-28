@@ -83,6 +83,13 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
     if (!belgeler[b]) throw new Error(`İçerik hatası: "${kimden}" bilinmeyen belgeye bakıyor: ${b}`);
   }
 
+  const adimIdleri = new Set(adimlar.map((a) => a.id));
+  for (const a of adimlar) {
+    for (const o of a.onceki) {
+      if (!adimIdleri.has(o)) throw new Error(`İçerik hatası: "${a.id}" bilinmeyen önceki adıma bakıyor: ${o}`);
+    }
+  }
+
   const sablonIdleri = fs.readdirSync(path.join(klasor, "sablonlar")).filter((f) => f.endsWith(".md")).map((f) => f.slice(0, -3));
   for (const a of adimlar) {
     for (const s of a.sablonlar) {

@@ -1,18 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { Atkinson_Hyperlegible, Lora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
 
-const govde = Source_Sans_3({
+/** Metin: az gören okurlar için tasarlanmış, harfleri birbirinden kolay ayrılan yazı tipi. */
+const govde = Atkinson_Hyperlegible({
   variable: "--font-govde",
+  weight: ["400", "700"],
   subsets: ["latin", "latin-ext"],
 });
 
-const baslik = Source_Serif_4({
+/** Başlıklar: sıcak, okunaklı bir serif. */
+const baslik = Lora({
   variable: "--font-baslik",
+  weight: ["500", "600"],
   subsets: ["latin", "latin-ext"],
 });
 
@@ -34,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf8f4",
+  themeColor: "#1f3d63",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

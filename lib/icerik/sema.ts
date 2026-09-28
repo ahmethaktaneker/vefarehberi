@@ -43,6 +43,22 @@ export const KosulSemasi: z.ZodType<Kosul> = z.lazy(() =>
 ) as z.ZodType<Kosul>;
 
 export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
+/** Adımın yapıldığı yer ("Nereye gideceğim" görünümü). "dikkat": yapılacak iş değil, uyarı. */
+export const YERLER = [
+  "ev",
+  "noter_mahkeme",
+  "banka",
+  "risk_merkezi",
+  "sgk",
+  "isveren",
+  "kurumlar",
+  "vergi_dairesi",
+  "tapu",
+  "saglik",
+  "konsolosluk",
+  "dikkat",
+] as const;
+
 export const ZAMAN_GRUPLARI = ["ilk_hafta", "ilk_ay", "ilk_3_ay", "ilk_4_ay", "sonra"] as const;
 export const KATEGORILER = ["son_tarih", "odeme", "borc_risk", "resmi", "kurum", "belge"] as const;
 export const SURE_PARAMETRELERI = [
@@ -98,6 +114,9 @@ export const AdimSemasi = z.strictObject({
   arac: z.enum(["veraset_hesaplayici"]).optional(),
   /** content/sablonlar altındaki ilgili dilekçe taslaklarının id'leri. */
   sablonlar: z.array(z.string()).default([]),
+  yer: z.enum(YERLER),
+  /** Önce yapılması önerilen adımlar (kilit değil; "şimdi yapılacak" önerisinde ve etikette kullanılır). */
+  onceki: z.array(z.string()).default([]),
   /** Kartta "ilgili kurumlar" olarak kurum rehberine bağlanacak kurum türleri. */
   kurum_turleri: z.array(z.enum(KURUM_TURLERI)).default([]),
   ...dogrulukAlanlari,
@@ -209,6 +228,7 @@ export type KurumTuru = (typeof KURUM_TURLERI)[number];
 export type AvukatUyarisi = z.infer<typeof AvukatUyarisiSemasi>;
 export type Parametreler = z.infer<typeof ParametrelerSemasi>;
 export type ZamanGrubu = (typeof ZAMAN_GRUPLARI)[number];
+export type Yer = (typeof YERLER)[number];
 
 export type Icerik = {
   adimlar: Adim[];

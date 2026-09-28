@@ -61,6 +61,8 @@
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
     - "Proje sahibinin saha deneyimi (28.09.2026)"
   sablonlar: [banka_bakiye_yazisi]
+  yer: vergi_dairesi
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -82,6 +84,8 @@
   kaynak:
     - "https://www.fatiharas.com/veraset-ilisik-kesme-belgesi/"
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+  yer: vergi_dairesi
+  onceki: [veraset_beyannamesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

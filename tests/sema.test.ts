@@ -12,6 +12,7 @@ const gecerliAdim = {
   zaman_grubu: "ilk_ay",
   oncelik: "normal",
   ne: "Açıklama",
+  yer: "ev",
   kaynak: ["https://ornek.org"],
   son_kontrol: "2026-09-28",
   dogrulandi: false,

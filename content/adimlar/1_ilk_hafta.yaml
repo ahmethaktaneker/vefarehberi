@@ -14,6 +14,7 @@
   neden: "Sonraki işlemlerin çoğu bu belgeye dayanır."
   nereye: "Sağlık kurumu; kurum dışındaki vefatlarda belediye tabibi, toplum sağlığı merkezi veya aile hekimi"
   kaynak: ["https://www.nvi.gov.tr/olum-islemleri"]
+  yer: saglik
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -41,6 +42,7 @@
   kaynak:
     - "https://www.nvi.gov.tr/olum-islemleri"
     - "https://www.konsolosluk.gov.tr/Procedure/ShowProcedure/8"
+  yer: konsolosluk
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -64,6 +66,7 @@
     - "https://www.gecmezhukuk.com/vefat-edenin-banka-hesabindan-para-cekilmesi/"
     - "https://www.sikayetvar.com/sgk/maas/vefat"
   kurum_turleri: [banka]
+  yer: dikkat
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -93,6 +96,7 @@
     - tur: genel
       metin: "Mirasçı olarak yapabileceğiniz resmi sorgulamalar \"Banka hesaplarını bulun\" ve \"Taşınmazları bulun\" adımlarındadır."
   kaynak: ["https://eksisozluk.com/vefat-sonrasi-yapilacak-islemler--6896625?p=2"]
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

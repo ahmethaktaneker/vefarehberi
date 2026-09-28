@@ -1,21 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { olay } from "@/lib/analitik";
-import { KONTROL_ROZETLERI } from "@/lib/marka";
+import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
+import type { Icerik } from "@/lib/icerik/sema";
+import { bekledikleri, donemler, siradakiAdim, simdikiDonem, yereGore } from "@/lib/kurallar/ilerleme";
+import { listeOlustur } from "@/lib/kurallar/liste";
+import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import type { Paket } from "@/lib/paket";
 import { paketTetikleyici } from "@/lib/paketTetikleyici";
-import { PaketKarti } from "@/components/sonuc/PaketKarti";
-import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
-import type { Icerik, ZamanGrubu } from "@/lib/icerik/sema";
-import { listeOlustur, type HesaplanmisAdim } from "@/lib/kurallar/liste";
-import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
 import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
-import { AdimKarti, kartaGit, TutarSatiri } from "@/components/sonuc/AdimKarti";
-import { KurumRehberi } from "@/components/sonuc/KurumRehberi";
+import { AdimDetay } from "@/components/sonuc/AdimDetay";
 import { BelgeKontrolListesi } from "@/components/sonuc/BelgeKontrolListesi";
+import { KurumRehberi } from "@/components/sonuc/KurumRehberi";
+import {
+  Dosyaniz,
+  Ilerleme,
+  KisaListe,
+  NereyeGit,
+  OdakKarti,
+  SonTarihKartlari,
+  Tik,
+  YER_SIRASI,
+  Yolculuk,
+  ZAMAN_ETIKETLERI,
+} from "@/components/sonuc/ListeParcalari";
+import { PaketKarti } from "@/components/sonuc/PaketKarti";
+import { Panel, PanelSaglayici, type PanelDurumu } from "@/components/sonuc/Panel";
 import { PaylasHatirla } from "@/components/sonuc/PaylasHatirla";
 
 function hashAbone(f: () => void) {
@@ -28,21 +41,21 @@ function hashTemizle() {
   window.dispatchEvent(new HashChangeEvent("hashchange"));
 }
 
-const ZAMAN_ETIKETLERI: Record<ZamanGrubu, string> = {
-  ilk_hafta: "İlk hafta",
-  ilk_ay: "İlk ay",
-  ilk_3_ay: "İlk 3 ay",
-  ilk_4_ay: "İlk 4 ay",
-  sonra: "Sonra (acelesi olmayanlar)",
-};
-
+/**
+ * Liste sayfası: tek bir "şimdi yapılacak" adımla açılır; yaklaşan son tarihler, dönemlere ayrılmış yolculuk
+ * ve her şeyin toplandığı "Dosyanız". Ayrıntılar alttan açılan panelde.
+ */
 export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; riza: { surum: string; metin: string } }) {
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const hamYapilanlar = useDepo(ANAHTARLAR.yapilanlar);
+  const hamBelgeler = useDepo(ANAHTARLAR.belgeler);
   const cevaplar = useMemo(() => jsonCoz<Cevaplar>(hamCevaplar, {}), [hamCevaplar]);
   const yapilanlar = useMemo(() => new Set(jsonCoz<string[]>(hamYapilanlar, [])), [hamYapilanlar]);
+  const hazirBelgeler = useMemo(() => new Set(jsonCoz<string[]>(hamBelgeler, [])), [hamBelgeler]);
   const bugun = istanbulBugun();
   const liste = useMemo(() => listeOlustur(cevaplar, icerik, bugun), [cevaplar, icerik, bugun]);
+  const [panel, setPanel] = useState<PanelDurumu | null>(null);
+  const [sonYapilan, setSonYapilan] = useState<string | null>(null);
   const hash = useSyncExternalStore(hashAbone, () => window.location.hash, () => "");
   const paylasilan = useMemo(() => {
     const m = new RegExp(`^#${PAYLASIM_ANAHTARI}=([0-9a-z.]+)$`).exec(hash);
@@ -68,361 +81,241 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
 
   if (!akisTamam(cevaplar)) {
     return (
-      <div>
-        <h1 className="font-serif text-2xl font-semibold sm:text-3xl">Listeniz henüz hazır değil</h1>
-        <p className="mt-3">Listenizi oluşturmak için önce birkaç soruyu cevaplayın.</p>
-        <Link
-          href="/liste"
-          className="mt-6 inline-flex min-h-12 items-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
-        >
-          Sorulara git
+      <div className="max-w-xl">
+        <h1 className="font-serif text-3xl font-semibold text-vurgu-koyu">Listeniz henüz hazır değil</h1>
+        <p className="mt-3 text-lg">Listenizi oluşturmak için önce birkaç kısa soruyu cevaplayın.</p>
+        <Link href="/liste" className="dugme dugme-birincil mt-6">
+          Sorulara başla
         </Link>
       </div>
     );
   }
 
-  function yapildiDegistir(id: string, yapildi: boolean) {
+  function isaretle(id: string, yapildi: boolean) {
     const yeni = new Set(yapilanlar);
     if (yapildi) {
       yeni.add(id);
       olay("adim_isaretlendi", { adim_id: id });
-    }
-    else yeni.delete(id);
+    } else yeni.delete(id);
     yaz(ANAHTARLAR.yapilanlar, JSON.stringify([...yeni]));
   }
 
-  const odemeler = liste.adimlar.filter((a) => a.kategori === "odeme");
-  const riskler = liste.adimlar.filter((a) => a.kategori === "borc_risk");
-  const yapilanSayisi = liste.adimlar.filter((a) => yapilanlar.has(a.id)).length;
+  function panelAc(p: PanelDurumu) {
+    setPanel(p);
+    olay("bolum_goruntulendi", { bolum: p.tur });
+  }
+
+  const islemler = liste.adimlar.filter((a) => a.yer !== "dikkat");
+  const uyarilar = liste.adimlar.filter((a) => a.yer === "dikkat");
+  const siradaki = siradakiAdim(liste, yapilanlar);
+  const yerler = yereGore(liste, icerik.belgeler, YER_SIRASI);
+  const acikAdim = panel?.tur === "adim" ? liste.adimlar.find((a) => a.id === panel.id) : undefined;
+
+  const panelBasligi = !panel
+    ? ""
+    : panel.tur === "adim"
+      ? (acikAdim?.baslik ?? "")
+      : {
+          odemeler: "Size çıkabilecek ödemeler",
+          riskler: "Borç ve risk kontrolü",
+          belgeler: "Belgeleriniz",
+          kurum: "Kurum rehberi",
+          nereye: "Nereye gideceğim",
+          paylas: "Paylaş ve hatırla",
+        }[panel.tur];
 
   return (
-    <div className="space-y-12">
-      <header>
-        <h1 className="font-serif text-3xl font-semibold leading-tight">Size özel listeniz</h1>
-        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <p className="text-metin-ikincil">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}</p>
-          <Link
-            href="/liste"
-            onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")}
-            className="yazdirma-gizle inline-flex min-h-11 items-center rounded-lg border border-cizgi bg-yuzey px-4 text-base font-semibold text-vurgu-koyu hover:border-vurgu"
-          >
-            Cevaplarımı değiştir
-          </Link>
-        </div>
-        <Ozet liste={liste} yapilanlar={yapilanlar} />
-        {KONTROL_ROZETLERI && (
-          <p className="mt-4 text-base text-metin-ikincil">
-            &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
-          </p>
+    <PanelSaglayici value={panelAc}>
+      <div className="ekran-icerik space-y-10">
+        <header className="space-y-5">
+          <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+            <div>
+              <h1 className="font-serif text-3xl font-semibold leading-tight text-vurgu-koyu sm:text-4xl">Size özel listeniz</h1>
+              <p className="mt-1 text-metin-ikincil">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}</p>
+            </div>
+            <Link href="/liste" onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")} className="dugme dugme-ikincil min-h-11 px-4 py-2 text-base">
+              Cevaplarımı değiştir
+            </Link>
+          </div>
+          <Ilerleme biten={islemler.filter((a) => yapilanlar.has(a.id)).length} toplam={islemler.length} />
+          {uyarilar.map((u) => (
+            <button
+              key={u.id}
+              type="button"
+              onClick={() => panelAc({ tur: "adim", id: u.id })}
+              className="flex w-full items-start gap-3 rounded-xl border-l-4 border-uyari bg-uyari-acik px-4 py-3 text-left"
+            >
+              <span className="flex-1">
+                <strong>{u.baslik}.</strong> <span className="text-metin-ikincil">Nedenini görmek için dokunun.</span>
+              </span>
+            </button>
+          ))}
+        </header>
+
+        <OdakKarti
+          adim={siradaki}
+          sonYapilan={sonYapilan}
+          onYaptim={(id) => {
+            setSonYapilan(liste.adimlar.find((a) => a.id === id)?.baslik ?? null);
+            isaretle(id, true);
+          }}
+        />
+
+        <SonTarihKartlari adimlar={liste.sonTarihliler} yapilanlar={yapilanlar} />
+
+        {liste.avukatUyarilari.length > 0 && (
+          <aside aria-label="Not" className="border-l-2 border-cizgi pl-3 text-base text-metin-ikincil">
+            {liste.avukatUyarilari.map((u) => (
+              <p key={u.id}>{u.metin}</p>
+            ))}
+          </aside>
         )}
-      </header>
 
-      <Icindekiler kurumVar={liste.kurumlar.length > 0} />
+        <Yolculuk
+          donemler={donemler({ ...liste, adimlar: islemler }, yapilanlar)}
+          simdiki={simdikiDonem(liste, yapilanlar)}
+          liste={liste}
+          yapilanlar={yapilanlar}
+          onIsaret={isaretle}
+        />
 
-      <Bolum baslik="Kritik son tarihler">
-        {liste.sonTarihliler.length === 0 ? (
-          <p>
-            Cevaplarınıza göre bu bölümde gösterilecek bir son tarih yok. Durumunuz değişirse (ör. borç
-            olduğunu öğrenirseniz) cevaplarınızı güncelleyin.
-          </p>
-        ) : (
-          <ul className="space-y-3">
-            {liste.sonTarihliler.map((a) => (
-              <SonTarihKutusu key={a.id} adim={a} />
+        <Dosyaniz
+          ozet={{
+            odeme: liste.adimlar.filter((a) => a.kategori === "odeme").length,
+            risk: liste.adimlar.filter((a) => a.kategori === "borc_risk").length,
+            belgeHazir: liste.belgeListesi.filter((b) => hazirBelgeler.has(b.belge.id)).length,
+            belgeToplam: liste.belgeListesi.length,
+            kurum: liste.kurumlar.length,
+            yer: yerler.length,
+          }}
+        />
+
+        <div className="yazdirma-gizle">
+          <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
+        </div>
+      </div>
+
+      <YazdirmaListesi icerik={icerik} liste={liste} yapilanlar={yapilanlar} cevaplar={cevaplar} />
+
+      <Panel acik={!!panel} baslik={panelBasligi} onKapat={() => setPanel(null)}>
+        {panel?.tur === "adim" && acikAdim && (
+          <div className="space-y-6">
+            <AdimDetay
+              adim={acikAdim}
+              belgeler={icerik.belgeler}
+              kurumlar={liste.kurumlar}
+              sozluk={icerik.sozluk}
+              bekledikleri={bekledikleri(acikAdim, liste, yapilanlar)}
+            />
+            {acikAdim.yer !== "dikkat" && (
+              <button
+                type="button"
+                onClick={() => {
+                  const yeni = !yapilanlar.has(acikAdim.id);
+                  isaretle(acikAdim.id, yeni);
+                  if (yeni) setSonYapilan(acikAdim.baslik);
+                  setPanel(null);
+                }}
+                className={`dugme w-full ${yapilanlar.has(acikAdim.id) ? "dugme-ikincil" : "dugme-birincil"}`}
+              >
+                {yapilanlar.has(acikAdim.id) ? (
+                  "Yapılmadı olarak işaretle"
+                ) : (
+                  <>
+                    <Tik className="size-5" /> Bu adımı yaptım
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        )}
+        {panel?.tur === "odemeler" && (
+          <div className="space-y-4">
+            <p className="text-base text-metin-ikincil">Hak edebileceğiniz ödemeler. Birçok aile bunlardan habersiz; her birinin şartlarını ayrıntılarda bulabilirsiniz.</p>
+            <KisaListe adimlar={liste.adimlar.filter((a) => a.kategori === "odeme")} bos="Cevaplarınıza göre gösterilecek bir ödeme yok." />
+          </div>
+        )}
+        {panel?.tur === "riskler" && (
+          <div className="space-y-4">
+            <p className="text-base text-metin-ikincil">Borç olup olmadığını öğrenmenize ve beklenmedik ödemelerden korunmanıza yardım eden adımlar.</p>
+            <KisaListe adimlar={liste.adimlar.filter((a) => a.kategori === "borc_risk")} bos="Cevaplarınıza göre gösterilecek bir adım yok." />
+          </div>
+        )}
+        {panel?.tur === "belgeler" && <BelgeKontrolListesi liste={liste.belgeListesi} />}
+        {panel?.tur === "kurum" && <KurumRehberi kurumlar={liste.kurumlar} belgeler={icerik.belgeler} acikId={panel.id} />}
+        {panel?.tur === "nereye" && <NereyeGit yerler={yerler} yapilanlar={yapilanlar} />}
+        {panel?.tur === "paylas" && <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />}
+      </Panel>
+    </PanelSaglayici>
+  );
+}
+
+/** Yalnızca yazdırırken görünen tam liste: tüm adımlar ayrıntılarıyla ve belge listesi. */
+function YazdirmaListesi({
+  icerik,
+  liste,
+  yapilanlar,
+  cevaplar,
+}: {
+  icerik: Icerik;
+  liste: ReturnType<typeof listeOlustur>;
+  yapilanlar: Set<string>;
+  cevaplar: Cevaplar;
+}) {
+  return (
+    <div className="yazdirma-listesi">
+      <h1 className="font-serif text-2xl font-semibold">Vefa Rehberi: yapılacaklar listesi</h1>
+      <p className="mb-6">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}. Genel bilgilendirme amaçlıdır; son tarih ve tutarları resmi kaynaktan teyit edin.</p>
+      {donemler(liste, yapilanlar).map((d) => (
+        <section key={d.grup} className="mb-6">
+          <h2 className="mb-2 font-serif text-xl font-semibold">{ZAMAN_ETIKETLERI[d.grup]}</h2>
+          <ul className="space-y-4">
+            {d.adimlar.map((a) => (
+              <li key={a.id} className="border-b border-cizgi pb-4">
+                <h3 className="mb-2 text-lg font-bold">
+                  {yapilanlar.has(a.id) ? "☑" : "☐"} {a.baslik}
+                </h3>
+                <AdimDetay adim={a} belgeler={icerik.belgeler} kurumlar={[]} sozluk={[]} yazdirma />
+              </li>
             ))}
           </ul>
-        )}
-      </Bolum>
-
-      {liste.avukatUyarilari.length > 0 && (
-        <aside aria-label="Not" className="border-l-2 border-cizgi pl-3 text-base text-metin-ikincil">
-          {liste.avukatUyarilari.map((u) => (
-            <p key={u.id}>{u.metin}</p>
-          ))}
-        </aside>
-      )}
-
-      <Bolum baslik="Size çıkabilecek ödemeler">
-        <OzetListesi adimlar={odemeler} bos="Cevaplarınıza göre bu bölümde gösterilecek bir ödeme yok." />
-      </Bolum>
-
-      <Bolum baslik="Borç ve risk kontrolü">
-        <OzetListesi adimlar={riskler} bos="Cevaplarınıza göre bu bölümde gösterilecek bir adım yok." />
-      </Bolum>
-
-      <Bolum baslik="Adım adım liste">
-        <p className="-mt-2 mb-6 text-base text-metin-ikincil" aria-live="polite">
-          {liste.adimlar.length} adımdan {yapilanSayisi} tanesini yaptınız. İşaretleriniz yalnızca bu cihazda saklanır.
-        </p>
-        <div className="space-y-10">
-          {(Object.keys(ZAMAN_ETIKETLERI) as ZamanGrubu[]).map((grup) => {
-            const adimlar = liste.adimlar.filter((a) => a.zaman_grubu === grup);
-            if (adimlar.length === 0) return null;
-            const biten = adimlar.filter((a) => yapilanlar.has(a.id)).length;
-            return (
-              <section key={grup} aria-labelledby={`grup-${grup}`}>
-                <h3 id={`grup-${grup}`} className="mb-4 flex items-baseline justify-between gap-3 border-b border-cizgi pb-2">
-                  <span className="font-serif text-xl font-semibold">{ZAMAN_ETIKETLERI[grup]}</span>
-                  <span className="text-base text-metin-ikincil">
-                    {biten} / {adimlar.length} yapıldı
-                  </span>
-                </h3>
-                <ul className="space-y-3">
-                  {adimlar.map((a) => (
-                    <AdimKarti
-                      key={a.id}
-                      adim={a}
-                      belgeler={icerik.belgeler}
-                      kurumlar={liste.kurumlar}
-                      sozluk={icerik.sozluk}
-                      yapildi={yapilanlar.has(a.id)}
-                      onYapildi={(v) => yapildiDegistir(a.id, v)}
-                    />
-                  ))}
-                </ul>
-              </section>
-            );
-          })}
-        </div>
-      </Bolum>
-
-      {liste.kurumlar.length > 0 && (
-        <Bolum baslik="Kurum rehberi">
-          <KurumRehberi kurumlar={liste.kurumlar} belgeler={icerik.belgeler} />
-        </Bolum>
-      )}
-
-      <Bolum baslik="Belge listesi">
-        <p className="-mt-2 mb-4 text-base text-metin-ikincil">
-          Listenizdeki adımlarda istenen belgelerin tamamı, en çok gerekenden başlayarak. Hazırladıklarınızı
-          işaretleyin; her kurum farklı belge isteyebilir, gitmeden önce teyit edin.
-        </p>
-        <BelgeKontrolListesi liste={liste.belgeListesi} />
-      </Bolum>
-
-      <Bolum baslik="Paylaş ve hatırla">
-        <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
-      </Bolum>
-
-      <div className="yazdirma-gizle">
-        <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
-      </div>
-    </div>
-  );
-}
-
-function Bolum({ baslik, children }: { baslik: string; children: React.ReactNode }) {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const gozlemci = new IntersectionObserver(([g]) => {
-      if (g.isIntersecting) {
-        olay("bolum_goruntulendi", { bolum: baslik });
-        gozlemci.disconnect();
-      }
-    });
-    gozlemci.observe(el);
-    return () => gozlemci.disconnect();
-  }, [baslik]);
-  const id = `bolum-${baslik.toLocaleLowerCase("tr").replace(/[^a-zçğıöşü0-9]+/g, "-")}`;
-  return (
-    <section ref={ref} id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-20">
-      <h2 id={`${id}-baslik`} className="mb-4 font-serif text-2xl font-semibold">
-        {baslik}
-      </h2>
-      {children}
-    </section>
-  );
-}
-
-function kalanMetni(kalan: number): string {
-  if (kalan > 1) return `${kalan} gün kaldı`;
-  if (kalan === 1) return "1 gün kaldı";
-  return "Bugün son gün";
-}
-
-function SonTarihKutusu({ adim }: { adim: HesaplanmisAdim }) {
-  const b = adim.sonTarihBilgisi!;
-  const st = adim.son_tarih!;
-  return (
-    <li className={`rounded-lg border-2 p-4 ${b.gecti ? "border-dashed border-uyari bg-yuzey" : "border-uyari bg-uyari-acik"}`}>
-      <a
-        href={`#adim-${adim.id}`}
-        onClick={() => kartaGit(adim.id)}
-        className="inline-flex min-h-11 items-center text-lg font-semibold text-metin underline underline-offset-4"
-      >
-        {adim.baslik}
-      </a>
-      <p className="mt-1">
-        Son tarih: <strong>{tarihMetni(b.tarih)}</strong>
-        {" · "}
-        <strong className="text-uyari">{b.gecti ? "Süre geçmiş görünüyor" : kalanMetni(b.kalanGun)}</strong>
-      </p>
-      {b.gecti && <p className="mt-2">{st.gecti_notu}</p>}
-      {st.not && <p className="mt-2 text-base text-metin-ikincil">{st.not}</p>}
-      {b.belirsizNot && <p className="mt-2 text-base text-metin-ikincil">{b.belirsizNot}</p>}
-    </li>
-  );
-}
-
-function OzetListesi({ adimlar, bos }: { adimlar: HesaplanmisAdim[]; bos: string }) {
-  if (adimlar.length === 0) return <p>{bos}</p>;
-  return (
-    <ul className="divide-y divide-cizgi rounded-lg border border-cizgi bg-yuzey">
-      {adimlar.map((a) => (
-        <li key={a.id}>
-          <a
-            href={`#adim-${a.id}`}
-            onClick={() => kartaGit(a.id)}
-            className="flex min-h-14 items-center gap-3 px-4 py-3 hover:bg-zemin"
-          >
-            <span className="flex-1">
-              <span className="block font-semibold text-vurgu-koyu">{a.baslik}</span>
-              {a.tutarBilgisi && <TutarSatiri bilgi={a.tutarBilgisi} />}
-              {a.belirsiz && <span className="mt-1 block text-base text-metin-ikincil">Durumunuza göre geçerli olabilir.</span>}
-            </span>
-            <span aria-hidden="true" className="text-vurgu-koyu">→</span>
-          </a>
-        </li>
+        </section>
       ))}
-    </ul>
+      <section>
+        <h2 className="mb-2 font-serif text-xl font-semibold">Belgeler</h2>
+        <ul className="space-y-1">
+          {liste.belgeListesi.map((b) => (
+            <li key={b.belge.id}>
+              ☐ {b.belge.ad}
+              {b.belge.not && <span className="text-metin-ikincil">. {b.belge.not}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 }
 
 function PaylasimKabul({ mevcutVar, onKabul, onVazgec }: { mevcutVar: boolean; onKabul: () => void; onVazgec: () => void }) {
   return (
-    <div>
-      <h1 className="font-serif text-2xl font-semibold sm:text-3xl">Size bir liste paylaşıldı</h1>
-      <p className="mt-3">
-        Bu bağlantı, bir yakınınızın cevaplarıyla oluşturulmuş yapılacaklar listesini açıyor. Bağlantı isim veya
-        kimlik bilgisi içermez.
+    <div className="max-w-xl">
+      <h1 className="font-serif text-3xl font-semibold text-vurgu-koyu">Size bir liste paylaşıldı</h1>
+      <p className="mt-3 text-lg">
+        Bu bağlantı, bir yakınınızın cevaplarıyla oluşturulmuş yapılacaklar listesini açıyor. Bağlantı isim veya kimlik bilgisi içermez.
       </p>
       {mevcutVar && (
-        <p className="mt-3 rounded-md bg-bilgi-acik px-3 py-2 text-base">
-          Bu cihazda kendi oluşturduğunuz bir liste var. Paylaşılan listeyi açarsanız kendi cevaplarınızın yerine
-          geçer. &ldquo;Yaptım&rdquo; işaretleriniz silinmez.
+        <p className="mt-4 rounded-xl bg-altin-acik px-4 py-3 text-base">
+          Bu cihazda kendi oluşturduğunuz bir liste var. Paylaşılan listeyi açarsanız kendi cevaplarınızın yerine geçer. &ldquo;Yaptım&rdquo; işaretleriniz silinmez.
         </p>
       )}
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <button
-          type="button"
-          onClick={onKabul}
-          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
-        >
+        <button type="button" onClick={onKabul} className="dugme dugme-birincil">
           Paylaşılan listeyi aç
         </button>
-        <button
-          type="button"
-          onClick={onVazgec}
-          className="inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-7 py-3 text-lg font-semibold text-vurgu-koyu hover:border-vurgu"
-        >
+        <button type="button" onClick={onVazgec} className="dugme dugme-ikincil">
           Vazgeç
         </button>
       </div>
     </div>
-  );
-}
-
-const ICINDEKILER: [string, string][] = [
-  ["Son tarihler", "kritik-son-tarihler"],
-  ["Ödemeler", "size-çıkabilecek-ödemeler"],
-  ["Borç ve risk", "borç-ve-risk-kontrolü"],
-  ["Adımlar", "adım-adım-liste"],
-  ["Kurumlar", "kurum-rehberi"],
-  ["Belgeler", "belge-listesi"],
-  ["Paylaş", "paylaş-ve-hatırla"],
-];
-
-function Icindekiler({ kurumVar }: { kurumVar: boolean }) {
-  return (
-    <nav
-      aria-label="Bu sayfada"
-      className="yazdirma-gizle sticky top-0 z-10 -mx-4 border-b border-cizgi bg-zemin/95 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6"
-    >
-      <ul className="flex gap-2 overflow-x-auto pb-1">
-        {ICINDEKILER.filter(([, id]) => kurumVar || id !== "kurum-rehberi").map(([ad, id]) => (
-          <li key={id}>
-            <a
-              href={`#bolum-${id}`}
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full border border-cizgi bg-yuzey px-4 text-base text-vurgu-koyu hover:border-vurgu"
-            >
-              {ad}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
-
-function Ozet({ liste, yapilanlar }: { liste: ReturnType<typeof listeOlustur>; yapilanlar: Set<string> }) {
-  const toplam = liste.adimlar.length;
-  const biten = liste.adimlar.filter((a) => yapilanlar.has(a.id)).length;
-  const yuzde = toplam ? Math.round((biten / toplam) * 100) : 0;
-  const enYakin = liste.sonTarihliler.find((a) => !a.sonTarihBilgisi!.gecti && !yapilanlar.has(a.id));
-  // Sıradaki adımlar: önce yaklaşan son tarihler, sonra listedeki sıra
-  const sonTarihIdleri = liste.sonTarihliler.filter((a) => !a.sonTarihBilgisi!.gecti).map((a) => a.id);
-  const siradakiler = [
-    ...sonTarihIdleri.map((id) => liste.adimlar.find((a) => a.id === id)!),
-    ...liste.adimlar.filter((a) => !sonTarihIdleri.includes(a.id)),
-  ]
-    .filter((a) => !yapilanlar.has(a.id))
-    .slice(0, 3);
-
-  return (
-    <section aria-labelledby="ozet-baslik" className="mt-6 rounded-lg border border-cizgi bg-yuzey p-5">
-      <h2 id="ozet-baslik" className="sr-only">
-        Özet
-      </h2>
-      <p className="text-lg">
-        <strong>{toplam} adımdan {biten} tanesi</strong> yapıldı.
-      </p>
-      <div
-        role="progressbar"
-        aria-label="Yapılan adımlar"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={yuzde}
-        className="mt-2 h-3 overflow-hidden rounded-full bg-cizgi"
-      >
-        <div className="h-full rounded-full bg-vurgu" style={{ width: `${yuzde}%` }} />
-      </div>
-      {enYakin && (
-        <p className="mt-4 text-lg">
-          En yakın son tarih:{" "}
-          <strong className="text-uyari">
-            {tarihMetni(enYakin.sonTarihBilgisi!.tarih)} ({kalanMetni(enYakin.sonTarihBilgisi!.kalanGun).toLocaleLowerCase("tr")})
-          </strong>
-          <br />
-          <span className="text-base text-metin-ikincil">{enYakin.baslik}</span>
-        </p>
-      )}
-      {siradakiler.length > 0 ? (
-        <>
-          <h3 className="mt-5 text-lg font-semibold">Sıradaki adımlar</h3>
-          <ol className="mt-2 space-y-2">
-            {siradakiler.map((a, i) => (
-              <li key={a.id}>
-                <a
-                  href={`#adim-${a.id}`}
-                  onClick={() => kartaGit(a.id)}
-                  className="flex min-h-12 items-center gap-3 rounded-lg border border-cizgi px-3 py-2 hover:border-vurgu"
-                >
-                  <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-vurgu-acik font-semibold text-vurgu-koyu">
-                    {i + 1}
-                  </span>
-                  <span className="flex-1 text-base">{a.baslik}</span>
-                  <span aria-hidden="true" className="text-vurgu-koyu">→</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </>
-      ) : (
-        <p className="mt-4 text-lg">Listenizdeki tüm adımları işaretlediniz.</p>
-      )}
-    </section>
   );
 }

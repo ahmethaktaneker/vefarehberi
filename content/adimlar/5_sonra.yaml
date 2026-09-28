@@ -21,6 +21,8 @@
   kaynak:
     - "https://www.tkgm.gov.tr/en/node/207"
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+  yer: tapu
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -45,6 +47,8 @@
     - "https://sumeyyeyuce.av.tr/miras-kalan-arac-satisi-ve-ruhsat-devri/"
     - "https://www.fatiharas.com/veraset-ilisik-kesme-belgesi/"
     - "https://eksisozluk.com/veraset-ve-intikal-vergisi--1039060?p=3"
+  yer: noter_mahkeme
+  onceki: [ilisik_kesme]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -68,6 +72,8 @@
     - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
   sablonlar: [abonelik_iptal]
   kurum_turleri: [enerji, dogalgaz, su]
+  yer: kurumlar
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -90,6 +96,7 @@
     - "https://support.google.com/accounts/troubleshooter/6357590?hl=tr"
     - "https://support.apple.com/tr-tr/102431"
     - "https://tr-tr.facebook.com/help/275013292838654"
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

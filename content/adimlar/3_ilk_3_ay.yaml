@@ -48,6 +48,7 @@
     - "https://www.ozcanlarhukuk.com/mirasin-hukmen-reddi-davasi/"
     - "https://www.palmahukuk.com/reddi-miras-yapinca-borc-kime-kalir/"
     - "https://www.sikayetvar.com/avukat/miras"
+  yer: noter_mahkeme
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -78,6 +79,7 @@
   kaynak:
     - "https://www.serafettinkaya.av.tr/olum-ayligi-dul-yetim-ayligi-sartlari/"
     - "https://www.sikayetvar.com/sgk/dul-ve-yetim-ayligi"
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -102,6 +104,7 @@
   kaynak:
     - "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"
     - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
+  yer: sgk
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -120,6 +123,7 @@
   kaynak:
     - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
     - "https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"
+  yer: sgk
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -137,6 +141,8 @@
   nereye: "Vefat edenin işvereni"
   belgeler: [mirascilik_belgesi]
   kaynak: ["https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"]
+  yer: isveren
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

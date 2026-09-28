@@ -49,10 +49,10 @@ export function PaketKarti({
   if (kapali || fiyat === null) return null;
 
   return (
-    <div ref={kartRef} className="rounded-lg border border-cizgi bg-yuzey p-5">
+    <div ref={kartRef} className="rounded-2xl border border-dashed border-cizgi bg-yuzey/70 p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="font-serif text-xl font-semibold">{paket.ad}</h2>
+          <h2 className="font-serif text-xl font-semibold text-vurgu-koyu">{paket.ad}</h2>
           <p className="mt-1 text-base text-metin-ikincil">{paket.aciklama}</p>
         </div>
         <button
@@ -84,7 +84,7 @@ export function PaketKarti({
             setTiklandi(true);
             olay("paket_tiklandi", { fiyat, tetikleyici: tetikleyici.id });
           }}
-          className="mt-4 inline-flex min-h-12 items-center justify-center rounded-lg border border-vurgu bg-yuzey px-6 py-3 text-base font-semibold text-vurgu-koyu hover:bg-vurgu-acik"
+          className="dugme dugme-ikincil mt-4"
         >
           Paketi al
         </button>
@@ -174,7 +174,7 @@ function EpostaFormu({ fiyat, riza }: { fiyat: number; riza: { surum: string; me
       <button
         type="submit"
         disabled={durum === "gonderiliyor"}
-        className="inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-6 py-3 text-base font-semibold text-white hover:bg-vurgu-koyu disabled:opacity-60"
+        className="dugme dugme-birincil"
       >
         {durum === "gonderiliyor" ? "Kaydediliyor…" : "Haber ver"}
       </button>

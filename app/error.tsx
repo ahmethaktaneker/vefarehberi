@@ -14,11 +14,11 @@ export default function HataSayfasi({ retry }: { error: Error & { digest?: strin
         <button
           type="button"
           onClick={() => retry()}
-          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-6 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
+          className="dugme dugme-birincil"
         >
           Tekrar dene
         </button>
-        <Link href="/" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-6 py-3 text-lg font-semibold text-vurgu-koyu hover:border-vurgu">
+        <Link href="/" className="dugme dugme-ikincil">
           Ana sayfa
         </Link>
       </div>
