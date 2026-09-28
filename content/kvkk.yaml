@@ -1,7 +1,7 @@
 # KVKK: veri sorumlusu bilgisi ve açık rıza metinleri. TASLAK, avukat kontrolünden GEÇMEDİ.
 # Rıza metni değişirse "surum" artırılır; her kayıtla birlikte hangi sürüme rıza verildiği saklanır.
 
-veri_sorumlusu: "[Veri sorumlusunun adı soyadı veya unvanı: doldurulacak]"
+veri_sorumlusu: "Ahmet Haktan Eker"
 iletisim_eposta: "ahmethaktaneker@gmail.com"
 
 acik_riza:
