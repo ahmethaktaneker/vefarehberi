@@ -15,7 +15,7 @@ Türkiye'de her yıl yaklaşık 490 bin kişi vefat ediyor (TÜİK, 2025). Her v
 
 ## Kim hazırlıyor
 
-Vefa Rehberi, hukuk öğrencisi Ahmet Haktan Eker tarafından hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
+Vefa Rehberi, hukuk öğrencisi Ahmet Haktan Eker tarafından avukat desteğiyle hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
 
 <!-- Buraya isterseniz kendi hikâyenizi ekleyebilirsiniz: bu siteyi neden yaptığınız. -->
 

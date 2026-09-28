@@ -26,7 +26,7 @@ export default function AnaSayfa() {
         {AVUKAT_ROZETI_AKTIF && (
           <li className="flex gap-3">
             <Isaret />
-            Hukuk uzmanı kontrolünde hazırlanır
+            Avukat desteğiyle hazırlanır
           </li>
         )}
         <li className="flex gap-3">

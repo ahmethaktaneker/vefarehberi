@@ -6,7 +6,6 @@ export function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-cizgi bg-bilgi-acik">
       <div className="mx-auto max-w-3xl space-y-4 px-4 py-8 sm:px-6">
-        <HukukiUyari />
         <p className="text-base">
           Bir hata veya eksik mi gördünüz?{" "}
           <a href={hataBildirBaglantisi("Hata bildirimi")} className="font-semibold text-vurgu-koyu underline underline-offset-4">
@@ -36,6 +35,7 @@ export function SiteFooter() {
             Aydınlatma metni
           </Link>
         </nav>
+        <HukukiUyari />
         <p className="text-base text-metin-ikincil">
           {URUN_ADI} · {URUN_ALT_BASLIK}. Resmi bir kurum sitesi değildir.
         </p>

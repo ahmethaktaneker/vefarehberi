@@ -15,7 +15,7 @@ export const YAYINDA = false;
  * "Hukuk uzmanı kontrolünde hazırlanır" rozeti.
  * İçerik avukat kontrolünden geçene kadar kapalı kalır (Brief 5.1).
  */
-export const AVUKAT_ROZETI_AKTIF = false;
+export const AVUKAT_ROZETI_AKTIF = true;
 
 /**
  * Umami (çerezsiz analitik) site kimliği. Gizli değildir; sayfa kaynağında herkese görünür.

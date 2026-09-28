@@ -110,10 +110,11 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           </Link>
         </div>
         <Ozet liste={liste} yapilanlar={yapilanlar} />
-        <p className="mt-4 text-base text-metin-ikincil">
-          {KONTROL_ROZETLERI && <>&ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi. </>}
-          Bu liste genel bilgilendirme amaçlıdır. Son tarih ve tutarları resmi kaynaktan teyit edin.
-        </p>
+        {KONTROL_ROZETLERI && (
+          <p className="mt-4 text-base text-metin-ikincil">
+            &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
+          </p>
+        )}
       </header>
 
       <Icindekiler kurumVar={liste.kurumlar.length > 0} />
@@ -134,16 +135,11 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
       </Bolum>
 
       {liste.avukatUyarilari.length > 0 && (
-        <section aria-labelledby="avukat-baslik" className="rounded-lg border border-cizgi bg-bilgi-acik p-5">
-          <h2 id="avukat-baslik" className="font-serif text-xl font-semibold">
-            Bir avukata danışmanız önerilir
-          </h2>
-          <ul className="mt-3 space-y-2">
-            {liste.avukatUyarilari.map((u) => (
-              <li key={u.id}>{u.metin}</li>
-            ))}
-          </ul>
-        </section>
+        <aside aria-label="Not" className="border-l-2 border-cizgi pl-3 text-base text-metin-ikincil">
+          {liste.avukatUyarilari.map((u) => (
+            <p key={u.id}>{u.metin}</p>
+          ))}
+        </aside>
       )}
 
       <Bolum baslik="Size çıkabilecek ödemeler">
