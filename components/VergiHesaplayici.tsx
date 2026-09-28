@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { olay } from "@/lib/analitik";
 import type { Parametreler } from "@/lib/icerik/sema";
 import { tutarOku, verasetVergisiHesapla, type MirasciTuru } from "@/lib/hesaplayici";
 
@@ -32,6 +33,13 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
 
   const tur: MirasciTuru = yakinlik === "es" ? (cocukVar ? "es_cocuklu" : "es_cocuksuz") : yakinlik;
   const sonuc = toplam !== null && oran !== null ? verasetVergisiHesapla(toplam * oran, tur, parametreler) : null;
+  const olculdu = useRef(false);
+  useEffect(() => {
+    if (sonuc && !olculdu.current) {
+      olculdu.current = true;
+      olay("hesaplayici_kullanildi");
+    }
+  }, [sonuc]);
 
   return (
     <div className="space-y-8">

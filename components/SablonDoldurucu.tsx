@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { olay } from "@/lib/analitik";
 import { sablonDoldur } from "@/lib/sablonlar/doldur";
 
 type Alan = { id: string; etiket: string; ornek?: string; cok_satirli?: boolean };
@@ -21,6 +22,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
     try {
       await navigator.clipboard.writeText(metin);
       setDurum("Metin kopyalandı.");
+      olay("sablon_indirildi", { sablon_id: id });
     } catch {
       setDurum("Kopyalanamadı; metni elle seçip kopyalayabilirsiniz.");
     }
@@ -34,6 +36,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
     a.click();
     URL.revokeObjectURL(url);
     setDurum("Metin dosyası indirildi.");
+    olay("sablon_indirildi", { sablon_id: id });
   }
 
   return (
@@ -81,7 +84,10 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
       </section>
 
       <div className="yazdirma-gizle flex flex-col gap-3 sm:flex-row">
-        <button type="button" onClick={() => window.print()} className={dugme}>
+        <button type="button" onClick={() => {
+            olay("sablon_indirildi", { sablon_id: id });
+            window.print();
+          }} className={dugme}>
           Yazdır veya PDF olarak kaydet
         </button>
         <button type="button" onClick={kopyala} className={dugme}>

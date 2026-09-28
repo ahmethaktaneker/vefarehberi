@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
+import { olay } from "@/lib/analitik";
+import type { Paket } from "@/lib/paket";
+import { paketTetikleyici } from "@/lib/paketTetikleyici";
+import { PaketKarti } from "@/components/sonuc/PaketKarti";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import type { Icerik, ZamanGrubu } from "@/lib/icerik/sema";
 import { listeOlustur, type HesaplanmisAdim } from "@/lib/kurallar/liste";
@@ -31,7 +35,7 @@ const ZAMAN_ETIKETLERI: Record<ZamanGrubu, string> = {
   sonra: "Sonra (acelesi olmayanlar)",
 };
 
-export function Sonuc({ icerik }: { icerik: Icerik }) {
+export function Sonuc({ icerik, paket }: { icerik: Icerik; paket: Paket }) {
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const hamYapilanlar = useDepo(ANAHTARLAR.yapilanlar);
   const cevaplar = useMemo(() => jsonCoz<Cevaplar>(hamCevaplar, {}), [hamCevaplar]);
@@ -78,7 +82,10 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
 
   function yapildiDegistir(id: string, yapildi: boolean) {
     const yeni = new Set(yapilanlar);
-    if (yapildi) yeni.add(id);
+    if (yapildi) {
+      yeni.add(id);
+      olay("adim_isaretlendi", { adim_id: id });
+    }
     else yeni.delete(id);
     yaz(ANAHTARLAR.yapilanlar, JSON.stringify([...yeni]));
   }
@@ -186,6 +193,8 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
         <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
       </Bolum>
 
+      <PaketKarti paket={paket} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
+
       <Bolum baslik="Belge listesi">
         <p className="-mt-2 mb-4 text-base text-metin-ikincil">
           Listenizdeki adımlarda istenen belgelerin tamamı, en çok gerekenden başlayarak. Hazırladıklarınızı
@@ -198,9 +207,22 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
 }
 
 function Bolum({ baslik, children }: { baslik: string; children: React.ReactNode }) {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const gozlemci = new IntersectionObserver(([g]) => {
+      if (g.isIntersecting) {
+        olay("bolum_goruntulendi", { bolum: baslik });
+        gozlemci.disconnect();
+      }
+    });
+    gozlemci.observe(el);
+    return () => gozlemci.disconnect();
+  }, [baslik]);
   const id = `bolum-${baslik.toLocaleLowerCase("tr").replace(/[^a-zçğıöşü0-9]+/g, "-")}`;
   return (
-    <section id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-4">
+    <section ref={ref} id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-4">
       <h2 id={`${id}-baslik`} className="mb-4 font-serif text-2xl font-semibold">
         {baslik}
       </h2>

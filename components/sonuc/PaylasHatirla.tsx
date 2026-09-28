@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { olay } from "@/lib/analitik";
 import type { HesaplanmisAdim } from "@/lib/kurallar/liste";
 import { SITE_URL } from "@/lib/marka";
 import { PAYLASIM_ANAHTARI, paylasimKodla } from "@/lib/paylasim";
@@ -20,6 +21,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
     try {
       await navigator.clipboard.writeText(baglanti);
       setDurum("Bağlantı kopyalandı.");
+      olay("paylasim_linki_kopyalandi");
     } catch {
       setDurum("Kopyalanamadı. Aşağıdaki bağlantıyı elle seçip kopyalayabilirsiniz.");
     }
@@ -28,6 +30,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
   async function paylas() {
     try {
       await navigator.share({ title: "Vefa Rehberi: yapılacaklar listesi", url: baglanti });
+      olay("paylasim_linki_kopyalandi");
     } catch {
       // Kullanıcı paylaşımı iptal etti.
     }
@@ -51,6 +54,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
     a.click();
     URL.revokeObjectURL(url);
     setDurum("Takvim dosyası indirildi. Açtığınızda takviminize eklenir.");
+    olay("takvime_eklendi");
   }
 
   return (

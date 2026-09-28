@@ -13,6 +13,8 @@ export const ANAHTARLAR = {
   soruSirasi: "vefa:soru:v1",
   yapilanlar: "vefa:yapilanlar:v1",
   belgeler: "vefa:belgeler:v1",
+  /** Paket fiyat testi varyantı; "baştan başla" ile silinmez (aynı ziyaretçiye hep aynı fiyat). */
+  fiyat: "vefa:fiyat:v1",
 } as const;
 
 const bellek = new Map<string, string | null>();
@@ -66,5 +68,7 @@ export function jsonCoz<T>(ham: string | null | undefined, varsayilan: T): T {
 }
 
 export function tumunuSil() {
-  Object.values(ANAHTARLAR).forEach((k) => yaz(k, null));
+  Object.values(ANAHTARLAR)
+    .filter((k) => k !== ANAHTARLAR.fiyat)
+    .forEach((k) => yaz(k, null));
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
+import { kaynakSayfa, olay } from "@/lib/analitik";
 import { ANAHTARLAR, jsonCoz, tumunuSil, useDepo, yaz } from "@/lib/depo";
 import { istanbulBugun, tarihGecerli } from "@/lib/kurallar/tarih";
 import { akisTamam, cevaplandi, gorunenSorular, type Cevaplar, type Soru } from "@/lib/sorular";
@@ -44,7 +45,18 @@ export function SoruAkisi() {
   function ilerle(yeni: Cevaplar) {
     const yeniSorular = gorunenSorular(yeni);
     const simdiki = yeniSorular.findIndex((s) => s.id === soru.id);
+    if (simdiki === 0) {
+      try {
+        sessionStorage.setItem("vefa:akis-baslangic", String(Date.now()));
+      } catch {}
+      olay("akis_basladi", { kaynak: kaynakSayfa() });
+    }
+    olay("soru_cevaplandi", { soru_no: simdiki + 1 });
     if (simdiki + 1 >= yeniSorular.length) {
+      try {
+        const bas = Number(sessionStorage.getItem("vefa:akis-baslangic"));
+        if (bas) olay("akis_tamamlandi", { sure_sn: Math.round((Date.now() - bas) / 1000) });
+      } catch {}
       yaz(ANAHTARLAR.soruSirasi, null);
       router.push("/liste/sonuc");
     } else {

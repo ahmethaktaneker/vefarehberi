@@ -50,7 +50,10 @@ export default function Gizlilik() {
           Siteyi geliştirmek için çerez kullanmayan, kişisel veri içermeyen sayımlar yapılır (ör.
           &ldquo;bir bölüm görüntülendi&rdquo;). Cevaplarınızın içeriği bu sayımlara eklenmez.
         </p>
-        <p className="text-metin-ikincil">[Kullanılacak analitik aracı: karar verilecek]</p>
+        <p>
+          Bu sayımlar için çerez kullanmayan Umami aracını kullanıyoruz. Tarayıcınızda &ldquo;izlenmek
+          istemiyorum&rdquo; (Do Not Track) ayarı açıksa hiçbir sayım yapılmaz.
+        </p>
       </Bolum>
 
       <Bolum baslik="E-posta adresi">

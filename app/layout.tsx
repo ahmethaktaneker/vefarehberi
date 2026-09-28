@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SITE_URL, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
+import { SITE_URL, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
 
 const govde = Source_Sans_3({
   variable: "--font-govde",
@@ -51,6 +52,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        {UMAMI_SITE_KIMLIGI && (
+          // Çerezsiz analitik (Brief 11). Yalnızca olay sayıları; kişisel veri ve cevap içeriği gönderilmez.
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id={UMAMI_SITE_KIMLIGI}
+            data-do-not-track="true"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

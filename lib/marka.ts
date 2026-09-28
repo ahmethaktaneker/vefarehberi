@@ -17,6 +17,12 @@ export const YAYINDA = false;
  */
 export const AVUKAT_ROZETI_AKTIF = false;
 
+/**
+ * Umami (çerezsiz analitik) site kimliği. Gizli değildir; sayfa kaynağında herkese görünür.
+ * Boş bırakılırsa analitik betiği yüklenmez.
+ */
+export const UMAMI_SITE_KIMLIGI = "";
+
 /** Sayfa başlığı kalıbı: "{Konu} | Vefa Rehberi" */
 export function sayfaBasligi(konu: string): string {
   return `${konu} | ${URUN_ADI}`;

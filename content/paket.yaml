@@ -1,0 +1,29 @@
+# Takip Paketi: ödeme isteği testi (Brief 10). Gerçek ödeme yok.
+# Zorunlu bilgi asla ücretli değildir; pakette yalnızca zaman kazandıran ve düzen sağlayan şeyler var.
+
+ad: "Takip Paketi"
+aciklama: "İşlemleri kendiniz yaparken size zaman kazandıran ve düzen sağlayan ek araçlar."
+icerik:
+  - "Veraset beyannamesi hazırlık dosyası: varlıklarınıza göre belge listesi ve adım adım vergi dairesi rehberi"
+  - "Tüm dilekçe ve başvuru taslakları (işverene, sigorta şirketine, belediyeye)"
+  - "E-posta ile haftalık \"bu hafta şunu yapın\" planı"
+  - "Yurtdışındaki mirasçılar için ayrıntılı rehber"
+fiyatlar: [499, 999, 1999]
+yakinda_metni: >
+  Paket çok yakında açılıyor. Şu an ödeme almıyoruz. Listeniz, son tarihler ve hak edebileceğiniz
+  ödemeler her zaman ücretsiz kalacak.
+eposta_yakinda_metni: "Paket açıldığında haber almak için e-posta bırakma seçeneği de çok yakında burada olacak."
+
+# Doğru anda gösterilen kısa not (Brief 10 "tetikleyiciler"). İlk eşleşen gösterilir.
+tetikleyiciler:
+  - id: veraset_30_gun
+    metin: "Beyanname için gereken tüm belgeler pakette tek listede."
+  - id: baska_sehir_tasinmaz
+    kosul: { varliklar: "baska_sehir_tasinmaz" }
+    metin: "Başka şehirdeki taşınmazlar için rayiç bedel ve vekaletname adımları pakette hazır."
+  - id: yurtdisi_mirasci
+    kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
+    metin: "Yurtdışındaki mirasçılar için özel rehber pakette."
+  - id: kalabalik_aile
+    kosul: { mirasci_sayisi: "4_arti" }
+    metin: "Kardeşlerinizle görev paylaşımı ve imza takibi pakette olacak."
