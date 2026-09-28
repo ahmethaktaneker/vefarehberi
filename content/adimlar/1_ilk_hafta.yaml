@@ -7,15 +7,40 @@
   oncelik: yuksek
   kosul: { vefat_yeri: "turkiye" }
   ne: >
-    Ölüm belgesi, diğer işlemlerin temelidir. Hastanede gerçekleşen vefatlarda belgeyi
-    genellikle hastane düzenler. Evde gerçekleşen vefatlarda belediye hekimi veya en yakın
-    sağlık kuruluşu düzenler.
+    Ölüm belgesi, diğer işlemlerin temelidir. Sağlık kurumunda gerçekleşen vefatlarda belgeyi
+    kurum düzenler. Sağlık kurumu dışında (ör. evde) gerçekleşen vefatlarda belediye tabibi,
+    yoksa toplum sağlığı merkezi hekimi, o da yoksa aile hekimi düzenler. Ölüm, 10 gün içinde
+    elektronik ortamda nüfus müdürlüğüne bildirilir.
   neden: "Sonraki işlemlerin çoğu bu belgeye dayanır."
-  nereye: "Hastane; evde vefatta belediye hekimi veya en yakın sağlık kuruluşu"
+  nereye: "Sağlık kurumu; kurum dışındaki vefatlarda belediye tabibi, toplum sağlığı merkezi veya aile hekimi"
+  kaynak: ["https://www.nvi.gov.tr/olum-islemleri"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: yurtdisi_olum_bildirimi
+  baslik: "Ölümü Türk dış temsilciliğine bildirin"
+  kategori: resmi
+  zaman_grubu: ilk_hafta
+  oncelik: yuksek
+  kosul: { vefat_yeri: "yurtdisi" }
+  ne: >
+    Yurtdışında vefat eden Türk vatandaşlarının ölümü, yerel makamlardan alınan belgelerle
+    Türk dış temsilciliğine (konsolosluk veya büyükelçilik) bildirilir ve tescil edilir.
+  neden: "Ölüm Türkiye'deki nüfus kayıtlarına bu bildirimle işlenir; sonraki işlemler bu kayda dayanır."
+  nereye: "Ölümün gerçekleştiği yerden sorumlu Türk konsolosluğu veya büyükelçiliği"
+  cevrimici: "Başvuru adımları ve randevu için Dışişleri Bakanlığı'nın konsolosluk sitesine bakabilirsiniz."
+  baglantilar:
+    - { ad: "Konsolosluk: Ölüm tescili ve cenaze nakli", url: "https://www.konsolosluk.gov.tr/Procedure/ShowProcedure/8" }
   ipuclari:
     - tur: genel
-      metin: "Ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmanız gerekebilir."
-  kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 1 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
+      metin: >
+        Cenaze Türkiye'ye getirilecekse Türk dış temsilciliğinden cenaze nakil belgesi alınır.
+        Hangi temsilciliğe başvurulacağı ülkeye göre değişebildiği için önce en yakın Türk
+        temsilciliğine veya Konsolosluk Çağrı Merkezi'ne sorun.
+  kaynak:
+    - "https://www.nvi.gov.tr/olum-islemleri"
+    - "https://www.konsolosluk.gov.tr/Procedure/ShowProcedure/8"
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

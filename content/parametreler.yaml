@@ -6,12 +6,14 @@ yil: 2026
 kaynak:
   - "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"
   - "https://cdn.gib.gov.tr/api/gibportal-file/file/getFileResources?objectKey=arsiv%2Fyardim-kaynaklar%2Finfografikler%2Fpdfs%2Fveraset-ve-intikal-vergisi-infografik.pdf"
+  - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"  # VİVK m.9 (beyanname süreleri), 28.09.2026 okundu
   - "https://kpmgvergi.com/yayinlar/mali-bultenler/vergi/2026-yilinda-uygulanacak-veraset-ve-intikal-vergisi-maktu-istisna-tutarlari-ile-matrah-dilim-tutarlari-yayimlandi/3355"
 son_kontrol: "2026-09-28"
 dogrulandi: false
 
 cenaze_odenegi:
   genel_sgk: { tutar: 6398.00, kaynak: "SGK 2026 duyurusu", gecerlilik: "2026" }
+  # SGK sayfası (28.09.2026) bu tutarı yalnızca 01.01-30.06.2026 için veriyor.
   # Geçerlilik 30 Haziran 2026'da bitti. Temmuz tutarı bilinmediği için arayüzde tutar
   # gösterilmez, "güncel tutar kontrol ediliyor" yazar. Güncel tutar bulununca güncellenecek.
   emekli_sandigi_4c: { tutar: 26369.55, kaynak: "SGK", gecerlilik: "2026-01-01..2026-06-30", not: "Temmuz'da güncellenir, kontrol et" }
@@ -34,3 +36,5 @@ sureler:
   reddi_miras_ay: 3
   veraset_beyanname_ay_tr: 4
   veraset_beyanname_ay_yurtdisi: 6
+  # VİVK m.9/1-b: ölüm yurtdışında ve mükellef, ölümün olduğu ülke dışında başka bir yabancı ülkedeyse
+  veraset_beyanname_ay_yurtdisi_baska_ulke: 8

@@ -31,16 +31,24 @@ export type Liste = {
 };
 
 /**
- * Veraset beyannamesi süresi (Brief 6.3, 7 madde 17).
- * Brief yalnızca iki durumu tanımlar: her şey Türkiye'de → TR süresi,
- * vefat Türkiye'de ve mirasçılar yurtdışında → yurtdışı süresi.
- * Diğer kombinasyonlarda en kısa süre gösterilir ve süre belirsiz işaretlenir.
+ * Veraset beyannamesi süresi (VİVK m.9/1, Brief 6.3).
+ *   Ölüm Türkiye'de:   mirasçı Türkiye'de 4 ay, yabancı ülkede 6 ay.
+ *   Ölüm yurtdışında:  mirasçı Türkiye'de 6 ay, ölümün olduğu ülkede 4 ay, başka bir yabancı ülkede 8 ay.
+ * Soru akışı "yurtdışı"nın aynı ülke mi başka ülke mi olduğunu, "karışık" da mirasçıların
+ * dağılımını ayırt etmez; bu durumlarda olası sürelerin en kısası gösterilir ve süre belirsiz işaretlenir.
  */
 export function verasetSuresi(c: Cevaplar, p: Parametreler): { ay: number; belirsiz: boolean } {
-  const { veraset_beyanname_ay_tr: tr, veraset_beyanname_ay_yurtdisi: yd } = p.sureler;
-  if (c.vefat_yeri === "turkiye" && c.mirasci_yeri === "turkiye") return { ay: tr, belirsiz: false };
-  if (c.vefat_yeri === "turkiye" && c.mirasci_yeri === "yurtdisi") return { ay: yd, belirsiz: false };
-  return { ay: Math.min(tr, yd), belirsiz: true };
+  const s = p.sureler;
+  const tr = s.veraset_beyanname_ay_tr;
+  const yd = s.veraset_beyanname_ay_yurtdisi;
+  const baska = s.veraset_beyanname_ay_yurtdisi_baska_ulke;
+
+  const olasi: Record<string, number[]> =
+    c.vefat_yeri === "turkiye"
+      ? { turkiye: [tr], yurtdisi: [yd], karisik: [tr, yd] }
+      : { turkiye: [yd], yurtdisi: [tr, baska], karisik: [yd, tr, baska] };
+  const sureler = olasi[c.mirasci_yeri as string] ?? [tr, yd, baska];
+  return { ay: Math.min(...sureler), belirsiz: new Set(sureler).size > 1 };
 }
 
 function sonTarihHesapla(a: Adim, c: Cevaplar, p: Parametreler, bugun: string): SonTarihBilgisi | undefined {

@@ -48,6 +48,7 @@ export const SURE_PARAMETRELERI = [
   "reddi_miras_ay",
   "veraset_beyanname_ay_tr",
   "veraset_beyanname_ay_yurtdisi",
+  "veraset_beyanname_ay_yurtdisi_baska_ulke",
 ] as const;
 
 const SonTarihSemasi = z.strictObject({

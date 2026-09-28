@@ -11,8 +11,8 @@
     baslangic: vefat_tarihi
     sure: { kural: veraset_beyannamesi }
     belirsiz_not: >
-      Vefat yeri ve mirasçıların yaşadığı yere göre süre farklı olabilir. Burada en kısa süre
-      gösteriliyor; kendi sürenizi vergi dairesinden teyit edin.
+      Süre her mirasçı için, nerede yaşadığına göre farklı olabilir. Burada en kısa süre
+      gösteriliyor; kendi sürenizi aşağıdaki kurala göre kontrol edin ve vergi dairesinden teyit edin.
     gecti_notu: "Süre geçmiş görünüyor. Bir avukata veya mali müşavire danışmanız önerilir."
   ne: >
     Mal varlığı varsa veraset ve intikal vergisi beyannamesi verilir. İnternet Vergi Dairesi'ndeki
@@ -27,6 +27,11 @@
     tescil edilebilir; ancak ona düşen vergi tamamen ödenmeden satılamaz ve tapuda ilişik kesme
     belgesi istenir (7338 s. Kanun m.19).
   ipuclari:
+    - tur: genel
+      metin: >
+        Süreler (Veraset ve İntikal Vergisi Kanunu m.9): Vefat Türkiye'de olduysa, Türkiye'deki
+        mirasçılar için 4 ay, yurtdışındakiler için 6 ay. Vefat yurtdışında olduysa, Türkiye'deki
+        mirasçılar için 6 ay, vefatın olduğu ülkedekiler için 4 ay, başka bir ülkedekiler için 8 ay.
     - tur: genel
       metin: "Vergi çıkarsa 3 yılda, her yıl mayıs ve kasım aylarında 6 eşit taksitte ödenir."
     - tur: deneyim

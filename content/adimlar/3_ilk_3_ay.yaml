@@ -13,7 +13,10 @@
   son_tarih:
     baslangic: vefat_tarihi
     sure: { parametre: reddi_miras_ay }
-    not: "Süre, mirasçının ölümü öğrendiği tarihten başlar. Çoğu durumda bu, vefat tarihidir."
+    not: >
+      Burada süre vefat tarihinden hesaplanmıştır. Yasal mirasçılar için süre, ölümü öğrendikleri
+      tarihten başlar; mirasçı olduğunu daha sonra öğrendiğini ispat eden için o tarihten.
+      Vasiyetle atanmış mirasçılar için tasarrufun kendilerine bildirildiği tarihten başlar.
     gecti_notu: >
       Süre geçmiş görünüyor. Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da
       "hükmen red" yolu olabilir. Bir avukata danışmanız önerilir.
@@ -38,6 +41,7 @@
       metin: "Kullanıcılar, reddi miras yaptıktan yıllar sonra bile eski borçlar için arandıklarını anlatıyor."
   kaynak:
     - "TMK m.605-606"
+    - "https://av-saimincekas.com/kanun/turk-medeni-kanunu/madde-606-tmk/"
     - "https://www.ozdipi.av.tr/reddi-miras-nedir/"
     - "https://www.ozcanlarhukuk.com/mirasin-hukmen-reddi-davasi/"
     - "https://www.palmahukuk.com/reddi-miras-yapinca-borc-kime-kalir/"
@@ -82,7 +86,11 @@
   zaman_grubu: ilk_3_ay
   oncelik: normal
   tutar: genel_sgk
-  ne: "Cenaze ödeneği için SGK'ya \"Gelir/Aylık/Ödenek Talep Belgesi\" ile başvurulur."
+  ne: >
+    Cenaze ödeneği için SGK'ya "Gelir/Aylık/Ödenek Talep Belgesi" ile başvurulur. SGK'ya göre
+    ödenek; vefat eden kişi iş kazası veya meslek hastalığı sonucu vefat ettiyse, emekli aylığı
+    alıyorduysa ya da en az 360 gün prim bildirimi varsa ödenir. Ödenek sırasıyla eşe, yoksa
+    çocuklara, yoksa anne ve babaya, yoksa kardeşlere verilir.
   neden: "Birçok aile bu ödemeden habersiz. Başvuru için 5 yıllık zamanaşımı süresi bulunuyor."
   nereye: "SGK"
   belgeler: [talep_belgesi]

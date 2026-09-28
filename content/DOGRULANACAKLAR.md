@@ -4,27 +4,42 @@
 "Kontrol ediliyor" rozetiyle gösterilir. Kontrol edilen madde `dogrulandi: true` yapılır ve
 `son_kontrol` tarihi güncellenir.
 
-## Öncelikli açık konular
+İnternet araştırması (28.09.2026) bazı maddeleri resmi kaynaklarla destekledi, ancak bu bir
+hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılmadı.
 
-1. **Emekli Sandığı ölüm yardımı tutarı:** `parametreler.yaml` içindeki 26.369,55 TL yalnızca
-   30.06.2026'ya kadar geçerli. Temmuz 2026 tutarı bulunana kadar sitede tutar gösterilmiyor.
-2. **Veraset beyannamesi süreleri:** Yalnızca iki durum tanımlı (TR/TR = 4 ay, vefat TR ve
-   mirasçılar yurtdışı = 6 ay). Vefatın yurtdışında olduğu ve "karışık" durumlarda en kısa süre
-   (4 ay) "süre farklı olabilir" notuyla gösteriliyor. 8 ay ihtimali (Brief 16.4) kontrol edilmeli.
-3. **Reddi miras süresinin başlangıcı:** Arayüzde "ölümü öğrenme tarihinden başlar, çoğu durumda
-   vefat tarihidir" deniyor, hesap vefat tarihinden yapılıyor (Brief 16.5).
-4. **Mirasçılık belgesi e-Devlet'ten sıfırdan alınabilir mi?** Kaynaklar çelişkili; metinde
-   "kontrol ediliyor" deniyor (Brief 16.2).
-5. **Ölüm belgesi adımı:** Brief'te ayrı bir kaynak yok (`1_ilk_hafta.yaml > olum_belgesi`).
-6. **Cenaze ödeneği:** Kimlerin yararlanabileceği (hak sahipliği şartları) brief'te yok; adım
-   her kullanıcıya "SGK'dan teyit edin" notuyla gösteriliyor.
-7. **Yurtdışında vefat:** Ölüm belgesi ve diğer ilk adımlar için brief'te bilgi yok; bu durumda
-   "Ölüm belgesini alın" adımı gösterilmiyor.
-8. **Uyarı metinleri:** Avukatlık Kanunu m.35 açısından yeterli mi? (Brief 16.3)
+## 28.09.2026 internet araştırması: resmi kaynakla desteklenenler
+
+| Konu | Bulgu | Kaynak |
+|---|---|---|
+| Veraset beyannamesi süreleri | Ölüm TR: mirasçı TR 4 ay, yurtdışı 6 ay. Ölüm yurtdışı: mirasçı TR 6 ay, aynı ülke 4 ay, başka ülke 8 ay. **Kod güncellendi** (önceden ölüm yurtdışı + mirasçı TR için 4 ay gösteriliyordu, doğrusu 6 ay). | VİVK m.9, mevzuat.gov.tr |
+| Taksit ve tapu tescili | 3 yıl, mayıs-kasım, 6 taksit; tescil tahakkuk beklenmeden, devir için ilişik kesme belgesi. Brief doğru. | VİVK m.19, mevzuat.gov.tr |
+| Cenaze ödeneği | 6.398 TL (2026). Şartlar: iş kazası/meslek hastalığı, emekli aylığı alırken ölüm veya en az 360 gün prim. Sıra: eş, çocuklar, anne-baba, kardeşler. 5 yıl zamanaşımı. **Metne eklendi.** | sgk.gov.tr |
+| Emekli Sandığı ölüm yardımı | SGK sayfası 26.369,55 TL'yi yalnızca 01.01–30.06.2026 için veriyor. Temmuz tutarı resmi kaynakta bulunamadı. Sitede tutar gösterilmiyor. | sgk.gov.tr |
+| Ölüm belgesini kim düzenler | Sağlık kurumu; kurum dışında belediye tabibi, yoksa TSM hekimi, yoksa aile hekimi. 10 gün içinde nüfusa elektronik bildirim. **Metin düzeltildi.** | nvi.gov.tr |
+| Yurtdışında ölüm | Dış temsilciliğe bildirilir ve tescil edilir. **Yeni adım eklendi.** Cenaze nakil belgesinin hangi temsilciliğe başvurulacağı konusunda temsilcilikler farklı bilgi veriyor (Milano: ülkedeki tüm temsilcilikler; Roma: yalnızca Roma); metinde "en yakın temsilciliğe sorun" deniyor. | nvi.gov.tr, konsolosluk.gov.tr, mfa.gov.tr |
+| Mirasçılık belgesi ve e-Devlet | e-Devlet hizmeti (Adalet Bakanlığı) yalnızca sorgulama yapıyor; yeni belge noter veya sulh hukuk mahkemesinden. Noter; tartışmalı mirasçılık, nüfus kaydıyla tespit edilemeyen soybağı ve yabancı mirasçı hâllerinde düzenleyemez (Noterlik K. m.71/B). **Metin düzeltildi.** | turkiye.gov.tr, hukuk bürosu yazıları |
+| Reddi miras süresinin başlangıcı | Yasal mirasçı: ölümü öğrendiği tarih (mirasçılığını sonra öğrendiğini ispat ederse o tarih); atanmış mirasçı: tasarrufun bildirildiği tarih. **Metne eklendi.** | TMK m.606 (hukuk bürosu yazıları üzerinden; kanun metni ayrıca okunmalı) |
+
+## Hâlâ açık konular
+
+1. **Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026 tutarı.** Resmi olmayan bir hesap:
+   (1500 + 8500) × 2 × 1,575512 (Temmuz 2026 memur katsayısı) = 31.510,24 TL. Formül
+   memurlar.net (2021), katsayı mevzuatinyeri.com'dan; SGK'dan teyit edilmeden kullanılmamalı.
+2. **Reddi miras süresi** kanun metninden (TMK m.606) doğrudan okunmalı; ayrıca arayüzde vefat
+   tarihinden hesaplamak ve not düşmek yeterli mi?
+3. **Soru akışı ayrımı:** "Yurtdışında" cevabı, mirasçının vefatın olduğu ülkede mi başka bir
+   ülkede mi olduğunu ayırt etmiyor; bu durumda 4 ay (en kısa) gösteriliyor. Bir alt soru eklensin mi?
+4. **Cenaze ödeneği** her kullanıcıya gösteriliyor (şartlar metinde). Çalışma durumuna göre
+   gizlenmeli mi?
+5. **Uyarı metinleri** Avukatlık Kanunu m.35 açısından yeterli mi? (Brief 16.3)
+6. **Kullanıcı deneyimi notları** (Ekşi Sözlük, Şikayetvar vb.) doğası gereği resmi kaynakla
+   doğrulanamaz; "Kullanıcı deneyimi" etiketiyle ayrı gösteriliyor.
+7. Brief'teki "ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmak gerekebilir" ipucu
+   kaynaksız olduğu için kaldırıldı.
 
 ## Dosyalar
 
-- `adimlar/1_ilk_hafta.yaml`, `2_ilk_ay.yaml`, `3_ilk_3_ay.yaml`, `4_ilk_4_ay.yaml`: 17 adım
+- `adimlar/1_ilk_hafta.yaml`, `2_ilk_ay.yaml`, `3_ilk_3_ay.yaml`, `4_ilk_4_ay.yaml`: 18 adım
 - `parametreler.yaml`: tutarlar ve süreler
 - `belgeler.yaml`: belge adları
 - `avukat_uyarilari.yaml`: "avukata danışın" uyarıları

@@ -13,12 +13,16 @@
   neden: "Banka, sigorta, risk raporu ve vergi gibi birçok adımda bu belge istenir."
   nereye: "Noter veya Sulh Hukuk Mahkemesi"
   cevrimici: >
-    Daha önce alınmış bir belge, e-Devlet'teki "Veraset İlamı Sorgulama" hizmetinden ücretsiz
-    indirilebilir. Belgenin e-Devlet üzerinden sıfırdan düzenlenip düzenlenemeyeceği konusunda
-    kaynaklar farklı bilgi veriyor; bu konu kontrol ediliyor.
+    Hayır, yeni belge e-Devlet'ten alınamaz. e-Devlet'teki "Veraset İlamı Sorgulama" hizmeti
+    yalnızca daha önce noter veya mahkemece düzenlenmiş belgeleri gösterir ve indirmenizi sağlar.
   ipuclari:
     - tur: genel
       metin: "Pratikte 4-5 kopya almanın işe yaradığı belirtiliyor."
+    - tur: genel
+      metin: >
+        Noter bazı durumlarda belge düzenleyemez ve Sulh Hukuk Mahkemesine başvurmak gerekir:
+        mirasçılık konusu tartışmalıysa, akrabalık nüfus kayıtlarından anlaşılamıyorsa veya
+        mirasçılar arasında yabancı uyruklu biri varsa.
     - tur: genel
       metin: "Daha önce alınıp alınmadığını bilmiyorsanız, e-Devlet'teki \"Veraset İlamı Sorgulama\" hizmetine bakabilirsiniz."
   baglantilar:
@@ -26,7 +30,8 @@
   kaynak:
     - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
     - "https://topaktas.av.tr/mirascilik-belgesiveraset-ilami-2025/"
-    - "https://daykan.com/2026/02/13/e-devlet-uzerinden-mirascilik-belgesi-veraset-ilami-nasil-alinir-2026-guncel-rehber/"
+    - "https://avukatmurataydar.com/blog/veraset-ilami-mirascilik-belgesi-nasil-alinir/"
+    - "Noterlik Kanunu m.71/B"
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

@@ -178,6 +178,13 @@ describe("kurallar", () => {
     expect(idler(c)).not.toContain("emekli_sandigi_olum_yardimi");
   });
 
+  it("yurtdışında vefatta ölüm belgesi yerine dış temsilcilik bildirimi gösterilir", () => {
+    const ids = idler({ ...MEHMET, vefat_yeri: "yurtdisi" });
+    expect(ids).toContain("yurtdisi_olum_bildirimi");
+    expect(ids).not.toContain("olum_belgesi");
+    expect(idler(MEHMET)).not.toContain("yurtdisi_olum_bildirimi");
+  });
+
   it("süresi geçmiş son tarih işaretlenir", () => {
     const c = { ...ZEYNEP, vefat_tarihi: "2026-05-01" };
     const r = adim(c, "reddi_miras")?.sonTarihBilgisi;
@@ -185,14 +192,25 @@ describe("kurallar", () => {
     expect(r!.kalanGun).toBeLessThan(0);
   });
 
-  it("veraset süresi: karmaşık kombinasyonlarda en kısa süre ve belirsiz notu", () => {
+  it("veraset süresi: VİVK m.9 kombinasyonları", () => {
     const p = icerik.parametreler;
-    expect(verasetSuresi({ vefat_yeri: "turkiye", mirasci_yeri: "turkiye" }, p)).toEqual({ ay: 4, belirsiz: false });
-    expect(verasetSuresi({ vefat_yeri: "turkiye", mirasci_yeri: "yurtdisi" }, p)).toEqual({ ay: 6, belirsiz: false });
-    expect(verasetSuresi({ vefat_yeri: "turkiye", mirasci_yeri: "karisik" }, p)).toEqual({ ay: 4, belirsiz: true });
-    expect(verasetSuresi({ vefat_yeri: "yurtdisi", mirasci_yeri: "turkiye" }, p)).toEqual({ ay: 4, belirsiz: true });
-    const c = { ...MEHMET, vefat_yeri: "yurtdisi" };
-    expect(adim(c, "veraset_beyannamesi")?.sonTarihBilgisi?.belirsizNot).toMatch(/farklı olabilir/);
+    const sure = (vefat_yeri: string, mirasci_yeri: string) => verasetSuresi({ vefat_yeri, mirasci_yeri }, p);
+    // Kesin durumlar
+    expect(sure("turkiye", "turkiye")).toEqual({ ay: 4, belirsiz: false });
+    expect(sure("turkiye", "yurtdisi")).toEqual({ ay: 6, belirsiz: false });
+    expect(sure("yurtdisi", "turkiye")).toEqual({ ay: 6, belirsiz: false });
+    // Ayırt edilemeyen durumlar: en kısa süre, belirsiz
+    expect(sure("yurtdisi", "yurtdisi")).toEqual({ ay: 4, belirsiz: true }); // aynı ülke 4, başka ülke 8
+    expect(sure("turkiye", "karisik")).toEqual({ ay: 4, belirsiz: true });
+    expect(sure("yurtdisi", "karisik")).toEqual({ ay: 4, belirsiz: true });
+
+    expect(adim({ ...MEHMET, vefat_yeri: "yurtdisi" }, "veraset_beyannamesi")?.sonTarihBilgisi).toMatchObject({
+      tarih: "2027-02-10",
+      belirsizNot: undefined,
+    });
+    expect(adim({ ...MEHMET, mirasci_yeri: "karisik" }, "veraset_beyannamesi")?.sonTarihBilgisi?.belirsizNot).toMatch(
+      /farklı olabilir/,
+    );
   });
 
   it("geçerlilik dönemi bitmiş tutar gösterilmez", () => {
