@@ -321,12 +321,12 @@ export function Dosyaniz({ ozet }: { ozet: DosyaOzeti }) {
         <button type="button" className={kutucuk} onClick={() => ac({ tur: "odemeler" })}>
           <span className="font-bold">Ödemeler</span>
           <Sayi>{ozet.odeme}</Sayi>
-          <span className="mt-auto pt-1 text-base text-metin-ikincil">size çıkabilecek</span>
+          <span className="mt-auto pt-1 text-base text-metin-ikincil">{ozet.odeme ? "başvurulacak" : "hepsi tamam"}</span>
         </button>
         <button type="button" className={kutucuk} onClick={() => ac({ tur: "riskler" })}>
           <span className="font-bold">Borç ve risk</span>
           <Sayi>{ozet.risk}</Sayi>
-          <span className="mt-auto pt-1 text-base text-metin-ikincil">kontrol edilecek</span>
+          <span className="mt-auto pt-1 text-base text-metin-ikincil">{ozet.risk ? "kontrol edilecek" : "hepsi tamam"}</span>
         </button>
         <button type="button" className={kutucuk} onClick={() => ac({ tur: "belgeler" })}>
           <span className="font-bold">Belgeler</span>
@@ -346,7 +346,7 @@ export function Dosyaniz({ ozet }: { ozet: DosyaOzeti }) {
         <button type="button" className={kutucuk} onClick={() => ac({ tur: "nereye" })}>
           <span className="font-bold">Nereye gideceğim</span>
           <Sayi>{ozet.yer}</Sayi>
-          <span className="mt-auto pt-1 text-base text-metin-ikincil">yer, yanınıza alacaklarınızla</span>
+          <span className="mt-auto pt-1 text-base text-metin-ikincil">{ozet.yer ? "yerde işiniz var" : "hepsi tamam"}</span>
         </button>
         <button type="button" className={`${kutucuk} ${ozet.kurum > 0 ? "" : "col-span-2 sm:col-span-1"}`} onClick={() => ac({ tur: "paylas" })}>
           <span className="font-bold">Paylaş ve hatırla</span>

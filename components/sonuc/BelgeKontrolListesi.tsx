@@ -1,7 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
-import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import type { Belge } from "@/lib/icerik/sema";
 import { listeyiYazdir } from "@/lib/yazdir";
 import { usePanelAc } from "@/components/sonuc/Panel";
@@ -9,19 +7,20 @@ import { usePanelAc } from "@/components/sonuc/Panel";
 type Satir = { belge: Belge; adimlar: { id: string; baslik: string }[] };
 
 /** Birleşik belge listesi, kontrol listesi olarak. "Hazır" işaretleri yalnızca bu cihazda saklanır. */
-export function BelgeKontrolListesi({ liste }: { liste: Satir[] }) {
+export function BelgeKontrolListesi({
+  liste,
+  hazir,
+  turetilmis,
+  onBelge,
+}: {
+  liste: Satir[];
+  hazir: Set<string>;
+  turetilmis: Map<string, string>;
+  onBelge: (id: string, hazir: boolean) => void;
+}) {
   const ac = usePanelAc();
-  const ham = useDepo(ANAHTARLAR.belgeler);
-  const hazir = useMemo(() => new Set(jsonCoz<string[]>(ham, [])), [ham]);
 
   if (liste.length === 0) return <p>Cevaplarınıza göre listelenecek bir belge yok.</p>;
-
-  function degistir(id: string, v: boolean) {
-    const yeni = new Set(hazir);
-    if (v) yeni.add(id);
-    else yeni.delete(id);
-    yaz(ANAHTARLAR.belgeler, JSON.stringify([...yeni]));
-  }
 
   const hazirSayisi = liste.filter((s) => hazir.has(s.belge.id)).length;
 
@@ -41,18 +40,22 @@ export function BelgeKontrolListesi({ liste }: { liste: Satir[] }) {
       <ul className="space-y-3">
         {liste.map(({ belge, adimlar }) => {
           const secili = hazir.has(belge.id);
+          const kaynak = turetilmis.get(belge.id);
           return (
             <li key={belge.id} className={`rounded-2xl border bg-yuzey p-4 ${secili ? "border-vurgu/30" : "border-cizgi"}`}>
               <label className="flex cursor-pointer items-start gap-3">
                 <input
                   type="checkbox"
                   checked={secili}
-                  onChange={(e) => degistir(belge.id, e.target.checked)}
+                  disabled={!!kaynak}
+                  onChange={(e) => onBelge(belge.id, e.target.checked)}
                   className="mt-0.5 size-6 shrink-0 accent-vurgu"
                 />
                 <span>
                   <span className={`block text-lg font-bold leading-snug ${secili ? "text-metin-ikincil line-through" : ""}`}>{belge.ad}</span>
-                  {secili && <span className="text-base font-bold text-vurgu">Hazır</span>}
+                  {secili && (
+                    <span className="block text-base font-bold text-vurgu">{kaynak ? `Hazır: "${kaynak}" adımını yaptınız` : "Hazır"}</span>
+                  )}
                 </span>
               </label>
               {belge.not && <p className="mt-2 ml-9 text-base">{belge.not}</p>}

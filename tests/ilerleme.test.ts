@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { icerikYukle } from "@/lib/icerik/yukle";
-import { bekledikleri, donemler, siradakiAdim, simdikiDonem, yereGore } from "@/lib/kurallar/ilerleme";
+import { bekledikleri, donemler, hazirBelgeler, siradakiAdim, simdikiDonem, yereGore } from "@/lib/kurallar/ilerleme";
 import { listeOlustur } from "@/lib/kurallar/liste";
 import type { Cevaplar } from "@/lib/sorular";
 
@@ -62,5 +62,14 @@ describe("dönemler ve yerler", () => {
     expect(vergi.adimlar.map((a) => a.id)).toEqual(["veraset_beyannamesi", "ilisik_kesme"]);
     expect(vergi.belgeler.map((b) => b.id)).toContain("rayic_bedel");
     expect(y.find((x) => x.yer === "ev")!.adimlar.length).toBeGreaterThan(3);
+  });
+});
+
+describe("hazır belgeler", () => {
+  it("yapılan adımın ürettiği belge kendiliğinden hazır sayılır", () => {
+    const { hazir, turetilmis } = hazirBelgeler(new Set(["kimlik"]), liste, new Set(["mirascilik_belgesi"]));
+    expect([...hazir].sort()).toEqual(["kimlik", "mirascilik_belgesi"]);
+    expect(turetilmis.get("mirascilik_belgesi")).toMatch(/Mirasçılık belgesi/);
+    expect(hazirBelgeler(new Set(), liste, new Set()).hazir.size).toBe(0);
   });
 });

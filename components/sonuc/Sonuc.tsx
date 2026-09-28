@@ -5,7 +5,7 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { olay } from "@/lib/analitik";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import type { Icerik } from "@/lib/icerik/sema";
-import { bekledikleri, donemler, siradakiAdim, simdikiDonem, yereGore } from "@/lib/kurallar/ilerleme";
+import { bekledikleri, donemler, hazirBelgeler, siradakiAdim, simdikiDonem, yereGore } from "@/lib/kurallar/ilerleme";
 import { listeOlustur } from "@/lib/kurallar/liste";
 import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import type { Paket } from "@/lib/paket";
@@ -51,7 +51,7 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
   const hamBelgeler = useDepo(ANAHTARLAR.belgeler);
   const cevaplar = useMemo(() => jsonCoz<Cevaplar>(hamCevaplar, {}), [hamCevaplar]);
   const yapilanlar = useMemo(() => new Set(jsonCoz<string[]>(hamYapilanlar, [])), [hamYapilanlar]);
-  const hazirBelgeler = useMemo(() => new Set(jsonCoz<string[]>(hamBelgeler, [])), [hamBelgeler]);
+  const isaretliBelgeler = useMemo(() => new Set(jsonCoz<string[]>(hamBelgeler, [])), [hamBelgeler]);
   const bugun = istanbulBugun();
   const liste = useMemo(() => listeOlustur(cevaplar, icerik, bugun), [cevaplar, icerik, bugun]);
   const [panel, setPanel] = useState<PanelDurumu | null>(null);
@@ -100,6 +100,13 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
     yaz(ANAHTARLAR.yapilanlar, JSON.stringify([...yeni]));
   }
 
+  function belgeIsaretle(id: string, hazir: boolean) {
+    const yeni = new Set(isaretliBelgeler);
+    if (hazir) yeni.add(id);
+    else yeni.delete(id);
+    yaz(ANAHTARLAR.belgeler, JSON.stringify([...yeni]));
+  }
+
   function panelAc(p: PanelDurumu) {
     setPanel(p);
     olay("bolum_goruntulendi", { bolum: p.tur });
@@ -109,6 +116,8 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
   const uyarilar = liste.adimlar.filter((a) => a.yer === "dikkat");
   const siradaki = siradakiAdim(liste, yapilanlar);
   const yerler = yereGore(liste, icerik.belgeler, YER_SIRASI);
+  const belgeDurumu = hazirBelgeler(isaretliBelgeler, liste, yapilanlar);
+  const kalan = (kategori: string) => liste.adimlar.filter((a) => a.kategori === kategori && !yapilanlar.has(a.id)).length;
   const acikAdim = panel?.tur === "adim" ? liste.adimlar.find((a) => a.id === panel.id) : undefined;
 
   const panelBasligi = !panel
@@ -181,12 +190,12 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
 
         <Dosyaniz
           ozet={{
-            odeme: liste.adimlar.filter((a) => a.kategori === "odeme").length,
-            risk: liste.adimlar.filter((a) => a.kategori === "borc_risk").length,
-            belgeHazir: liste.belgeListesi.filter((b) => hazirBelgeler.has(b.belge.id)).length,
+            odeme: kalan("odeme"),
+            risk: kalan("borc_risk"),
+            belgeHazir: liste.belgeListesi.filter((b) => belgeDurumu.hazir.has(b.belge.id)).length,
             belgeToplam: liste.belgeListesi.length,
             kurum: liste.kurumlar.length,
-            yer: yerler.length,
+            yer: yerler.filter((y) => y.adimlar.some((a) => !yapilanlar.has(a.id))).length,
           }}
         />
 
@@ -206,6 +215,9 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
               kurumlar={liste.kurumlar}
               sozluk={icerik.sozluk}
               bekledikleri={bekledikleri(acikAdim, liste, yapilanlar)}
+              hazir={belgeDurumu.hazir}
+              turetilmis={belgeDurumu.turetilmis}
+              onBelge={belgeIsaretle}
             />
             {acikAdim.yer !== "dikkat" && (
               <button
@@ -241,7 +253,9 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
             <KisaListe adimlar={liste.adimlar.filter((a) => a.kategori === "borc_risk")} bos="Cevaplarınıza göre gösterilecek bir adım yok." />
           </div>
         )}
-        {panel?.tur === "belgeler" && <BelgeKontrolListesi liste={liste.belgeListesi} />}
+        {panel?.tur === "belgeler" && (
+          <BelgeKontrolListesi liste={liste.belgeListesi} hazir={belgeDurumu.hazir} turetilmis={belgeDurumu.turetilmis} onBelge={belgeIsaretle} />
+        )}
         {panel?.tur === "kurum" && <KurumRehberi kurumlar={liste.kurumlar} belgeler={icerik.belgeler} acikId={panel.id} />}
         {panel?.tur === "nereye" && <NereyeGit yerler={yerler} yapilanlar={yapilanlar} />}
         {panel?.tur === "paylas" && <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />}
@@ -275,7 +289,7 @@ function YazdirmaListesi({
                 <h3 className="mb-2 text-lg font-bold">
                   {yapilanlar.has(a.id) ? "☑" : "☐"} {a.baslik}
                 </h3>
-                <AdimDetay adim={a} belgeler={icerik.belgeler} kurumlar={[]} sozluk={[]} yazdirma />
+                <AdimDetay adim={a} belgeler={icerik.belgeler} kurumlar={liste.kurumlar} sozluk={[]} yazdirma hazir={hazirBelgeler(new Set(), liste, yapilanlar).hazir} />
               </li>
             ))}
           </ul>

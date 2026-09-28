@@ -1,0 +1,6 @@
+Favicon dosyalarını sitenin public/ klasörüne koyun.
+HTML: <link rel="icon" href="/favicon.ico" sizes="any">
+HTML: <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+HTML: <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+HTML: <link rel="manifest" href="/site.webmanifest">
+Normal kullanım için VR_logo_1024.png veya VR_logo_orijinal_transparan.png.

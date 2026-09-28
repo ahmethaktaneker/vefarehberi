@@ -115,6 +115,8 @@ export const AdimSemasi = z.strictObject({
   /** content/sablonlar altındaki ilgili dilekçe taslaklarının id'leri. */
   sablonlar: z.array(z.string()).default([]),
   yer: z.enum(YERLER),
+  /** Bu adım yapılınca elde edilen belge (belge listesinde kendiliğinden "hazır" sayılır). */
+  sonuc_belge: z.string().optional(),
   /** Önce yapılması önerilen adımlar (kilit değil; "şimdi yapılacak" önerisinde ve etikette kullanılır). */
   onceki: z.array(z.string()).default([]),
   /** Kartta "ilgili kurumlar" olarak kurum rehberine bağlanacak kurum türleri. */

@@ -15,6 +15,7 @@
   nereye: "Sağlık kurumu; kurum dışındaki vefatlarda belediye tabibi, toplum sağlığı merkezi veya aile hekimi"
   kaynak: ["https://www.nvi.gov.tr/olum-islemleri"]
   yer: saglik
+  sonuc_belge: olum_belgesi
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

@@ -63,6 +63,9 @@ export function AdimDetay({
   sozluk,
   bekledikleri = [],
   yazdirma = false,
+  hazir = new Set(),
+  turetilmis = new Map(),
+  onBelge,
 }: {
   adim: HesaplanmisAdim;
   belgeler: Record<string, Belge>;
@@ -70,6 +73,11 @@ export function AdimDetay({
   sozluk: Terim[];
   bekledikleri?: HesaplanmisAdim[];
   yazdirma?: boolean;
+  /** Hazır belgeler (işaretlenen + yapılan adımların ürettikleri). */
+  hazir?: Set<string>;
+  /** Yapılan bir adım sayesinde hazır sayılan belge → o adımın başlığı. */
+  turetilmis?: Map<string, string>;
+  onBelge?: (id: string, hazir: boolean) => void;
 }) {
   const ac = usePanelAc();
   const genelIpuclari = a.ipuclari.filter((i) => i.tur === "genel");
@@ -107,21 +115,25 @@ export function AdimDetay({
       <dl className="space-y-5">
         <Alan etiket="Ne?">{metin(a.ne)}</Alan>
         {a.neden && <Alan etiket="Neden önemli?">{metin(a.neden)}</Alan>}
+      </dl>
+
+      <YaninizaAlin
+        adim={a}
+        belgeler={belgeler}
+        kurumlar={ilgiliKurumlar}
+        hazir={hazir}
+        turetilmis={turetilmis}
+        onBelge={onBelge}
+        yazdirma={yazdirma}
+      />
+
+      <dl className="space-y-5">
         {a.tutarBilgisi && (
           <Alan etiket="Tutar">
             <TutarSatiri bilgi={a.tutarBilgisi} />
           </Alan>
         )}
         {a.nereye && <Alan etiket="Nereye?">{metin(a.nereye)}</Alan>}
-        {a.belgeler.length > 0 && (
-          <Alan etiket="Hangi belgeler?">
-            <ul className="list-disc space-y-1 pl-5 marker:text-altin-koyu">
-              {a.belgeler.map((b) => (
-                <li key={b}>{belgeler[b]?.ad ?? b}</li>
-              ))}
-            </ul>
-          </Alan>
-        )}
         {a.cevrimici && <Alan etiket="Çevrimiçi yapılabilir mi?">{metin(a.cevrimici)}</Alan>}
         {ilgiliKurumlar.length > 0 && !yazdirma && (
           <Alan etiket="İlgili kurumlar">
@@ -169,7 +181,7 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac || a.sablonlar.length > 0 || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
           {a.arac === "veraset_hesaplayici" && (
             <p>
@@ -178,13 +190,6 @@ export function AdimDetay({
               </Link>
             </p>
           )}
-          {a.sablonlar.map((s) => (
-            <p key={s}>
-              <Link href={`/sablonlar/${s}`} className="baglanti">
-                Dilekçe taslağı: {SABLON_ADLARI[s] ?? s}
-              </Link>
-            </p>
-          ))}
           {a.baglantilar.map((b) => (
             <p key={b.url}>
               <a href={b.url} target="_blank" rel="noopener noreferrer" className="baglanti">
@@ -231,5 +236,92 @@ function Alan({ etiket, children }: { etiket: string; children: React.ReactNode 
       <dt className="font-bold text-vurgu-koyu">{etiket}</dt>
       <dd className="mt-1">{children}</dd>
     </div>
+  );
+}
+
+/**
+ * "Yanınıza alın": adımın istediği belgeler, ilgili kurumların ek olarak istedikleri ve varsa dilekçe taslağı.
+ * İşaretler belge listesiyle ortaktır; yapılan bir adımın ürettiği belge kendiliğinden hazır görünür.
+ */
+function YaninizaAlin({
+  adim: a,
+  belgeler,
+  kurumlar,
+  hazir,
+  turetilmis,
+  onBelge,
+  yazdirma,
+}: {
+  adim: HesaplanmisAdim;
+  belgeler: Record<string, Belge>;
+  kurumlar: Kurum[];
+  hazir: Set<string>;
+  turetilmis: Map<string, string>;
+  onBelge?: (id: string, hazir: boolean) => void;
+  yazdirma: boolean;
+}) {
+  const kurumdan = new Map<string, string[]>();
+  for (const k of kurumlar) {
+    for (const b of k.islemler.flatMap((i) => i.belgeler)) {
+      if (a.belgeler.includes(b)) continue;
+      kurumdan.set(b, [...new Set([...(kurumdan.get(b) ?? []), k.ad])]);
+    }
+  }
+  const satirlar = [...a.belgeler.map((id) => ({ id, kurumlar: [] as string[] })), ...[...kurumdan].map(([id, k]) => ({ id, kurumlar: k }))];
+  if (satirlar.length === 0 && a.sablonlar.length === 0) return null;
+
+  return (
+    <section aria-labelledby={`yanin-${a.id}`} className="rounded-2xl border border-altin/60 bg-altin-acik/70 p-4">
+      <h3 id={`yanin-${a.id}`} className="font-bold text-vurgu-koyu">
+        Yanınıza alın
+      </h3>
+      {satirlar.length > 0 && (
+        <ul className="mt-2 space-y-1">
+          {satirlar.map(({ id, kurumlar: k }) => {
+            const b = belgeler[id];
+            if (!b) return null;
+            const kaynak = turetilmis.get(id);
+            const secili = hazir.has(id);
+            return (
+              <li key={id}>
+                {yazdirma ? (
+                  <span>
+                    {secili ? "☑" : "☐"} {b.ad}
+                  </span>
+                ) : (
+                  <label className={`flex min-h-11 items-start gap-3 py-1.5 ${kaynak ? "" : "cursor-pointer"}`}>
+                    <input
+                      type="checkbox"
+                      checked={secili}
+                      disabled={!!kaynak || !onBelge}
+                      onChange={(e) => onBelge?.(id, e.target.checked)}
+                      className="mt-0.5 size-6 shrink-0 accent-vurgu"
+                    />
+                    <span>
+                      <span className={secili ? "text-metin-ikincil line-through" : "font-bold"}>{b.ad}</span>
+                      {kaynak && <span className="block text-base text-vurgu">Hazır: &ldquo;{kaynak}&rdquo; adımını yaptınız.</span>}
+                      {!kaynak && k.length > 0 && <span className="block text-base text-metin-ikincil">Bazı kurumlar istiyor: {k.join(", ")}</span>}
+                      {!secili && b.not && <span className="block text-base text-metin-ikincil">{b.not}</span>}
+                    </span>
+                  </label>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {!yazdirma &&
+        a.sablonlar.map((s) => (
+          <div key={s} className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-yuzey px-4 py-3">
+            <span>
+              <span className="block font-bold">Dilekçe</span>
+              <span className="text-base text-metin-ikincil">{SABLON_ADLARI[s] ?? s}</span>
+            </span>
+            <Link href={`/sablonlar/${s}`} className="dugme dugme-birincil min-h-11 px-4 py-2 text-base">
+              Taslağı doldur
+            </Link>
+          </div>
+        ))}
+    </section>
   );
 }

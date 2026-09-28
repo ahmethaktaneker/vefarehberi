@@ -69,3 +69,12 @@ export function yereGore(liste: Liste, belgeler: Record<string, Belge>, sira: re
     })
     .filter((y) => y.adimlar.length > 0);
 }
+
+/** Hazır belgeler: kullanıcının işaretledikleri ve yapılan adımların ürettiği belgeler. */
+export function hazirBelgeler(isaretli: Set<string>, liste: Liste, yapilanlar: Set<string>): { hazir: Set<string>; turetilmis: Map<string, string> } {
+  const turetilmis = new Map<string, string>();
+  for (const a of liste.adimlar) {
+    if (a.sonuc_belge && yapilanlar.has(a.id)) turetilmis.set(a.sonuc_belge, a.baslik);
+  }
+  return { hazir: new Set([...isaretli, ...turetilmis.keys()]), turetilmis };
+}

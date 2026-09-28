@@ -83,6 +83,9 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
     if (!belgeler[b]) throw new Error(`İçerik hatası: "${kimden}" bilinmeyen belgeye bakıyor: ${b}`);
   }
 
+  for (const a of adimlar) {
+    if (a.sonuc_belge && !belgeler[a.sonuc_belge]) throw new Error(`İçerik hatası: "${a.id}" bilinmeyen sonuç belgesine bakıyor: ${a.sonuc_belge}`);
+  }
   const adimIdleri = new Set(adimlar.map((a) => a.id));
   for (const a of adimlar) {
     for (const o of a.onceki) {
