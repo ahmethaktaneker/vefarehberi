@@ -16,6 +16,10 @@ export type Olaylar = {
   paket_karti_goruldu: { fiyat: number; tetikleyici: string };
   paket_tiklandi: { fiyat: number; tetikleyici: string };
   eposta_birakildi: { fiyat: number };
+  beyanname_basladi: undefined;
+  beyanname_yazdirildi: undefined;
+  erisim_kodu_girildi: undefined;
+  kilit_goruldu: { urun: string };
 };
 
 declare global {

@@ -13,6 +13,8 @@ export const ANAHTARLAR = {
   soruSirasi: "vefa:soru:v1",
   yapilanlar: "vefa:yapilanlar:v1",
   belgeler: "vefa:belgeler:v1",
+  /** Beyanname hazırlık aracının verisi (varlıklar, tutarlar, mirasçılar). */
+  beyanname: "vefa:beyanname:v1",
   /** Paket fiyat testi varyantı; "baştan başla" ile silinmez (aynı ziyaretçiye hep aynı fiyat). */
   fiyat: "vefa:fiyat:v1",
 } as const;

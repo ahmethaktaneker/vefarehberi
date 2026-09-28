@@ -185,6 +185,13 @@ export function AdimDetay({
         <div className="space-y-2 border-t border-cizgi pt-4">
           {a.arac === "veraset_hesaplayici" && (
             <p>
+              <Link href="/beyanname" className="dugme dugme-birincil">
+                Beyannameyi adım adım hazırlayın
+              </Link>
+            </p>
+          )}
+          {a.arac === "veraset_hesaplayici" && (
+            <p>
               <Link href="/hesaplayici/veraset-vergisi" className="baglanti">
                 Veraset vergisi hesaplayıcı
               </Link>

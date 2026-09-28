@@ -91,3 +91,10 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 - GDZ Elektrik, İzmirgaz, ASKİ, İZSU: sitelerinde vefata özel resmi metin bulunamadı; bilgiler kullanıcı deneyimi ve haberlerden. Kurumlara sorulmalı.
 - İZSU "2 ay içinde devir, yoksa iptal" kuralı ve DASK şartı: İZSU'dan teyit edilmeli.
 - "Diğer iller" genel bilgi kartları (elektrik, doğalgaz, su): avukat kontrolüne sunulmalı.
+
+## Beyanname hazırlık aracı (29.09.2026 eklendi, content/beyanname.yaml)
+
+- Araç değerlemesi: kanun "rayiç bedel" diyor; kasko değer listesinin kullanıldığı uygulamadan aktarılıyor. Vergi dairesine sorulmalı.
+- Sigorta ödemelerinin hangilerinin beyan edileceği: GİB kılavuzunda sigorta sayılıyor ama ayrıntı yok.
+- Borçların mirasçılara bölünmesi: araç borçları toplamdan düşüp kalanı paylara bölüyor (basitleştirme). Mali müşavire sorulmalı.
+- Avukata sorulacak: "Kullanıcının kendi beyannamesini hazırlamasına yardım eden bir yazılım, 3568 s. Kanun'daki mali müşavirlik işi sayılır mı?"

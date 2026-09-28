@@ -17,6 +17,7 @@ const SUTUNLAR: { baslik: string; baglantilar: [string, string][] }[] = [
     baglantilar: [
       ["/liste", "Size özel liste"],
       ["/hesaplayici/veraset-vergisi", "Veraset vergisi hesaplayıcı"],
+      ["/beyanname", "Beyanname hazırlık aracı"],
       ["/sablonlar", "Dilekçe taslakları"],
       ["/sozluk", "Sözlük"],
     ],

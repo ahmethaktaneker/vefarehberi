@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/ilk-48-saat",
     "/yurtdisi",
     "/hesaplayici/veraset-vergisi",
+    "/beyanname",
     "/sablonlar",
     ...sablonlariYukle().map((s) => `/sablonlar/${s.id}`),
     "/hakkimizda",

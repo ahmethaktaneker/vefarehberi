@@ -1,0 +1,119 @@
+# Beyanname hazırlık aracı: yardım metinleri ve eklenecek belgeler.
+# Adımların sırası GİB'in İnteraktif Vergi Dairesi "Veraset İşlemleri" kılavuzuyla aynıdır; böylece
+# kullanıcı hem kâğıt beyannamede hem online ekranda aynı sırayla ilerler.
+# Değerleme ve indirim kuralları 7338 sayılı Veraset ve İntikal Vergisi Kanunu m.4, 10, 12'den.
+# Mali müşavir ve avukat kontrolünden GEÇMEDİ.
+
+kaynak:
+  - "https://ivd.gib.gov.tr/verasetKullanimKilavuzu.pdf"
+  - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+son_kontrol: "2026-09-29"
+dogrulandi: false
+
+vergi_dairesi: >
+  Beyanname, vefat edenin son ikametgâhının bağlı olduğu vergi dairesine verilir. Mirasçılar tek bir
+  beyanname verebilir ya da her biri ayrı verebilir (VİVK m.8).
+cevrimici: >
+  GİB kılavuzuna göre İnteraktif Vergi Dairesi'nde "Veraset İşlemleri" bölümünden de verilebiliyor;
+  birlikte verilen beyannameyi diğer mirasçıların da kendi şifreleriyle onaylaması gerekiyor. Uygulamada
+  bu yolla verilemediğini anlatanlar var; sorun yaşarsanız vergi dairesine gidin.
+beyan_edilmeyenler:
+  - "Ev eşyası, vefat edenin kişisel eşyası ve aile hatırası olarak saklanan eşya (VİVK m.4/a)."
+  - "Dul ve yetim aylıkları ve emekli ikramiyeleri gibi kamu kurumlarından yapılan ödemeler (VİVK m.4/g)."
+  - "Bireysel emeklilikte devlet katkısının hak kazanılan kısmı (VİVK m.4/o)."
+
+tasinmaz:
+  deger_nasil: >
+    Taşınmazlar emlak vergisi değeriyle yazılır (VİVK m.10/b). Taşınmazın bulunduğu belediyeden,
+    vefat tarihine göre emlak vergisi değerini gösteren yazı isteyin.
+  ekler:
+    - "Belediyeden emlak vergisi değeri yazısı (vefat tarihine göre)"
+    - "Tapu belgesi (fotokopi)"
+  turler:
+    - { id: konut, ad: "Daire / ev" }
+    - { id: arsa, ad: "Arsa" }
+    - { id: tarla, ad: "Tarla, bağ, bahçe" }
+    - { id: isyeri, ad: "Dükkân, işyeri" }
+    - { id: diger, ad: "Diğer taşınmaz" }
+
+haklar:
+  aciklama: >
+    Telif, patent gibi haklar. Tapuya kayıtlı bir değeri olmayan haklar için değer yazmanız gerekmez
+    (VİVK m.10/g); yalnızca varlığını bildirin.
+
+digerleri:
+  - id: banka
+    ad: "Banka hesabı"
+    ornek: "Örn. Ziraat Bankası vadesiz hesap"
+    deger_nasil: >
+      Ölüm tarihindeki faiziyle birlikte bakiye yazılır. Bankadan bu tutarı gösteren yazı isteyin.
+    ekler: ["Bankadan ölüm tarihindeki faizli bakiye yazısı"]
+  - id: arac
+    ad: "Araç"
+    ornek: "Örn. 34 ABC 123, 2018 model otomobil"
+    deger_nasil: >
+      Menkul mallar rayiç bedelle (piyasa değeri) yazılır (VİVK m.10/c). Uygulamada kasko değer
+      listesindeki değerin kullanıldığı anlatılıyor; vergi dairesine sorun.
+    ekler: ["Araç ruhsatı (fotokopi)"]
+  - id: doviz_altin
+    ad: "Döviz veya altın"
+    ornek: "Örn. 2.000 Euro, 50 gram altın"
+    deger_nasil: >
+      Döviz, ölüm tarihindeki kurla TL'ye çevrilir (VİVK m.10/f). Altın gibi diğer menkuller rayiç
+      bedelle yazılır. Bankadaysa bankanın yazısı yeterli olur.
+    ekler: ["Bankadan veya kuyumcudan değer yazısı"]
+  - id: hisse_fon
+    ad: "Hisse senedi veya fon"
+    ornek: "Örn. aracı kurumdaki hisse hesabı"
+    deger_nasil: >
+      Borsada işlem gören hisseler, ölümden önceki son işlem değeriyle yazılır (VİVK m.10/d). Aracı
+      kurumdan ölüm tarihli değer yazısı isteyin.
+    ekler: ["Aracı kurumdan hisse ve fon değer yazısı"]
+  - id: sigorta
+    ad: "Sigorta"
+    ornek: "Örn. birikimli hayat sigortası"
+    deger_nasil: >
+      GİB kılavuzunda sigorta da bu bölümde sayılıyor. Hangi sigorta ödemesinin beyan edileceğini
+      vergi dairesine sorun.
+    ekler: ["Sigorta şirketinden tutar yazısı"]
+  - id: ticari
+    ad: "İşletme veya şirket payı"
+    ornek: "Örn. şahıs işletmesi, limited şirket payı"
+    deger_nasil: >
+      Ticari sermaye, defter türüne göre bilançodaki öz sermaye veya ticari varlıkla yazılır
+      (VİVK m.10/a). Bu kısım için bir mali müşavirden yardım almanız önerilir.
+    ekler:
+      - "Bilanço ve gelir tablosu"
+      - "Ticaret sicil gazetesi (şirket varsa)"
+      - "Ortaklık veya kooperatif üyeliği belgesi (varsa)"
+  - id: silah
+    ad: "Ruhsatlı silah"
+    ornek: "Örn. av tüfeği"
+    deger_nasil: "Rayiç bedelle (piyasa değeri) yazılır."
+    ekler: ["Silah ruhsatı (fotokopi)"]
+  - id: diger
+    ad: "Diğer"
+    ornek: "Örn. alacak, kiralık kasadaki değerli eşya"
+    deger_nasil: "Rayiç bedelle (piyasa değeri) yazılır. Emin değilseniz vergi dairesine sorun."
+    ekler: []
+
+borclar:
+  aciklama: >
+    Aşağıdakiler mirasın değerinden düşülür, ama yalnızca beyannamede gösterilirse (VİVK m.12).
+  turler:
+    - id: belgeli_borc
+      ad: "Belgeli borç"
+      ornek: "Örn. konut kredisi, kredi kartı borcu"
+      not: "Vefat edenin belgeye dayanan borçları. Belgesi beyannameye eklenir."
+    - id: vergi_borcu
+      ad: "Vergi borcu"
+      ornek: "Örn. ödenmemiş emlak vergisi"
+      not: "Vefat edenin ödenmemiş vergi borçları."
+    - id: cenaze
+      ad: "Cenaze masrafı"
+      ornek: "Örn. defin, mezar yeri"
+      not: "Cenazenin hazırlanması ve defni için yapılan masraflar. Faturalarını saklayın."
+  ekler: ["Borç ve masraf belgeleri (kredi yazısı, fatura, dekont)"]
+
+her_zaman_ekler:
+  - "Mirasçılık belgesi (veraset ilamı)"

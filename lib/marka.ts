@@ -35,6 +35,12 @@ export const EPOSTA_TOPLAMA_AKTIF = true;
  */
 export const KONTROL_ROZETLERI = false;
 
+/**
+ * Ücretli araçlar (şimdilik beyanname hazırlık aracı) erişim kodu ister. false yapılırsa herkese açılır.
+ * Kodlar: content/erisim.yaml, üretmek için npm run kod-uret.
+ */
+export const UCRETLI_KILIT_AKTIF = true;
+
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */
 export const ILETISIM_EPOSTA = "ahmethaktaneker@gmail.com";
 
