@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
+/*
+ * Tasarım temeli: sakin, açık zemin, yumuşak nötrler, tek vurgu rengi (adaçayı yeşili).
+ * Kırmızı (--uyari) yalnızca gerçek son tarih uyarılarında kullanılır.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --zemin: #faf8f4;
+  --yuzey: #ffffff;
+  --metin: #26241f;
+  --metin-ikincil: #5c5850;
+  --cizgi: #e4dfd5;
+  --vurgu: #3f6b56;
+  --vurgu-koyu: #2f5242;
+  --vurgu-acik: #e8f0eb;
+  --uyari: #a4312a;
+  --uyari-acik: #fbeceb;
+  --bilgi-acik: #f3efe6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-zemin: var(--zemin);
+  --color-yuzey: var(--yuzey);
+  --color-metin: var(--metin);
+  --color-metin-ikincil: var(--metin-ikincil);
+  --color-cizgi: var(--cizgi);
+  --color-vurgu: var(--vurgu);
+  --color-vurgu-koyu: var(--vurgu-koyu);
+  --color-vurgu-acik: var(--vurgu-acik);
+  --color-uyari: var(--uyari);
+  --color-uyari-acik: var(--uyari-acik);
+  --color-bilgi-acik: var(--bilgi-acik);
+  --font-sans: var(--font-govde);
+  --font-serif: var(--font-baslik);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--zemin);
+  color: var(--metin);
+  font-family: var(--font-govde), system-ui, sans-serif;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.65;
+}
+
+:focus-visible {
+  outline: 3px solid var(--vurgu);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vefa Rehberi
 
-## Getting Started
+Vefat sonrası işlemler, adım adım. Ürün tanımı ve kurallar: [PROJE_BRIEF.md](PROJE_BRIEF.md).
 
-First, run the development server:
+## Kurulum
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm test         # birim testleri
+npm run build    # üretim derlemesi
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Önemli dosyalar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `lib/marka.ts`: `URUN_ADI`, `URUN_ALT_BASLIK`, kanonik adres, `YAYINDA` anahtarı.
+  `YAYINDA = false` iken site arama motorlarına kapalıdır (noindex + robots.txt).
+- `content/`: tüm içerik (adımlar, kurumlar, şablonlar, tutarlar). Kodun içine içerik yazılmaz.
+- `app/globals.css`: renkler ve tasarım temeli.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## İçerik güncelleme takvimi
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Her yıl Ocak ve Temmuz:** `content/parametreler.yaml` içindeki tutarları (cenaze ödeneği,
+  Emekli Sandığı ölüm yardımı, veraset vergisi istisnaları ve dilimleri) resmi kaynaklardan kontrol et
+  ve `son_kontrol` tarihlerini güncelle.
+- Avukat kontrolünden geçen maddelerde `dogrulandi: true` yapılır.
