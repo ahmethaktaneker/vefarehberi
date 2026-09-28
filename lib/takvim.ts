@@ -43,14 +43,14 @@ export function icsOlustur(olaylar: TakvimOlayi[], simdi: Date = new Date()): st
   const satirlar = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Vefa Rehberi//Son tarihler//TR",
+    "PRODID:-//Vefat Rehberi//Son tarihler//TR",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
   ];
   for (const o of olaylar) {
     satirlar.push(
       "BEGIN:VEVENT",
-      `UID:${o.id}-${gun(o.tarih)}@vefarehberi.com`,
+      `UID:${o.id}-${gun(o.tarih)}@vefatrehberi.com`,
       `DTSTAMP:${damga}`,
       `DTSTART;VALUE=DATE:${gun(o.tarih)}`,
       `DTEND;VALUE=DATE:${gun(sonrakiGun(o.tarih))}`,

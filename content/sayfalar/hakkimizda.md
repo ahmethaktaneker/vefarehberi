@@ -1,13 +1,13 @@
 ---
 baslik: "Hakkımızda"
-seo_baslik: "Hakkımızda: Vefa Rehberi Nedir, Kim Hazırlıyor?"
-aciklama: "Vefa Rehberi, yakınını kaybeden ailelerin vefat sonrası işlemleri kendi başlarına, sırasıyla ve süre kaçırmadan yapabilmeleri için hazırlanmış ücretsiz bir rehberdir."
+seo_baslik: "Hakkımızda: Vefat Rehberi Nedir, Kim Hazırlıyor?"
+aciklama: "Vefat Rehberi, yakınını kaybeden ailelerin vefat sonrası işlemleri kendi başlarına, sırasıyla ve süre kaçırmadan yapabilmeleri için hazırlanmış ücretsiz bir rehberdir."
 kaynak:
   - "https://www.dha.com.tr/gundem/2025te-olum-sayisi-491-bin-684-oldu-2898104"
 son_kontrol: "2026-09-28"
 dogrulandi: false
 ---
-Vefa Rehberi, bir yakınını kaybeden kişiye "şimdi ne yapmam gerekiyor, neyi kaçırıyorum?" sorusunun cevabını kişiye özel, sıralı ve son tarihleriyle vermek için hazırlandı.
+Vefat Rehberi, bir yakınını kaybeden kişiye "şimdi ne yapmam gerekiyor, neyi kaçırıyorum?" sorusunun cevabını kişiye özel, sıralı ve son tarihleriyle vermek için hazırlandı.
 
 ## Neden var
 
@@ -15,7 +15,7 @@ Türkiye'de her yıl yaklaşık 490 bin kişi vefat ediyor (TÜİK, 2025). Her v
 
 ## Kim hazırlıyor
 
-Vefa Rehberi, hukuk öğrencisi Ahmet Haktan Eker tarafından avukat desteğiyle hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
+Vefat Rehberi, hukuk öğrencisi Ahmet Haktan Eker tarafından avukat desteğiyle hazırlanan bağımsız bir projedir. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur.
 
 <!-- Buraya isterseniz kendi hikâyenizi ekleyebilirsiniz: bu siteyi neden yaptığınız. -->
 
@@ -29,7 +29,7 @@ Bilmeniz gereken her şey ücretsizdir ve öyle kalacak: yapılacaklar listesi, 
 - Başka ailelerin deneyimlerini de paylaşıyoruz, ama bunları "kullanıcı deneyimi" olarak resmi bilgiden ayrı gösteriyoruz.
 - Yıllık değişen tutarları (cenaze ödeneği, vergi istisnaları gibi) her yıl Ocak ve Temmuz'da kontrol ediyoruz.
 
-Vefa Rehberi, işlerinizi kendiniz yaparken yanınızda olan bir bilgi ve hatırlatma aracıdır. Durumunuz karmaşıksa (borç, anlaşmazlık, vasiyetname, yurtdışında mal varlığı, şirket payı) size özel bir değerlendirme için bir avukatla görüşmenizi öneririz.
+Vefat Rehberi, işlerinizi kendiniz yaparken yanınızda olan bir bilgi ve hatırlatma aracıdır. Durumunuz karmaşıksa (borç, anlaşmazlık, vasiyetname, yurtdışında mal varlığı, şirket payı) size özel bir değerlendirme için bir avukatla görüşmenizi öneririz.
 
 ## Kişisel bilgileriniz
 

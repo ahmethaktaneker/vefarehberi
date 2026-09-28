@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
@@ -63,22 +64,22 @@ export function SiteHeader() {
   const aktif = (href: string) => yol === href || yol.startsWith(href + "/");
 
   return (
-    <header className="relative z-20 bg-vurgu text-white shadow-[0_4px_14px_rgb(20_35_60/0.25)]">
-      <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" onClick={() => setMenuAcik(false)} className="flex min-w-0 items-center gap-3 rounded-md no-underline">
+    <header className="relative z-20 bg-vurgu-koyu text-white shadow-[0_4px_14px_rgb(10_25_45/0.3)]">
+      <div className="mx-auto flex max-w-4xl items-center justify-between gap-2 px-3 py-3 sm:gap-3 sm:px-6">
+        <Link href="/" onClick={() => setMenuAcik(false)} className="flex min-w-0 items-center gap-2 rounded-md no-underline sm:gap-3">
           <Logo />
           <span className="min-w-0">
-            <span className="block font-serif text-xl font-semibold leading-tight">{URUN_ADI}</span>
-            <span className="block text-base leading-snug text-white/80">{URUN_ALT_BASLIK}</span>
+            <span className="block font-serif text-lg font-semibold leading-tight whitespace-nowrap sm:text-xl">{URUN_ADI}</span>
+            <span className="block text-[0.9375rem] leading-snug text-white/80 sm:text-base">{URUN_ALT_BASLIK}</span>
           </span>
         </Link>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Link
             href={listeHref}
             onClick={() => setMenuAcik(false)}
             aria-current={listedeyiz ? "page" : undefined}
-            className={`inline-flex min-h-12 items-center rounded-xl px-4 text-base font-bold transition-colors ${
+            className={`inline-flex min-h-12 items-center rounded-xl px-3 text-base font-bold transition-colors sm:px-4 ${
               listedeyiz ? "bg-white/15 text-white ring-1 ring-white/50" : "bg-altin text-vurgu-koyu hover:bg-[#d6b574]"
             }`}
           >
@@ -91,7 +92,7 @@ export function SiteHeader() {
             aria-controls="ana-menu"
             className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/40 px-3 text-base font-bold text-white hover:bg-white/10"
           >
-            <span aria-hidden="true" className="text-xl leading-none">
+            <span aria-hidden="true" className="hidden text-xl leading-none sm:inline">
               {menuAcik ? "×" : "☰"}
             </span>
             {menuAcik ? "Kapat" : "Menü"}
@@ -138,14 +139,7 @@ export function SiteHeader() {
   );
 }
 
-/** Yazı işareti: yol üzerinde iki durak. Sitenin "yolculuk" motifi. */
+/** Marka logosu (public/logo.png). */
 function Logo() {
-  return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" className="hidden size-10 shrink-0 sm:block">
-      <rect width="40" height="40" rx="10" fill="rgb(255 255 255 / 0.1)" />
-      <path d="M9 30 C 16 29, 15 20, 21 19 S 28 12, 31 9" fill="none" stroke="#c9a45c" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="1.5 4.5" />
-      <circle cx="9" cy="30" r="3.2" fill="#c9a45c" />
-      <circle cx="31" cy="9" r="3.2" fill="none" stroke="#ffffff" strokeWidth="2" />
-    </svg>
-  );
+  return <Image src="/logo.png" alt="" width={44} height={44} priority className="size-10 shrink-0 rounded-[9px] sm:size-11" />;
 }

@@ -278,7 +278,7 @@ function YazdirmaListesi({
 }) {
   return (
     <div className="yazdirma-listesi">
-      <h1 className="font-serif text-2xl font-semibold">Vefa Rehberi: yapılacaklar listesi</h1>
+      <h1 className="font-serif text-2xl font-semibold">Vefat Rehberi: yapılacaklar listesi</h1>
       <p className="mb-6">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}. Genel bilgilendirme amaçlıdır; son tarih ve tutarları resmi kaynaktan teyit edin.</p>
       {donemler(liste, yapilanlar).map((d) => (
         <section key={d.grup} className="mb-6">

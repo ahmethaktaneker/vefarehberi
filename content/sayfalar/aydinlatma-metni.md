@@ -1,6 +1,6 @@
 ---
 baslik: "Aydınlatma metni"
-aciklama: "Vefa Rehberi'nde kişisel verilerin işlenmesine ilişkin aydınlatma metni."
+aciklama: "Vefat Rehberi'nde kişisel verilerin işlenmesine ilişkin aydınlatma metni."
 kaynak:
   - "6698 sayılı Kişisel Verilerin Korunması Kanunu m.5, m.9, m.10, m.11"
 son_kontrol: "2026-09-28"
@@ -14,7 +14,7 @@ Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında 
 
 ## Hangi verileri işliyoruz, hangilerini işlemiyoruz
 
-Vefa Rehberi'nin yapılacaklar listesi, hesaplayıcı ve dilekçe taslakları hiçbir kişisel veri istemeden çalışır. Sorulara verdiğiniz cevaplar, işaretleriniz ve dilekçelere yazdıklarınız yalnızca kendi cihazınızın tarayıcısında kalır; bize gönderilmez.
+Vefat Rehberi'nin yapılacaklar listesi, hesaplayıcı ve dilekçe taslakları hiçbir kişisel veri istemeden çalışır. Sorulara verdiğiniz cevaplar, işaretleriniz ve dilekçelere yazdıklarınız yalnızca kendi cihazınızın tarayıcısında kalır; bize gönderilmez.
 
 Yalnızca şu durumda kişisel veri işlenir:
 

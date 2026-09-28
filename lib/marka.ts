@@ -1,9 +1,9 @@
 /** Ürün adı ve alt başlık. Sitede her yerde buradan okunur. */
-export const URUN_ADI = "Vefa Rehberi";
+export const URUN_ADI = "Vefat Rehberi";
 export const URUN_ALT_BASLIK = "Vefat sonrası işlemler, adım adım";
 
 /** Kanonik adres (www'suz, HTTPS). */
-export const SITE_URL = "https://vefarehberi.com";
+export const SITE_URL = "https://vefatrehberi.com";
 
 /**
  * Site herkese açık yayına hazır mı?
@@ -40,10 +40,10 @@ export const ILETISIM_EPOSTA = "ahmethaktaneker@gmail.com";
 
 /** Hata bildirimi için hazır konu satırlı e-posta bağlantısı. Kişisel bilgi içermez. */
 export function hataBildirBaglantisi(konu: string): string {
-  return `mailto:${ILETISIM_EPOSTA}?subject=${encodeURIComponent(`Vefa Rehberi: ${konu}`)}`;
+  return `mailto:${ILETISIM_EPOSTA}?subject=${encodeURIComponent(`Vefat Rehberi: ${konu}`)}`;
 }
 
-/** Sayfa başlığı kalıbı: "{Konu} | Vefa Rehberi" */
+/** Sayfa başlığı kalıbı: "{Konu} | Vefat Rehberi" */
 export function sayfaBasligi(konu: string): string {
   return `${konu} | ${URUN_ADI}`;
 }

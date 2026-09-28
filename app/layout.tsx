@@ -34,11 +34,20 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   robots: YAYINDA ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1f3d63",
+  themeColor: "#0f2a47",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

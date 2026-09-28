@@ -29,7 +29,7 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
 
   async function paylas() {
     try {
-      await navigator.share({ title: "Vefa Rehberi: yapılacaklar listesi", url: baglanti });
+      await navigator.share({ title: "Vefat Rehberi: yapılacaklar listesi", url: baglanti });
       olay("paylasim_linki_kopyalandi");
     } catch {
       // Kullanıcı paylaşımı iptal etti.
