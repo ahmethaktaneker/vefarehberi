@@ -139,6 +139,10 @@ export const KurumSemasi = z.strictObject({
   id: z.string().regex(/^[a-z0-9_]+$/),
   ad: z.string().min(1),
   tur: z.enum(KURUM_TURLERI),
+  /** Hizmet verdiği bölge (ör. "İstanbul Avrupa Yakası"). Genel bilgi kartlarında "Diğer iller". */
+  bolge: z.string().optional(),
+  /** Belirli bir şirket değil, o türdeki tüm şirketler için genel bilgi kartı. */
+  genel: z.boolean().default(false),
   /** Kurumun kendi sitesi. */
   web: z.url().optional(),
   /** Yalnızca kurumun kendi sayfasından teyit edilmiş iletişim bilgisi. */

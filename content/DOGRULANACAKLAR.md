@@ -85,3 +85,9 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 - `parametreler.yaml`: tutarlar ve süreler
 - `belgeler.yaml`: belge adları
 - `avukat_uyarilari.yaml`: "avukata danışın" uyarıları
+
+## Enerji, doğalgaz, su şirketleri (29.09.2026 eklendi)
+
+- GDZ Elektrik, İzmirgaz, ASKİ, İZSU: sitelerinde vefata özel resmi metin bulunamadı; bilgiler kullanıcı deneyimi ve haberlerden. Kurumlara sorulmalı.
+- İZSU "2 ay içinde devir, yoksa iptal" kuralı ve DASK şartı: İZSU'dan teyit edilmeli.
+- "Diğer iller" genel bilgi kartları (elektrik, doğalgaz, su): avukat kontrolüne sunulmalı.

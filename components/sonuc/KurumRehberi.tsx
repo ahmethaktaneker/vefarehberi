@@ -21,7 +21,7 @@ export function KurumRehberi({ kurumlar, belgeler, acikId }: { kurumlar: Kurum[]
   return (
     <div className="space-y-8">
       <p className="text-base text-metin-ikincil">
-        Elektrik ve doğalgaz şirketinizin adı faturanızda yazar. Kurumların kendi sitelerinde yazanlar ile
+        Elektrik, doğalgaz ve su şirketinizin adı faturanızda yazar. İstanbul, Ankara ve İzmir’deki şirketler ayrı ayrı; diğer iller için genel bilgi verilir. Kurumların kendi sitelerinde yazanlar ile
         kullanıcı deneyimleri ayrı gösterilir. İşleme gitmeden önce kurumdan teyit edin.
       </p>
       {turler.map((tur) => (
@@ -53,6 +53,7 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
       <details className="group p-4" open={acik}>
         <summary className="min-h-12 cursor-pointer list-none">
           <span className="text-lg font-semibold">{k.ad}</span>
+          {k.bolge && <span className="block text-base text-metin-ikincil">{k.bolge}</span>}
           <span className="mt-1 flex flex-wrap items-center gap-2">
             {KONTROL_ROZETLERI && !k.dogrulandi && (
               <span className="rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-base text-metin-ikincil">
@@ -68,7 +69,7 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
         </summary>
 
         <div className="mt-4 space-y-4">
-          {!resmiBilgiVar && (
+          {!resmiBilgiVar && !k.genel && (
             <p className="text-base text-metin-ikincil">
               Kurumun kendi sitesinde vefat işlemlerine dair ayrıntılı bilgi bulamadık. İşlem öncesinde kurumdan teyit edin.
             </p>

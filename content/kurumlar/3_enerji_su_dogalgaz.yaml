@@ -1,28 +1,16 @@
 # Kurum rehberi: elektrik, doğalgaz, su (Brief 8).
-# Bölgesel kurumlar. Kullanıcıya hangi kurumun kendisine ait olduğu sorulmaz; faturada yazar.
-# Birçok kurumun sitesinde vefat durumuna özel ayrıntı bulunamadı (28.09.2026); proje sahibi
+# İstanbul, Ankara, İzmir'deki şirketler tek tek; diğer iller için tür başına bir "genel bilgi" kartı.
+# Kullanıcıya hangi kurumun kendisine ait olduğu sorulmaz; faturada yazar.
+# Elektrikte abonelik (sözleşme) görevli tedarik şirketiyle yapılır; dağıtım şirketi (BEDAŞ, AYEDAŞ,
+# Başkent EDAŞ, Gediz EDAŞ) sayaç ve kesme/açma işini yapar.
+# Birçok kurumun sitesinde vefat durumuna özel ayrıntı bulunamadı (28-29.09.2026); proje sahibi
 # kurumlardan ve uzmanlardan bilgi topluyor (bkz. content/KURUM_ARASTIRMASI.md).
 
-- id: enerjisa
-  ad: "Enerjisa"
-  tur: enerji
-  web: "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
-  iletisim: "Çağrı merkezi: 444 4 372"
-  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
-  islemler:
-    - tip: genel
-      kanal: ["Enerjisa hizmet noktaları", "Enerjisa Mobil", "Online işlemler", "Çağrı merkezi (randevu için)"]
-      belgeler: [mirascilik_belgesi, muvafakatname]
-  guvence_bedeli_iadesi:
-    - "Tahliye (aboneliğin sonlandırılması) tamamlandıktan sonra mirasçılık belgesi ve tüm mirasçıların onayını içeren muvafakatname ile hizmet noktalarına başvurulur."
-    - "Tutar 250 TL'yi aşıyorsa muvafakatnamenin noter onaylı olması gerekir."
-  usulsuz_kullanim_uyarisi: false
-  kaynak: ["https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"]
-  son_kontrol: "2026-09-28"
-  dogrulandi: false
+# ---------- Elektrik ----------
 
 - id: ck_bogazici
   ad: "CK Boğaziçi Elektrik"
+  bolge: "İstanbul Avrupa Yakası"
   tur: enerji
   web: "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
   iletisim: "Çağrı merkezi: 444 6 255"
@@ -45,8 +33,68 @@
   son_kontrol: "2026-09-28"
   dogrulandi: false
 
+- id: enerjisa
+  ad: "Enerjisa"
+  bolge: "İstanbul Anadolu Yakası ve Ankara"
+  tur: enerji
+  web: "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
+  iletisim: "Çağrı merkezi: 444 4 372"
+  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      kanal: ["Enerjisa hizmet noktaları", "Enerjisa Mobil", "Online işlemler", "Çağrı merkezi (randevu için)"]
+      belgeler: [mirascilik_belgesi, muvafakatname]
+  guvence_bedeli_iadesi:
+    - "Tahliye (aboneliğin sonlandırılması) tamamlandıktan sonra mirasçılık belgesi ve tüm mirasçıların onayını içeren muvafakatname ile hizmet noktalarına başvurulur."
+    - "Tutar 250 TL'yi aşıyorsa muvafakatnamenin noter onaylı olması gerekir."
+  usulsuz_kullanim_uyarisi: false
+  kaynak: ["https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: gdz_elektrik
+  ad: "GDZ Elektrik (Gediz)"
+  bolge: "İzmir ve Manisa"
+  tur: enerji
+  web: "https://www.gdzelektrik.com.tr/bilgi-merkezi/sikca-sorulan-sorular"
+  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      belgeler: [olum_belgesi, mirascilik_belgesi]
+      notlar_deneyim:
+        - "Güvence bedeli iadesinin geciktiğini anlatan kullanıcı şikâyetleri var; başvuru tarihini ve evrak numarasını not edin."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.gdzelektrik.com.tr/bilgi-merkezi/sikca-sorulan-sorular"
+    - "https://www.sikayetvar.com/gediz-elektrik-perakende/abonelik-iptali/guvence-bedeli"
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+- id: genel_elektrik
+  ad: "Diğer illerdeki elektrik şirketleri"
+  bolge: "Faturanızda adı yazan şirket"
+  tur: enerji
+  genel: true
+  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      belgeler: [olum_belgesi, mirascilik_belgesi, kimlik]
+      notlar_resmi:
+        - "Abonelik, faturada adı yazan tedarik şirketiyle yapılır. Aboneliği kapatmak veya üzerinize almak için oraya başvurursunuz."
+        - "Mirasçılar aboneliği sonlandırabilir ya da içlerinden biri adına yeni abonelik açtırabilir. Diğer mirasçıların onayı (muvafakatname) istenebilir."
+        - "Güvence bedeli, abonelik kapanıp son fatura düşüldükten sonra mirasçılara payları oranında iade edilir."
+  usulsuz_kullanim_uyarisi: true
+  kaynak:
+    - "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
+    - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+# ---------- Doğalgaz ----------
+
 - id: igdas
-  ad: "İGDAŞ (İstanbul doğalgaz)"
+  ad: "İGDAŞ"
+  bolge: "İstanbul"
   tur: dogalgaz
   web: "https://www.igdas.istanbul"
   iletisim: "Çağrı merkezi: 153"
@@ -60,7 +108,8 @@
   dogrulandi: false
 
 - id: baskent_dogalgaz
-  ad: "Başkent Doğalgaz (Ankara)"
+  ad: "Başkentgaz (Başkent Doğalgaz)"
+  bolge: "Ankara"
   tur: dogalgaz
   web: "https://www.baskentdogalgaz.com.tr"
   kosul: { abonelikler: ["dogalgaz", "bilmiyorum"] }
@@ -75,8 +124,48 @@
   son_kontrol: "2026-09-28"
   dogrulandi: false
 
+- id: izmirgaz
+  ad: "İzmirgaz"
+  bolge: "İzmir"
+  tur: dogalgaz
+  web: "https://www.izmirgaz.com.tr/musteri_hizmetleri.php?data=id5"
+  kosul: { abonelikler: ["dogalgaz", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      kanal: ["İzmirgaz abone merkezleri", "e-Devlet (sözleşme sonlandırma)"]
+      belgeler: [olum_belgesi, mirascilik_belgesi]
+      notlar_deneyim:
+        - "Tek mirasçı varsa abonelik onun adına; birden fazla mirasçı varsa diğerlerinin yazılı olarak belirlediği mirasçı adına yapıldığı aktarılıyor."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.izmirgaz.com.tr/musteri_hizmetleri.php?data=id5"
+    - "https://www.sikayetvar.com/izmir-dogalgaz/guvence-bedeli"
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+- id: genel_dogalgaz
+  ad: "Diğer illerdeki doğalgaz şirketleri"
+  bolge: "Faturanızda adı yazan şirket"
+  tur: dogalgaz
+  genel: true
+  kosul: { abonelikler: ["dogalgaz", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      belgeler: [olum_belgesi, mirascilik_belgesi, kimlik]
+      notlar_resmi:
+        - "Mirasçılık belgesinde adı geçenler aboneliği sonlandırabilir ya da içlerinden biri adına devir veya yeni abonelik isteyebilir."
+        - "Birçok şirkette sözleşme sonlandırma e-Devlet üzerinden de yapılabiliyor; e-Devlet'te şirketin adını aratın."
+        - "Güvence bedeli, son tüketim düşüldükten sonra mirasçılara iade edilir. Tüm mirasçıların onayı (muvafakatname) istenebilir."
+  usulsuz_kullanim_uyarisi: true
+  kaynak: ["https://www.turkiye.gov.tr"]
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+# ---------- Su ----------
+
 - id: iski
-  ad: "İSKİ (İstanbul su)"
+  ad: "İSKİ"
+  bolge: "İstanbul"
   tur: su
   web: "https://iski.istanbul/abone-hizmetleri/abone-rehberi/abonelik-iptal-islemleri/"
   kosul: { abonelikler: ["su", "bilmiyorum"] }
@@ -86,4 +175,61 @@
   usulsuz_kullanim_uyarisi: false
   kaynak: ["https://iski.istanbul/abone-hizmetleri/abone-rehberi/abonelik-iptal-islemleri/"]
   son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: aski
+  ad: "ASKİ"
+  bolge: "Ankara"
+  tur: su
+  web: "https://onlineislem.aski.gov.tr/AboneIptal.aspx"
+  iletisim: "Çağrı merkezi: 153"
+  kosul: { abonelikler: ["su", "bilmiyorum"] }
+  islemler:
+    - tip: iptal
+      kanal: ["ASKİ online işlem merkezi", "ASKİ abone işleri birimleri"]
+      notlar_resmi:
+        - "Abonelik iptalinde güvence bedeli (teminat) güncel fiyat üzerinden iade edilir. Kartlı sayaçlarda güvence bedeli alınmamıştır."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.aski.gov.tr/TR/ICERIK/Abonelik-Sikca-Sorulan-Sorular/36"
+    - "https://onlineislem.aski.gov.tr/AboneIptal.aspx"
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+- id: izsu
+  ad: "İZSU"
+  bolge: "İzmir"
+  tur: su
+  web: "https://www.izsu.gov.tr"
+  iletisim: "Telefon: (232) 293 2 293"
+  kosul: { abonelikler: ["su", "bilmiyorum"] }
+  islemler:
+    - tip: devir
+      kanal: ["İZSU abonelik işlemleri birimleri", "e-Devlet"]
+      belgeler: [mirascilik_belgesi, kimlik, dask]
+      notlar_deneyim:
+        - "Mirasçıların birikmiş borcu ödeyip aboneliği 2 ay içinde devralması gerektiği, aksi hâlde aboneliğin iptal edildiği aktarılıyor."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.izsu.gov.tr/tr/AbonelikIslemleriMobil/Detay/62"
+    - "https://www.hurriyet.com.tr/egitim/izmir-izsu-su-abonelik-kapatma-nasil-yapilir-izsu-abonelik-iptali-icin-yapilacak-islemler-41804766"
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+
+- id: genel_su
+  ad: "Diğer illerdeki su idareleri"
+  bolge: "Belediyenizin su idaresi (faturada yazar)"
+  tur: su
+  genel: true
+  kosul: { abonelikler: ["su", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      belgeler: [olum_belgesi, mirascilik_belgesi, kimlik, dask]
+      notlar_resmi:
+        - "Su aboneliği belediyenin su idaresindedir. Mirasçılar aboneliği kapatabilir ya da içlerinden biri adına devralabilir."
+        - "Bazı idareler devir için süre (ör. 2 ay) tanıyor ve konutlarda DASK poliçesi istiyor. Süreyi idareye sorun."
+        - "Birçok su idaresinde abonelik iptali e-Devlet'ten de yapılabiliyor."
+  usulsuz_kullanim_uyarisi: false
+  kaynak: ["https://tiski.gov.tr/icerik/yakinlarini-kaybeden-vatandaslara-tiskiden-onemli-uyari-abonelik-devir-islemleri-icin-2-aylik-sureyi-kacirmayin"]
+  son_kontrol: "2026-09-29"
   dogrulandi: false
