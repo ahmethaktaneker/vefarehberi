@@ -100,6 +100,37 @@ export const AdimSemasi = z.strictObject({
 export const BelgeSemasi = z.strictObject({
   id: z.string().regex(/^[a-z0-9_]+$/),
   ad: z.string().min(1),
+  /** Belge listesinde gösterilen pratik not (ör. "4-5 kopya alın"). */
+  not: z.string().optional(),
+  ...dogrulukAlanlari,
+});
+
+export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
+
+/** Kurum rehberi (Brief 8). Resmi notlar ve kullanıcı deneyimleri ayrı tutulur. */
+export const KurumSemasi = z.strictObject({
+  id: z.string().regex(/^[a-z0-9_]+$/),
+  ad: z.string().min(1),
+  tur: z.enum(KURUM_TURLERI),
+  /** Kurumun kendi sitesi. */
+  web: z.url().optional(),
+  /** Yalnızca kurumun kendi sayfasından teyit edilmiş iletişim bilgisi. */
+  iletisim: z.string().optional(),
+  /** Kurumun hangi cevaplarda gösterileceği. */
+  kosul: KosulSemasi,
+  islemler: z
+    .array(
+      z.strictObject({
+        tip: z.enum(["devir", "iptal", "genel"]),
+        kanal: z.array(z.string()).default([]),
+        belgeler: z.array(z.string()).default([]),
+        notlar_resmi: z.array(z.string()).default([]),
+        notlar_deneyim: z.array(z.string()).default([]),
+      }),
+    )
+    .min(1),
+  guvence_bedeli_iadesi: z.array(z.string()).default([]),
+  usulsuz_kullanim_uyarisi: z.boolean(),
   ...dogrulukAlanlari,
 });
 
@@ -126,8 +157,23 @@ export const ParametrelerSemasi = z.strictObject({
     emekli_sandigi_4c: TutarSemasi,
     zamanasimi_yil: z.number().int().positive(),
   }),
-  /** Faz 2 hesaplayıcısında ayrıntılı şemaya kavuşacak. */
-  veraset_vergisi: z.record(z.string(), z.unknown()),
+  veraset_vergisi: z.strictObject({
+    istisna: z.strictObject({
+      /** Füruğ (çocuklar, evlatlıklar dahil) ve eşten her birinin hissesi için. */
+      her_cocuk_ve_es: z.number().positive(),
+      /** Füruğ yoksa eşin hissesi için. */
+      furug_yoksa_es: z.number().positive(),
+    }),
+    /** Artan oranlı tarife. dilim: o dilimin genişliği (TL); son dilim null = kalan tüm tutar. */
+    tarife_veraset: z
+      .array(z.strictObject({ dilim: z.number().positive().nullable(), oran: z.number().min(0).max(1) }))
+      .min(1)
+      .refine((d) => d.at(-1)!.dilim === null && d.slice(0, -1).every((x) => x.dilim !== null), {
+        message: "Yalnızca son dilim sınırsız (null) olmalı",
+      }),
+    odeme: z.string(),
+    not: z.string().optional(),
+  }),
   sureler: z.strictObject(
     Object.fromEntries(SURE_PARAMETRELERI.map((k) => [k, z.number().int().positive()])) as Record<
       (typeof SURE_PARAMETRELERI)[number],
@@ -138,6 +184,8 @@ export const ParametrelerSemasi = z.strictObject({
 
 export type Adim = z.infer<typeof AdimSemasi>;
 export type Belge = z.infer<typeof BelgeSemasi>;
+export type Kurum = z.infer<typeof KurumSemasi>;
+export type KurumTuru = (typeof KURUM_TURLERI)[number];
 export type AvukatUyarisi = z.infer<typeof AvukatUyarisiSemasi>;
 export type Parametreler = z.infer<typeof ParametrelerSemasi>;
 export type ZamanGrubu = (typeof ZAMAN_GRUPLARI)[number];
@@ -145,6 +193,7 @@ export type ZamanGrubu = (typeof ZAMAN_GRUPLARI)[number];
 export type Icerik = {
   adimlar: Adim[];
   belgeler: Record<string, Belge>;
+  kurumlar: Kurum[];
   avukatUyarilari: AvukatUyarisi[];
   parametreler: Parametreler;
 };

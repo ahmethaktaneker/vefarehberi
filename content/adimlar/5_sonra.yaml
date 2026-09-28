@@ -1,0 +1,93 @@
+# Zaman grubu: Sonra, acelesi olmayanlar (Brief 7). Avukat kontrolünden GEÇMEDİ.
+
+- id: tapu_intikali
+  baslik: "Taşınmazları mirasçılar adına tescil ettirin (tapu intikali)"
+  kategori: resmi
+  zaman_grubu: sonra
+  oncelik: normal
+  kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "bilmiyorum"] }
+  belirsizse: { varliklar: "bilmiyorum" }
+  ne: >
+    Mirasçılardan biri Web Tapu üzerinden başvurur. Tapu müdürlüğü harç tutarını SMS ile bildirir;
+    harç ödendikten sonra randevu gününde tapu müdürlüğünde işlem tamamlanır.
+  neden: >
+    Tescil, veraset ve intikal vergisinin tahakkuku beklenmeden yapılabilir. Ancak taşınmaza düşen
+    vergi tamamen ödenmeden taşınmaz satılamaz; satış için ilişik kesme belgesi istenir.
+  nereye: "Web Tapu üzerinden başvuru, ardından tapu müdürlüğü"
+  belgeler: [kimlik, mirascilik_belgesi, dask]
+  cevrimici: "Başvuru Web Tapu'dan yapılır; imza için tapu müdürlüğüne gidilir."
+  baglantilar:
+    - { ad: "Web Tapu", url: "https://webtapu.tkgm.gov.tr" }
+  kaynak:
+    - "https://www.tkgm.gov.tr/en/node/207"
+    - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: arac_devri
+  baslik: "Aracı mirasçı adına devrettirin"
+  kategori: resmi
+  zaman_grubu: sonra
+  oncelik: normal
+  kosul: { varliklar: "arac" }
+  ne: "Miras kalan aracın devri notere başvurularak yapılır."
+  neden: "Noter, devirden önce vergi dairesinden alınmış ilişik kesme belgesini görmek zorundadır."
+  nereye: "Noter"
+  belgeler: [mirascilik_belgesi, ilisik_kesme, ruhsat]
+  ipuclari:
+    - tur: deneyim
+      metin: >
+        Bir kullanıcı, miras yoluyla devralınan aracın aylar sonra satışında noter sisteminde kayıt
+        uyumsuzluğu hatası çıktığını ve vergi dairesine gitmesi gerektiğini anlatıyor. Aracı satmayı
+        planlıyorsanız, satıştan önce noterde sorgu yaptırmanız önerilir.
+  kaynak:
+    - "https://sumeyyeyuce.av.tr/miras-kalan-arac-satisi-ve-ruhsat-devri/"
+    - "https://www.fatiharas.com/veraset-ilisik-kesme-belgesi/"
+    - "https://eksisozluk.com/veraset-ve-intikal-vergisi--1039060?p=3"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: guvence_bedeli_iadesi
+  baslik: "Abonelik güvence bedelini geri alın"
+  kategori: odeme
+  zaman_grubu: sonra
+  oncelik: normal
+  kosul: { abonelikler: ["elektrik", "su", "dogalgaz", "bilmiyorum"] }
+  belirsizse: { abonelikler: "bilmiyorum" }
+  ne: >
+    Kapatılan elektrik, su ve doğalgaz aboneliklerinde yatırılmış güvence bedeli mirasçılara iade
+    edilebilir. Bazı kurumlar mirasçılık belgesi ve tüm mirasçıların onayını içeren muvafakatname
+    istiyor. Örneğin Enerjisa, tutar 250 TL'yi aşıyorsa muvafakatnamenin noter onaylı olmasını istiyor.
+  neden: "Birçok aile bu iadeden habersiz."
+  nereye: "İlgili kurum. Kurum bazlı bilgiler için sayfadaki \"Kurum rehberi\" bölümüne bakın."
+  belgeler: [mirascilik_belgesi, muvafakatname]
+  kaynak:
+    - "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
+    - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: dijital_hesaplar
+  baslik: "Dijital hesapları kapatmayı veya anma hesabına çevirmeyi değerlendirin"
+  kategori: kurum
+  zaman_grubu: sonra
+  oncelik: normal
+  ne: >
+    E-posta, sosyal medya ve dijital abonelik hesapları için büyük platformların kendi başvuru
+    süreçleri var. Platformlar şifre vermiyor; hesabın kapatılması, anma hesabına çevrilmesi veya
+    bazı durumlarda içeriğin aileye verilmesi için başvuru kabul ediyor.
+  neden: "Ücretli dijital aboneliklerin ödemeleri, kapatılana kadar devam edebilir."
+  baglantilar:
+    - { ad: "Google: Vefat etmiş bir kullanıcının hesabına ilişkin istek", url: "https://support.google.com/accounts/troubleshooter/6357590?hl=tr" }
+    - { ad: "Apple: Vefat eden aile üyesinin Apple Hesabı", url: "https://support.apple.com/tr-tr/102431" }
+    - { ad: "Facebook: Vefat eden kişinin hesabının yönetilmesi", url: "https://tr-tr.facebook.com/help/275013292838654" }
+  kaynak:
+    - "https://support.google.com/accounts/troubleshooter/6357590?hl=tr"
+    - "https://support.apple.com/tr-tr/102431"
+    - "https://tr-tr.facebook.com/help/275013292838654"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false

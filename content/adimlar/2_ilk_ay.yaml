@@ -18,6 +18,11 @@
   ipuclari:
     - tur: genel
       metin: "Pratikte 4-5 kopya almanın işe yaradığı belirtiliyor."
+    - tur: deneyim
+      metin: >
+        Birçok noterin mirasçılık belgesi düzenlemediği veya bu işlemi bilmediği görülüyor. Gitmeden
+        önce noteri arayıp bu işlemi yapıp yapmadığını sorun; yapmıyorsa Sulh Hukuk Mahkemesine
+        başvurabilirsiniz.
     - tur: genel
       metin: >
         Noter bazı durumlarda belge düzenleyemez ve Sulh Hukuk Mahkemesine başvurmak gerekir:
@@ -32,6 +37,7 @@
     - "https://topaktas.av.tr/mirascilik-belgesiveraset-ilami-2025/"
     - "https://avukatmurataydar.com/blog/veraset-ilami-mirascilik-belgesi-nasil-alinir/"
     - "Noterlik Kanunu m.71/B"
+    - "Proje sahibinin saha deneyimi (28.09.2026)"
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -168,7 +174,7 @@
     Vefat eden kişinin üzerindeki elektrik, doğalgaz ve su aboneliklerini devralmayı ya da
     kapatmayı değerlendirin.
   neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
-  nereye: "İlgili elektrik, doğalgaz ve su kurumları (kurum bazlı rehber hazırlanıyor)"
+  nereye: "İlgili elektrik, doğalgaz ve su kurumları. Kurum bazlı bilgiler için sayfadaki \"Kurum rehberi\" bölümüne bakın."
   ipuclari:
     - tur: deneyim
       metin: "Kullanıcılar, kullanılmaya devam eden aboneliklerde hizmetin kesildiği ve usulsüz kullanım işlemi yapıldığı örnekler bildiriyor."
@@ -210,6 +216,66 @@
     - "https://www.hancizadehukuk.com/yurt-disinda-yasayanlarin-turkiyedeki-miras-islemleri/"
     - "https://acikgozlawcom.wordpress.com/2020/10/21/yurt-disindan-vekalet-nasil-cikarilir-nelere-dikkat-edilmelidir/"
     - "https://www.tripadvisor.com/ShowTopic-g293969-i367-k14085671-Collecting_inheritance_in_Istanbul-Turkiye.html"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: varis_hizmetleri
+  baslik: "e-Devlet Vâris Hizmetleri'ne bakın"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  ne: >
+    e-Devlet'teki "Vâris Hizmetleri" bölümü, mirasçısı olduğunuz kişi adına yapabileceğiniz
+    sorgulamaları bir araya getirir. Banka hesabı ve hayat sigortası sorgulamalarının yanında,
+    "İcra Dosyası Sorgulama" ve "Hukuk Dava Dosyası Sorgulama (Mirasçısı Olduğunuz Kişi Adına)"
+    gibi hizmetler de bulunuyor.
+  neden: "Vefat eden hakkında açılmış icra takibi veya dava olup olmadığını görmek, borç durumunu değerlendirmeye yardımcı olur."
+  cevrimici: "Evet, e-Devlet üzerinden."
+  baglantilar:
+    - { ad: "e-Devlet: Vâris Hizmetleri", url: "https://www.turkiye.gov.tr/varis-hizmetleri" }
+  kaynak:
+    - "https://www.turkiye.gov.tr/varis-hizmetleri"
+    - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: otomatik_odeme_talimatlari
+  baslik: "Otomatik ödeme talimatlarını kontrol edin"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul: { varliklar: ["banka", "kredi_karti", "bilmiyorum"] }
+  ne: >
+    Bankadan vefat edenin otomatik ödeme talimatlarının listesini isteyin. Devam edecek faturaları
+    başka bir hesaba taşıyın.
+  neden: "Hangi faturaların ve aboneliklerin olduğunu görmenize de yardımcı olabilir."
+  nereye: "Vefat edenin hesabının bulunduğu banka"
+  kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 11 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: telefon_internet
+  baslik: "Telefon ve internet aboneliklerini devralmayı ya da kapatmayı değerlendirin"
+  kategori: kurum
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul: { abonelikler: ["cep", "sabit_internet", "bilmiyorum"] }
+  belirsizse: { abonelikler: "bilmiyorum" }
+  ne: >
+    Vefat edenin adına kayıtlı cep telefonu hattı, sabit hat ve internet aboneliği bir mirasçıya
+    devredilebilir ya da kapatılabilir. Operatörler devir için genellikle mirasçılık belgesi istiyor.
+  uyari: >
+    Vodafone'un açıklamasına göre mirası reddeden kişi, vefat edenin hattını üzerine alamıyor.
+    Mirası reddetmeyi düşünüyorsanız hattı devralmadan önce bunu göz önünde bulundurun.
+  nereye: "İlgili operatör. Kurum bazlı bilgiler için sayfadaki \"Kurum rehberi\" bölümüne bakın."
+  belgeler: [mirascilik_belgesi, kimlik]
+  kaynak:
+    - "https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"
+    - "https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"
+    - "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

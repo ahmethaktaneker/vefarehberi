@@ -1,0 +1,79 @@
+# Kurum rehberi: operatörler (Brief 8).
+# notlar_resmi: yalnızca kurumun kendi sitesinden okunan bilgi.
+# notlar_deneyim: kullanıcı deneyimleri (forumlar); arayüzde "Kullanıcı deneyimi" etiketiyle gösterilir.
+
+- id: turkcell
+  ad: "Turkcell"
+  tur: operator
+  web: "https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"
+  kosul: { abonelikler: ["cep", "bilmiyorum"] }
+  islemler:
+    - tip: devir
+      kanal: ["Turkcell Mağazaları"]
+      belgeler: [mirascilik_belgesi, kimlik]
+      notlar_resmi:
+        - "Veraseten devir için gerekli belgelerle Turkcell Mağazalarına başvurulur."
+      notlar_deneyim:
+        - "Kullanıcılar, faturalı hattı kapatmak için tüm mirasçıların istenebildiğini; bazılarının hattı faturasıza çevirip son faturayı ödeyerek çözdüğünü anlatıyor."
+        - "Reddi miras kararını ilettikten yıllar sonra eski borç için aranan bir kullanıcı örneği var."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"
+    - "PROJE_BRIEF.md Bölüm 8 (forum araştırması)"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: vodafone
+  ad: "Vodafone"
+  tur: operator
+  web: "https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"
+  kosul: { abonelikler: ["cep", "bilmiyorum"] }
+  islemler:
+    - tip: devir
+      kanal: ["Vodafone mağazası"]
+      belgeler: [kimlik, adres_belgesi, mirascilik_belgesi]
+      notlar_resmi:
+        - "Yasal mirasçılardan biri başvurur ve mirasçılık belgesine ek olarak verasetten devir taahhütnamesini imzalar. Devir formu mağazada verilir."
+        - "Devirde işlem ücreti ve vergiler alınır. Tarife kampanyası iptali nedeniyle cayma bedeli alınmaz."
+        - "Mirası reddeden kişi, vefat eden yakınının hattını devralamaz."
+      notlar_deneyim:
+        - "Bazı kullanıcılar devirde cayma bedeli istendiğini bildiriyor."
+    - tip: iptal
+      belgeler: [olum_belgesi]
+      notlar_resmi:
+        - "Hat iptali için ölüm belgesi ve mirasçılardan birinin başvurusu yeterlidir."
+      notlar_deneyim:
+        - "Diğer abonelikler kapanırken Vodafone iptalinin aylarca sürdüğünü anlatan bir kullanıcı var."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"
+    - "PROJE_BRIEF.md Bölüm 8 (forum araştırması)"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: turk_telekom
+  ad: "Türk Telekom"
+  tur: operator
+  web: "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
+  kosul: { abonelikler: ["cep", "sabit_internet", "bilmiyorum"] }
+  islemler:
+    - tip: iptal
+      kanal: ["Türk Telekom ofisleri veya mağazaları", "E-posta veya faks"]
+      belgeler: [olum_belgesi, defin_belgesi, mirascilik_belgesi]
+      notlar_resmi:
+        - "İptal talebinden sonra hizmet 24 saat içinde durdurulur, iptal 7 gün içinde tamamlanır."
+        - "Şirkete ait cihazlar (modem vb.) iade edilmelidir; iade edilmeyenlerin bedeli son faturaya yansıtılır."
+      notlar_deneyim:
+        - "Kullanıcılar müşteri hizmetlerinden iptal ettiremediklerini bildiriyor; mağaza veya yazılı başvuru daha etkili olabilir. İptal edilene kadar fatura gelmeye devam edebilir."
+    - tip: devir
+      kanal: ["Türk Telekom bayileri"]
+      belgeler: [mirascilik_belgesi, olum_belgesi]
+      notlar_resmi:
+        - "Devralacak kişinin hazır bulunması veya vekaletname sunması gerekir."
+        - "Hat üzerinde taahhüt varsa cayma bedelinin ödenmesi gerekir."
+  usulsuz_kullanim_uyarisi: false
+  kaynak:
+    - "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
+    - "https://www.sikayetvar.com/turk-telekom/vefat-eden-yakinimin-aboneligini-iptal-ettiremiyorum-turk-telekomdan-anlayissiz-yaklasim"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false

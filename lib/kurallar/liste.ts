@@ -1,4 +1,4 @@
-import type { Adim, AvukatUyarisi, Icerik, Parametreler } from "@/lib/icerik/sema";
+import type { Adim, AvukatUyarisi, Belge, Icerik, Kurum, Parametreler } from "@/lib/icerik/sema";
 import { kosulSaglaniyor } from "@/lib/kurallar/kosul";
 import { ayEkle, kalanGun, tarihGecerli } from "@/lib/kurallar/tarih";
 import { gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
@@ -28,6 +28,10 @@ export type Liste = {
   /** Son tarihi olan adımlar, en yakından uzağa. */
   sonTarihliler: HesaplanmisAdim[];
   avukatUyarilari: AvukatUyarisi[];
+  /** Cevaplara göre ilgili kurumlar. */
+  kurumlar: Kurum[];
+  /** Gösterilen adımlarda istenen belgelerin birleşik listesi; hangi adımlarda istendiğiyle. */
+  belgeListesi: { belge: Belge; adimlar: { id: string; baslik: string }[] }[];
 };
 
 /**
@@ -103,5 +107,17 @@ export function listeOlustur(hamCevaplar: Cevaplar, icerik: Icerik, bugun: strin
 
   const avukatUyarilari = icerik.avukatUyarilari.filter((u) => kosulSaglaniyor(u.kosul, c));
 
-  return { adimlar, sonTarihliler, avukatUyarilari };
+  const kurumlar = icerik.kurumlar.filter((k) => kosulSaglaniyor(k.kosul, c));
+
+  const belgeHaritasi = new Map<string, { id: string; baslik: string }[]>();
+  for (const a of adimlar) {
+    for (const b of a.belgeler) {
+      belgeHaritasi.set(b, [...(belgeHaritasi.get(b) ?? []), { id: a.id, baslik: a.baslik }]);
+    }
+  }
+  const belgeListesi = [...belgeHaritasi]
+    .map(([id, adimlarIcin]) => ({ belge: icerik.belgeler[id], adimlar: adimlarIcin }))
+    .sort((x, y) => y.adimlar.length - x.adimlar.length);
+
+  return { adimlar, sonTarihliler, avukatUyarilari, kurumlar, belgeListesi };
 }

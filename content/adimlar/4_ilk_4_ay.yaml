@@ -15,13 +15,18 @@
       gösteriliyor; kendi sürenizi aşağıdaki kurala göre kontrol edin ve vergi dairesinden teyit edin.
     gecti_notu: "Süre geçmiş görünüyor. Bir avukata veya mali müşavire danışmanız önerilir."
   ne: >
-    Mal varlığı varsa veraset ve intikal vergisi beyannamesi verilir. İnternet Vergi Dairesi'ndeki
-    "Veraset İşlemleri" bölümünden elektronik olarak verilebilir. Birden fazla mirasçı varsa biri
-    hazırlar, diğerleri onaylar.
+    Mal varlığı varsa veraset ve intikal vergisi beyannamesi verilir. Beyanname her mirasçı için
+    ayrı ayrı veya birlikte verilebilir. Yurtdışında yaşayan mirasçılar beyannamelerini Türk
+    konsolosluklarına da verebilir (Veraset ve İntikal Vergisi Kanunu m.8).
   neden: "Beyanname verilmezse banka ve tapu işlemleri aksayabilir."
-  nereye: "Vergi dairesi veya İnternet Vergi Dairesi"
+  nereye: >
+    Vefat edenin ikametgâhının bulunduğu yerdeki vergi dairesi; ikametgâhı yurtdışındaysa
+    Türkiye'deki son ikametgâhının bulunduğu yerdeki vergi dairesi (VİVK m.6)
   belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
-  cevrimici: "Evet, İnternet Vergi Dairesi (ivd.gib.gov.tr) üzerinden. Belgeler, sahip olunan varlıklara göre değişir."
+  cevrimici: >
+    GİB'in kılavuzuna göre İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden elektronik
+    beyanname verilebiliyor; ancak uygulamada bu yolla beyanname verilemediği görülüyor. Vergi
+    dairesine giderek vermeyi planlayın. Belgeler, sahip olunan varlıklara göre değişir.
   uyari: >
     Taşınmazı satmayı planlıyorsanız: Taşınmaz, vergi tahakkuku beklenmeden mirasçılar adına
     tescil edilebilir; ancak ona düşen vergi tamamen ödenmeden satılamaz ve tapuda ilişik kesme
@@ -52,6 +57,28 @@
     - "https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"
     - "https://www.gorkempeker.av.tr/faydali-bilgiler/gayrimenkulun-veraset-intikal-islemleri-nasil-yapilir-84.html"
     - "https://eksisozluk.com/veraset-ve-intikal-vergisi--1039060?p=5"
+    - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+    - "Proje sahibinin saha deneyimi (28.09.2026)"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: ilisik_kesme
+  baslik: "Veraset ilişik kesme belgesini alın"
+  kategori: belge
+  zaman_grubu: ilk_4_ay
+  oncelik: normal
+  kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "arac", "banka", "sirket", "yurtdisi_mal", "bilmiyorum"] }
+  belirsizse: { varliklar: "bilmiyorum" }
+  ne: >
+    İlişik kesme belgesi, miras kalan mala düşen veraset ve intikal vergisinin ödendiğini gösterir.
+    Beyanname verildikten ve ilgili mala düşen vergi ödendikten sonra vergi dairesinden alınır.
+  neden: >
+    Taşınmazın satışı, araç devri ve bankadaki paranın mirasçılara ödenmesi gibi işlemlerde
+    istenir. Kanuna göre bankalar, bu belge sunulmazsa ödemeden vergi karşılığı kesinti yapabilir.
+  nereye: "Beyannamenin verildiği vergi dairesi"
+  kaynak:
+    - "https://www.fatiharas.com/veraset-ilisik-kesme-belgesi/"
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
   son_kontrol: "2026-09-28"
   dogrulandi: false

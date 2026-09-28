@@ -6,6 +6,7 @@ import {
   AdimSemasi,
   AvukatUyarisiSemasi,
   BelgeSemasi,
+  KurumSemasi,
   ParametrelerSemasi,
   type Icerik,
 } from "@/lib/icerik/sema";
@@ -47,6 +48,16 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
   const belgeDosyasi = path.join(klasor, "belgeler.yaml");
   const belgeListesi = dogrula(z.array(BelgeSemasi), yamlOku(belgeDosyasi), belgeDosyasi);
 
+  const kurumKlasoru = path.join(klasor, "kurumlar");
+  const kurumlar = fs
+    .readdirSync(kurumKlasoru)
+    .filter((f) => f.endsWith(".yaml"))
+    .sort()
+    .flatMap((f) => {
+      const dosya = path.join(kurumKlasoru, f);
+      return dogrula(z.array(KurumSemasi), yamlOku(dosya), dosya);
+    });
+
   const uyariDosyasi = path.join(klasor, "avukat_uyarilari.yaml");
   const avukatUyarilari = dogrula(z.array(AvukatUyarisiSemasi), yamlOku(uyariDosyasi), uyariDosyasi);
 
@@ -54,17 +65,21 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
   const parametreler = dogrula(ParametrelerSemasi, yamlOku(parametreDosyasi), parametreDosyasi);
 
   // Çapraz kontroller: tekil id'ler, var olan belge referansları.
-  const tekrar = adimlar.map((a) => a.id).filter((id, i, dizi) => dizi.indexOf(id) !== i);
-  if (tekrar.length) throw new Error(`İçerik hatası: tekrarlanan adım id'leri: ${tekrar.join(", ")}`);
-
-  const belgeler = Object.fromEntries(belgeListesi.map((b) => [b.id, b]));
-  for (const a of adimlar) {
-    for (const b of a.belgeler) {
-      if (!belgeler[b]) throw new Error(`İçerik hatası: "${a.id}" adımı bilinmeyen belgeye bakıyor: ${b}`);
-    }
+  for (const [ad, liste] of [["adım", adimlar], ["kurum", kurumlar]] as const) {
+    const tekrar = liste.map((x) => x.id).filter((id, i, dizi) => dizi.indexOf(id) !== i);
+    if (tekrar.length) throw new Error(`İçerik hatası: tekrarlanan ${ad} id'leri: ${tekrar.join(", ")}`);
   }
 
-  const icerik = { adimlar, belgeler, avukatUyarilari, parametreler };
+  const belgeler = Object.fromEntries(belgeListesi.map((b) => [b.id, b]));
+  const belgeReferanslari = [
+    ...adimlar.flatMap((a) => a.belgeler.map((b) => [a.id, b] as const)),
+    ...kurumlar.flatMap((k) => k.islemler.flatMap((i) => i.belgeler.map((b) => [k.id, b] as const))),
+  ];
+  for (const [kimden, b] of belgeReferanslari) {
+    if (!belgeler[b]) throw new Error(`İçerik hatası: "${kimden}" bilinmeyen belgeye bakıyor: ${b}`);
+  }
+
+  const icerik = { adimlar, belgeler, kurumlar, avukatUyarilari, parametreler };
   if (klasor === ICERIK_KLASORU) onbellek = icerik;
   return icerik;
 }

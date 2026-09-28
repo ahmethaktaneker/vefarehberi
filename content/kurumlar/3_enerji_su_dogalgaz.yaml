@@ -1,0 +1,89 @@
+# Kurum rehberi: elektrik, doğalgaz, su (Brief 8).
+# Bölgesel kurumlar. Kullanıcıya hangi kurumun kendisine ait olduğu sorulmaz; faturada yazar.
+# Birçok kurumun sitesinde vefat durumuna özel ayrıntı bulunamadı (28.09.2026); proje sahibi
+# kurumlardan ve uzmanlardan bilgi topluyor (bkz. content/KURUM_ARASTIRMASI.md).
+
+- id: enerjisa
+  ad: "Enerjisa"
+  tur: enerji
+  web: "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
+  iletisim: "Çağrı merkezi: 444 4 372"
+  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      kanal: ["Enerjisa hizmet noktaları", "Enerjisa Mobil", "Online işlemler", "Çağrı merkezi (randevu için)"]
+      belgeler: [mirascilik_belgesi, muvafakatname]
+  guvence_bedeli_iadesi:
+    - "Tahliye (aboneliğin sonlandırılması) tamamlandıktan sonra mirasçılık belgesi ve tüm mirasçıların onayını içeren muvafakatname ile hizmet noktalarına başvurulur."
+    - "Tutar 250 TL'yi aşıyorsa muvafakatnamenin noter onaylı olması gerekir."
+  usulsuz_kullanim_uyarisi: false
+  kaynak: ["https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: ck_bogazici
+  ad: "CK Boğaziçi Elektrik"
+  tur: enerji
+  web: "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+  iletisim: "Çağrı merkezi: 444 6 255"
+  kosul: { abonelikler: ["elektrik", "bilmiyorum"] }
+  islemler:
+    - tip: iptal
+      kanal: ["Müşteri Hizmet Merkezleri (MÜHİM)", "Çağrı merkezi", "Online işlem merkezi", "İletişim formu"]
+      belgeler: [mirascilik_belgesi]
+      notlar_resmi:
+        - "Vefat etmiş kişi adına olan abonelik, mirasçılık belgesinde yer alan mirasçılar tarafından iptal edilebilir."
+      notlar_deneyim:
+        - "Vefat edenin aboneliğini kullanmaya devam edenlere usulsüz kullanım bildirimi geldiği örnekler anlatılıyor."
+  guvence_bedeli_iadesi:
+    - "Güvence bedeli iadesini mirasçılar veya tüm mirasçıları vekâleten temsil eden kişi talep edebilir."
+    - "Tutar, sitedeki \"Güvence Bedeli Sorgulama\" ekranından öğrenilebilir. İade PTT şubelerinden de alınabilir; masrafı talep edene aittir."
+  usulsuz_kullanim_uyarisi: true
+  kaynak:
+    - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+    - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: igdas
+  ad: "İGDAŞ (İstanbul doğalgaz)"
+  tur: dogalgaz
+  web: "https://www.igdas.istanbul"
+  iletisim: "Çağrı merkezi: 153"
+  kosul: { abonelikler: ["dogalgaz", "bilmiyorum"] }
+  islemler:
+    - tip: genel
+      kanal: ["İGDAŞ hizmet binaları", "E-Dilekçe", "Çağrı merkezi"]
+  usulsuz_kullanim_uyarisi: false
+  kaynak: ["https://www.igdas.istanbul/guvence-bedeli"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: baskent_dogalgaz
+  ad: "Başkent Doğalgaz (Ankara)"
+  tur: dogalgaz
+  web: "https://www.baskentdogalgaz.com.tr"
+  kosul: { abonelikler: ["dogalgaz", "bilmiyorum"] }
+  islemler:
+    - tip: devir
+      notlar_deneyim:
+        - "Aboneliği üzerine almak isteyenlere eski aboneliği iptal edip ücretli yeni abonelik açmalarının söylendiğini bildiren kullanıcılar var."
+        - "Kullanılmaya devam eden aboneliklerde usulsüz kullanım işlemi yapıldığı örnekler anlatılıyor."
+        - "Güvence bedelinin mirasçılık belgesiyle PTT'den alınabildiği söylenmiş."
+  usulsuz_kullanim_uyarisi: true
+  kaynak: ["https://www.sikayetvar.com/baskent-dogalgaz/vefat"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: iski
+  ad: "İSKİ (İstanbul su)"
+  tur: su
+  web: "https://iski.istanbul/abone-hizmetleri/abone-rehberi/abonelik-iptal-islemleri/"
+  kosul: { abonelikler: ["su", "bilmiyorum"] }
+  islemler:
+    - tip: iptal
+      kanal: ["e-Devlet", "İSKİ e-Şube", "Mobil İSKİ", "İSKİ şube müdürlükleri"]
+  usulsuz_kullanim_uyarisi: false
+  kaynak: ["https://iski.istanbul/abone-hizmetleri/abone-rehberi/abonelik-iptal-islemleri/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false

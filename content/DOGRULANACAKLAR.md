@@ -20,6 +20,16 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 | Mirasçılık belgesi ve e-Devlet | e-Devlet hizmeti (Adalet Bakanlığı) yalnızca sorgulama yapıyor; yeni belge noter veya sulh hukuk mahkemesinden. Noter; tartışmalı mirasçılık, nüfus kaydıyla tespit edilemeyen soybağı ve yabancı mirasçı hâllerinde düzenleyemez (Noterlik K. m.71/B). **Metin düzeltildi.** | turkiye.gov.tr, hukuk bürosu yazıları |
 | Reddi miras süresinin başlangıcı | Yasal mirasçı: ölümü öğrendiği tarih (mirasçılığını sonra öğrendiğini ispat ederse o tarih); atanmış mirasçı: tasarrufun bildirildiği tarih. **Metne eklendi.** | TMK m.606 (hukuk bürosu yazıları üzerinden; kanun metni ayrıca okunmalı) |
 
+## Proje sahibinin saha deneyimi (28.09.2026)
+
+- **İnternet Vergi Dairesi'nden veraset beyannamesi verilemiyor.** GİB kılavuzu elektronik beyanı
+  anlatıyor; sitede artık "kılavuza göre mümkün, uygulamada verilemediği görülüyor, vergi dairesine
+  giderek vermeyi planlayın" deniyor. Vergi uzmanına sorulacak (bkz. KURUM_ARASTIRMASI.md).
+- **Noterlerin çoğu mirasçılık belgesi düzenlemiyor veya işlemi bilmiyor.** "Gitmeden önce noteri
+  arayın; yapmıyorsa Sulh Hukuk Mahkemesi" notu eklendi.
+- Beyannamenin verileceği yer kanundan eklendi: vefat edenin ikametgâhının vergi dairesi (VİVK m.6);
+  yurtdışındaki mirasçılar konsolosluğa da verebilir, ayrı veya birlikte verilebilir (VİVK m.8).
+
 ## Hâlâ açık konular
 
 1. **Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026 tutarı.** Resmi olmayan bir hesap:
@@ -39,7 +49,8 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 
 ## Dosyalar
 
-- `adimlar/1_ilk_hafta.yaml`, `2_ilk_ay.yaml`, `3_ilk_3_ay.yaml`, `4_ilk_4_ay.yaml`: 18 adım
+- `adimlar/*.yaml`: 26 adım
+- `kurumlar/*.yaml`: 12 kurum (bkz. KURUM_ARASTIRMASI.md)
 - `parametreler.yaml`: tutarlar ve süreler
 - `belgeler.yaml`: belge adları
 - `avukat_uyarilari.yaml`: "avukata danışın" uyarıları

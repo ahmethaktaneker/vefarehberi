@@ -68,10 +68,18 @@ describe("persona: Mehmet (emekli baba, çok varlık, kredi)", () => {
       "risk_raporu",
       "kredi_hayat_sigortasi",
       "abonelikler",
+      "varis_hizmetleri",
+      "otomatik_odeme_talimatlari",
+      "telefon_internet",
       "reddi_miras",
       "olum_ayligi",
       "cenaze_odenegi",
       "veraset_beyannamesi",
+      "ilisik_kesme",
+      "tapu_intikali",
+      "arac_devri",
+      "guvence_bedeli_iadesi",
+      "dijital_hesaplar",
     ]);
   });
 
@@ -96,8 +104,12 @@ describe("persona: Zeynep (mal yok, kredi kartı borcu olabilir)", () => {
       "mirascilik_belgesi",
       "hayat_sigortasi_sorgulama",
       "risk_raporu",
+      "varis_hizmetleri",
+      "otomatik_odeme_talimatlari",
+      "telefon_internet",
       "reddi_miras",
       "cenaze_odenegi",
+      "dijital_hesaplar",
     ]);
   });
 
@@ -122,9 +134,16 @@ describe("persona: Ahmet (mirasçılar yurtdışında)", () => {
       "hayat_sigortasi_sorgulama",
       "abonelikler",
       "yurtdisi_vekaletname",
+      "varis_hizmetleri",
+      "otomatik_odeme_talimatlari",
+      "telefon_internet",
       "olum_ayligi",
       "cenaze_odenegi",
       "veraset_beyannamesi",
+      "ilisik_kesme",
+      "tapu_intikali",
+      "guvence_bedeli_iadesi",
+      "dijital_hesaplar",
     ]);
   });
 
@@ -228,5 +247,33 @@ describe("kurallar", () => {
       "sirket",
       "yurtdisi_mal",
     ]);
+  });
+});
+
+describe("kurum rehberi ve belge listesi", () => {
+  it("kurumlar cevaplara göre süzülür", () => {
+    const kurumlar = (c: Cevaplar) => listeOlustur(c, icerik, BUGUN).kurumlar.map((k) => k.tur);
+    const zeynep = kurumlar(ZEYNEP); // yalnızca cep telefonu ve kredi kartı
+    expect(zeynep).toContain("operator");
+    expect(zeynep).toContain("banka");
+    expect(zeynep).not.toContain("enerji");
+    expect(zeynep).not.toContain("su");
+    expect(kurumlar({ ...ZEYNEP, abonelikler: ["hicbiri"], varliklar: ["hicbiri"] })).toEqual([]);
+    expect(kurumlar(MEHMET)).toEqual(expect.arrayContaining(["enerji", "dogalgaz", "su"]));
+  });
+
+  it("belge listesi gösterilen adımlardan birleşir, tekrar etmez", () => {
+    const { belgeListesi } = listeOlustur(MEHMET, icerik, BUGUN);
+    const idler = belgeListesi.map((b) => b.belge.id);
+    expect(new Set(idler).size).toBe(idler.length);
+    const mirascilik = belgeListesi.find((b) => b.belge.id === "mirascilik_belgesi")!;
+    expect(mirascilik.adimlar.length).toBeGreaterThan(3);
+    expect(mirascilik.belge.not).toMatch(/kopya/);
+    // Araç yoksa ruhsat istenmez
+    expect(listeOlustur(ZEYNEP, icerik, BUGUN).belgeListesi.map((b) => b.belge.id)).not.toContain("ruhsat");
+  });
+
+  it("mirası reddetmeyi düşünenler için hat devri uyarısı", () => {
+    expect(adim(MEHMET, "telefon_internet")?.uyari).toMatch(/mirası reddeden/);
   });
 });

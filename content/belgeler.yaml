@@ -14,6 +14,7 @@
 
 - id: mirascilik_belgesi
   ad: "Mirasçılık belgesi (veraset ilamı)"
+  not: "Pratikte 4-5 kopya almanın işe yaradığı belirtiliyor; birçok kurum aslını veya onaylı örneğini istiyor."
   kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
   son_kontrol: "2026-09-28"
   dogrulandi: false
@@ -26,6 +27,7 @@
 
 - id: rayic_bedel
   ad: "Taşınmazlar için belediyeden, vefat tarihine göre rayiç bedel yazısı"
+  not: "Her taşınmaz için 2 adet almanın işe yaradığı anlatılıyor: biri vergi dairesine, biri tapuya hitaben."
   kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
   son_kontrol: "2026-09-28"
   dogrulandi: false
@@ -51,5 +53,48 @@
 - id: borc_belgeleri
   ad: "Borç belgeleri"
   kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: kimlik
+  ad: "Kimlik belgesi (başvuran mirasçının)"
+  kaynak: ["https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: muvafakatname
+  ad: "Tüm mirasçıların onayını içeren muvafakatname"
+  not: "Bazı kurumlar belirli bir tutarın üzerinde noter onaylı muvafakatname istiyor."
+  kaynak: ["https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: ilisik_kesme
+  ad: "Vergi dairesinden veraset ilişik kesme belgesi"
+  kaynak: ["https://www.fatiharas.com/veraset-ilisik-kesme-belgesi/", "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: ruhsat
+  ad: "Araç ruhsatı"
+  kaynak: ["https://sumeyyeyuce.av.tr/miras-kalan-arac-satisi-ve-ruhsat-devri/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: dask
+  ad: "Zorunlu deprem sigortası (DASK) poliçesi (binalar için)"
+  kaynak: ["https://www.tkgm.gov.tr/en/node/207"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: adres_belgesi
+  ad: "Adres gösterir belge"
+  kaynak: ["https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: defin_belgesi
+  ad: "Defin belgesi"
+  kaynak: ["https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"]
   son_kontrol: "2026-09-28"
   dogrulandi: false

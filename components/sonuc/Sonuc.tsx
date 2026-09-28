@@ -8,6 +8,7 @@ import { listeOlustur, type HesaplanmisAdim } from "@/lib/kurallar/liste";
 import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import { akisTamam, type Cevaplar } from "@/lib/sorular";
 import { AdimKarti, kartaGit, TutarSatiri } from "@/components/sonuc/AdimKarti";
+import { BelgeListesi, KurumRehberi } from "@/components/sonuc/KurumRehberi";
 
 const ZAMAN_ETIKETLERI: Record<ZamanGrubu, string> = {
   ilk_hafta: "İlk hafta",
@@ -137,6 +138,19 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
             );
           })}
         </div>
+      </Bolum>
+
+      {liste.kurumlar.length > 0 && (
+        <Bolum baslik="Kurum rehberi">
+          <KurumRehberi kurumlar={liste.kurumlar} belgeler={icerik.belgeler} />
+        </Bolum>
+      )}
+
+      <Bolum baslik="Belge listesi">
+        <p className="-mt-2 mb-4 text-base text-metin-ikincil">
+          Listenizdeki adımlarda istenen belgelerin tamamı. Her kurum farklı belge isteyebilir; gitmeden önce teyit edin.
+        </p>
+        <BelgeListesi liste={liste.belgeListesi} />
       </Bolum>
     </div>
   );
