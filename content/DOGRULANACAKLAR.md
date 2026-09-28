@@ -63,6 +63,12 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
   süresi, paket duyurusu e-postasının ticari elektronik ileti sayılıp sayılmadığı ve İYS kaydı gerekip
   gerekmediği, VERBİS kaydı gerekip gerekmediği.
 
+## Arama motoru sayfaları (Faz 2c)
+
+- `sayfalar/rehber/*.md` (8 sayfa) ve `ilk-48-saat`, `yurtdisi`, `veraset-vergisi-hesaplama` sayfalarının
+  metinleri ve sık sorulan soru cevapları. Yalnızca bu dosyada daha önce kaynakla karşılaştırılan bilgiler
+  kullanıldı; tutarlar `parametreler.yaml`'dan otomatik doldurulur.
+
 ## Dosyalar
 
 - `adimlar/*.yaml`: 26 adım

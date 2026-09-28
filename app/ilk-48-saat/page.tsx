@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { RehberSayfasi } from "@/components/RehberSayfasi";
-import { sayfaYukle } from "@/lib/icerik/metinler";
-
-const sayfa = () => sayfaYukle("ilk-48-saat");
+import { hazirSayfa } from "@/lib/icerik/sayfalar";
 
 export function generateMetadata(): Metadata {
-  const s = sayfa();
-  return { title: s.baslik, description: s.aciklama, alternates: { canonical: "/ilk-48-saat" } };
+  const s = hazirSayfa("ilk-48-saat");
+  return { title: s.seo_baslik ?? s.baslik, description: s.aciklama, alternates: { canonical: "/ilk-48-saat" } };
 }
 
 export default function Page() {
-  return <RehberSayfasi sayfa={sayfa()} />;
+  return <RehberSayfasi sayfa={hazirSayfa("ilk-48-saat")} yol="/ilk-48-saat" />;
 }

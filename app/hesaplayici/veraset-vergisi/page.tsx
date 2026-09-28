@@ -1,23 +1,20 @@
 import type { Metadata } from "next";
-import { Sayfa } from "@/components/Sayfa";
+import { RehberSayfasi } from "@/components/RehberSayfasi";
 import { VergiHesaplayici } from "@/components/VergiHesaplayici";
+import { hazirSayfa } from "@/lib/icerik/sayfalar";
 import { icerikYukle } from "@/lib/icerik/yukle";
 
-export const metadata: Metadata = {
-  title: "Veraset ve İntikal Vergisi Hesaplama 2026",
-  description:
-    "Vefat sonrası işlemlerde veraset ve intikal vergisi çıkıp çıkmayacağını ve yaklaşık tutarını 2026 tarifesiyle tahmin edin.",
-  alternates: { canonical: "/hesaplayici/veraset-vergisi" },
-};
+const SLUG = "veraset-vergisi-hesaplama";
+
+export function generateMetadata(): Metadata {
+  const s = hazirSayfa(SLUG);
+  return { title: s.seo_baslik ?? s.baslik, description: s.aciklama, alternates: { canonical: "/hesaplayici/veraset-vergisi" } };
+}
 
 export default function Page() {
-  const { parametreler } = icerikYukle();
   return (
-    <Sayfa baslik="Veraset ve intikal vergisi hesaplayıcı">
-      <p className="text-lg text-metin-ikincil">
-        Size düşen miras payına veraset ve intikal vergisi çıkıp çıkmayacağını ve yaklaşık tutarını görün.
-      </p>
-      <VergiHesaplayici parametreler={parametreler} />
-    </Sayfa>
+    <RehberSayfasi sayfa={hazirSayfa(SLUG)} yol="/hesaplayici/veraset-vergisi" eylem={false}>
+      <VergiHesaplayici parametreler={icerikYukle().parametreler} />
+    </RehberSayfasi>
   );
 }

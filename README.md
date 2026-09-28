@@ -24,3 +24,14 @@ npm run build    # üretim derlemesi
   Emekli Sandığı ölüm yardımı, veraset vergisi istisnaları ve dilimleri) resmi kaynaklardan kontrol et
   ve `son_kontrol` tarihlerini güncelle.
 - Avukat kontrolünden geçen maddelerde `dogrulandi: true` yapılır.
+- Rehber sayfalarındaki tutarlar ve oranlar (`{{cenaze_odenegi_genel}}`, `{{tarife_metni}}` vb.)
+  `parametreler.yaml`'dan doldurulur; sayfa metinlerinde elle tutar yazmayın.
+
+## İçerik klasörü
+
+- `content/adimlar`, `content/kurumlar`: yapılacaklar ve kurum rehberi (YAML)
+- `content/sablonlar`: dilekçe taslakları (Markdown + ön bilgi)
+- `content/sayfalar`, `content/sayfalar/rehber`: rehber ve arama motoru sayfaları
+- `content/paket.yaml`, `content/kvkk.yaml`: Takip Paketi ve KVKK metinleri
+- `content/DOGRULANACAKLAR.md`: avukat / uzman kontrol listesi
+- `content/KURUM_ARASTIRMASI.md`: kurumlardan toplanacak bilgiler

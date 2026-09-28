@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { RehberSayfasi } from "@/components/RehberSayfasi";
-import { sayfaYukle } from "@/lib/icerik/metinler";
-
-const sayfa = () => sayfaYukle("yurtdisi");
+import { hazirSayfa } from "@/lib/icerik/sayfalar";
 
 export function generateMetadata(): Metadata {
-  const s = sayfa();
-  return { title: s.baslik, description: s.aciklama, alternates: { canonical: "/yurtdisi" } };
+  const s = hazirSayfa("yurtdisi");
+  return { title: s.seo_baslik ?? s.baslik, description: s.aciklama, alternates: { canonical: "/yurtdisi" } };
 }
 
 export default function Page() {
-  return <RehberSayfasi sayfa={sayfa()} />;
+  return <RehberSayfasi sayfa={hazirSayfa("yurtdisi")} yol="/yurtdisi" />;
 }

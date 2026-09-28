@@ -33,7 +33,11 @@ export const SablonSemasi = z.strictObject({
 
 export const SayfaSemasi = z.strictObject({
   baslik: z.string().min(1),
+  /** Arama motorları için sayfa başlığı; yoksa baslik kullanılır. */
+  seo_baslik: z.string().optional(),
   aciklama: z.string().min(1),
+  /** Sık sorulan sorular: sayfada gösterilir ve FAQPage yapılandırılmış verisi olarak eklenir. */
+  sss: z.array(z.strictObject({ soru: z.string().min(1), cevap: z.string().min(1) })).default([]),
   ...dogruluk,
 });
 
@@ -78,6 +82,15 @@ export function sablonlariYukle(klasor = path.join(ICERIK, "sablonlar")): Sablon
       }
       return { ...s, govde };
     });
+}
+
+/** content/sayfalar/rehber altındaki arama motoru sayfalarının adları. */
+export function rehberSluglari(klasor = path.join(ICERIK, "sayfalar", "rehber")): string[] {
+  return fs
+    .readdirSync(klasor)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.slice(0, -3))
+    .sort();
 }
 
 export function sayfaYukle(slug: string, klasor = path.join(ICERIK, "sayfalar")): Sayfa {

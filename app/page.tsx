@@ -42,6 +42,9 @@ export default function AnaSayfa() {
           <IkincilBaglanti href="/ilk-48-saat" baslik="İlk 48 saat için rehber" aciklama="İlk günlerde yapılması gerekenler." />
           <IkincilBaglanti href="/yurtdisi" baslik="Yurtdışında yaşıyorum" aciklama="Vekaletname, süreler ve konsolosluk işlemleri." />
         </div>
+        <Link href="/rehber" className="mt-4 inline-block text-base text-vurgu-koyu underline underline-offset-4">
+          Tüm rehberler: reddi miras, cenaze ödeneği, ölüm aylığı ve daha fazlası
+        </Link>
       </nav>
     </div>
   );

@@ -8,6 +8,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-3xl space-y-4 px-4 py-8 sm:px-6">
         <HukukiUyari />
         <nav aria-label="Alt bağlantılar" className="flex flex-wrap gap-x-6 gap-y-2 text-base">
+          <Link href="/rehber" className="text-vurgu-koyu underline underline-offset-4">
+            Rehberler
+          </Link>
           <Link href="/hesaplayici/veraset-vergisi" className="text-vurgu-koyu underline underline-offset-4">
             Veraset vergisi hesaplayıcı
           </Link>
