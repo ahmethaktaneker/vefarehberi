@@ -1,0 +1,54 @@
+# Sözlük: adım kartlarında terimin üstüne dokununca açılan kısa açıklamalar ve /sozluk sayfası.
+# Genel tanımlardır; avukat kontrolünden GEÇMEDİ. Uzun terim önce eşleşir.
+
+kaynak: ["Genel tanımlar (Vefa Rehberi); avukat kontrolüne sunulacak"]
+son_kontrol: "2026-09-28"
+dogrulandi: false
+
+terimler:
+  - terim: "mirasçılık belgesi"
+    esanlamlilar: ["veraset ilamı"]
+    aciklama: "Vefat eden kişinin mirasçılarının kimler olduğunu ve miras paylarını gösteren belge. Noterden veya Sulh Hukuk Mahkemesinden alınır."
+  - terim: "muvafakatname"
+    aciklama: "Bir işleme onay verdiğinizi gösteren yazılı belge. Örneğin diğer mirasçıların, işlemi sizin yapmanıza onay verdiğini gösteren yazı."
+  - terim: "ilişik kesme belgesi"
+    esanlamlilar: ["ilişik kesme"]
+    aciklama: "Vergi dairesinden alınan ve ilgili vergi borcunun ödendiğini gösteren belge."
+  - terim: "tahakkuk"
+    aciklama: "Vergi dairesinin ödenecek vergiyi hesaplayıp kesinleştirmesi."
+  - terim: "intikal"
+    aciklama: "Malın vefat edenden mirasçılara geçmesi."
+  - terim: "tescil"
+    aciklama: "Bir hakkın (örneğin mülkiyetin) tapuya resmi olarak kaydedilmesi."
+  - terim: "rayiç bedel"
+    aciklama: "Belediyenin bir taşınmaz için belirlediği değer. Veraset işlemlerinde taşınmazın değerini göstermek için istenir."
+  - terim: "apostil"
+    aciklama: "Yabancı bir ülkede düzenlenen resmi belgenin başka bir ülkede de geçerli olması için eklenen onay."
+  - terim: "düzenleme şeklinde"
+    aciklama: "Metni noterin kendisinin hazırladığı, okuyup imzalattığı vekaletname türü."
+  - terim: "vekaletname"
+    esanlamlilar: ["vekalet"]
+    aciklama: "Başka birine sizin adınıza işlem yapma yetkisi verdiğiniz belge."
+  - terim: "hükmen red"
+    aciklama: "Vefat tarihinde borçların mal varlığını aştığı açıkça belliyse mirasın reddedilmiş sayılması. Genellikle mahkemede tespit edilir."
+  - terim: "zamanaşımı"
+    aciklama: "Bir hakkın istenebileceği yasal süre. Süre geçerse o hak istenemeyebilir."
+  - terim: "cayma bedeli"
+    aciklama: "Taahhüt süresi dolmadan abonelik bırakıldığında istenebilen ücret."
+  - terim: "risk raporu"
+    aciklama: "Kişinin bankalara olan kredi ve kredi kartı borçlarını gösteren rapor."
+  - terim: "beyanname"
+    aciklama: "Vergi dairesine verilen bildirim formu. Burada, miras kalan malları bildiren veraset ve intikal vergisi beyannamesi kastediliyor."
+  - terim: "Sulh Hukuk Mahkemesi"
+    aciklama: "Mirasçılık belgesi ve mirasın reddi gibi işlere bakan mahkeme."
+  - terim: "ölüm aylığı"
+    esanlamlilar: ["dul ve yetim aylığı"]
+    aciklama: "Vefat eden sigortalının eşine ve çocuklarına, şartlara göre bağlanan aylık."
+  - terim: "güvence bedeli"
+    aciklama: "Elektrik, su, doğalgaz gibi abonelikler açılırken kuruma yatırılan ve abonelik kapanınca iade edilen teminat."
+  - terim: "usulsüz kullanım"
+    aciklama: "Kurumun, aboneliğin kurallara aykırı kullanıldığını değerlendirmesi. Ek ücret veya hizmet kesintisine yol açabilir."
+  - terim: "DASK"
+    aciklama: "Zorunlu deprem sigortası."
+  - terim: "TMK"
+    aciklama: "Türk Medeni Kanunu."

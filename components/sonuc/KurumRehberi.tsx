@@ -1,4 +1,5 @@
 import type { Belge, Kurum, KurumTuru } from "@/lib/icerik/sema";
+import { KONTROL_ROZETLERI } from "@/lib/marka";
 
 const TUR_ETIKETLERI: Record<KurumTuru, string> = {
   operator: "Telefon ve internet",
@@ -52,7 +53,7 @@ function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<str
         <summary className="min-h-12 cursor-pointer list-none">
           <span className="text-lg font-semibold">{k.ad}</span>
           <span className="mt-1 flex flex-wrap items-center gap-2">
-            {!k.dogrulandi && (
+            {KONTROL_ROZETLERI && !k.dogrulandi && (
               <span className="rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-base text-metin-ikincil">
                 Kontrol ediliyor
               </span>

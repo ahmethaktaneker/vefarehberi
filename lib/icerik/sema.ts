@@ -188,7 +188,21 @@ export const ParametrelerSemasi = z.strictObject({
   ),
 });
 
+export const SozlukSemasi = z.strictObject({
+  ...dogrulukAlanlari,
+  terimler: z
+    .array(
+      z.strictObject({
+        terim: z.string().min(1),
+        esanlamlilar: z.array(z.string().min(1)).default([]),
+        aciklama: z.string().min(1),
+      }),
+    )
+    .min(1),
+});
+
 export type Adim = z.infer<typeof AdimSemasi>;
+export type Terim = z.infer<typeof SozlukSemasi>["terimler"][number];
 export type Belge = z.infer<typeof BelgeSemasi>;
 export type Kurum = z.infer<typeof KurumSemasi>;
 export type KurumTuru = (typeof KURUM_TURLERI)[number];
@@ -200,6 +214,7 @@ export type Icerik = {
   adimlar: Adim[];
   belgeler: Record<string, Belge>;
   kurumlar: Kurum[];
+  sozluk: Terim[];
   avukatUyarilari: AvukatUyarisi[];
   parametreler: Parametreler;
 };

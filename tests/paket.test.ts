@@ -13,7 +13,6 @@ const temel: Cevaplar = {
   vefat_tarihi: "2026-08-10",
   vefat_yeri: "turkiye",
   mirasci_yeri: "turkiye",
-  yakinlik: "cocugu",
   calisma_durumu: "emekli",
   sosyal_guvenlik: "4a",
   hak_sahipleri: ["esi_var"],

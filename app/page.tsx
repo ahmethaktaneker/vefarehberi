@@ -20,7 +20,7 @@ export default function AnaSayfa() {
       >
         Listemi oluştur
       </Link>
-      <p className="mt-3 text-base text-metin-ikincil">12 kısa soru, yaklaşık 3 dakika. İstediğiniz an ara verebilirsiniz.</p>
+      <p className="mt-3 text-base text-metin-ikincil">11 kısa soru, yaklaşık 3 dakika. İstediğiniz an ara verebilirsiniz.</p>
 
       <ul className="mt-10 space-y-3 text-base">
         {AVUKAT_ROZETI_AKTIF && (
@@ -32,6 +32,15 @@ export default function AnaSayfa() {
         <li className="flex gap-3">
           <Isaret />
           Cevaplarınız yalnızca sizin cihazınızda kalır, bize gönderilmez
+        </li>
+        <li className="flex gap-3">
+          <Isaret />
+          <span>
+            Bağımsız bir projedir, hiçbir kurumla bağlantısı yoktur.{" "}
+            <Link href="/hakkimizda" className="text-vurgu-koyu underline underline-offset-4">
+              Kim hazırlıyor?
+            </Link>
+          </span>
         </li>
       </ul>
 

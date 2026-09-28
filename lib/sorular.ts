@@ -1,5 +1,6 @@
 /**
  * Soru akışı (Brief 5.2). Sorular arayüz metnidir; hukuki içerik değildir.
+ * Brief'teki 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı (28.09.2026).
  * Seçenek değerleri content/ içindeki koşullarda kullanılır, değiştirilirse içerik de güncellenmeli.
  */
 
@@ -52,18 +53,6 @@ export const SORULAR: Soru[] = [
       { deger: "turkiye", etiket: "Türkiye'de" },
       { deger: "yurtdisi", etiket: "Yurtdışında" },
       { deger: "karisik", etiket: "Bir kısmı Türkiye'de, bir kısmı yurtdışında" },
-    ],
-  },
-  {
-    id: "yakinlik",
-    tip: "tek",
-    soru: "Vefat eden kişiye yakınlığınız nedir?",
-    secenekler: [
-      { deger: "esi", etiket: "Eşiyim" },
-      { deger: "cocugu", etiket: "Çocuğuyum" },
-      { deger: "anne_babasi", etiket: "Annesi veya babasıyım" },
-      { deger: "kardesi", etiket: "Kardeşiyim" },
-      { deger: "diger", etiket: "Diğer" },
     ],
   },
   {

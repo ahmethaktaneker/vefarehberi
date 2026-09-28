@@ -8,6 +8,7 @@ import {
   BelgeSemasi,
   KurumSemasi,
   ParametrelerSemasi,
+  SozlukSemasi,
   type Icerik,
 } from "@/lib/icerik/sema";
 
@@ -58,6 +59,9 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
       return dogrula(z.array(KurumSemasi), yamlOku(dosya), dosya);
     });
 
+  const sozlukDosyasi = path.join(klasor, "sozluk.yaml");
+  const sozluk = dogrula(SozlukSemasi, yamlOku(sozlukDosyasi), sozlukDosyasi).terimler;
+
   const uyariDosyasi = path.join(klasor, "avukat_uyarilari.yaml");
   const avukatUyarilari = dogrula(z.array(AvukatUyarisiSemasi), yamlOku(uyariDosyasi), uyariDosyasi);
 
@@ -86,7 +90,7 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
     }
   }
 
-  const icerik = { adimlar, belgeler, kurumlar, avukatUyarilari, parametreler };
+  const icerik = { adimlar, belgeler, kurumlar, sozluk, avukatUyarilari, parametreler };
   if (klasor === ICERIK_KLASORU) onbellek = icerik;
   return icerik;
 }

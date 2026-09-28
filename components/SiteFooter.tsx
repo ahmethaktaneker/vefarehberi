@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { URUN_ADI, URUN_ALT_BASLIK } from "@/lib/marka";
+import { hataBildirBaglantisi, URUN_ADI, URUN_ALT_BASLIK } from "@/lib/marka";
 import { HukukiUyari } from "@/components/HukukiUyari";
 
 export function SiteFooter() {
@@ -7,6 +7,12 @@ export function SiteFooter() {
     <footer className="mt-16 border-t border-cizgi bg-bilgi-acik">
       <div className="mx-auto max-w-3xl space-y-4 px-4 py-8 sm:px-6">
         <HukukiUyari />
+        <p className="text-base">
+          Bir hata veya eksik mi gördünüz?{" "}
+          <a href={hataBildirBaglantisi("Hata bildirimi")} className="font-semibold text-vurgu-koyu underline underline-offset-4">
+            Bize yazın
+          </a>
+        </p>
         <nav aria-label="Alt bağlantılar" className="flex flex-wrap gap-x-6 gap-y-2 text-base">
           <Link href="/rehber" className="text-vurgu-koyu underline underline-offset-4">
             Rehberler
@@ -16,6 +22,12 @@ export function SiteFooter() {
           </Link>
           <Link href="/sablonlar" className="text-vurgu-koyu underline underline-offset-4">
             Dilekçe taslakları
+          </Link>
+          <Link href="/sozluk" className="text-vurgu-koyu underline underline-offset-4">
+            Sözlük
+          </Link>
+          <Link href="/hakkimizda" className="text-vurgu-koyu underline underline-offset-4">
+            Hakkımızda
           </Link>
           <Link href="/gizlilik" className="text-vurgu-koyu underline underline-offset-4">
             Gizlilik

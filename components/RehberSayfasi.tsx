@@ -3,7 +3,7 @@ import { marked } from "marked";
 import { Sayfa } from "@/components/Sayfa";
 import { TaslakNotu } from "@/components/TaslakNotu";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
-import { SITE_URL } from "@/lib/marka";
+import { hataBildirBaglantisi, KONTROL_ROZETLERI, SITE_URL } from "@/lib/marka";
 
 const tarih = (t: string) => t.split("-").reverse().join(".");
 
@@ -57,7 +57,7 @@ export function RehberSayfasi({
         />
       )}
       <p className="text-base text-metin-ikincil">Son güncelleme: {tarih(sayfa.son_kontrol)}</p>
-      {!sayfa.dogrulandi && (
+      {KONTROL_ROZETLERI && !sayfa.dogrulandi && (
         <TaslakNotu>
           Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır ve henüz hukuk uzmanı kontrolünden geçmedi. Resmi
           kaynaktan teyit edin.
@@ -107,6 +107,12 @@ export function RehberSayfasi({
           ))}
         </ul>
       </details>
+      <p className="text-base text-metin-ikincil">
+        Bu sayfada hata veya eksik mi var?{" "}
+        <a href={hataBildirBaglantisi(sayfa.baslik)} className="inline-block py-2 text-vurgu-koyu underline underline-offset-4">
+          Bize yazın
+        </a>
+      </p>
     </Sayfa>
   );
 }

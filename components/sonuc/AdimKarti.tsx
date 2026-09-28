@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import type { Belge, Kurum } from "@/lib/icerik/sema";
+import type { Belge, Kurum, Terim } from "@/lib/icerik/sema";
+import { TerimliMetin } from "@/components/TerimliMetin";
 import { kurumaGit } from "@/components/sonuc/KurumRehberi";
+import { hataBildirBaglantisi, KONTROL_ROZETLERI } from "@/lib/marka";
 import type { HesaplanmisAdim, TutarBilgisi } from "@/lib/kurallar/liste";
 import { tarihMetni } from "@/lib/kurallar/tarih";
 
@@ -45,11 +47,13 @@ export function AdimKarti({
   adim: a,
   belgeler,
   kurumlar,
+  sozluk,
   yapildi,
   onYapildi,
 }: {
   adim: HesaplanmisAdim;
   belgeler: Record<string, Belge>;
+  sozluk: Terim[];
   /** Cevaplara göre gösterilen kurumlar; kartta bu adımla ilgili olanlara bağlantı verilir. */
   kurumlar: Kurum[];
   yapildi: boolean;
@@ -77,7 +81,7 @@ export function AdimKarti({
               {a.oncelik === "kritik" && !yapildi && (
                 <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-base text-uyari">Öncelikli</span>
               )}
-              {!a.dogrulandi && <KontrolEdiliyor />}
+              {KONTROL_ROZETLERI && !a.dogrulandi && <KontrolEdiliyor />}
             </span>
           </span>
           <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-full border border-cizgi px-3 py-1 text-base text-vurgu-koyu">
@@ -95,8 +99,14 @@ export function AdimKarti({
                 <dd>Bu adımı, bir soruya &ldquo;Bilmiyorum&rdquo; dediğiniz için gösteriyoruz. Durumunuza göre geçerli olmayabilir.</dd>
               </div>
             )}
-            <Alan etiket="Ne?">{a.ne}</Alan>
-            {a.neden && <Alan etiket="Neden önemli?">{a.neden}</Alan>}
+            <Alan etiket="Ne?">
+              <TerimliMetin metin={a.ne} sozluk={sozluk} />
+            </Alan>
+            {a.neden && (
+              <Alan etiket="Neden önemli?">
+                <TerimliMetin metin={a.neden} sozluk={sozluk} />
+              </Alan>
+            )}
             {a.sonTarihBilgisi && (
               <Alan etiket="Son tarih">
                 {tarihMetni(a.sonTarihBilgisi.tarih)}
@@ -108,7 +118,11 @@ export function AdimKarti({
                 <TutarSatiri bilgi={a.tutarBilgisi} />
               </Alan>
             )}
-            {a.nereye && <Alan etiket="Nereye?">{a.nereye}</Alan>}
+            {a.nereye && (
+              <Alan etiket="Nereye?">
+                <TerimliMetin metin={a.nereye} sozluk={sozluk} />
+              </Alan>
+            )}
             {a.belgeler.length > 0 && (
               <Alan etiket="Hangi belgeler?">
                 <ul className="list-disc space-y-1 pl-5">
@@ -118,7 +132,11 @@ export function AdimKarti({
                 </ul>
               </Alan>
             )}
-            {a.cevrimici && <Alan etiket="Çevrimiçi yapılabilir mi?">{a.cevrimici}</Alan>}
+            {a.cevrimici && (
+              <Alan etiket="Çevrimiçi yapılabilir mi?">
+                <TerimliMetin metin={a.cevrimici} sozluk={sozluk} />
+              </Alan>
+            )}
             {ilgiliKurumlar.length > 0 && (
               <Alan etiket="İlgili kurumlar">
                 <ul className="flex flex-wrap gap-2">
@@ -140,7 +158,9 @@ export function AdimKarti({
               <Alan etiket="İpucu">
                 <ul className="space-y-2">
                   {genelIpuclari.map((i) => (
-                    <li key={i.metin}>{i.metin}</li>
+                    <li key={i.metin}>
+                      <TerimliMetin metin={i.metin} sozluk={sozluk} />
+                    </li>
                   ))}
                 </ul>
               </Alan>
@@ -160,7 +180,9 @@ export function AdimKarti({
             {a.uyari && (
               <div className="rounded-md border-l-4 border-vurgu bg-vurgu-acik px-3 py-2">
                 <dt className="sr-only">Dikkat</dt>
-                <dd>{a.uyari}</dd>
+                <dd>
+                  <TerimliMetin metin={a.uyari} sozluk={sozluk} />
+                </dd>
               </div>
             )}
             {a.arac === "veraset_hesaplayici" && (
@@ -216,6 +238,12 @@ export function AdimKarti({
             </ul>
             <p className="mt-2">Son kontrol: {tarihMetni(a.son_kontrol)}</p>
           </details>
+          <p className="mt-3 text-base text-metin-ikincil">
+            Bu bilgide hata mı var?{" "}
+            <a href={hataBildirBaglantisi(a.baslik)} className="inline-block py-2 text-vurgu-koyu underline underline-offset-4">
+              Bize yazın
+            </a>
+          </p>
         </div>
       </details>
       <label className="flex min-h-14 cursor-pointer items-center gap-3 border-t border-cizgi px-4 py-2 text-lg">

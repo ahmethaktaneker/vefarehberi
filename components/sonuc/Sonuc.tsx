@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 import { olay } from "@/lib/analitik";
+import { KONTROL_ROZETLERI } from "@/lib/marka";
 import type { Paket } from "@/lib/paket";
 import { paketTetikleyici } from "@/lib/paketTetikleyici";
 import { PaketKarti } from "@/components/sonuc/PaketKarti";
@@ -110,8 +111,8 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
         </p>
         <Ozet liste={liste} yapilanlar={yapilanlar} />
         <p className="mt-4 text-base text-metin-ikincil">
-          &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
-          Son tarih ve tutarları resmi kaynaktan teyit edin.
+          {KONTROL_ROZETLERI && <>&ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi. </>}
+          Bu liste genel bilgilendirme amaçlıdır. Son tarih ve tutarları resmi kaynaktan teyit edin.
         </p>
       </header>
 
@@ -177,6 +178,7 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
                       adim={a}
                       belgeler={icerik.belgeler}
                       kurumlar={liste.kurumlar}
+                      sozluk={icerik.sozluk}
                       yapildi={yapilanlar.has(a.id)}
                       onYapildi={(v) => yapildiDegistir(a.id, v)}
                     />

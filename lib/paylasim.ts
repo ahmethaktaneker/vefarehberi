@@ -8,12 +8,12 @@ import { SORULAR, type Cevaplar } from "@/lib/sorular";
  * Biçim: "1." + vefat tarihi (YYYYMMDD) + "." + her soru için bir parça, "." ile ayrılmış.
  *   tek seçim:   seçenek sırası (base36), cevapsızsa boş
  *   çoklu seçim: seçili seçeneklerin bit maskesi (base36), cevapsızsa boş
- * Örnek: "1.20260810.0.0.1.0.0.1.jg.2.1d.2.1"
+ * Örnek: "2.20260810.0.0.0.0.1.v.2.t.2.1"
  *
  * Seçeneklerin sırası değişirse eski bağlantılar yanlış çözülür; sıralama değişirse sürümü artırın.
  */
 
-const SURUM = "1";
+const SURUM = "2"; // 2: yakınlık sorusu kaldırıldı
 export const PAYLASIM_ANAHTARI = "p";
 
 export function paylasimKodla(c: Cevaplar): string {

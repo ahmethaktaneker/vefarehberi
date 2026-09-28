@@ -69,6 +69,15 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
   metinleri ve sık sorulan soru cevapları. Yalnızca bu dosyada daha önce kaynakla karşılaştırılan bilgiler
   kullanıldı; tutarlar `parametreler.yaml`'dan otomatik doldurulur.
 
+## Yayın öncesi (proje sahibinin kararları, 28.09.2026)
+
+- **"Kontrol ediliyor" rozetleri gizlendi** (`lib/marka.ts` > `KONTROL_ROZETLERI = false`). Brief 0.5 rozet
+  istiyor; proje sahibi yayından önce avukat kontrolünü halledecek. Kontrol tamamlanmadan yayına alınırsa
+  bu ayar yeniden değerlendirilmeli.
+- `sozluk.yaml`: 21 terimin genel tanımı; avukat kontrolü gerekli.
+- `sayfalar/hakkimizda.md`: proje sahibi kendi hikâyesini ekleyebilir (dosyada yorum satırıyla yer ayrıldı).
+- Brief'teki 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı; akış 11 soru.
+
 ## Dosyalar
 
 - `adimlar/*.yaml`: 26 adım

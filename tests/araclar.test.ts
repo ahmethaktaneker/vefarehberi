@@ -44,7 +44,6 @@ describe("paylaşım bağlantısı", () => {
     vefat_tarihi: "2026-08-10",
     vefat_yeri: "turkiye",
     mirasci_yeri: "karisik",
-    yakinlik: "cocugu",
     calisma_durumu: "emekli",
     sosyal_guvenlik: "4a",
     hak_sahipleri: ["esi_var", "ogrenci_cocuk"],
@@ -71,7 +70,8 @@ describe("paylaşım bağlantısı", () => {
     expect(paylasimCoz("")).toBeNull();
     expect(paylasimCoz("9.20260810")).toBeNull();
     expect(paylasimCoz(paylasimKodla(c).replace("20260810", "20260231"))).toBeNull();
-    expect(paylasimCoz("1.20260810.z.0.0.0.0.0.0.0.0.0.0")).toBeNull();
+    expect(paylasimCoz("2.20260810.z.0.0.0.0.0.0.0.0.0")).toBeNull();
+    expect(paylasimCoz("1.20260810.0.0.1.0.0.1.v.2.t.2.1")).toBeNull(); // eski sürüm
   });
 });
 
