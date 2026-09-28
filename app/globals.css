@@ -137,6 +137,7 @@ dialog.panel {
   border: 0;
   border-radius: 1.25rem 1.25rem 0 0;
   padding: 0;
+  overflow: hidden; /* kaydırma yalnızca içerik alanında */
   background: var(--zemin);
   color: var(--metin);
   box-shadow: 0 -8px 40px rgb(15 25 40 / 0.25);
