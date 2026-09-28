@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Sayfa } from "@/components/Sayfa";
-import { TaslakNotu } from "@/components/TaslakNotu";
+import { RehberSayfasi } from "@/components/RehberSayfasi";
+import { sayfaYukle } from "@/lib/icerik/metinler";
 
-export const metadata: Metadata = {
-  title: "Yurtdışında yaşayanlar için",
-  alternates: { canonical: "/yurtdisi" },
-};
+const sayfa = () => sayfaYukle("yurtdisi");
+
+export function generateMetadata(): Metadata {
+  const s = sayfa();
+  return { title: s.baslik, description: s.aciklama, alternates: { canonical: "/yurtdisi" } };
+}
 
 export default function Page() {
-  return (
-    <Sayfa baslik="Yurtdışında yaşayanlar için">
-      <TaslakNotu>Bu rehber hazırlanıyor.</TaslakNotu>
-      <p>
-        <Link href="/" className="text-vurgu-koyu underline underline-offset-4">
-          Ana sayfaya dön
-        </Link>
-      </p>
-    </Sayfa>
-  );
+  return <RehberSayfasi sayfa={sayfa()} />;
 }

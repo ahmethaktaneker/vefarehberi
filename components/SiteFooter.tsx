@@ -11,6 +11,9 @@ export function SiteFooter() {
           <Link href="/hesaplayici/veraset-vergisi" className="text-vurgu-koyu underline underline-offset-4">
             Veraset vergisi hesaplayıcı
           </Link>
+          <Link href="/sablonlar" className="text-vurgu-koyu underline underline-offset-4">
+            Dilekçe taslakları
+          </Link>
           <Link href="/gizlilik" className="text-vurgu-koyu underline underline-offset-4">
             Gizlilik
           </Link>

@@ -5,6 +5,12 @@ import type { Belge } from "@/lib/icerik/sema";
 import type { HesaplanmisAdim, TutarBilgisi } from "@/lib/kurallar/liste";
 import { tarihMetni } from "@/lib/kurallar/tarih";
 
+const SABLON_ADLARI: Record<string, string> = {
+  banka_bakiye_yazisi: "Bankadan bakiye yazısı talebi",
+  abonelik_iptal: "Abonelik iptali ve güvence bedeli iadesi talebi",
+  otomatik_odeme_iptal: "Otomatik ödeme talimatlarının iptali talebi",
+};
+
 /** Özet bölümlerinden bir karta gidilirken kartı açar. */
 export function kartaGit(id: string) {
   const detay = document.getElementById(`adim-${id}`)?.querySelector("details");
@@ -135,6 +141,19 @@ export function AdimKarti({
                 <Link href="/hesaplayici/veraset-vergisi" className="text-vurgu-koyu underline underline-offset-4">
                   Veraset ve intikal vergisi hesaplayıcı
                 </Link>
+              </Alan>
+            )}
+            {a.sablonlar.length > 0 && (
+              <Alan etiket="Dilekçe taslağı">
+                <ul className="space-y-1">
+                  {a.sablonlar.map((s) => (
+                    <li key={s}>
+                      <Link href={`/sablonlar/${s}`} className="text-vurgu-koyu underline underline-offset-4">
+                        {SABLON_ADLARI[s] ?? "Dilekçe taslağı"}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </Alan>
             )}
             {a.baglantilar.length > 0 && (

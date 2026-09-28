@@ -95,6 +95,8 @@ export const AdimSemasi = z.strictObject({
   baglantilar: z.array(z.strictObject({ ad: z.string(), url: z.url() })).default([]),
   /** Sitedeki ilgili araç (kartta bağlantı olarak gösterilir). */
   arac: z.enum(["veraset_hesaplayici"]).optional(),
+  /** content/sablonlar altındaki ilgili dilekçe taslaklarının id'leri. */
+  sablonlar: z.array(z.string()).default([]),
   ...dogrulukAlanlari,
   ucretli_icerik: z.boolean(),
 });

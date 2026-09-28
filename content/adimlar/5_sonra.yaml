@@ -66,6 +66,7 @@
   kaynak:
     - "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
     - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+  sablonlar: [abonelik_iptal]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

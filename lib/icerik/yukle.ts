@@ -79,6 +79,13 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
     if (!belgeler[b]) throw new Error(`İçerik hatası: "${kimden}" bilinmeyen belgeye bakıyor: ${b}`);
   }
 
+  const sablonIdleri = fs.readdirSync(path.join(klasor, "sablonlar")).filter((f) => f.endsWith(".md")).map((f) => f.slice(0, -3));
+  for (const a of adimlar) {
+    for (const s of a.sablonlar) {
+      if (!sablonIdleri.includes(s)) throw new Error(`İçerik hatası: "${a.id}" bilinmeyen şablona bakıyor: ${s}`);
+    }
+  }
+
   const icerik = { adimlar, belgeler, kurumlar, avukatUyarilari, parametreler };
   if (klasor === ICERIK_KLASORU) onbellek = icerik;
   return icerik;

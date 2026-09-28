@@ -182,6 +182,7 @@
     - "https://www.sikayetvar.com/baskent-dogalgaz/vefat"
     - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
     - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
+  sablonlar: [abonelik_iptal]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -253,6 +254,7 @@
   neden: "Hangi faturaların ve aboneliklerin olduğunu görmenize de yardımcı olabilir."
   nereye: "Vefat edenin hesabının bulunduğu banka"
   kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 11 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
+  sablonlar: [otomatik_odeme_iptal]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -276,6 +278,7 @@
     - "https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"
     - "https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"
     - "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
+  sablonlar: [abonelik_iptal]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

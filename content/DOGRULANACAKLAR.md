@@ -47,6 +47,14 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 7. Brief'teki "ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmak gerekebilir" ipucu
    kaynaksız olduğu için kaldırıldı.
 
+## Dilekçe taslakları ve rehber sayfaları (Faz 2a)
+
+- `sablonlar/*.md`: banka bakiye yazısı, abonelik iptali ve güvence bedeli iadesi, otomatik ödeme
+  iptali. Dil ve içerik avukat tarafından kontrol edilmeli (Avukatlık K. m.35 sınırı: genel örnek metin).
+  Reddi miras için bilinçli olarak şablon yok (Brief 9).
+- `sayfalar/ilk-48-saat.md`, `sayfalar/yurtdisi.md`: tüm metin. 188 cenaze hattı birkaç belediyenin
+  kendi sitesinden doğrulandı; kapsam belediyeye göre değişiyor.
+
 ## Dosyalar
 
 - `adimlar/*.yaml`: 26 adım

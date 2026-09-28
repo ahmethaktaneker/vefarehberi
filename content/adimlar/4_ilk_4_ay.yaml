@@ -60,6 +60,7 @@
     - "https://eksisozluk.com/veraset-ve-intikal-vergisi--1039060?p=5"
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
     - "Proje sahibinin saha deneyimi (28.09.2026)"
+  sablonlar: [banka_bakiye_yazisi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
