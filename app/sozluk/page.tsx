@@ -15,8 +15,8 @@ export default function Page() {
       <p className="text-lg text-metin-ikincil">Vefat sonrası işlemlerde sık geçen terimlerin kısa ve genel açıklamaları.</p>
       <dl className="space-y-4">
         {terimler.map((t) => (
-          <div key={t.terim} className="rounded-lg border border-cizgi bg-yuzey p-4">
-            <dt className="text-lg font-semibold">
+          <div key={t.terim} className="rounded-2xl bg-yuzey p-5 shadow-kart">
+            <dt className="font-serif text-lg font-semibold text-vurgu-koyu">
               {t.terim}
               {t.esanlamlilar.length > 0 && <span className="font-normal text-metin-ikincil"> ({t.esanlamlilar.join(", ")})</span>}
             </dt>

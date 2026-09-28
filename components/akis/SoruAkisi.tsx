@@ -72,11 +72,14 @@ export function SoruAkisi() {
 
   return (
     <div>
-      {sira === 0 && <p className="mb-6 text-lg text-metin-ikincil">Başınız sağ olsun.</p>}
+      {sira === 0 && <p className="mb-6 font-serif text-xl text-vurgu-koyu">Başınız sağ olsun.</p>}
 
-      <div className="mb-8">
-        <p className="mb-2 text-base text-metin-ikincil">
-          Soru {sira + 1} / {sorular.length}
+      <div className="mb-6">
+        <p className="mb-2 flex flex-wrap justify-between gap-x-4 text-base text-metin-ikincil">
+          <span>
+            Soru {sira + 1} / {sorular.length}
+          </span>
+          <span>Cevaplarınız yalnızca bu cihazda kalır</span>
         </p>
         <div
           role="progressbar"
@@ -84,15 +87,15 @@ export function SoruAkisi() {
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={ilerleme}
-          className="h-2 overflow-hidden rounded-full bg-cizgi"
+          className="h-2.5 overflow-hidden rounded-full bg-bilgi-acik"
         >
-          <div className="h-full rounded-full bg-vurgu transition-[width]" style={{ width: `${ilerleme}%` }} />
+          <div className="h-full rounded-full bg-vurgu transition-[width] duration-500" style={{ width: `${ilerleme}%` }} />
         </div>
       </div>
 
-      <fieldset key={soru.id}>
+      <fieldset key={soru.id} className="rounded-2xl bg-yuzey p-5 shadow-yuksek sm:p-7">
         <legend className="contents">
-          <h1 ref={baslikRef} tabIndex={-1} className="font-serif text-2xl font-semibold leading-snug outline-none sm:text-3xl">
+          <h1 ref={baslikRef} tabIndex={-1} className="font-serif text-2xl font-semibold leading-snug text-vurgu-koyu outline-none sm:text-3xl">
             {soru.soru}
           </h1>
         </legend>
@@ -114,12 +117,12 @@ export function SoruAkisi() {
       </fieldset>
 
       {soru.tip !== "tarih" && soru.secenekler.some((s) => s.deger === "bilmiyorum") && (
-        <p className="mt-6 text-base text-metin-ikincil">
+        <p className="mt-5 rounded-xl bg-altin-acik px-4 py-3 text-base">
           &ldquo;Bilmiyorum&rdquo; da geçerli bir cevap. Listenize bunu nasıl öğrenebileceğinizi ekleriz.
         </p>
       )}
 
-      <div className="mt-10">
+      <div className="mt-8">
         {sira > 0 ? (
           <button
             type="button"
@@ -144,8 +147,8 @@ export function SoruAkisi() {
 type SecimliSoru = Extract<Soru, { tip: "tek" | "coklu" }>;
 
 const secenekSinifi = (secili: boolean) =>
-  `flex min-h-14 w-full items-center gap-3 rounded-lg border px-4 py-3 text-left text-lg transition-colors ${
-    secili ? "border-vurgu bg-vurgu-acik" : "border-cizgi bg-yuzey hover:border-vurgu"
+  `flex min-h-14 w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left text-lg transition-colors ${
+    secili ? "border-vurgu bg-vurgu-acik font-bold text-vurgu-koyu" : "border-cizgi bg-yuzey hover:border-vurgu hover:bg-zemin"
   }`;
 
 function TekSecim({ soru, cevaplar, sec }: { soru: SecimliSoru; cevaplar: Cevaplar; sec: (v: string) => void }) {

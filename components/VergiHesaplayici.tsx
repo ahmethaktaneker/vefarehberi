@@ -9,7 +9,7 @@ const para = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumF
 const tl = (n: number) => `${para.format(n)} TL`;
 const yuzde = (n: number) => `%${(n * 100).toLocaleString("tr-TR")}`;
 
-const kutu = "min-h-12 w-full rounded-lg border border-cizgi bg-yuzey px-4 text-lg";
+const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
 
 export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler }) {
   const [toplamMetin, setToplamMetin] = useState("");
@@ -43,12 +43,12 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
 
   return (
     <div className="space-y-8">
-      <div role="note" className="rounded-lg border border-cizgi bg-bilgi-acik px-4 py-3 text-base">
+      <div role="note" className="rounded-xl border-l-4 border-altin bg-altin-acik px-4 py-3 text-base">
         Bu bir tahmindir. Kesin hesap için vergi dairesine veya bir mali müşavire danışın. Girdiğiniz bilgiler
         yalnızca bu sayfada kullanılır, hiçbir yere gönderilmez.
       </div>
 
-      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-6 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="toplam" className="block font-semibold">
             Mirasın tahmini toplam değeri (TL)
@@ -139,8 +139,8 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
         )}
       </form>
 
-      <section aria-live="polite" aria-labelledby="sonuc-baslik" className="rounded-lg border border-cizgi bg-yuzey p-5">
-        <h2 id="sonuc-baslik" className="font-serif text-xl font-semibold">
+      <section aria-live="polite" aria-labelledby="sonuc-baslik" className="rounded-2xl border-t-4 border-altin bg-yuzey p-5 shadow-yuksek sm:p-6">
+        <h2 id="sonuc-baslik" className="font-serif text-xl font-semibold text-vurgu-koyu">
           Tahmini sonuç
         </h2>
         {!sonuc ? (
@@ -155,7 +155,7 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
               <dt>Vergiye tabi tutar</dt>
               <dd className="font-semibold">{tl(sonuc.matrah)}</dd>
               <dt>Tahmini vergi</dt>
-              <dd className="text-xl font-semibold">{tl(sonuc.vergi)}</dd>
+              <dd className="font-serif text-2xl font-semibold text-vurgu-koyu">{tl(sonuc.vergi)}</dd>
             </dl>
             {sonuc.vergi === 0 ? (
               <p>Bu tahmine göre size düşen pay istisna tutarının altında kalıyor ve vergi çıkmıyor.</p>
@@ -218,8 +218,8 @@ function Secim({
         {secenekler.map(([v, etiket]) => (
           <label
             key={v}
-            className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-4 py-2 text-lg ${
-              deger === v ? "border-vurgu bg-vurgu-acik" : "border-cizgi bg-yuzey"
+            className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border-2 px-4 py-2 text-lg ${
+              deger === v ? "border-vurgu bg-vurgu-acik font-bold text-vurgu-koyu" : "border-cizgi bg-yuzey hover:border-vurgu"
             }`}
           >
             <input type="radio" name={ad} value={v} checked={deger === v} onChange={() => onChange(v)} className="size-5 accent-vurgu" />

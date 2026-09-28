@@ -41,7 +41,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
 
   return (
     <div className="space-y-8">
-      <form className="yazdirma-gizle space-y-5" onSubmit={(e) => e.preventDefault()}>
+      <form className="yazdirma-gizle space-y-5 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <p className="text-base text-metin-ikincil">
           Girdiğiniz bilgiler yalnızca bu cihazda kullanılır; hiçbir yere gönderilmez ve saklanmaz. T.C. kimlik
           numarası ve IBAN gibi bilgileri çıktı üzerine elle yazmanızı öneririz.
@@ -58,7 +58,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
                 value={degerler[a.id] ?? ""}
                 placeholder={a.ornek}
                 onChange={(e) => setDegerler({ ...degerler, [a.id]: e.target.value })}
-                className="mt-2 w-full rounded-lg border border-cizgi bg-yuzey px-4 py-3 text-lg"
+                className="mt-2 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 py-3 text-lg"
               />
             ) : (
               <input
@@ -67,7 +67,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
                 placeholder={a.ornek}
                 autoComplete="off"
                 onChange={(e) => setDegerler({ ...degerler, [a.id]: e.target.value })}
-                className="mt-2 min-h-12 w-full rounded-lg border border-cizgi bg-yuzey px-4 text-lg"
+                className="mt-2 min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg"
               />
             )}
           </div>
@@ -75,10 +75,10 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
       </form>
 
       <section aria-labelledby="onizleme-baslik">
-        <h2 id="onizleme-baslik" className="yazdirma-gizle mb-3 font-serif text-xl font-semibold">
+        <h2 id="onizleme-baslik" className="yazdirma-gizle mb-3 font-serif text-xl font-semibold text-vurgu-koyu">
           Önizleme
         </h2>
-        <div className="yazdirilacak whitespace-pre-wrap rounded-lg border border-cizgi bg-yuzey p-5 font-serif text-base leading-relaxed">
+        <div className="yazdirilacak whitespace-pre-wrap rounded-2xl border border-cizgi bg-yuzey p-6 font-serif text-base leading-relaxed shadow-yuksek">
           {metin}
         </div>
       </section>

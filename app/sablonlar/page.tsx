@@ -19,8 +19,8 @@ export default function Page() {
       <ul className="space-y-3">
         {sablonlar.map((s) => (
           <li key={s.id}>
-            <Link href={`/sablonlar/${s.id}`} className="block rounded-lg border border-cizgi bg-yuzey px-5 py-4 hover:border-vurgu">
-              <span className="block text-lg font-semibold text-vurgu-koyu">{s.baslik}</span>
+            <Link href={`/sablonlar/${s.id}`} className="group block rounded-2xl border border-cizgi bg-yuzey px-5 py-4 shadow-kart transition-shadow hover:shadow-yuksek">
+              <span className="block text-lg font-bold text-vurgu underline decoration-transparent underline-offset-4 group-hover:decoration-vurgu">{s.baslik}</span>
               <span className="mt-1 block text-base text-metin-ikincil">{s.aciklama}</span>
             </Link>
           </li>

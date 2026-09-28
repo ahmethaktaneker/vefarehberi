@@ -66,11 +66,11 @@ export function RehberSayfasi({
       <div className="metin" dangerouslySetInnerHTML={{ __html: html }} />
       {children}
       {eylem && (
-        <div className="rounded-lg border border-cizgi bg-vurgu-acik p-5">
-          <p className="text-lg">Size özel yapılacaklar listesini ve son tarihlerinizi görmek için birkaç soruya cevap verin.</p>
+        <div className="rounded-2xl bg-vurgu p-6 text-white shadow-yuksek">
+          <p className="font-serif text-xl">Size özel yapılacaklar listesini ve son tarihlerinizi görmek için birkaç soruya cevap verin.</p>
           <Link
             href="/liste"
-            className="mt-4 dugme dugme-birincil"
+            className="dugme mt-4 bg-altin text-vurgu-koyu hover:bg-[#d6b574]"
           >
             Listemi oluştur
           </Link>
@@ -78,13 +78,16 @@ export function RehberSayfasi({
       )}
       {sayfa.sss.length > 0 && (
         <section aria-labelledby="sss-baslik">
-          <h2 id="sss-baslik" className="mb-3 font-serif text-2xl font-semibold">
+          <h2 id="sss-baslik" className="mb-3 font-serif text-2xl font-semibold text-vurgu-koyu">
             Sık sorulan sorular
           </h2>
           <div className="space-y-2">
             {sayfa.sss.map((s) => (
-              <details key={s.soru} className="rounded-lg border border-cizgi bg-yuzey p-4">
-                <summary className="cursor-pointer text-lg font-semibold">{s.soru}</summary>
+              <details key={s.soru} className="group rounded-2xl bg-yuzey p-4 shadow-kart open:shadow-yuksek">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-lg font-bold text-vurgu-koyu">
+                  {s.soru}
+                  <span aria-hidden="true" className="text-xl text-metin-ikincil transition-transform group-open:rotate-180">⌄</span>
+                </summary>
                 <p className="mt-2">{s.cevap}</p>
               </details>
             ))}
