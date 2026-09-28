@@ -10,6 +10,12 @@ const TUR_ETIKETLERI: Record<KurumTuru, string> = {
   diger: "Diğer",
 };
 
+/** Adım kartlarından bir kuruma gidilirken kartı açar. */
+export function kurumaGit(id: string) {
+  const detay = document.getElementById(`kurum-${id}`)?.querySelector("details");
+  if (detay) detay.open = true;
+}
+
 const ISLEM_ETIKETLERI = { devir: "Devir", iptal: "İptal", genel: "Genel bilgi" } as const;
 
 export function KurumRehberi({ kurumlar, belgeler }: { kurumlar: Kurum[]; belgeler: Record<string, Belge> }) {
@@ -41,7 +47,7 @@ export function KurumRehberi({ kurumlar, belgeler }: { kurumlar: Kurum[]; belgel
 function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<string, Belge> }) {
   const resmiBilgiVar = k.islemler.some((i) => i.notlar_resmi.length || i.kanal.length) || k.guvence_bedeli_iadesi.length > 0;
   return (
-    <li className="rounded-lg border border-cizgi bg-yuzey">
+    <li id={`kurum-${k.id}`} className="scroll-mt-4 rounded-lg border border-cizgi bg-yuzey">
       <details className="group p-4">
         <summary className="cursor-pointer list-none">
           <span className="text-lg font-semibold">{k.ad}</span>
@@ -123,19 +129,3 @@ function Deneyimler({ notlar }: { notlar: string[] }) {
   );
 }
 
-export function BelgeListesi({ liste }: { liste: { belge: Belge; adimlar: { id: string; baslik: string }[] }[] }) {
-  if (liste.length === 0) return <p>Cevaplarınıza göre listelenecek bir belge yok.</p>;
-  return (
-    <ul className="divide-y divide-cizgi rounded-lg border border-cizgi bg-yuzey">
-      {liste.map(({ belge, adimlar }) => (
-        <li key={belge.id} className="px-4 py-3">
-          <p className="font-semibold">{belge.ad}</p>
-          {belge.not && <p className="mt-1 text-base">{belge.not}</p>}
-          <p className="mt-1 text-sm text-metin-ikincil">
-            İstendiği adımlar: {adimlar.map((a) => a.baslik).join(" · ")}
-          </p>
-        </li>
-      ))}
-    </ul>
-  );
-}

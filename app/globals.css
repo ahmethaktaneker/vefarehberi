@@ -95,3 +95,23 @@ body {
     font-size: 12pt;
   }
 }
+
+/* "Listeyi yazdır": yalnızca belge listesi çıkar */
+@media print {
+  body.yazdir-belgeler main * {
+    visibility: hidden;
+  }
+  body.yazdir-belgeler .belge-yazdir,
+  body.yazdir-belgeler .belge-yazdir * {
+    visibility: visible;
+  }
+  body.yazdir-belgeler .belge-yazdir {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  body.yazdir-belgeler .belge-yazdir .yazdirma-gizle {
+    display: none !important;
+  }
+}

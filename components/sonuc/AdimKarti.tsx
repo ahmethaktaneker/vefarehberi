@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import type { Belge } from "@/lib/icerik/sema";
+import type { Belge, Kurum } from "@/lib/icerik/sema";
+import { kurumaGit } from "@/components/sonuc/KurumRehberi";
 import type { HesaplanmisAdim, TutarBilgisi } from "@/lib/kurallar/liste";
 import { tarihMetni } from "@/lib/kurallar/tarih";
 
@@ -43,16 +44,20 @@ function KontrolEdiliyor() {
 export function AdimKarti({
   adim: a,
   belgeler,
+  kurumlar,
   yapildi,
   onYapildi,
 }: {
   adim: HesaplanmisAdim;
   belgeler: Record<string, Belge>;
+  /** Cevaplara göre gösterilen kurumlar; kartta bu adımla ilgili olanlara bağlantı verilir. */
+  kurumlar: Kurum[];
   yapildi: boolean;
   onYapildi: (v: boolean) => void;
 }) {
   const genelIpuclari = a.ipuclari.filter((i) => i.tur === "genel");
   const deneyimler = a.ipuclari.filter((i) => i.tur === "deneyim");
+  const ilgiliKurumlar = kurumlar.filter((k) => a.kurum_turleri.includes(k.tur));
 
   return (
     <li id={`adim-${a.id}`} className="scroll-mt-4 rounded-lg border border-cizgi bg-yuzey">
@@ -109,6 +114,23 @@ export function AdimKarti({
               </Alan>
             )}
             {a.cevrimici && <Alan etiket="Çevrimiçi yapılabilir mi?">{a.cevrimici}</Alan>}
+            {ilgiliKurumlar.length > 0 && (
+              <Alan etiket="İlgili kurumlar">
+                <ul className="flex flex-wrap gap-2">
+                  {ilgiliKurumlar.map((k) => (
+                    <li key={k.id}>
+                      <a
+                        href={`#kurum-${k.id}`}
+                        onClick={() => kurumaGit(k.id)}
+                        className="inline-flex min-h-10 items-center rounded-full border border-cizgi bg-zemin px-3 text-base text-vurgu-koyu hover:border-vurgu"
+                      >
+                        {k.ad} <span aria-hidden="true">&nbsp;→</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </Alan>
+            )}
             {genelIpuclari.length > 0 && (
               <Alan etiket="İpucu">
                 <ul className="space-y-2">

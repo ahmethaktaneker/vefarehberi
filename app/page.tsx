@@ -32,12 +32,16 @@ export default function AnaSayfa() {
         </li>
       </ul>
 
-      <nav
-        aria-label="Diğer rehberler"
-        className="mt-12 grid gap-3 border-t border-cizgi pt-8 sm:grid-cols-2"
-      >
-        <IkincilBaglanti href="/ilk-48-saat" baslik="İlk 48 saat için rehber" />
-        <IkincilBaglanti href="/yurtdisi" baslik="Yurtdışında yaşıyorum" />
+      <nav aria-labelledby="araclar-baslik" className="mt-12 border-t border-cizgi pt-8">
+        <h2 id="araclar-baslik" className="mb-4 font-serif text-xl font-semibold">
+          Ücretsiz araçlar ve rehberler
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <IkincilBaglanti href="/hesaplayici/veraset-vergisi" baslik="Veraset vergisi hesaplayıcı" aciklama="Size vergi çıkar mı, yaklaşık ne kadar?" />
+          <IkincilBaglanti href="/sablonlar" baslik="Dilekçe taslakları" aciklama="Banka ve abonelik dilekçelerini doldurup yazdırın." />
+          <IkincilBaglanti href="/ilk-48-saat" baslik="İlk 48 saat için rehber" aciklama="İlk günlerde yapılması gerekenler." />
+          <IkincilBaglanti href="/yurtdisi" baslik="Yurtdışında yaşıyorum" aciklama="Vekaletname, süreler ve konsolosluk işlemleri." />
+        </div>
       </nav>
     </div>
   );
@@ -58,13 +62,13 @@ function Isaret() {
   );
 }
 
-function IkincilBaglanti({ href, baslik }: { href: string; baslik: string }) {
+function IkincilBaglanti({ href, baslik, aciklama }: { href: string; baslik: string; aciklama: string }) {
   return (
-    <Link
-      href={href}
-      className="rounded-lg border border-cizgi bg-yuzey px-5 py-4 text-base font-semibold text-vurgu-koyu transition-colors hover:border-vurgu"
-    >
-      {baslik} <span aria-hidden="true">→</span>
+    <Link href={href} className="rounded-lg border border-cizgi bg-yuzey px-5 py-4 transition-colors hover:border-vurgu">
+      <span className="block text-base font-semibold text-vurgu-koyu">
+        {baslik} <span aria-hidden="true">→</span>
+      </span>
+      <span className="mt-1 block text-base text-metin-ikincil">{aciklama}</span>
     </Link>
   );
 }

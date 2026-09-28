@@ -12,6 +12,7 @@ export const ANAHTARLAR = {
   cevaplar: "vefa:cevaplar:v1",
   soruSirasi: "vefa:soru:v1",
   yapilanlar: "vefa:yapilanlar:v1",
+  belgeler: "vefa:belgeler:v1",
 } as const;
 
 const bellek = new Map<string, string | null>();

@@ -42,6 +42,7 @@ export const KosulSemasi: z.ZodType<Kosul> = z.lazy(() =>
   ]),
 ) as z.ZodType<Kosul>;
 
+export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
 export const ZAMAN_GRUPLARI = ["ilk_hafta", "ilk_ay", "ilk_3_ay", "ilk_4_ay", "sonra"] as const;
 export const KATEGORILER = ["son_tarih", "odeme", "borc_risk", "resmi", "kurum", "belge"] as const;
 export const SURE_PARAMETRELERI = [
@@ -97,6 +98,8 @@ export const AdimSemasi = z.strictObject({
   arac: z.enum(["veraset_hesaplayici"]).optional(),
   /** content/sablonlar altındaki ilgili dilekçe taslaklarının id'leri. */
   sablonlar: z.array(z.string()).default([]),
+  /** Kartta "ilgili kurumlar" olarak kurum rehberine bağlanacak kurum türleri. */
+  kurum_turleri: z.array(z.enum(KURUM_TURLERI)).default([]),
   ...dogrulukAlanlari,
   ucretli_icerik: z.boolean(),
 });
@@ -109,7 +112,6 @@ export const BelgeSemasi = z.strictObject({
   ...dogrulukAlanlari,
 });
 
-export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
 
 /** Kurum rehberi (Brief 8). Resmi notlar ve kullanıcı deneyimleri ayrı tutulur. */
 export const KurumSemasi = z.strictObject({

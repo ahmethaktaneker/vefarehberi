@@ -9,7 +9,8 @@ import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
 import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
 import { AdimKarti, kartaGit, TutarSatiri } from "@/components/sonuc/AdimKarti";
-import { BelgeListesi, KurumRehberi } from "@/components/sonuc/KurumRehberi";
+import { KurumRehberi } from "@/components/sonuc/KurumRehberi";
+import { BelgeKontrolListesi } from "@/components/sonuc/BelgeKontrolListesi";
 import { PaylasHatirla } from "@/components/sonuc/PaylasHatirla";
 
 function hashAbone(f: () => void) {
@@ -100,6 +101,8 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
             Cevaplarımı değiştir
           </Link>
         </p>
+        <Araclar vergiVar={liste.adimlar.some((a) => a.arac === "veraset_hesaplayici")} />
+        <Icindekiler kurumVar={liste.kurumlar.length > 0} />
         <p className="mt-3 text-base text-metin-ikincil">
           &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
           Son tarih ve tutarları resmi kaynaktan teyit edin.
@@ -161,6 +164,7 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
                       key={a.id}
                       adim={a}
                       belgeler={icerik.belgeler}
+                      kurumlar={liste.kurumlar}
                       yapildi={yapilanlar.has(a.id)}
                       onYapildi={(v) => yapildiDegistir(a.id, v)}
                     />
@@ -184,9 +188,10 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
 
       <Bolum baslik="Belge listesi">
         <p className="-mt-2 mb-4 text-base text-metin-ikincil">
-          Listenizdeki adımlarda istenen belgelerin tamamı. Her kurum farklı belge isteyebilir; gitmeden önce teyit edin.
+          Listenizdeki adımlarda istenen belgelerin tamamı, en çok gerekenden başlayarak. Hazırladıklarınızı
+          işaretleyin; her kurum farklı belge isteyebilir, gitmeden önce teyit edin.
         </p>
-        <BelgeListesi liste={liste.belgeListesi} />
+        <BelgeKontrolListesi liste={liste.belgeListesi} />
       </Bolum>
     </div>
   );
@@ -195,8 +200,8 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
 function Bolum({ baslik, children }: { baslik: string; children: React.ReactNode }) {
   const id = `bolum-${baslik.toLocaleLowerCase("tr").replace(/[^a-zçğıöşü0-9]+/g, "-")}`;
   return (
-    <section aria-labelledby={id}>
-      <h2 id={id} className="mb-4 font-serif text-2xl font-semibold">
+    <section id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-4">
+      <h2 id={`${id}-baslik`} className="mb-4 font-serif text-2xl font-semibold">
         {baslik}
       </h2>
       {children}
@@ -287,6 +292,52 @@ function PaylasimKabul({ mevcutVar, onKabul, onVazgec }: { mevcutVar: boolean; o
           Vazgeç
         </button>
       </div>
+    </div>
+  );
+}
+
+const ICINDEKILER: [string, string][] = [
+  ["Son tarihler", "kritik-son-tarihler"],
+  ["Ödemeler", "size-çıkabilecek-ödemeler"],
+  ["Borç ve risk", "borç-ve-risk-kontrolü"],
+  ["Adımlar", "adım-adım-liste"],
+  ["Kurumlar", "kurum-rehberi"],
+  ["Belgeler", "belge-listesi"],
+  ["Paylaş ve hatırla", "paylaş-ve-hatırla"],
+];
+
+function Icindekiler({ kurumVar }: { kurumVar: boolean }) {
+  return (
+    <nav aria-label="Bu sayfada" className="mt-6">
+      <ul className="flex flex-wrap gap-2">
+        {ICINDEKILER.filter(([, id]) => kurumVar || id !== "kurum-rehberi").map(([ad, id]) => (
+          <li key={id}>
+            <a
+              href={`#bolum-${id}`}
+              className="inline-flex min-h-10 items-center rounded-full border border-cizgi bg-yuzey px-3 text-base text-vurgu-koyu hover:border-vurgu"
+            >
+              {ad}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+function Araclar({ vergiVar }: { vergiVar: boolean }) {
+  return (
+    <div className="mt-6 grid gap-3 sm:grid-cols-2">
+      {vergiVar && (
+        <Link href="/hesaplayici/veraset-vergisi" className="rounded-lg border border-vurgu bg-vurgu-acik px-4 py-3 hover:bg-yuzey">
+          <span className="block font-semibold text-vurgu-koyu">Veraset vergisi hesaplayıcı</span>
+          <span className="block text-base text-metin-ikincil">Size vergi çıkar mı, yaklaşık ne kadar?</span>
+        </Link>
+      )}
+      <Link href="/sablonlar" className="rounded-lg border border-vurgu bg-vurgu-acik px-4 py-3 hover:bg-yuzey">
+        <span className="block font-semibold text-vurgu-koyu">Dilekçe taslakları</span>
+        <span className="block text-base text-metin-ikincil">Banka ve abonelik dilekçelerini doldurup yazdırın.</span>
+      </Link>
     </div>
   );
 }

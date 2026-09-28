@@ -63,6 +63,7 @@
   kaynak:
     - "https://www.gecmezhukuk.com/vefat-edenin-banka-hesabindan-para-cekilmesi/"
     - "https://www.sikayetvar.com/sgk/maas/vefat"
+  kurum_turleri: [banka]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

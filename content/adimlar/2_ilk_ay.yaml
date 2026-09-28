@@ -61,6 +61,7 @@
   kaynak:
     - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
     - "https://www.turkiye.gov.tr/varis-hizmetleri"
+  kurum_turleri: [banka]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -159,6 +160,7 @@
     - "https://avukatkartal.com.tr/bilgi/olum-halinde-sigorta-odemesinin-mirascilara-yapilmamasi-halinde-dava"
     - "https://www.sigortavantaj.com/kredi-borclusu-vefat-ederse-borcu-kim-oder.html"
     - "https://www.sikayetvar.com/hayat-sigortasi/vefat"
+  kurum_turleri: [banka]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -174,7 +176,7 @@
     Vefat eden kişinin üzerindeki elektrik, doğalgaz ve su aboneliklerini devralmayı ya da
     kapatmayı değerlendirin.
   neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
-  nereye: "İlgili elektrik, doğalgaz ve su kurumları. Kurum bazlı bilgiler için sayfadaki \"Kurum rehberi\" bölümüne bakın."
+  nereye: "İlgili elektrik, doğalgaz ve su kurumları. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
   ipuclari:
     - tur: deneyim
       metin: "Kullanıcılar, kullanılmaya devam eden aboneliklerde hizmetin kesildiği ve usulsüz kullanım işlemi yapıldığı örnekler bildiriyor."
@@ -183,6 +185,7 @@
     - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
     - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
   sablonlar: [abonelik_iptal]
+  kurum_turleri: [enerji, dogalgaz, su]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -255,6 +258,7 @@
   nereye: "Vefat edenin hesabının bulunduğu banka"
   kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 11 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
   sablonlar: [otomatik_odeme_iptal]
+  kurum_turleri: [banka]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -272,13 +276,14 @@
   uyari: >
     Vodafone'un açıklamasına göre mirası reddeden kişi, vefat edenin hattını üzerine alamıyor.
     Mirası reddetmeyi düşünüyorsanız hattı devralmadan önce bunu göz önünde bulundurun.
-  nereye: "İlgili operatör. Kurum bazlı bilgiler için sayfadaki \"Kurum rehberi\" bölümüne bakın."
+  nereye: "İlgili operatör. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
   belgeler: [mirascilik_belgesi, kimlik]
   kaynak:
     - "https://www.vodafone.com.tr/yardim/ayarlar/hat-devri/verasetten-hat-devri-iptali-nasil-yapilir"
     - "https://www.turkcell.com.tr/destek/hattiniz/abonelik-islemleri/kullandigim-hattin-yasal-sahibi-vefat-etti-hatti-uzerime-nasil-alabilirim"
     - "https://www.turktelekom.com.tr/blog/tum-blog-yazilari/vefat-durumunda-telefon-hatti-kullanimi-ve-iptali-nasil-olur"
   sablonlar: [abonelik_iptal]
+  kurum_turleri: [operator]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
