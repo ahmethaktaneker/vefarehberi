@@ -23,6 +23,7 @@
     Vefat edenin ikametgâhının bulunduğu yerdeki vergi dairesi; ikametgâhı yurtdışındaysa
     Türkiye'deki son ikametgâhının bulunduğu yerdeki vergi dairesi (VİVK m.6)
   belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
+  arac: veraset_hesaplayici
   cevrimici: >
     GİB'in kılavuzuna göre İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden elektronik
     beyanname verilebiliyor; ancak uygulamada bu yolla beyanname verilemediği görülüyor. Vergi

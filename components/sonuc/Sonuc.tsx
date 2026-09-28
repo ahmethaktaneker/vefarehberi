@@ -1,14 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import type { Icerik, ZamanGrubu } from "@/lib/icerik/sema";
 import { listeOlustur, type HesaplanmisAdim } from "@/lib/kurallar/liste";
 import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
-import { akisTamam, type Cevaplar } from "@/lib/sorular";
+import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
+import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
 import { AdimKarti, kartaGit, TutarSatiri } from "@/components/sonuc/AdimKarti";
 import { BelgeListesi, KurumRehberi } from "@/components/sonuc/KurumRehberi";
+import { PaylasHatirla } from "@/components/sonuc/PaylasHatirla";
+
+function hashAbone(f: () => void) {
+  window.addEventListener("hashchange", f);
+  return () => window.removeEventListener("hashchange", f);
+}
+
+function hashTemizle() {
+  window.history.replaceState(null, "", window.location.pathname);
+  window.dispatchEvent(new HashChangeEvent("hashchange"));
+}
 
 const ZAMAN_ETIKETLERI: Record<ZamanGrubu, string> = {
   ilk_hafta: "İlk hafta",
@@ -25,8 +37,28 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
   const yapilanlar = useMemo(() => new Set(jsonCoz<string[]>(hamYapilanlar, [])), [hamYapilanlar]);
   const bugun = istanbulBugun();
   const liste = useMemo(() => listeOlustur(cevaplar, icerik, bugun), [cevaplar, icerik, bugun]);
+  const hash = useSyncExternalStore(hashAbone, () => window.location.hash, () => "");
+  const paylasilan = useMemo(() => {
+    const m = new RegExp(`^#${PAYLASIM_ANAHTARI}=([0-9a-z.]+)$`).exec(hash);
+    return m ? paylasimCoz(m[1]) : null;
+  }, [hash]);
 
   if (hamCevaplar === undefined) return <p className="text-metin-ikincil">Yükleniyor…</p>;
+
+  const ayniListe = paylasilan && paylasimKodla(gecerliCevaplar(paylasilan)) === paylasimKodla(gecerliCevaplar(cevaplar));
+  if (paylasilan && akisTamam(paylasilan) && !ayniListe) {
+    return (
+      <PaylasimKabul
+        mevcutVar={akisTamam(cevaplar)}
+        onKabul={() => {
+          yaz(ANAHTARLAR.cevaplar, JSON.stringify(paylasilan));
+          yaz(ANAHTARLAR.soruSirasi, null);
+          hashTemizle();
+        }}
+        onVazgec={hashTemizle}
+      />
+    );
+  }
 
   if (!akisTamam(cevaplar)) {
     return (
@@ -146,6 +178,10 @@ export function Sonuc({ icerik }: { icerik: Icerik }) {
         </Bolum>
       )}
 
+      <Bolum baslik="Paylaş ve hatırla">
+        <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
+      </Bolum>
+
       <Bolum baslik="Belge listesi">
         <p className="-mt-2 mb-4 text-base text-metin-ikincil">
           Listenizdeki adımlarda istenen belgelerin tamamı. Her kurum farklı belge isteyebilir; gitmeden önce teyit edin.
@@ -218,5 +254,39 @@ function OzetListesi({ adimlar, bos }: { adimlar: HesaplanmisAdim[]; bos: string
         </li>
       ))}
     </ul>
+  );
+}
+
+function PaylasimKabul({ mevcutVar, onKabul, onVazgec }: { mevcutVar: boolean; onKabul: () => void; onVazgec: () => void }) {
+  return (
+    <div>
+      <h1 className="font-serif text-2xl font-semibold sm:text-3xl">Size bir liste paylaşıldı</h1>
+      <p className="mt-3">
+        Bu bağlantı, bir yakınınızın cevaplarıyla oluşturulmuş yapılacaklar listesini açıyor. Bağlantı isim veya
+        kimlik bilgisi içermez.
+      </p>
+      {mevcutVar && (
+        <p className="mt-3 rounded-md bg-bilgi-acik px-3 py-2 text-base">
+          Bu cihazda kendi oluşturduğunuz bir liste var. Paylaşılan listeyi açarsanız kendi cevaplarınızın yerine
+          geçer. &ldquo;Yaptım&rdquo; işaretleriniz silinmez.
+        </p>
+      )}
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={onKabul}
+          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-vurgu px-7 py-3 text-lg font-semibold text-white hover:bg-vurgu-koyu"
+        >
+          Paylaşılan listeyi aç
+        </button>
+        <button
+          type="button"
+          onClick={onVazgec}
+          className="inline-flex min-h-12 items-center justify-center rounded-lg border border-cizgi bg-yuzey px-7 py-3 text-lg font-semibold text-vurgu-koyu hover:border-vurgu"
+        >
+          Vazgeç
+        </button>
+      </div>
+    </div>
   );
 }

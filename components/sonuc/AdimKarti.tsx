@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { Belge } from "@/lib/icerik/sema";
 import type { HesaplanmisAdim, TutarBilgisi } from "@/lib/kurallar/liste";
 import { tarihMetni } from "@/lib/kurallar/tarih";
@@ -128,6 +129,13 @@ export function AdimKarti({
                 <dt className="sr-only">Dikkat</dt>
                 <dd>{a.uyari}</dd>
               </div>
+            )}
+            {a.arac === "veraset_hesaplayici" && (
+              <Alan etiket="Araç">
+                <Link href="/hesaplayici/veraset-vergisi" className="text-vurgu-koyu underline underline-offset-4">
+                  Veraset ve intikal vergisi hesaplayıcı
+                </Link>
+              </Alan>
             )}
             {a.baglantilar.length > 0 && (
               <Alan etiket="Bağlantılar">

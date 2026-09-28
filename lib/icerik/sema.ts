@@ -93,6 +93,8 @@ export const AdimSemasi = z.strictObject({
   ipuclari: z.array(IpucuSemasi).default([]),
   uyari: z.string().optional(),
   baglantilar: z.array(z.strictObject({ ad: z.string(), url: z.url() })).default([]),
+  /** Sitedeki ilgili araç (kartta bağlantı olarak gösterilir). */
+  arac: z.enum(["veraset_hesaplayici"]).optional(),
   ...dogrulukAlanlari,
   ucretli_icerik: z.boolean(),
 });
