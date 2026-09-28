@@ -22,19 +22,19 @@ const paraBicimi = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, ma
 
 export function TutarSatiri({ bilgi }: { bilgi: TutarBilgisi }) {
   if (bilgi.durum === "guncel_degil") {
-    return <p className="mt-1 text-base text-metin-ikincil">Güncel tutar kontrol ediliyor. Resmi kaynaktan teyit edin.</p>;
+    return <span className="mt-1 block text-base text-metin-ikincil">Güncel tutar kontrol ediliyor. Resmi kaynaktan teyit edin.</span>;
   }
   return (
-    <p className="mt-1 text-base">
+    <span className="mt-1 block text-base">
       Genel bilgi olarak {bilgi.donem.slice(0, 4)} tutarı: <strong>{paraBicimi.format(bilgi.tutar)} TL</strong>{" "}
       <span className="text-metin-ikincil">(kaynak: {bilgi.kaynak})</span>
-    </p>
+    </span>
   );
 }
 
 function KontrolEdiliyor() {
   return (
-    <span className="inline-block rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-sm font-normal text-metin-ikincil">
+    <span className="inline-block rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-base font-normal text-metin-ikincil">
       Kontrol ediliyor
       <span className="sr-only">: bu bilgi henüz hukuk uzmanı kontrolünden geçmedi</span>
     </span>
@@ -60,30 +60,35 @@ export function AdimKarti({
   const ilgiliKurumlar = kurumlar.filter((k) => a.kurum_turleri.includes(k.tur));
 
   return (
-    <li id={`adim-${a.id}`} className="scroll-mt-4 rounded-lg border border-cizgi bg-yuzey">
-      <div className="flex items-start gap-3 p-4">
-        <input
-          type="checkbox"
-          checked={yapildi}
-          onChange={(e) => onYapildi(e.target.checked)}
-          aria-label={`Yaptım: ${a.baslik}`}
-          className="mt-1 size-6 shrink-0 cursor-pointer accent-vurgu"
-        />
-        <details className="group min-w-0 flex-1">
-          <summary className="cursor-pointer list-none">
-            <span className={`text-lg font-semibold ${yapildi ? "text-metin-ikincil" : ""}`}>{a.baslik}</span>
-            <span className="mt-1 flex flex-wrap items-center gap-2">
-              {a.oncelik === "kritik" && (
-                <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-sm text-uyari">Öncelikli</span>
+    <li
+      id={`adim-${a.id}`}
+      className={`scroll-mt-24 rounded-lg border bg-yuzey ${yapildi ? "border-vurgu/40" : "border-cizgi"}`}
+    >
+      <details className="group">
+        <summary className="flex min-h-16 cursor-pointer list-none items-start gap-3 rounded-lg p-4 hover:bg-zemin">
+          <span className="min-w-0 flex-1">
+            <span className={`block text-lg font-semibold leading-snug ${yapildi ? "text-metin-ikincil line-through decoration-1" : ""}`}>
+              {a.baslik}
+            </span>
+            <span className="mt-2 flex flex-wrap items-center gap-2">
+              {yapildi && (
+                <span className="rounded-full bg-vurgu-acik px-2.5 py-0.5 text-base font-semibold text-vurgu-koyu">Yapıldı</span>
+              )}
+              {a.oncelik === "kritik" && !yapildi && (
+                <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-base text-uyari">Öncelikli</span>
               )}
               {!a.dogrulandi && <KontrolEdiliyor />}
-              {yapildi && <span className="text-sm text-vurgu-koyu">Yapıldı</span>}
-              <span className="text-sm text-vurgu-koyu underline underline-offset-4 group-open:hidden">Ayrıntılar</span>
-              <span className="hidden text-sm text-vurgu-koyu underline underline-offset-4 group-open:inline">Kapat</span>
             </span>
-          </summary>
+          </span>
+          <span className="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-full border border-cizgi px-3 py-1 text-base text-vurgu-koyu">
+            <span className="group-open:hidden">Aç</span>
+            <span className="hidden group-open:inline">Kapat</span>
+            <span aria-hidden="true" className="transition-transform group-open:rotate-180">▾</span>
+          </span>
+        </summary>
 
-          <dl className="mt-4 space-y-4">
+        <div className="px-4 pb-4">
+          <dl className="space-y-4">
             {a.belirsiz && (
               <div className="rounded-md bg-bilgi-acik px-3 py-2 text-base">
                 <dt className="sr-only">Not</dt>
@@ -142,7 +147,7 @@ export function AdimKarti({
             )}
             {deneyimler.length > 0 && (
               <Alan etiket="Kullanıcı deneyimi">
-                <p className="mb-2 text-sm text-metin-ikincil">Resmi bilgi değildir; başka kullanıcıların anlattıklarıdır.</p>
+                <p className="mb-2 text-base text-metin-ikincil">Resmi bilgi değildir; başka kullanıcıların anlattıklarıdır.</p>
                 <ul className="space-y-2">
                   {deneyimler.map((i) => (
                     <li key={i.metin} className="border-l-4 border-cizgi pl-3">
@@ -160,7 +165,7 @@ export function AdimKarti({
             )}
             {a.arac === "veraset_hesaplayici" && (
               <Alan etiket="Araç">
-                <Link href="/hesaplayici/veraset-vergisi" className="text-vurgu-koyu underline underline-offset-4">
+                <Link href="/hesaplayici/veraset-vergisi" className="inline-block py-2 text-vurgu-koyu underline underline-offset-4">
                   Veraset ve intikal vergisi hesaplayıcı
                 </Link>
               </Alan>
@@ -170,7 +175,7 @@ export function AdimKarti({
                 <ul className="space-y-1">
                   {a.sablonlar.map((s) => (
                     <li key={s}>
-                      <Link href={`/sablonlar/${s}`} className="text-vurgu-koyu underline underline-offset-4">
+                      <Link href={`/sablonlar/${s}`} className="inline-block py-2 text-vurgu-koyu underline underline-offset-4">
                         {SABLON_ADLARI[s] ?? "Dilekçe taslağı"}
                       </Link>
                     </li>
@@ -183,7 +188,7 @@ export function AdimKarti({
                 <ul className="space-y-1">
                   {a.baglantilar.map((b) => (
                     <li key={b.url}>
-                      <a href={b.url} target="_blank" rel="noopener noreferrer" className="text-vurgu-koyu underline underline-offset-4">
+                      <a href={b.url} target="_blank" rel="noopener noreferrer" className="inline-block py-2 text-vurgu-koyu underline underline-offset-4">
                         {b.ad}
                         <span className="sr-only"> (yeni sekmede açılır)</span>
                       </a>
@@ -194,13 +199,13 @@ export function AdimKarti({
             )}
           </dl>
 
-          <details className="mt-5 text-sm text-metin-ikincil">
+          <details className="mt-5 text-base text-metin-ikincil">
             <summary className="cursor-pointer">Kaynaklar ve son kontrol</summary>
             <ul className="mt-2 space-y-1 break-words">
               {a.kaynak.map((k) => (
                 <li key={k}>
                   {k.startsWith("http") ? (
-                    <a href={k} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                    <a href={k} target="_blank" rel="noopener noreferrer" className="inline-block py-2 underline underline-offset-2">
                       {new URL(k).hostname.replace(/^www\./, "")}
                     </a>
                   ) : (
@@ -211,8 +216,18 @@ export function AdimKarti({
             </ul>
             <p className="mt-2">Son kontrol: {tarihMetni(a.son_kontrol)}</p>
           </details>
-        </details>
-      </div>
+        </div>
+      </details>
+      <label className="flex min-h-14 cursor-pointer items-center gap-3 border-t border-cizgi px-4 py-2 text-lg">
+        <input
+          type="checkbox"
+          checked={yapildi}
+          onChange={(e) => onYapildi(e.target.checked)}
+          className="size-7 shrink-0 cursor-pointer accent-vurgu"
+        />
+        <span>Bu adımı yaptım</span>
+        <span className="sr-only">: {a.baslik}</span>
+      </label>
     </li>
   );
 }

@@ -1,15 +1,17 @@
 import Link from "next/link";
+import { DevamKarti } from "@/components/DevamKarti";
 import { AVUKAT_ROZETI_AKTIF } from "@/lib/marka";
 
 export default function AnaSayfa() {
   return (
-    <div className="mx-auto max-w-3xl px-4 pt-12 pb-6 sm:px-6 sm:pt-20">
+    <div className="mx-auto max-w-3xl px-4 pt-10 pb-6 sm:px-6 sm:pt-16">
+      <DevamKarti />
       <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">
         Yakınınızı kaybettiniz. Sırada ne var, birlikte bakalım.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-metin-ikincil">
         Birkaç soruya cevap verin, size özel yapılacaklar listesini, son tarihleri ve hak
-        edebileceğiniz ödemeleri görün. Ücretsiz. Kişisel bilgilerinizi istemiyoruz.
+        edebileceğiniz ödemeleri görün. Ücretsiz. İsim, T.C. kimlik numarası gibi kişisel bilgiler istemiyoruz.
       </p>
 
       <Link
@@ -18,6 +20,7 @@ export default function AnaSayfa() {
       >
         Listemi oluştur
       </Link>
+      <p className="mt-3 text-base text-metin-ikincil">12 kısa soru, yaklaşık 3 dakika. İstediğiniz an ara verebilirsiniz.</p>
 
       <ul className="mt-10 space-y-3 text-base">
         {AVUKAT_ROZETI_AKTIF && (
@@ -28,7 +31,7 @@ export default function AnaSayfa() {
         )}
         <li className="flex gap-3">
           <Isaret />
-          Kişisel bilgilerinizi saklamıyoruz
+          Cevaplarınız yalnızca sizin cihazınızda kalır, bize gönderilmez
         </li>
       </ul>
 

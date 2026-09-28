@@ -108,12 +108,14 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
             Cevaplarımı değiştir
           </Link>
         </p>
-        <Icindekiler kurumVar={liste.kurumlar.length > 0} />
-        <p className="mt-3 text-base text-metin-ikincil">
+        <Ozet liste={liste} yapilanlar={yapilanlar} />
+        <p className="mt-4 text-base text-metin-ikincil">
           &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
           Son tarih ve tutarları resmi kaynaktan teyit edin.
         </p>
       </header>
+
+      <Icindekiler kurumVar={liste.kurumlar.length > 0} />
 
       <Bolum baslik="Kritik son tarihler">
         {liste.sonTarihliler.length === 0 ? (
@@ -159,10 +161,14 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           {(Object.keys(ZAMAN_ETIKETLERI) as ZamanGrubu[]).map((grup) => {
             const adimlar = liste.adimlar.filter((a) => a.zaman_grubu === grup);
             if (adimlar.length === 0) return null;
+            const biten = adimlar.filter((a) => yapilanlar.has(a.id)).length;
             return (
               <section key={grup} aria-labelledby={`grup-${grup}`}>
-                <h3 id={`grup-${grup}`} className="mb-4 text-lg font-semibold text-metin-ikincil">
-                  {ZAMAN_ETIKETLERI[grup]}
+                <h3 id={`grup-${grup}`} className="mb-4 flex items-baseline justify-between gap-3 border-b border-cizgi pb-2">
+                  <span className="font-serif text-xl font-semibold">{ZAMAN_ETIKETLERI[grup]}</span>
+                  <span className="text-base text-metin-ikincil">
+                    {biten} / {adimlar.length} yapıldı
+                  </span>
                 </h3>
                 <ul className="space-y-3">
                   {adimlar.map((a) => (
@@ -188,12 +194,6 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
         </Bolum>
       )}
 
-      <Bolum baslik="Paylaş ve hatırla">
-        <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
-      </Bolum>
-
-      <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
-
       <Bolum baslik="Belge listesi">
         <p className="-mt-2 mb-4 text-base text-metin-ikincil">
           Listenizdeki adımlarda istenen belgelerin tamamı, en çok gerekenden başlayarak. Hazırladıklarınızı
@@ -201,6 +201,14 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
         </p>
         <BelgeKontrolListesi liste={liste.belgeListesi} />
       </Bolum>
+
+      <Bolum baslik="Paylaş ve hatırla">
+        <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
+      </Bolum>
+
+      <div className="yazdirma-gizle">
+        <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
+      </div>
     </div>
   );
 }
@@ -221,7 +229,7 @@ function Bolum({ baslik, children }: { baslik: string; children: React.ReactNode
   }, [baslik]);
   const id = `bolum-${baslik.toLocaleLowerCase("tr").replace(/[^a-zçğıöşü0-9]+/g, "-")}`;
   return (
-    <section ref={ref} id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-4">
+    <section ref={ref} id={id} aria-labelledby={`${id}-baslik`} className="scroll-mt-20">
       <h2 id={`${id}-baslik`} className="mb-4 font-serif text-2xl font-semibold">
         {baslik}
       </h2>
@@ -244,7 +252,7 @@ function SonTarihKutusu({ adim }: { adim: HesaplanmisAdim }) {
       <a
         href={`#adim-${adim.id}`}
         onClick={() => kartaGit(adim.id)}
-        className="text-lg font-semibold text-metin underline underline-offset-4"
+        className="inline-flex min-h-11 items-center text-lg font-semibold text-metin underline underline-offset-4"
       >
         {adim.baslik}
       </a>
@@ -265,18 +273,19 @@ function OzetListesi({ adimlar, bos }: { adimlar: HesaplanmisAdim[]; bos: string
   return (
     <ul className="divide-y divide-cizgi rounded-lg border border-cizgi bg-yuzey">
       {adimlar.map((a) => (
-        <li key={a.id} className="px-4 py-3">
+        <li key={a.id}>
           <a
             href={`#adim-${a.id}`}
             onClick={() => kartaGit(a.id)}
-            className="font-semibold text-vurgu-koyu underline underline-offset-4"
+            className="flex min-h-14 items-center gap-3 px-4 py-3 hover:bg-zemin"
           >
-            {a.baslik}
+            <span className="flex-1">
+              <span className="block font-semibold text-vurgu-koyu">{a.baslik}</span>
+              {a.tutarBilgisi && <TutarSatiri bilgi={a.tutarBilgisi} />}
+              {a.belirsiz && <span className="mt-1 block text-base text-metin-ikincil">Durumunuza göre geçerli olabilir.</span>}
+            </span>
+            <span aria-hidden="true" className="text-vurgu-koyu">→</span>
           </a>
-          {a.tutarBilgisi && <TutarSatiri bilgi={a.tutarBilgisi} />}
-          {a.belirsiz && (
-            <p className="mt-1 text-base text-metin-ikincil">Durumunuza göre geçerli olabilir.</p>
-          )}
         </li>
       ))}
     </ul>
@@ -324,18 +333,21 @@ const ICINDEKILER: [string, string][] = [
   ["Adımlar", "adım-adım-liste"],
   ["Kurumlar", "kurum-rehberi"],
   ["Belgeler", "belge-listesi"],
-  ["Paylaş ve hatırla", "paylaş-ve-hatırla"],
+  ["Paylaş", "paylaş-ve-hatırla"],
 ];
 
 function Icindekiler({ kurumVar }: { kurumVar: boolean }) {
   return (
-    <nav aria-label="Bu sayfada" className="mt-6">
-      <ul className="flex flex-wrap gap-2">
+    <nav
+      aria-label="Bu sayfada"
+      className="yazdirma-gizle sticky top-0 z-10 -mx-4 border-b border-cizgi bg-zemin/95 px-4 py-2 backdrop-blur sm:-mx-6 sm:px-6"
+    >
+      <ul className="flex gap-2 overflow-x-auto pb-1">
         {ICINDEKILER.filter(([, id]) => kurumVar || id !== "kurum-rehberi").map(([ad, id]) => (
           <li key={id}>
             <a
               href={`#bolum-${id}`}
-              className="inline-flex min-h-10 items-center rounded-full border border-cizgi bg-yuzey px-3 text-base text-vurgu-koyu hover:border-vurgu"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full border border-cizgi bg-yuzey px-4 text-base text-vurgu-koyu hover:border-vurgu"
             >
               {ad}
             </a>
@@ -346,3 +358,73 @@ function Icindekiler({ kurumVar }: { kurumVar: boolean }) {
   );
 }
 
+
+function Ozet({ liste, yapilanlar }: { liste: ReturnType<typeof listeOlustur>; yapilanlar: Set<string> }) {
+  const toplam = liste.adimlar.length;
+  const biten = liste.adimlar.filter((a) => yapilanlar.has(a.id)).length;
+  const yuzde = toplam ? Math.round((biten / toplam) * 100) : 0;
+  const enYakin = liste.sonTarihliler.find((a) => !a.sonTarihBilgisi!.gecti && !yapilanlar.has(a.id));
+  // Sıradaki adımlar: önce yaklaşan son tarihler, sonra listedeki sıra
+  const sonTarihIdleri = liste.sonTarihliler.filter((a) => !a.sonTarihBilgisi!.gecti).map((a) => a.id);
+  const siradakiler = [
+    ...sonTarihIdleri.map((id) => liste.adimlar.find((a) => a.id === id)!),
+    ...liste.adimlar.filter((a) => !sonTarihIdleri.includes(a.id)),
+  ]
+    .filter((a) => !yapilanlar.has(a.id))
+    .slice(0, 3);
+
+  return (
+    <section aria-labelledby="ozet-baslik" className="mt-6 rounded-lg border border-cizgi bg-yuzey p-5">
+      <h2 id="ozet-baslik" className="sr-only">
+        Özet
+      </h2>
+      <p className="text-lg">
+        <strong>{toplam} adımdan {biten} tanesi</strong> yapıldı.
+      </p>
+      <div
+        role="progressbar"
+        aria-label="Yapılan adımlar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={yuzde}
+        className="mt-2 h-3 overflow-hidden rounded-full bg-cizgi"
+      >
+        <div className="h-full rounded-full bg-vurgu" style={{ width: `${yuzde}%` }} />
+      </div>
+      {enYakin && (
+        <p className="mt-4 text-lg">
+          En yakın son tarih:{" "}
+          <strong className="text-uyari">
+            {tarihMetni(enYakin.sonTarihBilgisi!.tarih)} ({kalanMetni(enYakin.sonTarihBilgisi!.kalanGun).toLocaleLowerCase("tr")})
+          </strong>
+          <br />
+          <span className="text-base text-metin-ikincil">{enYakin.baslik}</span>
+        </p>
+      )}
+      {siradakiler.length > 0 ? (
+        <>
+          <h3 className="mt-5 text-lg font-semibold">Sıradaki adımlar</h3>
+          <ol className="mt-2 space-y-2">
+            {siradakiler.map((a, i) => (
+              <li key={a.id}>
+                <a
+                  href={`#adim-${a.id}`}
+                  onClick={() => kartaGit(a.id)}
+                  className="flex min-h-12 items-center gap-3 rounded-lg border border-cizgi px-3 py-2 hover:border-vurgu"
+                >
+                  <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-vurgu-acik font-semibold text-vurgu-koyu">
+                    {i + 1}
+                  </span>
+                  <span className="flex-1 text-base">{a.baslik}</span>
+                  <span aria-hidden="true" className="text-vurgu-koyu">→</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      ) : (
+        <p className="mt-4 text-lg">Listenizdeki tüm adımları işaretlediniz.</p>
+      )}
+    </section>
+  );
+}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { kaynakSayfa, olay } from "@/lib/analitik";
 import { ANAHTARLAR, jsonCoz, tumunuSil, useDepo, yaz } from "@/lib/depo";
 import { istanbulBugun, tarihGecerli } from "@/lib/kurallar/tarih";
@@ -206,6 +206,12 @@ function CokluSecim({
   );
 }
 
+const AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+
+/**
+ * Vefat tarihi: gün, ay ve yıl için üç ayrı büyük liste. Telefonların tarih seçicisi ve
+ * "gg.aa.yyyy" yazımı birçok kullanıcı için zor; listeler her cihazda aynı ve anlaşılır çalışır.
+ */
 function TarihSorusu({
   soru,
   cevaplar,
@@ -218,33 +224,78 @@ function TarihSorusu({
   ilerle: (c: Cevaplar) => void;
 }) {
   const bugun = istanbulBugun();
-  const deger = typeof cevaplar[soru.id] === "string" ? (cevaplar[soru.id] as string) : "";
-  const gelecekte = tarihGecerli(deger) && deger > bugun;
-  const gecerli = tarihGecerli(deger) && !gelecekte;
+  const kayitli = typeof cevaplar[soru.id] === "string" ? (cevaplar[soru.id] as string) : "";
+  const [parca, setParca] = useState(() => {
+    const [y = "", m = "", d = ""] = tarihGecerli(kayitli) ? kayitli.split("-") : [];
+    return { gun: d ? String(Number(d)) : "", ay: m ? String(Number(m)) : "", yil: y };
+  });
+  const buYil = Number(bugun.slice(0, 4));
+  const yillar = Array.from({ length: 21 }, (_, i) => String(buYil - i));
+
+  const tarih =
+    parca.gun && parca.ay && parca.yil
+      ? `${parca.yil}-${parca.ay.padStart(2, "0")}-${parca.gun.padStart(2, "0")}`
+      : "";
+  const tamam = tarih !== "";
+  const gecersizGun = tamam && !tarihGecerli(tarih);
+  const gelecekte = tamam && !gecersizGun && tarih > bugun;
+  const gecerli = tamam && !gecersizGun && !gelecekte;
+
+  function degistir(alan: "gun" | "ay" | "yil", deger: string) {
+    const p = { ...parca, [alan]: deger };
+    setParca(p);
+    const t = p.gun && p.ay && p.yil ? `${p.yil}-${p.ay.padStart(2, "0")}-${p.gun.padStart(2, "0")}` : "";
+    cevapYaz({ ...cevaplar, [soru.id]: tarihGecerli(t) && t <= bugun ? t : "" });
+  }
+
+  const liste = "min-h-14 w-full rounded-lg border border-cizgi bg-yuzey px-2 text-lg";
+  const hata = gecersizGun ? "Bu ayda bu gün yok. Lütfen günü kontrol edin." : gelecekte ? "Vefat tarihi bugünden sonra olamaz." : "";
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (gecerli) ilerle(cevaplar);
+        if (gecerli) ilerle({ ...cevaplar, [soru.id]: tarih });
       }}
     >
-      <label htmlFor="vefat-tarihi" className="sr-only">
-        Vefat tarihi
-      </label>
-      <input
-        id="vefat-tarihi"
-        type="date"
-        max={bugun}
-        value={deger}
-        onChange={(e) => cevapYaz({ ...cevaplar, [soru.id]: e.target.value })}
-        aria-invalid={gelecekte || undefined}
-        aria-describedby={gelecekte ? "tarih-hata" : undefined}
-        className="min-h-14 w-full rounded-lg border border-cizgi bg-yuzey px-4 text-lg sm:w-72"
-      />
-      {gelecekte && (
-        <p id="tarih-hata" className="mt-2 text-base text-uyari">
-          Vefat tarihi bugünden sonra olamaz.
+      <div className="grid grid-cols-[1fr_1.6fr_1.2fr] gap-3 sm:max-w-md">
+        <label className="block">
+          <span className="mb-1 block text-base font-semibold">Gün</span>
+          <select value={parca.gun} onChange={(e) => degistir("gun", e.target.value)} className={liste} aria-invalid={!!hata || undefined} aria-describedby={hata ? "tarih-hata" : undefined}>
+            <option value="">–</option>
+            {Array.from({ length: 31 }, (_, i) => (
+              <option key={i + 1} value={String(i + 1)}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-base font-semibold">Ay</span>
+          <select value={parca.ay} onChange={(e) => degistir("ay", e.target.value)} className={liste}>
+            <option value="">–</option>
+            {AYLAR.map((ad, i) => (
+              <option key={ad} value={String(i + 1)}>
+                {ad}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-base font-semibold">Yıl</span>
+          <select value={parca.yil} onChange={(e) => degistir("yil", e.target.value)} className={liste}>
+            <option value="">–</option>
+            {yillar.map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      {hata && (
+        <p id="tarih-hata" role="alert" className="mt-3 text-base text-uyari">
+          {hata}
         </p>
       )}
       <DevamDugmesi etkin={gecerli} tip="submit" />

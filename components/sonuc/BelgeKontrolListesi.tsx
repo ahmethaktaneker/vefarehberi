@@ -64,16 +64,16 @@ export function BelgeKontrolListesi({ liste }: { liste: Satir[] }) {
                 />
                 <span>
                   <span className={`block text-lg font-semibold ${secili ? "text-metin-ikincil" : ""}`}>{belge.ad}</span>
-                  {secili && <span className="text-sm text-vurgu-koyu">Hazır</span>}
+                  {secili && <span className="text-base text-vurgu-koyu">Hazır</span>}
                 </span>
               </label>
               {belge.not && <p className="mt-2 ml-9 text-base">{belge.not}</p>}
-              <p className="mt-2 ml-9 text-sm text-metin-ikincil">
+              <p className="mt-2 ml-9 text-base text-metin-ikincil">
                 {adimlar.length === 1 ? "Gerektiği adım: " : `${adimlar.length} adımda gerekiyor: `}
                 {adimlar.map((a, i) => (
                   <span key={a.id}>
                     {i > 0 && " · "}
-                    <a href={`#adim-${a.id}`} onClick={() => kartaGit(a.id)} className="underline underline-offset-2">
+                    <a href={`#adim-${a.id}`} onClick={() => kartaGit(a.id)} className="inline-block py-2.5 underline underline-offset-2">
                       {a.baslik}
                     </a>
                   </span>

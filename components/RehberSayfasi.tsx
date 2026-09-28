@@ -56,7 +56,7 @@ export function RehberSayfasi({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(yapilandirilmis).replace(/</g, "\u003c") }}
         />
       )}
-      <p className="text-sm text-metin-ikincil">Son güncelleme: {tarih(sayfa.son_kontrol)}</p>
+      <p className="text-base text-metin-ikincil">Son güncelleme: {tarih(sayfa.son_kontrol)}</p>
       {!sayfa.dogrulandi && (
         <TaslakNotu>
           Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır ve henüz hukuk uzmanı kontrolünden geçmedi. Resmi
@@ -91,13 +91,13 @@ export function RehberSayfasi({
           </div>
         </section>
       )}
-      <details className="text-sm text-metin-ikincil">
+      <details className="text-base text-metin-ikincil">
         <summary className="cursor-pointer">Kaynaklar</summary>
         <ul className="mt-2 space-y-1 break-words">
           {sayfa.kaynak.map((k) => (
             <li key={k}>
               {k.startsWith("http") ? (
-                <a href={k} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                <a href={k} target="_blank" rel="noopener noreferrer" className="inline-block py-2 underline underline-offset-2">
                   {new URL(k).hostname.replace(/^www\./, "")}
                 </a>
               ) : (

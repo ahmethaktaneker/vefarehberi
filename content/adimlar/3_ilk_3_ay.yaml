@@ -13,10 +13,7 @@
   son_tarih:
     baslangic: vefat_tarihi
     sure: { parametre: reddi_miras_ay }
-    not: >
-      Burada süre vefat tarihinden hesaplanmıştır. Yasal mirasçılar için süre, ölümü öğrendikleri
-      tarihten başlar; mirasçı olduğunu daha sonra öğrendiğini ispat eden için o tarihten.
-      Vasiyetle atanmış mirasçılar için tasarrufun kendilerine bildirildiği tarihten başlar.
+    not: "Süre, ölümü öğrendiğiniz tarihten başlar; burada vefat tarihinden hesaplandı."
     gecti_notu: >
       Süre geçmiş görünüyor. Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da
       "hükmen red" yolu olabilir. Bir avukata danışmanız önerilir.
@@ -30,6 +27,11 @@
     Borcun kapsamını bilmiyorsanız önce "Kredi ve borç risk raporu alın" adımına bakın. Karar
     vermeden önce bir avukata danışmanız önerilir.
   ipuclari:
+    - tur: genel
+      metin: >
+        Sürenin başlangıcı: Yasal mirasçılar için süre, ölümü öğrendikleri tarihten başlar; mirasçı
+        olduğunu daha sonra öğrendiğini ispat eden için o tarihten. Vasiyetle atanmış mirasçılar için
+        tasarrufun kendilerine bildirildiği tarihten başlar.
     - tur: genel
       metin: "Yurtdışında yaşıyorsanız mirasın reddi vekaletle de yapılabilir."
     - tur: genel

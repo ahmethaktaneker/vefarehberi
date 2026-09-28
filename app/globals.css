@@ -34,6 +34,11 @@
   --font-serif: var(--font-baslik);
 }
 
+/* "Büyük yazı" seçeneği: tüm ölçüler rem olduğu için site orantılı büyür */
+html[data-yazi="buyuk"] {
+  font-size: 118.75%;
+}
+
 body {
   background: var(--zemin);
   color: var(--metin);
@@ -113,5 +118,22 @@ body {
   }
   body.yazdir-belgeler .belge-yazdir .yazdirma-gizle {
     display: none !important;
+  }
+}
+
+/* "Tüm listeyi yazdır": etkileşimli öğeler gizlenir, kartlar açık yazdırılır */
+@media print {
+  body.yazdir-liste .yazdirma-gizle,
+  body.yazdir-liste input[type="checkbox"],
+  body.yazdir-liste button,
+  body.yazdir-liste summary > span:last-child {
+    display: none !important;
+  }
+  body.yazdir-liste #bolum-kurum-rehberi,
+  body.yazdir-liste #bolum-paylaş-ve-hatırla {
+    display: none !important;
+  }
+  body.yazdir-liste li {
+    break-inside: avoid;
   }
 }

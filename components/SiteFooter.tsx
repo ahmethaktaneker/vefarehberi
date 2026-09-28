@@ -24,7 +24,7 @@ export function SiteFooter() {
             Aydınlatma metni
           </Link>
         </nav>
-        <p className="text-sm text-metin-ikincil">
+        <p className="text-base text-metin-ikincil">
           {URUN_ADI} · {URUN_ALT_BASLIK}. Resmi bir kurum sitesi değildir.
         </p>
       </div>

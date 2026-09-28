@@ -47,21 +47,21 @@ export function KurumRehberi({ kurumlar, belgeler }: { kurumlar: Kurum[]; belgel
 function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<string, Belge> }) {
   const resmiBilgiVar = k.islemler.some((i) => i.notlar_resmi.length || i.kanal.length) || k.guvence_bedeli_iadesi.length > 0;
   return (
-    <li id={`kurum-${k.id}`} className="scroll-mt-4 rounded-lg border border-cizgi bg-yuzey">
+    <li id={`kurum-${k.id}`} className="scroll-mt-24 rounded-lg border border-cizgi bg-yuzey">
       <details className="group p-4">
-        <summary className="cursor-pointer list-none">
+        <summary className="min-h-12 cursor-pointer list-none">
           <span className="text-lg font-semibold">{k.ad}</span>
           <span className="mt-1 flex flex-wrap items-center gap-2">
             {!k.dogrulandi && (
-              <span className="rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-sm text-metin-ikincil">
+              <span className="rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-base text-metin-ikincil">
                 Kontrol ediliyor
               </span>
             )}
             {k.usulsuz_kullanim_uyarisi && (
-              <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-sm text-uyari">Usulsüz kullanım riski</span>
+              <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-base text-uyari">Usulsüz kullanım riski</span>
             )}
-            <span className="text-sm text-vurgu-koyu underline underline-offset-4 group-open:hidden">Ayrıntılar</span>
-            <span className="hidden text-sm text-vurgu-koyu underline underline-offset-4 group-open:inline">Kapat</span>
+            <span className="text-base text-vurgu-koyu underline underline-offset-4 group-open:hidden">Ayrıntılar</span>
+            <span className="hidden text-base text-vurgu-koyu underline underline-offset-4 group-open:inline">Kapat</span>
           </span>
         </summary>
 
@@ -107,7 +107,7 @@ function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<str
               Kurumun sayfası<span className="sr-only"> (yeni sekmede açılır)</span>
             </a>
           )}
-          <p className="text-sm text-metin-ikincil">Son kontrol: {k.son_kontrol.split("-").reverse().join(".")}</p>
+          <p className="text-base text-metin-ikincil">Son kontrol: {k.son_kontrol.split("-").reverse().join(".")}</p>
         </div>
       </details>
     </li>
@@ -117,7 +117,7 @@ function KurumKarti({ kurum: k, belgeler }: { kurum: Kurum; belgeler: Record<str
 function Deneyimler({ notlar }: { notlar: string[] }) {
   return (
     <div>
-      <p className="text-sm font-semibold text-metin-ikincil">Kullanıcı deneyimi (resmi bilgi değildir)</p>
+      <p className="text-base font-semibold text-metin-ikincil">Kullanıcı deneyimi (resmi bilgi değildir)</p>
       <ul className="mt-1 space-y-2">
         {notlar.map((n) => (
           <li key={n} className="border-l-4 border-cizgi pl-3 text-base">

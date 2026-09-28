@@ -57,6 +57,20 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
     olay("takvime_eklendi");
   }
 
+  function listeyiYazdir() {
+    const kartlar = [...document.querySelectorAll<HTMLDetailsElement>("#bolum-adım-adım-liste details")];
+    const kapalilar = kartlar.filter((d) => !d.open);
+    kapalilar.forEach((d) => (d.open = true));
+    document.body.classList.add("yazdir-liste");
+    const geriAl = () => {
+      kapalilar.forEach((d) => (d.open = false));
+      document.body.classList.remove("yazdir-liste");
+      window.removeEventListener("afterprint", geriAl);
+    };
+    window.addEventListener("afterprint", geriAl);
+    window.print();
+  }
+
   return (
     <div className="space-y-8">
       <div>
@@ -75,13 +89,13 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
             </button>
           )}
         </div>
-        <label className="mt-3 block text-sm text-metin-ikincil">
+        <label className="mt-3 block text-base text-metin-ikincil">
           Bağlantı
           <input
             readOnly
             value={baglanti}
             onFocus={(e) => e.target.select()}
-            className="mt-1 w-full rounded-md border border-cizgi bg-zemin px-3 py-2 text-sm"
+            className="mt-1 w-full rounded-md border border-cizgi bg-zemin px-3 py-2 text-base"
           />
         </label>
       </div>
@@ -95,6 +109,17 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
         </p>
         <button type="button" onClick={takvimIndir} disabled={yaklasanlar.length === 0} className={`${dugme} mt-4`}>
           Takvime ekle (.ics)
+        </button>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold">Kâğıda dökün</h3>
+        <p className="mt-2 text-base text-metin-ikincil">
+          Tüm adımlar, ayrıntılarıyla birlikte yazdırılır. Yazdırma ekranında &ldquo;PDF olarak kaydet&rdquo;i seçerek
+          dosya olarak da saklayabilirsiniz.
+        </p>
+        <button type="button" onClick={listeyiYazdir} className={`${dugme} mt-4`}>
+          Tüm listeyi yazdır
         </button>
       </div>
 

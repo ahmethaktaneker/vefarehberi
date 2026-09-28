@@ -39,7 +39,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr" className={`${govde.variable} ${baslik.variable} h-full antialiased`}>
+    <html lang="tr" className={`${govde.variable} ${baslik.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("vefa:yazi:v1")==="buyuk")document.documentElement.dataset.yazi="buyuk"}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <a
           href="#icerik"
