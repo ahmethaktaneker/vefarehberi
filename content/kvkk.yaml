@@ -1,0 +1,18 @@
+# KVKK: veri sorumlusu bilgisi ve açık rıza metinleri. TASLAK, avukat kontrolünden GEÇMEDİ.
+# Rıza metni değişirse "surum" artırılır; her kayıtla birlikte hangi sürüme rıza verildiği saklanır.
+
+veri_sorumlusu: "[Veri sorumlusunun adı soyadı veya unvanı: doldurulacak]"
+iletisim_eposta: "[İletişim e-postası: doldurulacak]"
+
+acik_riza:
+  paket_ilgi:
+    surum: "2026-09-28"
+    metin: >
+      Takip Paketi açıldığında bana e-posta ile haber verilmesi amacıyla e-posta adresimin işlenmesine
+      ve bu amaçla yurt dışındaki sunucularda saklanmasına, Aydınlatma Metni'ni okuyarak açık rıza
+      veriyorum. Rızamı istediğim zaman geri alabilirim.
+
+kaynak:
+  - "6698 sayılı Kişisel Verilerin Korunması Kanunu m.5, m.9, m.10, m.11"
+son_kontrol: "2026-09-28"
+dogrulandi: false

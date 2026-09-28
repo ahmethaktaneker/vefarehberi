@@ -35,7 +35,7 @@ const ZAMAN_ETIKETLERI: Record<ZamanGrubu, string> = {
   sonra: "Sonra (acelesi olmayanlar)",
 };
 
-export function Sonuc({ icerik, paket }: { icerik: Icerik; paket: Paket }) {
+export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; riza: { surum: string; metin: string } }) {
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const hamYapilanlar = useDepo(ANAHTARLAR.yapilanlar);
   const cevaplar = useMemo(() => jsonCoz<Cevaplar>(hamCevaplar, {}), [hamCevaplar]);
@@ -108,7 +108,6 @@ export function Sonuc({ icerik, paket }: { icerik: Icerik; paket: Paket }) {
             Cevaplarımı değiştir
           </Link>
         </p>
-        <Araclar vergiVar={liste.adimlar.some((a) => a.arac === "veraset_hesaplayici")} />
         <Icindekiler kurumVar={liste.kurumlar.length > 0} />
         <p className="mt-3 text-base text-metin-ikincil">
           &ldquo;Kontrol ediliyor&rdquo; etiketli bilgiler henüz hukuk uzmanı kontrolünden geçmedi.
@@ -193,7 +192,7 @@ export function Sonuc({ icerik, paket }: { icerik: Icerik; paket: Paket }) {
         <PaylasHatirla cevaplar={cevaplar} sonTarihliler={liste.sonTarihliler} />
       </Bolum>
 
-      <PaketKarti paket={paket} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
+      <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
 
       <Bolum baslik="Belge listesi">
         <p className="-mt-2 mb-4 text-base text-metin-ikincil">
@@ -347,19 +346,3 @@ function Icindekiler({ kurumVar }: { kurumVar: boolean }) {
   );
 }
 
-function Araclar({ vergiVar }: { vergiVar: boolean }) {
-  return (
-    <div className="mt-6 grid gap-3 sm:grid-cols-2">
-      {vergiVar && (
-        <Link href="/hesaplayici/veraset-vergisi" className="rounded-lg border border-vurgu bg-vurgu-acik px-4 py-3 hover:bg-yuzey">
-          <span className="block font-semibold text-vurgu-koyu">Veraset vergisi hesaplayıcı</span>
-          <span className="block text-base text-metin-ikincil">Size vergi çıkar mı, yaklaşık ne kadar?</span>
-        </Link>
-      )}
-      <Link href="/sablonlar" className="rounded-lg border border-vurgu bg-vurgu-acik px-4 py-3 hover:bg-yuzey">
-        <span className="block font-semibold text-vurgu-koyu">Dilekçe taslakları</span>
-        <span className="block text-base text-metin-ikincil">Banka ve abonelik dilekçelerini doldurup yazdırın.</span>
-      </Link>
-    </div>
-  );
-}

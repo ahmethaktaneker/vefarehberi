@@ -57,9 +57,10 @@ export default function Gizlilik() {
       </Bolum>
 
       <Bolum baslik="E-posta adresi">
-        <p className="text-metin-ikincil">
-          [Faz 2&apos;de, yalnızca açık rıza ile bırakılan e-posta adresleri için eklenecek. Metin
-          avukattan gelecek.]
+        <p>
+          Takip Paketi için e-posta bırakırsanız, yalnızca e-posta adresiniz, size gösterilen fiyat, kayıt
+          tarihi ve rıza metninin sürümü saklanır. Kayıt en geç 12 ay sonra silinir. Ayrıntılar aydınlatma
+          metnindedir.
         </p>
       </Bolum>
 

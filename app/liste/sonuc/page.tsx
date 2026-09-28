@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sonuc } from "@/components/sonuc/Sonuc";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { paketYukle } from "@/lib/paket";
+import { kvkkYukle } from "@/lib/kvkk";
 
 export const metadata: Metadata = {
   title: "Size özel listeniz",
@@ -14,7 +15,7 @@ export default function SonucPage() {
   const icerik = icerikYukle();
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-      <Sonuc icerik={icerik} paket={paketYukle()} />
+      <Sonuc icerik={icerik} paket={paketYukle()} riza={kvkkYukle().acik_riza.paket_ilgi} />
     </div>
   );
 }

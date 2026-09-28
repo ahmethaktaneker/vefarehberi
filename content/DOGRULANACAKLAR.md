@@ -55,6 +55,14 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 - `sayfalar/ilk-48-saat.md`, `sayfalar/yurtdisi.md`: tüm metin. 188 cenaze hattı birkaç belediyenin
   kendi sitesinden doğrulandı; kapsam belediyeye göre değişiyor.
 
+## KVKK metinleri (taslak, proje sahibinin isteğiyle avukat beklenmeden hazırlandı)
+
+- `content/kvkk.yaml` (açık rıza metni) ve `content/sayfalar/aydinlatma-metni.md` KVKK m.10'daki
+  başlıkları izleyen taslaklardır. **Veri sorumlusu adı ve iletişim e-postası eksik.**
+- Kontrol edilecekler: yurt dışına aktarım dayanağı (m.9; veritabanı yurt dışında), 12 aylık saklama
+  süresi, paket duyurusu e-postasının ticari elektronik ileti sayılıp sayılmadığı ve İYS kaydı gerekip
+  gerekmediği, VERBİS kaydı gerekip gerekmediği.
+
 ## Dosyalar
 
 - `adimlar/*.yaml`: 26 adım
