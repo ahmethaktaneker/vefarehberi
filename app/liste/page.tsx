@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Sayfa } from "@/components/Sayfa";
-import { TaslakNotu } from "@/components/TaslakNotu";
+import { SoruAkisi } from "@/components/akis/SoruAkisi";
 
 export const metadata: Metadata = {
   title: "Listemi oluştur",
   alternates: { canonical: "/liste" },
 };
 
-export default function Page() {
+export default function ListePage() {
   return (
-    <Sayfa baslik="Listemi oluştur">
-      <TaslakNotu>Soru akışı hazırlanıyor. Kısa süre içinde burada birkaç soruya cevap vererek size özel listenizi görebileceksiniz.</TaslakNotu>
-      <p>
-        <Link href="/" className="text-vurgu-koyu underline underline-offset-4">
-          Ana sayfaya dön
-        </Link>
-      </p>
-    </Sayfa>
+    <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+      <SoruAkisi />
+    </div>
   );
 }

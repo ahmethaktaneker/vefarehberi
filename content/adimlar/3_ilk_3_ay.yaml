@@ -1,0 +1,132 @@
+# Zaman grubu: İlk 3 ay (Brief 7). Avukat kontrolünden GEÇMEDİ.
+
+- id: reddi_miras
+  baslik: "Mirası reddetmeyi değerlendirin"
+  kategori: borc_risk
+  zaman_grubu: ilk_3_ay
+  oncelik: kritik
+  kosul:
+    any:
+      - { borc: ["evet", "bilmiyorum"] }
+      - { varliklar: ["kredi", "kredi_karti"] }
+  belirsizse: { borc: "bilmiyorum" }
+  son_tarih:
+    baslangic: vefat_tarihi
+    sure: { parametre: reddi_miras_ay }
+    not: "Süre, mirasçının ölümü öğrendiği tarihten başlar. Çoğu durumda bu, vefat tarihidir."
+    gecti_notu: >
+      Süre geçmiş görünüyor. Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da
+      "hükmen red" yolu olabilir. Bir avukata danışmanız önerilir.
+  ne: >
+    Genel bilgi olarak: Vefat eden kişinin borçları mal varlığından fazlaysa, mirası reddetmek
+    mirasçıyı bu borçlardan korur. Mirası reddetmek ölüm aylığını etkilemez.
+  neden: "Süre kısadır (3 ay); kaçırılması sonradan sorun yaşatabilir."
+  nereye: "Vefat edenin son yerleşim yerindeki Sulh Hukuk Mahkemesi"
+  belgeler: [nufus_kaydi, olum_belgesi]
+  uyari: >
+    Borcun kapsamını bilmiyorsanız önce "Kredi ve borç risk raporu alın" adımına bakın. Karar
+    vermeden önce bir avukata danışmanız önerilir.
+  ipuclari:
+    - tur: genel
+      metin: "Yurtdışında yaşıyorsanız mirasın reddi vekaletle de yapılabilir."
+    - tur: genel
+      metin: >
+        Karar sonrası: Reddi miras kararınızın birkaç onaylı kopyasını saklayın. Yıllar sonra eski
+        borçlar için arandığınızda (banka, operatör, varlık şirketi) bu kararı sunmanız gerekebilir.
+        İcra takibi gelirse itiraz süresini kaçırmayın.
+    - tur: deneyim
+      metin: "Kullanıcılar, reddi miras yaptıktan yıllar sonra bile eski borçlar için arandıklarını anlatıyor."
+  kaynak:
+    - "TMK m.605-606"
+    - "https://www.ozdipi.av.tr/reddi-miras-nedir/"
+    - "https://www.ozcanlarhukuk.com/mirasin-hukmen-reddi-davasi/"
+    - "https://www.palmahukuk.com/reddi-miras-yapinca-borc-kime-kalir/"
+    - "https://www.sikayetvar.com/avukat/miras"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: olum_ayligi
+  baslik: "Ölüm aylığı (dul ve yetim aylığı) başvurusu"
+  kategori: odeme
+  zaman_grubu: ilk_3_ay
+  oncelik: yuksek
+  kosul: { hak_sahipleri: ["esi_var", "cocuk_18_alti", "ogrenci_cocuk", "bilmiyorum"] }
+  belirsizse: { hak_sahipleri: "bilmiyorum" }
+  ne: >
+    Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Başvuru
+    e-Devlet üzerinden veya SGK'ya yapılır. Aylık, ölümü izleyen ayın başından başlar.
+  neden: >
+    Geç başvurularda 5 yıla kadar geriye dönük ödeme yapıldığı belirtiliyor. Mirası reddetmek
+    bu aylığı etkilemez.
+  nereye: "SGK"
+  cevrimici: "Evet, e-Devlet üzerinden başvurulabilir."
+  ipuclari:
+    - tur: deneyim
+      metin: >
+        Kullanıcılar başvurunun sonuçlanması için uzun süre beklediklerini anlatıyor. e-Devlet'ten
+        başvuru durumunu takip edebilir; uzun süre değişmezse SGK'nın iletişim kanallarından
+        (ALO 170) ve CİMER'den durum sorabilirsiniz.
+    - tur: genel
+      metin: "Bağlanan aylığın oranını kontrol edin. Hata olduğunu düşünüyorsanız itiraz edebilirsiniz."
+  kaynak:
+    - "https://www.serafettinkaya.av.tr/olum-ayligi-dul-yetim-ayligi-sartlari/"
+    - "https://www.sikayetvar.com/sgk/dul-ve-yetim-ayligi"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: cenaze_odenegi
+  baslik: "Cenaze ödeneği başvurusu"
+  kategori: odeme
+  zaman_grubu: ilk_3_ay
+  oncelik: normal
+  tutar: genel_sgk
+  ne: "Cenaze ödeneği için SGK'ya \"Gelir/Aylık/Ödenek Talep Belgesi\" ile başvurulur."
+  neden: "Birçok aile bu ödemeden habersiz. Başvuru için 5 yıllık zamanaşımı süresi bulunuyor."
+  nereye: "SGK"
+  belgeler: [talep_belgesi]
+  uyari: "Ödemeden yararlanıp yararlanamayacağınızı SGK'dan teyit edin."
+  baglantilar:
+    - { ad: "SGK: Cenaze Ödeneği 2026 duyurusu", url: "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56" }
+  kaynak:
+    - "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"
+    - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: emekli_sandigi_olum_yardimi
+  baslik: "Emekli Sandığı ölüm yardımı"
+  kategori: odeme
+  zaman_grubu: ilk_3_ay
+  oncelik: normal
+  kosul: { sosyal_guvenlik: ["4c", "bilmiyorum"] }
+  belirsizse: { sosyal_guvenlik: "bilmiyorum" }
+  tutar: emekli_sandigi_4c
+  ne: >
+    Emekli Sandığı'na (4c) bağlı olanlar için ölüm yardımı, cenaze ödeneğinden ayrı bir
+    ödemedir. Dul veya yetim aylığı alırken vefat edenler için ödenmez.
+  kaynak:
+    - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
+    - "https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: kidem_tazminati
+  baslik: "Kıdem tazminatı ve işçilik alacakları"
+  kategori: odeme
+  zaman_grubu: ilk_3_ay
+  oncelik: normal
+  kosul: { calisma_durumu: ["calisiyordu", "bilmiyorum"] }
+  belirsizse: { calisma_durumu: "bilmiyorum" }
+  ne: >
+    Genel bilgi olarak: Çalışırken vefat eden ve en az 1 yıl kıdemi olan kişinin kıdem
+    tazminatı, mirasçılık belgesindeki paylara göre mirasçılara ödenir.
+  nereye: "Vefat edenin işvereni"
+  belgeler: [mirascilik_belgesi]
+  kaynak: ["https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false

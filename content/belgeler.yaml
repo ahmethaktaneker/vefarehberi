@@ -1,0 +1,55 @@
+# Adımlarda istenen belgeler. Adımlar bu id'lerle belgeye bakar.
+
+- id: olum_belgesi
+  ad: "Ölüm belgesi"
+  kaynak: ["https://www.ozdipi.av.tr/reddi-miras-nedir/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: nufus_kaydi
+  ad: "Nüfus kayıt örneği"
+  kaynak: ["https://www.ozdipi.av.tr/reddi-miras-nedir/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: mirascilik_belgesi
+  ad: "Mirasçılık belgesi (veraset ilamı)"
+  kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: talep_belgesi
+  ad: "Gelir/Aylık/Ödenek Talep Belgesi"
+  kaynak: ["https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: rayic_bedel
+  ad: "Taşınmazlar için belediyeden, vefat tarihine göre rayiç bedel yazısı"
+  kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: kasko_degeri
+  ad: "Araç için kasko değeri (yoksa TSB kasko değer listesi)"
+  kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: bakiye_yazisi
+  ad: "Bankalardan vefat tarihi itibarıyla bakiye yazısı"
+  kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: tapu_ruhsat
+  ad: "Tapu ve araç ruhsatı örnekleri"
+  kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: borc_belgeleri
+  ad: "Borç belgeleri"
+  kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false

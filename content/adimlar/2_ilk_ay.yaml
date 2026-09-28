@@ -1,0 +1,210 @@
+# Zaman grubu: İlk ay (Brief 7). Avukat kontrolünden GEÇMEDİ.
+
+- id: mirascilik_belgesi
+  baslik: "Mirasçılık belgesi (veraset ilamı) alın"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { mirascilik_belgesi: ["hayir", "bilmiyorum"] }
+  belirsizse: { mirascilik_belgesi: "bilmiyorum" }
+  ne: >
+    Mirasçılık belgesi için notere veya Sulh Hukuk Mahkemesine başvurulur. Mirasçılardan
+    birinin başvurması yeterlidir.
+  neden: "Banka, sigorta, risk raporu ve vergi gibi birçok adımda bu belge istenir."
+  nereye: "Noter veya Sulh Hukuk Mahkemesi"
+  cevrimici: >
+    Daha önce alınmış bir belge, e-Devlet'teki "Veraset İlamı Sorgulama" hizmetinden ücretsiz
+    indirilebilir. Belgenin e-Devlet üzerinden sıfırdan düzenlenip düzenlenemeyeceği konusunda
+    kaynaklar farklı bilgi veriyor; bu konu kontrol ediliyor.
+  ipuclari:
+    - tur: genel
+      metin: "Pratikte 4-5 kopya almanın işe yaradığı belirtiliyor."
+    - tur: genel
+      metin: "Daha önce alınıp alınmadığını bilmiyorsanız, e-Devlet'teki \"Veraset İlamı Sorgulama\" hizmetine bakabilirsiniz."
+  baglantilar:
+    - { ad: "e-Devlet: Veraset İlamı Sorgulama", url: "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama" }
+  kaynak:
+    - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
+    - "https://topaktas.av.tr/mirascilik-belgesiveraset-ilami-2025/"
+    - "https://daykan.com/2026/02/13/e-devlet-uzerinden-mirascilik-belgesi-veraset-ilami-nasil-alinir-2026-guncel-rehber/"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: banka_hesaplari
+  baslik: "Banka hesaplarını bulun"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { varliklar: ["banka", "bilmiyorum"] }
+  belirsizse: { varliklar: "bilmiyorum" }
+  ne: >
+    e-Devlet'teki "Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz
+    Kişi Adına)" hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu sorgulayabilirsiniz.
+  nereye: "e-Devlet, Vâris Hizmetleri"
+  belgeler: [mirascilik_belgesi]
+  cevrimici: "Evet, e-Devlet üzerinden."
+  baglantilar:
+    - { ad: "e-Devlet: Mirasçı adına banka sorgulama", url: "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama" }
+    - { ad: "e-Devlet: Vâris Hizmetleri", url: "https://www.turkiye.gov.tr/varis-hizmetleri" }
+  kaynak:
+    - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
+    - "https://www.turkiye.gov.tr/varis-hizmetleri"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: tasinmazlar
+  baslik: "Taşınmazları bulun"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "bilmiyorum"] }
+  belirsizse: { varliklar: "bilmiyorum" }
+  ne: "Web Tapu'daki \"Miras Kalan Taşınmazları Ara\" bölümünden vefat edenin taşınmazlarını sorgulayabilirsiniz."
+  nereye: "Web Tapu (Tapu ve Kadastro Genel Müdürlüğü)"
+  cevrimici: "Evet, Web Tapu üzerinden."
+  ipuclari:
+    - tur: genel
+      metin: "Mirasçılık belgesi yoksa sorgulamanın yalnızca anne, baba ve eş için nüfus bilgileriyle yapılabildiği belirtiliyor."
+  baglantilar:
+    - { ad: "Web Tapu", url: "https://webtapu.tkgm.gov.tr" }
+  kaynak: ["https://www.spaceistanbul.com/tr/blog/mirascisi_oldugum_tasinmazlar:_e-devlet_uzerinden_sorgulama_ve_tapu_intikali_rehberi/165"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: hayat_sigortasi_sorgulama
+  baslik: "Hayat ve ferdi kaza sigortası olup olmadığını sorgulayın"
+  kategori: odeme
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  ne: >
+    Vefat edenin adına hayat veya ferdi kaza sigortası olup olmadığını e-Devlet'teki "Hayat
+    Sigortası Poliçe ve Tazminat Bilgileri Sorgulama (Mirasçısı Olduğunuz Kişi Adına)" ve
+    "Ferdi Kaza Poliçe Sorgulama" hizmetlerinden sorgulayabilirsiniz.
+  neden: "Birçok aile vefat edenin sigortası olduğunu bilmiyor. Poliçe varsa ödeme hakkınız olabilir."
+  nereye: "e-Devlet veya Sigorta Bilgi ve Gözetim Merkezi (SBM)"
+  cevrimici: >
+    Evet, e-Devlet üzerinden. Alternatif olarak SBM sitesindeki "Meblağ Sigortalarında Hak
+    Sahipliği Sorgulama (Vefat Eden Sorgu)" hizmeti kullanılabilir.
+  baglantilar:
+    - { ad: "e-Devlet: Hayat sigortası sorgulama (mirasçı adına)", url: "https://www.turkiye.gov.tr/sbvgm-hayat-sigortasi-police-ve-tazminat-bilgileri-sorgulama-mirascisi-oldugunuz-kisi-adina" }
+  kaynak:
+    - "https://www.turkiye.gov.tr/sbvgm-hayat-sigortasi-police-ve-tazminat-bilgileri-sorgulama-mirascisi-oldugunuz-kisi-adina"
+    - "https://sigortacigazetesi.com.tr/turkiye-sigorta-birliginden-onemli-duyuru/"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: risk_raporu
+  baslik: "Kredi ve borç risk raporu alın"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul:
+    any:
+      - { borc: ["evet", "bilmiyorum"] }
+      - { varliklar: ["kredi", "kredi_karti"] }
+  belirsizse: { borc: "bilmiyorum" }
+  ne: >
+    Türkiye Bankalar Birliği Risk Merkezi, mirasçılık belgesiyle başvuran mirasçılara vefat
+    edenin kredi ve kredi kartı risk raporunu veriyor.
+  neden: "Borç olup olmadığını görmek, mirası reddetmeyi değerlendirirken önemlidir."
+  nereye: "Türkiye Bankalar Birliği Risk Merkezi"
+  belgeler: [mirascilik_belgesi]
+  kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: kredi_hayat_sigortasi
+  baslik: "Kredide hayat sigortası olup olmadığını kontrol edin"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { varliklar: "kredi" }
+  ne: >
+    Bankaya krediye bağlı bir hayat sigortası olup olmadığını sorun. Sigorta varsa kalan borç,
+    poliçe şartlarına göre sigortadan ödenebilir. Kredi kartı ve ek hesap (KMH) borçları için
+    genellikle ayrı bir sigorta yoksa bu borçlar mirasçılara kalır.
+  nereye: "Krediyi veren banka"
+  ipuclari:
+    - tur: deneyim
+      metin: >
+        Kullanıcılar, aynı bankada bir aileye "sigorta yok" denip borcun aileden istendiğini,
+        başka bir ailenin kredisinin ise sigortadan kapatıldığını anlatıyor. Banka "sigorta yok"
+        dese bile "Hayat ve ferdi kaza sigortası" adımındaki e-Devlet ve SBM sorgusuyla kendiniz
+        de kontrol edin.
+  uyari: >
+    Genel bilgi olarak: Hayat sigortası varken bankanın sigortaya başvurmadan doğrudan
+    mirasçılardan tahsilat yapmasının hukuka aykırı sayılabileceğine dair görüşler ve yargı
+    kararları bulunuyor. Sigorta şirketi ödemeyi reddederse (sık görülen gerekçe, poliçe
+    yapılırken hastalığın bildirilmediği iddiasıdır) bir avukata danışmanız ve Sigorta Tahkim
+    Komisyonu yolunu değerlendirmeniz önerilir.
+  kaynak:
+    - "https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"
+    - "https://odenhukuk.com/kredi-borclusunun-olumu-sigorta-odeme-yargitay-kararlari/"
+    - "https://avukatkartal.com.tr/bilgi/olum-halinde-sigorta-odemesinin-mirascilara-yapilmamasi-halinde-dava"
+    - "https://www.sigortavantaj.com/kredi-borclusu-vefat-ederse-borcu-kim-oder.html"
+    - "https://www.sikayetvar.com/hayat-sigortasi/vefat"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: abonelikler
+  baslik: "Abonelikleri üzerinize almayı ya da kapatmayı değerlendirin"
+  kategori: kurum
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { abonelikler: ["elektrik", "su", "dogalgaz", "bilmiyorum"] }
+  belirsizse: { abonelikler: "bilmiyorum" }
+  ne: >
+    Vefat eden kişinin üzerindeki elektrik, doğalgaz ve su aboneliklerini devralmayı ya da
+    kapatmayı değerlendirin.
+  neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
+  nereye: "İlgili elektrik, doğalgaz ve su kurumları (kurum bazlı rehber hazırlanıyor)"
+  ipuclari:
+    - tur: deneyim
+      metin: "Kullanıcılar, kullanılmaya devam eden aboneliklerde hizmetin kesildiği ve usulsüz kullanım işlemi yapıldığı örnekler bildiriyor."
+  kaynak:
+    - "https://www.sikayetvar.com/baskent-dogalgaz/vefat"
+    - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
+    - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: yurtdisi_vekaletname
+  baslik: "Yurtdışından vekaletname vermeyi değerlendirin"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
+  ne: >
+    Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir, ayrıca apostil
+    gerekmez. Yabancı noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor.
+    Tapu işlemleri için fotoğraflı ve "düzenleme şeklinde" vekaletname gerekebiliyor.
+  neden: "Türkiye'ye gelmeden işlemlerin bir yakınınız veya avukat tarafından yürütülmesini sağlar."
+  nereye: "Bulunduğunuz ülkedeki Türk konsolosluğu"
+  ipuclari:
+    - tur: genel
+      metin: >
+        Vekaletnamede açıkça yazılması önerilen yetkiler: mirasçılık belgesi alma, tapu intikal
+        ve tescil işlemleri, mirasın reddi veya kabulü, veraset ve intikal vergisi beyannamesi
+        verme, banka işlemleri ve gerekirse dava açma.
+    - tur: genel
+      metin: "Vekalet aile üyesine de avukata da verilebilir. Hangisinin uygun olduğu durumun karmaşıklığına bağlıdır."
+    - tur: genel
+      metin: "Bankadaki parayı Türkiye'deki bir yakınınıza aldırmak için vekaletnamenin yanında mirasçılık belgesi de isteniyor."
+    - tur: deneyim
+      metin: "Türkiye'de banka hesabı olmayan mirasçılar için ödemenin nasıl alınacağını bankaya önceden sorun. Hesabı olmadığı için ödeme alamayan bir mirasçı örneği anlatılıyor."
+  kaynak:
+    - "https://www.arinhukuk.av.tr/yurt-disinda-yasayanlar-turkiyede-nasil-vekalet-verebilir/"
+    - "https://www.harbiyehukuk.com/yurt-disindan-vekaletname-nasil-verilir/"
+    - "https://www.hancizadehukuk.com/yurt-disinda-yasayanlarin-turkiyedeki-miras-islemleri/"
+    - "https://acikgozlawcom.wordpress.com/2020/10/21/yurt-disindan-vekalet-nasil-cikarilir-nelere-dikkat-edilmelidir/"
+    - "https://www.tripadvisor.com/ShowTopic-g293969-i367-k14085671-Collecting_inheritance_in_Istanbul-Turkiye.html"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false

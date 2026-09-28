@@ -1,0 +1,23 @@
+# Karmaşık durumlarda sonuç sayfasında gösterilen "avukata danışın" uyarıları (Brief 4.1).
+# Bunlar hukuki bilgi değil, ürün ilkesidir.
+
+- id: borc
+  kosul: { borc: "evet" }
+  metin: "Borç olabileceğini belirttiniz. Borçların mal varlığını aşıp aşmadığı belirsizse, mirası reddetme konusunda karar vermeden önce bir avukata danışmanız önerilir."
+  kaynak: ["PROJE_BRIEF.md Bölüm 4.1", "TMK m.605-606"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: sirket
+  kosul: { varliklar: "sirket" }
+  metin: "Şirket veya ortaklık payı olan durumlar karmaşık olabilir. Bu durumda bir avukata danışmanız önerilir."
+  kaynak: ["PROJE_BRIEF.md Bölüm 4.1"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+
+- id: yurtdisi_mal
+  kosul: { varliklar: "yurtdisi_mal" }
+  metin: "Yurtdışında mal varlığı olan durumlar karmaşık olabilir. Bu durumda bir avukata danışmanız önerilir."
+  kaynak: ["PROJE_BRIEF.md Bölüm 4.1"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false

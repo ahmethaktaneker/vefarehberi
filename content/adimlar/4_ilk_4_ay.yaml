@@ -1,0 +1,53 @@
+# Zaman grubu: İlk 4 ay (Brief 7). Avukat / mali müşavir kontrolünden GEÇMEDİ.
+
+- id: veraset_beyannamesi
+  baslik: "Veraset ve intikal vergisi beyannamesi verin"
+  kategori: son_tarih
+  zaman_grubu: ilk_4_ay
+  oncelik: kritik
+  kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "arac", "banka", "sirket", "yurtdisi_mal", "bilmiyorum"] }
+  belirsizse: { varliklar: "bilmiyorum" }
+  son_tarih:
+    baslangic: vefat_tarihi
+    sure: { kural: veraset_beyannamesi }
+    belirsiz_not: >
+      Vefat yeri ve mirasçıların yaşadığı yere göre süre farklı olabilir. Burada en kısa süre
+      gösteriliyor; kendi sürenizi vergi dairesinden teyit edin.
+    gecti_notu: "Süre geçmiş görünüyor. Bir avukata veya mali müşavire danışmanız önerilir."
+  ne: >
+    Mal varlığı varsa veraset ve intikal vergisi beyannamesi verilir. İnternet Vergi Dairesi'ndeki
+    "Veraset İşlemleri" bölümünden elektronik olarak verilebilir. Birden fazla mirasçı varsa biri
+    hazırlar, diğerleri onaylar.
+  neden: "Beyanname verilmezse banka ve tapu işlemleri aksayabilir."
+  nereye: "Vergi dairesi veya İnternet Vergi Dairesi"
+  belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
+  cevrimici: "Evet, İnternet Vergi Dairesi (ivd.gib.gov.tr) üzerinden. Belgeler, sahip olunan varlıklara göre değişir."
+  uyari: >
+    Taşınmazı satmayı planlıyorsanız: Taşınmaz, vergi tahakkuku beklenmeden mirasçılar adına
+    tescil edilebilir; ancak ona düşen vergi tamamen ödenmeden satılamaz ve tapuda ilişik kesme
+    belgesi istenir (7338 s. Kanun m.19).
+  ipuclari:
+    - tur: genel
+      metin: "Vergi çıkarsa 3 yılda, her yıl mayıs ve kasım aylarında 6 eşit taksitte ödenir."
+    - tur: deneyim
+      metin: >
+        Rayiç bedel yazısını her taşınmaz için 2 adet almanın işe yaradığı anlatılıyor: biri vergi
+        dairesine, biri tapuya hitaben. Yazı vefat tarihine göre düzenlenmeli. Emlak vergisi borcu
+        varsa önce o ödeniyor.
+    - tur: deneyim
+      metin: "Başka şehirdeki taşınmaz için o ilçe belediyesiyle telefon veya e-posta ile iletişim kurulabildiği anlatılıyor."
+    - tur: deneyim
+      metin: "Beyannamede resmi belgelerdeki değerleri yazın. Kullanıcılar, gereğinden yüksek değer yazmanın fazla vergiye yol açabileceğini belirtiyor."
+  baglantilar:
+    - { ad: "İnternet Vergi Dairesi", url: "https://ivd.gib.gov.tr" }
+    - { ad: "GİB: Veraset işlemleri kullanım kılavuzu (PDF)", url: "https://ivd.gib.gov.tr/verasetKullanimKilavuzu.pdf" }
+  kaynak:
+    - "https://cdn.gib.gov.tr/api/gibportal-file/file/getFileResources?objectKey=arsiv%2Fyardim-kaynaklar%2Finfografikler%2Fpdfs%2Fveraset-ve-intikal-vergisi-infografik.pdf"
+    - "https://ivd.gib.gov.tr/verasetKullanimKilavuzu.pdf"
+    - "https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"
+    - "https://www.gorkempeker.av.tr/faydali-bilgiler/gayrimenkulun-veraset-intikal-islemleri-nasil-yapilir-84.html"
+    - "https://eksisozluk.com/veraset-ve-intikal-vergisi--1039060?p=5"
+    - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false

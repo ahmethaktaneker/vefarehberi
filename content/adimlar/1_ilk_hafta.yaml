@@ -1,0 +1,72 @@
+# Zaman grubu: İlk hafta (Brief 7). Avukat kontrolünden GEÇMEDİ.
+
+- id: olum_belgesi
+  baslik: "Ölüm belgesini alın"
+  kategori: resmi
+  zaman_grubu: ilk_hafta
+  oncelik: yuksek
+  kosul: { vefat_yeri: "turkiye" }
+  ne: >
+    Ölüm belgesi, diğer işlemlerin temelidir. Hastanede gerçekleşen vefatlarda belgeyi
+    genellikle hastane düzenler. Evde gerçekleşen vefatlarda belediye hekimi veya en yakın
+    sağlık kuruluşu düzenler.
+  neden: "Sonraki işlemlerin çoğu bu belgeye dayanır."
+  nereye: "Hastane; evde vefatta belediye hekimi veya en yakın sağlık kuruluşu"
+  ipuclari:
+    - tur: genel
+      metin: "Ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmanız gerekebilir."
+  kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 1 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: hesaptan_para_cekmeyin
+  baslik: "Vefat edenin hesabından para çekmeyin"
+  kategori: borc_risk
+  zaman_grubu: ilk_hafta
+  oncelik: kritik
+  kosul:
+    any:
+      - { varliklar: ["banka", "bilmiyorum"] }
+      - { calisma_durumu: "emekli" }
+  ne: >
+    Genel bilgi olarak: Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler, iade edilmesi
+    gereken tutarlar olabilir. Mirasçılardan birinin vefat edenin hesabından kendi başına para
+    çekmesi, diğer mirasçılar açısından hukuki sorun doğurabilir.
+  neden: "Sonradan iade talebiyle ya da mirasçılar arasında anlaşmazlıkla karşılaşmamak için."
+  uyari: "Hesaptan işlem yapılması gerekiyorsa önce diğer mirasçılarla konuşmanız, durumunuza göre bir avukata danışmanız önerilir."
+  kaynak:
+    - "https://www.gecmezhukuk.com/vefat-edenin-banka-hesabindan-para-cekilmesi/"
+    - "https://www.sikayetvar.com/sgk/maas/vefat"
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: hesap_ve_abonelikleri_not_alin
+  baslik: "Hangi hesap ve abonelikler olduğunu not alın"
+  kategori: belge
+  zaman_grubu: ilk_hafta
+  oncelik: normal
+  kosul:
+    any:
+      - { varliklar: "bilmiyorum" }
+      - { abonelikler: "bilmiyorum" }
+  belirsizse:
+    any:
+      - { varliklar: "bilmiyorum" }
+      - { abonelikler: "bilmiyorum" }
+  ne: >
+    Hangi banka hesaplarının ve aboneliklerin olduğunu bilmiyorsanız, önce bunları bir listede
+    toplamak sonraki adımları kolaylaştırır.
+  ipuclari:
+    - tur: deneyim
+      metin: >
+        Kullanıcıların paylaştığı bir yöntem: Vefat eden kişinin e-Devlet şifresini biliyorsanız,
+        hesap kapanmadan hangi bankalarda hesabı ve hangi abonelikleri olduğunu not alabilirsiniz.
+        Bu resmi bir prosedür değildir.
+    - tur: genel
+      metin: "Mirasçı olarak yapabileceğiniz resmi sorgulamalar \"Banka hesaplarını bulun\" ve \"Taşınmazları bulun\" adımlarındadır."
+  kaynak: ["https://eksisozluk.com/vefat-sonrasi-yapilacak-islemler--6896625?p=2"]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false

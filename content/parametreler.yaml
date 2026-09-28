@@ -1,0 +1,36 @@
+# Yıla bağlı tutarlar ve süreler (Brief 7).
+# Her yıl Ocak ve Temmuz'da resmi kaynaklardan kontrol edilir. Bkz. README.
+# Avukat / mali müşavir kontrolünden GEÇMEDİ.
+
+yil: 2026
+kaynak:
+  - "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"
+  - "https://cdn.gib.gov.tr/api/gibportal-file/file/getFileResources?objectKey=arsiv%2Fyardim-kaynaklar%2Finfografikler%2Fpdfs%2Fveraset-ve-intikal-vergisi-infografik.pdf"
+  - "https://kpmgvergi.com/yayinlar/mali-bultenler/vergi/2026-yilinda-uygulanacak-veraset-ve-intikal-vergisi-maktu-istisna-tutarlari-ile-matrah-dilim-tutarlari-yayimlandi/3355"
+son_kontrol: "2026-09-28"
+dogrulandi: false
+
+cenaze_odenegi:
+  genel_sgk: { tutar: 6398.00, kaynak: "SGK 2026 duyurusu", gecerlilik: "2026" }
+  # Geçerlilik 30 Haziran 2026'da bitti. Temmuz tutarı bilinmediği için arayüzde tutar
+  # gösterilmez, "güncel tutar kontrol ediliyor" yazar. Güncel tutar bulununca güncellenecek.
+  emekli_sandigi_4c: { tutar: 26369.55, kaynak: "SGK", gecerlilik: "2026-01-01..2026-06-30", not: "Temmuz'da güncellenir, kontrol et" }
+  zamanasimi_yil: 5
+
+veraset_vergisi:
+  istisna:
+    her_cocuk_ve_es: 2907136
+    furug_yoksa_es: 5817845
+  tarife_veraset:   # GİB 2026 infografiği, avukat/mali müşavir kontrolü gerekli
+    - { dilim: 3000000,  oran: 0.01 }
+    - { dilim: 7000000,  oran: 0.03 }
+    - { dilim: 15000000, oran: 0.05 }
+    - { dilim: 30000000, oran: 0.07 }
+    - { dilim: null,     oran: 0.10 }   # 55.000.000 TL'yi aşan kısım
+  odeme: "3 yıl, mayıs ve kasım, 6 eşit taksit"
+  not: "GVK mük. 20/D istisnasından yararlananlar için 4.6.2026'dan itibaren tek oran %1 uygulanabiliyor (7582 s. Kanun). Nadir durum, hesaplayıcıda 'özel durumlar' notu olarak göster."
+
+sureler:
+  reddi_miras_ay: 3
+  veraset_beyanname_ay_tr: 4
+  veraset_beyanname_ay_yurtdisi: 6
