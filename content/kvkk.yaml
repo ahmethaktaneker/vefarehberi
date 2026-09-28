@@ -2,7 +2,7 @@
 # Rıza metni değişirse "surum" artırılır; her kayıtla birlikte hangi sürüme rıza verildiği saklanır.
 
 veri_sorumlusu: "[Veri sorumlusunun adı soyadı veya unvanı: doldurulacak]"
-iletisim_eposta: "[İletişim e-postası: doldurulacak]"
+iletisim_eposta: "ahmethaktaneker@gmail.com"
 
 acik_riza:
   paket_ilgi:

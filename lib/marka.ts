@@ -26,7 +26,7 @@ export const UMAMI_SITE_KIMLIGI = "6fd3f51a-07b7-4236-b40a-afb4401f54db";
 /**
  * Takip Paketi için e-posta bırakma formu açık mı? Veritabanı Vercel'e bağlanınca true yapılır.
  */
-export const EPOSTA_TOPLAMA_AKTIF = false;
+export const EPOSTA_TOPLAMA_AKTIF = true;
 
 /** Sayfa başlığı kalıbı: "{Konu} | Vefa Rehberi" */
 export function sayfaBasligi(konu: string): string {
