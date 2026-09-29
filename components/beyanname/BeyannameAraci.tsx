@@ -17,6 +17,7 @@ import {
   type Muris,
   type Yakinlik,
 } from "@/lib/beyanname/hesap";
+import { bosKimlik, kaliciNumaraVar, kimlikAyir, kimlikBirlestir, type KimlikNumaralari } from "@/lib/beyanname/kimlik";
 import type { BeyannameIcerik } from "@/lib/beyanname/sema";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import { tutarOku } from "@/lib/hesaplayici";
@@ -42,6 +43,13 @@ const ADIMLAR = [
 ] as const;
 
 /** İlk açılışta, listedeki cevaplardan başlangıç verisi: varlık türleri boş satır olarak gelir. */
+/** T.C. kimlik numaraları oturum deposuna, geri kalanı kalıcı depoya yazılır. */
+function kaydet(v: BeyannameVerisi) {
+  const { saklanacak, kimlik } = kimlikAyir(v);
+  yaz(ANAHTARLAR.beyannameKimlik, JSON.stringify(kimlik));
+  yaz(ANAHTARLAR.beyanname, JSON.stringify(saklanacak));
+}
+
 function cevaplardanBaslat(c: Cevaplar): BeyannameVerisi {
   const v = bosVeri();
   v.muris.vefat_tarihi = typeof c.vefat_tarihi === "string" ? c.vefat_tarihi : "";
@@ -75,7 +83,16 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const baslik = useRef<HTMLHeadingElement>(null);
   const ilkCizim = useRef(true);
 
-  const kayitli = useMemo(() => (ham ? veriyiTamamla(jsonCoz<unknown>(ham, {})) : null), [ham]);
+  const hamKimlik = useDepo(ANAHTARLAR.beyannameKimlik);
+  const kalici = useMemo(() => (ham ? veriyiTamamla(jsonCoz<unknown>(ham, {})) : null), [ham]);
+  const kayitli = useMemo(
+    () => (kalici ? kimlikBirlestir(kalici, jsonCoz<KimlikNumaralari>(hamKimlik, bosKimlik())) : null),
+    [kalici, hamKimlik],
+  );
+  // Eski sürümde kalıcı depoya yazılmış T.C. kimlik numaralarını oturum deposuna taşı.
+  useEffect(() => {
+    if (kalici && kayitli && kaliciNumaraVar(kalici)) kaydet(kayitli);
+  }, [kalici, kayitli]);
   useEffect(() => {
     if (ham === null && hamCevaplar !== undefined) {
       yaz(ANAHTARLAR.beyanname, JSON.stringify(cevaplardanBaslat(jsonCoz<Cevaplar>(hamCevaplar, {}))));
@@ -95,7 +112,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const guncelle = (f: (d: BeyannameVerisi) => void) => {
     const kopya = structuredClone(v);
     f(kopya);
-    yaz(ANAHTARLAR.beyanname, JSON.stringify(kopya));
+    kaydet(kopya);
   };
   const murisAlani = (k: keyof Muris) => ({ deger: v.muris[k], onChange: (x: string) => guncelle((d) => void (d.muris[k] = x)) });
   const ozet = beyannameOzeti(v, parametreler);
@@ -172,7 +189,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
           {adim === 0 && (
             <>
               <Grup baslik="Kimlik">
-                <Alan etiket="T.C. kimlik numarası" sayi gizli {...murisAlani("tc")} aciklama="İsterseniz boş bırakıp çıktıya elle yazın." />
+                <Alan etiket="T.C. kimlik numarası" sayi gizli kimlik {...murisAlani("tc")} aciklama="İsterseniz boş bırakıp çıktıya elle yazın." />
                 <Izgara>
                   <Alan etiket="Adı" {...murisAlani("ad")} />
                   <Alan etiket="Soyadı" {...murisAlani("soyad")} />
@@ -239,7 +256,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
                         secenekler={Object.entries(YAKINLIK_ETIKETLERI)}
                         onChange={(x) => guncelle((d) => void (d.mirascilar[i].yakinlik = x as Yakinlik))}
                       />
-                      <Alan etiket="T.C. kimlik numarası" sayi gizli {...alan("tc")} />
+                      <Alan etiket="T.C. kimlik numarası" sayi gizli kimlik {...alan("tc")} />
                       <Alan etiket="Doğum tarihi" tip="date" {...alan("dogum_tarihi")} />
                     </Izgara>
                     <Alan etiket="Adresi ve telefonu" ornek="Örn. Moda Mah. ... Kadıköy / İstanbul, 0555 ..." gizli {...alan("adres_tel")} />
@@ -519,6 +536,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
           onClick={() => {
             if (window.confirm("Beyanname için girdiğiniz tüm bilgiler bu cihazdan silinsin mi?")) {
               yaz(ANAHTARLAR.beyanname, JSON.stringify(bosVeri()));
+              yaz(ANAHTARLAR.beyannameKimlik, null);
               git(0);
             }
           }}
@@ -552,6 +570,7 @@ function Alan({
   sayi,
   hata,
   gizli,
+  kimlik,
 }: {
   etiket: string;
   aciklama?: string;
@@ -563,6 +582,8 @@ function Alan({
   hata?: string;
   /** Hassas bilgi: altında "bunu biz görmüyoruz" notu çıkar. */
   gizli?: boolean;
+  /** T.C. kimlik numarası: cihazda kalıcı saklanmaz, sekme kapanınca silinir. */
+  kimlik?: boolean;
 }) {
   const id = useId();
   return (
@@ -588,7 +609,13 @@ function Alan({
         className={`${kutu} mt-2`}
       />
       {hata && <p className="mt-1 text-base text-uyari">{hata}</p>}
-      {gizli && <CihazdaKalir className="mt-1" />}
+      {gizli && (
+        <CihazdaKalir className="mt-1">
+          {kimlik
+            ? "Bunu biz görmüyoruz. Bu cihazda da kalıcı olarak saklanmaz; sekmeyi kapatınca silinir."
+            : undefined}
+        </CihazdaKalir>
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { marked } from "marked";
+import { jsonLdMetni } from "@/lib/jsonld";
 import { Sayfa } from "@/components/Sayfa";
 import { TaslakNotu } from "@/components/TaslakNotu";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
@@ -53,7 +54,7 @@ export function RehberSayfasi({
       {yapilandirilmis && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(yapilandirilmis).replace(/</g, "\u003c") }}
+          dangerouslySetInnerHTML={{ __html: jsonLdMetni(yapilandirilmis) }}
         />
       )}
       <p className="text-base text-metin-ikincil">Son güncelleme: {tarih(sayfa.son_kontrol)}</p>

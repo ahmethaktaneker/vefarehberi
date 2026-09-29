@@ -22,6 +22,15 @@ export const AVUKAT_ROZETI_AKTIF = true;
  * Boş bırakılırsa analitik betiği yüklenmez.
  */
 export const UMAMI_SITE_KIMLIGI = "6fd3f51a-07b7-4236-b40a-afb4401f54db";
+/**
+ * Umami betiğinin ayarları. Paylaşım linkleri cevapları adresin #p=... kısmında taşır; Umami varsayılan
+ * olarak adresin tamamını gönderdiği için # ve ? kısımları ölçümden çıkarılır.
+ */
+export const UMAMI_BETIK_AYARLARI = {
+  "data-do-not-track": "true",
+  "data-exclude-hash": "true",
+  "data-exclude-search": "true",
+} as const;
 
 /**
  * Paketler için e-posta bırakma formu açık mı? Veritabanı Vercel'e bağlanınca true yapılır.

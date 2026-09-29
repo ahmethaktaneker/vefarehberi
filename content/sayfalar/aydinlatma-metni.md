@@ -54,4 +54,6 @@ Siteyi geliştirmek için Umami (Umami Software, Inc.) ile çerez kullanmayan zi
 
 - Sitede reklam veya takip çerezi yoktur.
 - Size bir erişim kodu verilmişse ve bunu girerseniz, kodun geçerli olduğunu hatırlamak için tarayıcınıza "vr_erisim" adlı bir çerez yazılır. Bu çerez yalnızca girdiğiniz kodu içerir, 1 yıl geçerlidir ve başka amaçla kullanılmaz.
-- Cevaplarınız, işaretleriniz, yazı boyutu tercihiniz ve beyanname bilgileriniz tarayıcınızın yerel depolamasında (localStorage) tutulur. Bu bilgiler cihazınızdan çıkmaz.
+- Cevaplarınız, işaretleriniz, yazı boyutu tercihiniz ve beyanname bilgileriniz tarayıcınızın yerel depolamasında (localStorage) tutulur. Bu bilgiler cihazınızdan çıkmaz ve şifreli değildir; aynı tarayıcıyı kullanan biri görebilir. Ortak kullanılan bir bilgisayardaysanız işiniz bitince sitedeki "sil" düğmelerini kullanın.
+- Beyannameye yazdığınız T.C. kimlik numaraları yerel depolamaya da yazılmaz; yalnızca sekme açıkken tutulur ve sekmeyi kapatınca silinir.
+- Siteye 270 gün hiç girmezseniz cihazınızdaki bütün bu bilgiler kendiliğinden silinir.

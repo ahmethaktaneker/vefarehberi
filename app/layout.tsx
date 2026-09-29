@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { GuvenNotu } from "@/components/GuvenNotu";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SITE_URL, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
+import { SITE_URL, UMAMI_BETIK_AYARLARI, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
 
 /** Metin: az gören okurlar için tasarlanmış, harfleri birbirinden kolay ayrılan yazı tipi. */
 const govde = Atkinson_Hyperlegible({
@@ -75,11 +75,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <GuvenNotu />
         {UMAMI_SITE_KIMLIGI && (
-          // Çerezsiz analitik (Brief 11). Yalnızca olay sayıları; kişisel veri ve cevap içeriği gönderilmez.
+          // Çerezsiz analitik (Brief 11). Adresin # ve ? kısımları gönderilmez (paylaşım linkindeki cevaplar).
           <Script
             src="https://cloud.umami.is/script.js"
             data-website-id={UMAMI_SITE_KIMLIGI}
-            data-do-not-track="true"
+            {...UMAMI_BETIK_AYARLARI}
             strategy="afterInteractive"
           />
         )}

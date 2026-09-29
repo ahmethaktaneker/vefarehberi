@@ -5,7 +5,7 @@ import { kvkkYukle } from "@/lib/kvkk";
 
 const surum = kvkkYukle().acik_riza.paket_ilgi.surum;
 const istek = (govde: unknown) =>
-  POST(new Request("http://localhost/api/paket-ilgi", { method: "POST", body: JSON.stringify(govde) }));
+  POST(new Request("http://localhost/api/paket-ilgi", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(govde) }));
 
 describe("e-posta toplama", () => {
   it("e-posta doğrulama ve küçük harfe çevirme", () => {
