@@ -13,7 +13,6 @@ export const BeyannameIcerikSemasi = z.strictObject({
     ekler: z.array(z.string()),
     turler: z.array(z.strictObject({ id: z.string(), ad: z.string() })).min(1),
   }),
-  haklar: z.strictObject({ aciklama: z.string() }),
   digerleri: z
     .array(
       z.strictObject({

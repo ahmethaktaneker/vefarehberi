@@ -23,7 +23,7 @@
     Vefat edenin ikametgâhının bulunduğu yerdeki vergi dairesi; ikametgâhı yurtdışındaysa
     Türkiye'deki son ikametgâhının bulunduğu yerdeki vergi dairesi (VİVK m.6)
   belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
-  arac: veraset_hesaplayici
+  arac: [beyanname_araci, veraset_hesaplayici]
   cevrimici: >
     GİB'in kılavuzuna göre İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden elektronik
     beyanname verilebiliyor; ancak uygulamada bu yolla beyanname verilemediği görülüyor. Vergi
@@ -74,6 +74,7 @@
   oncelik: normal
   kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "arac", "banka", "sirket", "yurtdisi_mal", "bilmiyorum"] }
   belirsizse: { varliklar: "bilmiyorum" }
+  arac: beyanname_araci
   ne: >
     İlişik kesme belgesi, miras kalan mala düşen veraset ve intikal vergisinin ödendiğini gösterir.
     Beyanname verildikten ve ilgili mala düşen vergi ödendikten sonra vergi dairesinden alınır.

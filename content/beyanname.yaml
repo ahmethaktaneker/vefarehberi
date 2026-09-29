@@ -1,10 +1,11 @@
-# Beyanname hazırlık aracı: yardım metinleri ve eklenecek belgeler.
-# Adımların sırası GİB'in İnteraktif Vergi Dairesi "Veraset İşlemleri" kılavuzuyla aynıdır; böylece
-# kullanıcı hem kâğıt beyannamede hem online ekranda aynı sırayla ilerler.
+# Beyanname aracı: yardım metinleri ve eklenecek belgeler.
+# Çıktı, GİB'in resmi Veraset ve İntikal Vergisi Beyannamesi formuyla (1031 A) aynı düzendedir:
+# gib.gov.tr > Yardım ve Kaynaklar > Beyanname Formları > veraset2006.xls (29.09.2026 indirildi).
 # Değerleme ve indirim kuralları 7338 sayılı Veraset ve İntikal Vergisi Kanunu m.4, 10, 12'den.
 # Mali müşavir ve avukat kontrolünden GEÇMEDİ.
 
 kaynak:
+  - "https://cdn.gib.gov.tr/api/gibportal-file/file/getFileResources?objectKey=arsiv/yardim-kaynaklar/pdfs/ise-baslama-birakma/veraset2006.xls"
   - "https://ivd.gib.gov.tr/verasetKullanimKilavuzu.pdf"
   - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
 son_kontrol: "2026-09-29"
@@ -35,11 +36,6 @@ tasinmaz:
     - { id: tarla, ad: "Tarla, bağ, bahçe" }
     - { id: isyeri, ad: "Dükkân, işyeri" }
     - { id: diger, ad: "Diğer taşınmaz" }
-
-haklar:
-  aciklama: >
-    Telif, patent gibi haklar. Tapuya kayıtlı bir değeri olmayan haklar için değer yazmanız gerekmez
-    (VİVK m.10/g); yalnızca varlığını bildirin.
 
 digerleri:
   - id: banka
@@ -91,6 +87,13 @@ digerleri:
     ornek: "Örn. av tüfeği"
     deger_nasil: "Rayiç bedelle (piyasa değeri) yazılır."
     ekler: ["Silah ruhsatı (fotokopi)"]
+  - id: hak
+    ad: "Hak (telif, patent vb.)"
+    ornek: "Örn. bir kitabın telif hakkı"
+    deger_nasil: >
+      Tapuya kayıtlı bir değeri olmayan haklar için değer yazmanız gerekmez (VİVK m.10/g); yalnızca
+      varlığını bildirin.
+    ekler: []
   - id: diger
     ad: "Diğer"
     ornek: "Örn. alacak, kiralık kasadaki değerli eşya"
@@ -117,3 +120,4 @@ borclar:
 
 her_zaman_ekler:
   - "Mirasçılık belgesi (veraset ilamı)"
+  - "Ölüm ve mirasçı bildirimi (resmi formun arkasında sayılıyor; gerekip gerekmediğini vergi dairesine sorun)"

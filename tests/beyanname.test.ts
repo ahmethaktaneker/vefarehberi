@@ -1,5 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { beyannameOzeti, bosVeri, ekListesi, hisseOku, mirasciTuru, type BeyannameVerisi } from "@/lib/beyanname/hesap";
+import {
+  beyannameOzeti,
+  bosVeri,
+  ekListesi,
+  hisseOku,
+  mirasciTuru,
+  veriyiTamamla,
+  yeniBorc,
+  yeniKalem,
+  yeniMirasci,
+  yeniTasinmaz,
+  type BeyannameVerisi,
+} from "@/lib/beyanname/hesap";
 import { beyannameIcerikYukle } from "@/lib/beyanname/yukle";
 import { kodNormalle, kodOzeti, kodUrunleri, kodlariYukle } from "@/lib/erisim";
 import { icerikYukle } from "@/lib/icerik/yukle";
@@ -11,12 +23,12 @@ function ornek(): BeyannameVerisi {
   const v = bosVeri();
   v.payda = "4";
   v.mirascilar = [
-    { id: "e", ad: "Eş", yakinlik: "es", pay: "1" },
-    { id: "c1", ad: "Çocuk 1", yakinlik: "cocuk", pay: "3" },
+    { ...yeniMirasci(), ad: "Eş", yakinlik: "es", pay: "1" },
+    { ...yeniMirasci(), ad: "Çocuk 1", yakinlik: "cocuk", pay: "3" },
   ];
-  v.tasinmazlar = [{ id: "t", tur: "konut", konum: "Kadıköy", hisse: "1/2", deger: "4.000.000" }];
-  v.digerleri = [{ id: "b", tur: "banka", aciklama: "Vadesiz", deger: "1.000.000" }];
-  v.borclar = [{ id: "k", tur: "belgeli_borc", aciklama: "Kredi", tutar: "200.000" }];
+  v.tasinmazlar = [{ ...yeniTasinmaz(), ilce: "Kadıköy", hisse: "1/2", deger: "4.000.000" }];
+  v.digerleri = [{ ...yeniKalem("banka"), aciklama: "Vadesiz", deger: "1.000.000" }];
+  v.borclar = [{ ...yeniBorc("belgeli_borc"), aciklama: "Kredi", tutar: "200.000" }];
   return v;
 }
 
@@ -48,7 +60,10 @@ describe("beyanname hesapları", () => {
 
   it("boş tutarlar eksik sayılır", () => {
     const v = ornek();
-    v.digerleri.push({ id: "a", tur: "arac", aciklama: "", deger: "" });
+    v.digerleri.push(yeniKalem("arac"));
+    expect(beyannameOzeti(v, p).eksikDeger).toBe(1);
+    // Değeri yazılmayan hak eksik sayılmaz (VİVK m.10/g)
+    v.digerleri.push(yeniKalem("hak"));
     expect(beyannameOzeti(v, p).eksikDeger).toBe(1);
   });
 
@@ -59,6 +74,34 @@ describe("beyanname hesapları", () => {
     expect(ekler.some((e) => /bakiye/i.test(e.ad))).toBe(true);
     expect(ekler.some((e) => /borç/i.test(e.ad))).toBe(true);
     expect(new Set(ekler.map((e) => e.id)).size).toBe(ekler.length);
+  });
+});
+
+describe("eski kayıtların taşınması", () => {
+  it("sürüm 1 verisi eksiksiz sürüm 2'ye tamamlanır", () => {
+    const eski = {
+      surum: 1,
+      muris: { ad: "Mehmet Yılmaz", vefat_tarihi: "2026-08-10", ikamet: "Kadıköy, İstanbul" },
+      payda: "8",
+      mirascilar: [{ id: "m", ad: "Ayşe", yakinlik: "es", pay: "2" }],
+      tasinmazlar: [{ id: "t", tur: "konut", konum: "Moda", hisse: "", deger: "100" }],
+      haklar: [{ id: "h", aciklama: "telif" }],
+      digerleri: [],
+      borclar: [],
+      hazirEkler: ["sabit:0"],
+    };
+    const v = veriyiTamamla(eski);
+    expect(v.surum).toBe(2);
+    expect(v.muris.il_ilce).toBe("Kadıköy, İstanbul");
+    expect(v.muris.baba_adi).toBe("");
+    expect(v.mirascilar[0]).toMatchObject({ ad: "Ayşe", tc: "", adres_tel: "" });
+    expect(v.tasinmazlar[0].mahalle).toBe("Moda");
+    expect(v.hazirEkler).toEqual(["sabit:0"]);
+  });
+
+  it("bozuk veri boş veriye döner", () => {
+    expect(veriyiTamamla(null)).toEqual(bosVeri());
+    expect(veriyiTamamla({ mirascilar: "x" }).mirascilar).toEqual([]);
   });
 });
 

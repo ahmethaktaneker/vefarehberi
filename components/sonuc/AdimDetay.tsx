@@ -181,16 +181,9 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
-          {a.arac === "veraset_hesaplayici" && (
-            <p>
-              <Link href="/beyanname" className="dugme dugme-birincil">
-                Beyannameyi adım adım hazırlayın
-              </Link>
-            </p>
-          )}
-          {a.arac === "veraset_hesaplayici" && (
+          {a.arac.includes("veraset_hesaplayici") && (
             <p>
               <Link href="/hesaplayici/veraset-vergisi" className="baglanti">
                 Veraset vergisi hesaplayıcı
@@ -275,7 +268,8 @@ function YaninizaAlin({
     }
   }
   const satirlar = [...a.belgeler.map((id) => ({ id, kurumlar: [] as string[] })), ...[...kurumdan].map(([id, k]) => ({ id, kurumlar: k }))];
-  if (satirlar.length === 0 && a.sablonlar.length === 0) return null;
+  const beyanname = a.arac.includes("beyanname_araci");
+  if (satirlar.length === 0 && a.sablonlar.length === 0 && !beyanname) return null;
 
   return (
     <section aria-labelledby={`yanin-${a.id}`} className="rounded-2xl border border-altin/60 bg-altin-acik/70 p-4">
@@ -316,6 +310,17 @@ function YaninizaAlin({
             );
           })}
         </ul>
+      )}
+      {!yazdirma && beyanname && (
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-yuzey px-4 py-3">
+          <span>
+            <span className="block font-bold">Beyanname formu</span>
+            <span className="text-base text-metin-ikincil">Resmi formu adım adım doldurun, yazdırıp götürün</span>
+          </span>
+          <Link href="/beyanname" className="dugme dugme-birincil min-h-11 px-4 py-2 text-base">
+            Formu doldur
+          </Link>
+        </div>
       )}
       {!yazdirma &&
         a.sablonlar.map((s) => (

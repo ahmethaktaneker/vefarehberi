@@ -42,6 +42,7 @@ export const KosulSemasi: z.ZodType<Kosul> = z.lazy(() =>
   ]),
 ) as z.ZodType<Kosul>;
 
+export const ARACLAR = ["beyanname_araci", "veraset_hesaplayici"] as const;
 export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
 /** Adımın yapıldığı yer ("Nereye gideceğim" görünümü). "dikkat": yapılacak iş değil, uyarı. */
 export const YERLER = [
@@ -111,7 +112,11 @@ export const AdimSemasi = z.strictObject({
   uyari: z.string().optional(),
   baglantilar: z.array(z.strictObject({ ad: z.string(), url: z.url() })).default([]),
   /** Sitedeki ilgili araç (kartta bağlantı olarak gösterilir). */
-  arac: z.enum(["veraset_hesaplayici"]).optional(),
+  /** Adımda gösterilecek araçlar. Tek değer ya da liste yazılabilir. */
+  arac: z
+    .union([z.enum(ARACLAR), z.array(z.enum(ARACLAR))])
+    .optional()
+    .transform((a) => (a === undefined ? [] : Array.isArray(a) ? a : [a])),
   /** content/sablonlar altındaki ilgili dilekçe taslaklarının id'leri. */
   sablonlar: z.array(z.string()).default([]),
   yer: z.enum(YERLER),

@@ -296,3 +296,37 @@ html:has(dialog[open]) {
     break-inside: avoid;
   }
 }
+
+/* Beyanname aracı: resmi formu (1031 A) yazdırma. Ekrandaki araç gizlenir, yalnızca form çıkar. */
+.form-yazdirma {
+  display: none;
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  body.yazdir-form .ekran-icerik {
+    display: none !important;
+  }
+  body.yazdir-form .form-yazdirma {
+    display: block;
+  }
+  .resmi-form-sayfa {
+    break-after: page;
+  }
+  .resmi-form-sayfa:last-child {
+    break-after: auto;
+  }
+  .resmi-form tr {
+    break-inside: avoid;
+  }
+}
+.resmi-form-sayfa + .resmi-form-sayfa {
+  margin-top: 2rem;
+}
+@media print {
+  .resmi-form-sayfa + .resmi-form-sayfa {
+    margin-top: 0;
+  }
+}
