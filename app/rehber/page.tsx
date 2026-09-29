@@ -10,32 +10,97 @@ export const metadata: Metadata = {
   alternates: { canonical: "/rehber" },
 };
 
-const EK: { href: string; slug: string }[] = [
-  { href: "/ilk-48-saat", slug: "ilk-48-saat" },
-  { href: "/yurtdisi", slug: "yurtdisi" },
-  { href: "/hesaplayici/veraset-vergisi", slug: "veraset-vergisi-hesaplama" },
+/**
+ * Rehberler, okuyanın o an sorduğu soruya göre gruplanır. Burada adı geçmeyen yeni bir rehber
+ * "Diğer rehberler" altında kendiliğinden görünür.
+ */
+const GRUPLAR: { baslik: string; aciklama: string; sayfalar: { href: string; slug: string }[] }[] = [
+  {
+    baslik: "Başlarken",
+    aciklama: "Ne yapılacağını genel olarak görmek için.",
+    sayfalar: [
+      { href: "/rehber/vefat-sonrasi-yapilacak-islemler", slug: "rehber/vefat-sonrasi-yapilacak-islemler" },
+      { href: "/ilk-48-saat", slug: "ilk-48-saat" },
+      { href: "/yurtdisi", slug: "yurtdisi" },
+    ],
+  },
+  {
+    baslik: "Miras, borç ve belgeler",
+    aciklama: "Mirasçılık belgesi, borçlar ve bankadaki para.",
+    sayfalar: [
+      { href: "/rehber/mirascilik-belgesi-nasil-alinir", slug: "rehber/mirascilik-belgesi-nasil-alinir" },
+      { href: "/rehber/reddi-miras-suresi", slug: "rehber/reddi-miras-suresi" },
+      { href: "/rehber/vefat-edenin-banka-hesaplari", slug: "rehber/vefat-edenin-banka-hesaplari" },
+    ],
+  },
+  {
+    baslik: "Size çıkabilecek ödemeler",
+    aciklama: "Başvurmazsanız ödenmeyen haklar.",
+    sayfalar: [
+      { href: "/rehber/cenaze-odenegi", slug: "rehber/cenaze-odenegi" },
+      { href: "/rehber/olum-ayligi-basvurusu", slug: "rehber/olum-ayligi-basvurusu" },
+      { href: "/rehber/vefat-edenin-hayat-sigortasi-sorgulama", slug: "rehber/vefat-edenin-hayat-sigortasi-sorgulama" },
+    ],
+  },
+  {
+    baslik: "Abonelikler ve hatlar",
+    aciklama: "Telefon, internet ve faturalar.",
+    sayfalar: [{ href: "/rehber/vefat-edenin-telefon-hatti", slug: "rehber/vefat-edenin-telefon-hatti" }],
+  },
+  {
+    baslik: "Kendiniz için",
+    aciklama: "Bu süreçte yalnız değilsiniz.",
+    sayfalar: [{ href: "/rehber/yas-surecinde-destek", slug: "rehber/yas-surecinde-destek" }],
+  },
 ];
 
 export default function Page() {
-  const sayfalar = [
-    ...rehberSluglari().map((slug) => ({ href: `/rehber/${slug}`, s: hazirSayfa(`rehber/${slug}`) })),
-    ...EK.map((e) => ({ href: e.href, s: hazirSayfa(e.slug) })),
-  ];
-  // Ana rehber en üstte
-  sayfalar.sort((a, b) => Number(b.href.endsWith("vefat-sonrasi-yapilacak-islemler")) - Number(a.href.endsWith("vefat-sonrasi-yapilacak-islemler")));
+  const gruplanan = new Set(GRUPLAR.flatMap((g) => g.sayfalar.map((s) => s.slug)));
+  const digerleri = rehberSluglari()
+    .map((slug) => `rehber/${slug}`)
+    .filter((slug) => !gruplanan.has(slug))
+    .map((slug) => ({ href: `/${slug}`, slug }));
+  const gruplar = digerleri.length
+    ? [...GRUPLAR, { baslik: "Diğer rehberler", aciklama: "", sayfalar: digerleri }]
+    : GRUPLAR;
+
   return (
     <Sayfa baslik="Rehberler">
-      <p className="text-lg text-metin-ikincil">Vefat sonrası işlemler hakkında kısa ve kaynaklı rehberler.</p>
-      <ul className="space-y-3">
-        {sayfalar.map(({ href, s }) => (
-          <li key={href}>
-            <Link href={href} className="group block rounded-2xl border border-cizgi bg-yuzey px-5 py-4 shadow-kart transition-shadow hover:shadow-yuksek">
-              <span className="block text-lg font-bold text-vurgu underline decoration-transparent underline-offset-4 group-hover:decoration-vurgu">{s.baslik}</span>
-              <span className="mt-1 block text-base text-metin-ikincil">{s.aciklama}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <p className="text-lg text-metin-ikincil">
+        Vefat sonrası işlemler hakkında kısa ve kaynaklı rehberler. Size özel sırayı ve son tarihleri görmek için{" "}
+        <Link href="/liste" className="baglanti">
+          listenizi oluşturun
+        </Link>
+        .
+      </p>
+      {gruplar.map((g, i) => (
+        <section key={g.baslik} aria-labelledby={`grup-${i}`} className="space-y-3">
+          <div>
+            <h2 id={`grup-${i}`} className="font-serif text-2xl font-semibold text-vurgu-koyu">
+              {g.baslik}
+            </h2>
+            {g.aciklama && <p className="text-base text-metin-ikincil">{g.aciklama}</p>}
+          </div>
+          <ul className="space-y-3">
+            {g.sayfalar.map(({ href, slug }) => {
+              const s = hazirSayfa(slug);
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="group block rounded-2xl border border-cizgi bg-yuzey px-5 py-4 shadow-kart transition-shadow hover:shadow-yuksek"
+                  >
+                    <span className="block text-lg font-bold text-vurgu underline decoration-transparent underline-offset-4 group-hover:decoration-vurgu">
+                      {s.baslik}
+                    </span>
+                    <span className="mt-1 block text-base text-metin-ikincil">{s.aciklama}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
     </Sayfa>
   );
 }

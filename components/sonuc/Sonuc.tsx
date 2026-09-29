@@ -185,10 +185,6 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
 
         <SonTarihKartlari adimlar={liste.sonTarihliler} yapilanlar={yapilanlar} />
 
-        <div className="yazdirma-gizle">
-          <AracOnerileri oneriler={aracOnerileri(liste, yapilanlar)} />
-        </div>
-
         <Yolculuk
           donemler={donemler({ ...liste, adimlar: islemler }, yapilanlar)}
           simdiki={simdikiDonem(liste, yapilanlar)}
@@ -207,6 +203,10 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
             yer: yerler.filter((y) => y.adimlar.some((a) => !yapilanlar.has(a.id))).length,
           }}
         />
+
+        <div className="yazdirma-gizle">
+          <AracOnerileri oneriler={aracOnerileri(liste, yapilanlar)} />
+        </div>
 
         {liste.avukatUyarilari.length > 0 && (
           <aside aria-label="Not" className="space-y-1 text-sm text-metin-ikincil">

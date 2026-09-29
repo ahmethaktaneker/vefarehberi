@@ -9,6 +9,7 @@ sss:
     cevap: "Vefat Türkiye'de olduysa yurtdışındaki mirasçılar için 6 ay. Vefat yurtdışında olduysa, vefatın olduğu ülkedeki mirasçılar için 4 ay, başka bir yabancı ülkedekiler için 8 ay, Türkiye'dekiler için 6 ay (Veraset ve İntikal Vergisi Kanunu m.9)."
   - soru: "Veraset beyannamesini konsolosluğa verebilir miyim?"
     cevap: "Evet. Yurtdışında yaşayan mirasçılar beyannamelerini Türk konsolosluklarına da verebilir (Veraset ve İntikal Vergisi Kanunu m.8)."
+araclar: [beyanname_araci, veraset_hesaplayici]
 kaynak:
   - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
   - "https://www.arinhukuk.av.tr/yurt-disinda-yasayanlar-turkiyede-nasil-vekalet-verebilir/"

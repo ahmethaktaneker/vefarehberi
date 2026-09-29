@@ -42,6 +42,8 @@ export const SayfaSemasi = z.strictObject({
   aciklama: z.string().min(1),
   /** Sık sorulan sorular: sayfada gösterilir ve FAQPage yapılandırılmış verisi olarak eklenir. */
   sss: z.array(z.strictObject({ soru: z.string().min(1), cevap: z.string().min(1) })).default([]),
+  /** Sayfanın altında "İşinize yarayacak araçlar" olarak gösterilen araçlar (lib/araclar.ts kimlikleri). */
+  araclar: z.array(z.enum(["miras_payi", "olum_ayligi", "veraset_hesaplayici", "beyanname_araci", "reddi_miras_tablosu"])).default([]),
   ...dogruluk,
 });
 

@@ -9,6 +9,7 @@ sss:
     cevap: "Notere veya Sulh Hukuk Mahkemesine başvurularak alınır. Mirasçılardan birinin başvurması yeterlidir."
   - soru: "Noter hangi durumlarda mirasçılık belgesi veremez?"
     cevap: "Nüfus kayıtları mirasçıları belirlemeye yetmiyorsa, yabancılık unsuru varsa ya da tanık, bilirkişi gibi bir yargılama gerekiyorsa. Bu durumlarda Sulh Hukuk Mahkemesine başvurulur."
+araclar: [miras_payi]
 kaynak:
   - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
   - "https://avukatmurataydar.com/blog/veraset-ilami-mirascilik-belgesi-nasil-alinir/"

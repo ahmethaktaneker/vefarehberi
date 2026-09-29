@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { marked } from "marked";
+import { ARAC_TANIMLARI, aracGorunur } from "@/lib/araclar";
 import { jsonLdMetni } from "@/lib/jsonld";
 import { Sayfa } from "@/components/Sayfa";
 import { TaslakNotu } from "@/components/TaslakNotu";
@@ -66,6 +67,28 @@ export function RehberSayfasi({
       )}
       <div className="metin" dangerouslySetInnerHTML={{ __html: html }} />
       {children}
+      {sayfa.araclar.some(aracGorunur) && (
+        <section aria-labelledby="rehber-araclar" className="space-y-3">
+          <h2 id="rehber-araclar" className="font-serif text-2xl font-semibold text-vurgu-koyu">
+            İşinize yarayacak araçlar
+          </h2>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {sayfa.araclar.filter(aracGorunur).map((id) => (
+              <li key={id}>
+                <Link
+                  href={ARAC_TANIMLARI[id].href}
+                  className="group block h-full rounded-2xl border border-cizgi bg-yuzey p-4 shadow-kart transition-shadow hover:shadow-yuksek"
+                >
+                  <span className="block font-bold text-vurgu underline decoration-transparent underline-offset-4 group-hover:decoration-vurgu">
+                    {ARAC_TANIMLARI[id].ad}
+                  </span>
+                  <span className="mt-1 block text-base text-metin-ikincil">{ARAC_TANIMLARI[id].aciklama}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {eylem && (
         <div className="rounded-2xl bg-vurgu p-6 text-white shadow-yuksek">
           <p className="font-serif text-xl">Size özel yapılacaklar listesini ve son tarihlerinizi görmek için birkaç soruya cevap verin.</p>

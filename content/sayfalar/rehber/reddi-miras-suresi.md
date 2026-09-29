@@ -11,6 +11,7 @@ sss:
     cevap: "Vefat tarihinde borçların mal varlığını aştığı açıkça belliyse ya da resmen tespit edilmişse, miras reddedilmiş sayılabilir (hükmen red). Bu, süreyi kaçırmanın garantili bir çözümü değildir; durumu bir avukatla değerlendirin."
   - soru: "Yurtdışından reddi miras yapılabilir mi?"
     cevap: "Genel bilgi olarak vekaletle yapılabilir. Türk konsolosluğunda düzenlenen vekaletname Türkiye'de geçerlidir."
+araclar: [reddi_miras_tablosu]
 kaynak:
   - "TMK m.605-606"
   - "https://av-saimincekas.com/kanun/turk-medeni-kanunu/madde-606-tmk/"

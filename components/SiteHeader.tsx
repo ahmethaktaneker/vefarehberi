@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { hrefGorunur, hrefPakette } from "@/lib/araclar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -146,7 +145,21 @@ export function SiteHeader() {
   );
 }
 
-/** Marka logosu (public/logo.png). */
+/**
+ * Marka logosu. public/logo.png'den keskin küçültülmüş sürümler (scripts/logo-kucult.mjs); Next'in yeniden
+ * sıkıştırması logoyu bulanıklaştırdığı için dosyalar olduğu gibi sunulur, tarayıcı ekran yoğunluğuna göre seçer.
+ */
 function Logo() {
-  return <Image src="/logo.png" alt="" width={44} height={44} priority className="size-10 shrink-0 rounded-[9px] sm:size-11" />;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/logo-88.png"
+      srcSet="/logo-88.png 2x, /logo-132.png 3x"
+      alt=""
+      width={44}
+      height={44}
+      fetchPriority="high"
+      className="size-10 shrink-0 rounded-[9px] sm:size-11"
+    />
+  );
 }

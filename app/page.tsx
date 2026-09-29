@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { DevamKarti } from "@/components/DevamKarti";
+import { ARAC_TANIMLARI, aracGorunur, type AracId } from "@/lib/araclar";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { AVUKAT_ROZETI_AKTIF } from "@/lib/marka";
 import { yorumlariYukle } from "@/lib/yorumlar";
+
+/** Ana sayfadaki araçlar, süresi en yakın işten başlayarak. */
+const ANA_SAYFA_ARACLARI: AracId[] = ["reddi_miras_tablosu", "beyanname_araci", "miras_payi", "olum_ayligi", "veraset_hesaplayici"];
 
 export default function AnaSayfa() {
   const { sureler, cenaze_odenegi } = icerikYukle().parametreler;
@@ -43,6 +47,24 @@ export default function AnaSayfa() {
       </section>
 
       <div className="mx-auto max-w-4xl space-y-16 px-4 pt-14 sm:px-6">
+        {/* Gerçek bir sıra: numaralar bilgi taşıyor */}
+        <section aria-labelledby="nasil-baslik">
+          <h2 id="nasil-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
+            Nasıl çalışır
+          </h2>
+          <ol className="mt-6 grid gap-4 sm:grid-cols-3">
+            <Adim no={1} baslik="Kısa sorulara cevap verin">
+              Vefat tarihi, mal varlığı ve abonelikler gibi. İsim sormuyoruz; emin olmadığınızda &ldquo;Bilmiyorum&rdquo; demeniz yeterli.
+            </Adim>
+            <Adim no={2} baslik="Size özel listeniz çıksın">
+              Son tarihler, çıkabilecek ödemeler, borç uyarıları ve gidilecek kurumlar, sizin durumunuza göre.
+            </Adim>
+            <Adim no={3} baslik="Adım adım ilerleyin">
+              Sayfa her seferinde sıradaki tek adımı gösterir. Yaptıklarınızı işaretleyin, aileyle paylaşın, takviminize ekleyin.
+            </Adim>
+          </ol>
+        </section>
+
         {/* Konuya özgü: vefattan itibaren işleyen gerçek süreler */}
         <section aria-labelledby="sureler-baslik">
           <h2 id="sureler-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
@@ -65,6 +87,41 @@ export default function AnaSayfa() {
           <p className="mt-6 text-base text-metin-ikincil">
             Hak edebileceğiniz ödemelerin de süresi var: örneğin cenaze ödeneği için {cenaze_odenegi.zamanasimi_yil} yıllık zamanaşımı bulunuyor.
           </p>
+        </section>
+
+        <section aria-labelledby="araclar-baslik">
+          <h2 id="araclar-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
+            Ücretsiz araçlar
+          </h2>
+          <p className="mt-2 max-w-2xl text-metin-ikincil">Listenizdeki adımlarda da karşınıza çıkarlar; doğrudan açmak isterseniz buradalar.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {ANA_SAYFA_ARACLARI.filter(aracGorunur).map((id) => (
+              <AracKarti key={id} href={ARAC_TANIMLARI[id].href} baslik={ARAC_TANIMLARI[id].ad}>
+                {ARAC_TANIMLARI[id].aciklama}
+              </AracKarti>
+            ))}
+            <AracKarti href="/sablonlar" baslik="Dilekçe taslakları">
+              Banka, abonelik ve mirası reddetme dilekçelerini doldurup yazdırın.
+            </AracKarti>
+          </div>
+          <h3 className="mt-10 text-lg font-bold text-vurgu-koyu">Rehberler</h3>
+          <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
+            <li>
+              <Link href="/ilk-48-saat" className="baglanti inline-block py-2">
+                İlk 48 saat
+              </Link>
+            </li>
+            <li>
+              <Link href="/yurtdisi" className="baglanti inline-block py-2">
+                Yurtdışında yaşıyorum
+              </Link>
+            </li>
+            <li>
+              <Link href="/rehber" className="baglanti inline-block py-2">
+                Tüm rehberler: reddi miras, cenaze ödeneği, ölüm aylığı ve daha fazlası
+              </Link>
+            </li>
+          </ul>
         </section>
 
         {yorumlar.length > 0 && (
@@ -91,53 +148,13 @@ export default function AnaSayfa() {
           </section>
         )}
 
-        {/* Gerçek bir sıra: numaralar bilgi taşıyor */}
-        <section aria-labelledby="nasil-baslik">
-          <h2 id="nasil-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
-            Nasıl çalışır
+        <section aria-labelledby="son-cagri-baslik" className="rounded-2xl bg-vurgu p-6 text-white shadow-yuksek sm:p-8">
+          <h2 id="son-cagri-baslik" className="font-serif text-2xl font-semibold sm:text-3xl">
+            Neyi, ne zaman yapacağınızı birlikte sıralayalım
           </h2>
-          <ol className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Adim no={1} baslik="Kısa sorulara cevap verin">
-              Vefat tarihi, mal varlığı ve abonelikler gibi. İsim sormuyoruz; emin olmadığınızda &ldquo;Bilmiyorum&rdquo; demeniz yeterli.
-            </Adim>
-            <Adim no={2} baslik="Size özel listeniz çıksın">
-              Son tarihler, çıkabilecek ödemeler, borç uyarıları ve gidilecek kurumlar, sizin durumunuza göre.
-            </Adim>
-            <Adim no={3} baslik="Adım adım ilerleyin">
-              Sayfa her seferinde sıradaki tek adımı gösterir. Yaptıklarınızı işaretleyin, aileyle paylaşın, takviminize ekleyin.
-            </Adim>
-          </ol>
-          <Link href="/liste" className="dugme dugme-birincil mt-8">
+          <p className="mt-2 text-lg text-white/90">11 kısa soru, yaklaşık 3 dakika. Ücretsiz.</p>
+          <Link href="/liste" className="dugme mt-6 bg-altin px-8 text-lg text-vurgu-koyu hover:bg-[#d6b574]">
             Listemi oluştur
-          </Link>
-        </section>
-
-        <section aria-labelledby="araclar-baslik">
-          <h2 id="araclar-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
-            Ücretsiz araçlar ve rehberler
-          </h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <AracKarti href="/hesaplayici/miras-payi" baslik="Miras payı hesaplayıcı">
-              Eşe, çocuklara, anne-babaya ne oranda kalır?
-            </AracKarti>
-            <AracKarti href="/hesaplayici/olum-ayligi" baslik="Ölüm aylığı hesaplayıcı">
-              Eşe ve çocuklara ne kadar aylık bağlanır?
-            </AracKarti>
-            <AracKarti href="/hesaplayici/veraset-vergisi" baslik="Veraset vergisi hesaplayıcı">
-              Size vergi çıkar mı, ne kadar?
-            </AracKarti>
-            <AracKarti href="/sablonlar" baslik="Dilekçe taslakları">
-              Banka ve abonelik dilekçelerini doldurup yazdırın.
-            </AracKarti>
-            <AracKarti href="/ilk-48-saat" baslik="İlk 48 saat">
-              İlk günlerde yapılması gerekenler.
-            </AracKarti>
-            <AracKarti href="/yurtdisi" baslik="Yurtdışında yaşıyorum">
-              Vekaletname, süreler ve konsolosluk işlemleri.
-            </AracKarti>
-          </div>
-          <Link href="/rehber" className="baglanti mt-5 inline-block py-1">
-            Tüm rehberleri görün: reddi miras, cenaze ödeneği, ölüm aylığı ve daha fazlası
           </Link>
         </section>
       </div>

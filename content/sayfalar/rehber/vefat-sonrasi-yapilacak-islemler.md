@@ -9,6 +9,7 @@ sss:
     cevap: "Ölüm belgesinin düzenlenmesi ve cenaze işlemleri. Ardından mirasçılık belgesi (veraset ilamı) almak, sonraki işlemlerin çoğunu mümkün kılar."
   - soru: "Mirası reddetmek ölüm aylığını etkiler mi?"
     cevap: "Genel bilgi olarak hayır; mirası reddetmek ölüm aylığını (dul ve yetim aylığı) etkilemez. Durumunuza göre bir avukata danışmanız önerilir."
+araclar: [reddi_miras_tablosu, miras_payi, beyanname_araci]
 kaynak:
   - "https://www.nvi.gov.tr/olum-islemleri"
   - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"

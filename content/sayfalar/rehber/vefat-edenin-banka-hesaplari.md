@@ -7,6 +7,7 @@ sss:
     cevap: "e-Devlet'teki 'Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz Kişi Adına)' hizmetinden sorgulayabilirsiniz. Mirasçılık belgesi gerekir."
   - soru: "Banka mirasçılara parayı ödemek için ne ister?"
     cevap: "Kanuna göre bankalar, ödeme yapmadan önce veraset ve intikal vergisinin ödendiğini gösteren belgeyi ister. Belge sunulmazsa veraset yoluyla intikallerde %5 vergi karşılığı kesinti yapıp kalanı ödeyebilir."
+araclar: [beyanname_araci, veraset_hesaplayici]
 kaynak:
   - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
   - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"

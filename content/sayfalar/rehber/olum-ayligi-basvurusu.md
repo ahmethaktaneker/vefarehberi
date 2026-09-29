@@ -9,6 +9,7 @@ sss:
     cevap: "e-Devlet üzerinden veya SGK'ya başvurularak yapılır."
   - soru: "Mirası reddedersem ölüm aylığı alabilir miyim?"
     cevap: "Genel bilgi olarak mirası reddetmek ölüm aylığını etkilemez."
+araclar: [olum_ayligi]
 kaynak:
   - "https://www.serafettinkaya.av.tr/olum-ayligi-dul-yetim-ayligi-sartlari/"
   - "https://www.sikayetvar.com/sgk/dul-ve-yetim-ayligi"
