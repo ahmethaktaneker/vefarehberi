@@ -74,8 +74,9 @@ export function MirasPayiHesaplayici() {
         </fieldset>
 
         {!altsoyVar && (
-          <fieldset className="space-y-4 border-t border-cizgi pt-6">
-            <legend className="float-left mb-2 w-full font-semibold">Çocuğu ya da torunu yoksa: anne, baba ve kardeşler</legend>
+          <div className="border-t border-cizgi pt-6">
+          <fieldset className="space-y-4">
+            <legend className="mb-2 font-semibold">Çocuğu ya da torunu yoksa: anne, baba ve kardeşler</legend>
             <div className="flex flex-wrap gap-3">
               <Onay etiket="Annesi hayatta" deger={anneSag} onChange={setAnneSag} />
               <Onay etiket="Babası hayatta" deger={babaSag} onChange={setBabaSag} />
@@ -108,6 +109,7 @@ export function MirasPayiHesaplayici() {
               + Kardeş ekle
             </button>
           </fieldset>
+          </div>
         )}
       </form>
 
@@ -147,7 +149,7 @@ export function MirasPayiHesaplayici() {
                 : "Çocuk veya torun olmadığı için miras anne-baba tarafına geçer."}{" "}
               Mirası reddeden olursa paylar değişir.
             </p>
-            <p className="mt-2 text-base text-metin-ikincil">
+            <p className="mt-2 text-sm text-metin-ikincil">
               Vasiyet yoksa geçerli olan yasal paylardır; resmi paylar mirasçılık belgesinde yazar. Girdiğiniz bilgiler hiçbir yere
               gönderilmez.
             </p>

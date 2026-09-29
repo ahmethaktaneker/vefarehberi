@@ -58,6 +58,7 @@
   kategori: odeme
   zaman_grubu: ilk_3_ay
   oncelik: yuksek
+  arac: olum_ayligi
   kosul: { hak_sahipleri: ["esi_var", "cocuk_18_alti", "ogrenci_cocuk", "bilmiyorum"] }
   belirsizse: { hak_sahipleri: "bilmiyorum" }
   ne: >

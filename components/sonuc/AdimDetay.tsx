@@ -181,8 +181,15 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
+          {a.arac.includes("olum_ayligi") && (
+            <p>
+              <Link href="/hesaplayici/olum-ayligi" className="baglanti">
+                Ölüm aylığı hesaplayıcı: kime ne kadar bağlanır?
+              </Link>
+            </p>
+          )}
           {a.arac.includes("miras_payi") && (
             <p>
               <Link href="/hesaplayici/miras-payi" className="baglanti">

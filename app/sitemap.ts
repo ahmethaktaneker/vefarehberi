@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/hesaplayici/veraset-vergisi",
     "/beyanname",
     "/hesaplayici/miras-payi",
+    "/hesaplayici/olum-ayligi",
     "/sablonlar",
     ...sablonlariYukle().map((s) => `/sablonlar/${s.id}`),
     "/hakkimizda",

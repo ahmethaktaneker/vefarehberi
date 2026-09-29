@@ -448,9 +448,9 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
           </div>
         </section>
 
-        <p className="mt-4 text-base text-metin-ikincil">
-          Şu ana kadarki net toplam: {tl(ozet.net)}. Bilgileriniz yalnızca bu cihazda kaydedilir, hiçbir yere gönderilmez; sonra
-          kaldığınız yerden devam edebilirsiniz. Kesin vergiyi vergi dairesi hesaplar.
+        <p className="mt-4 text-base text-metin-ikincil">Şu ana kadarki net toplam: {tl(ozet.net)}. Kaldığınız yerden devam edebilirsiniz.</p>
+        <p className="mt-1 text-sm text-metin-ikincil">
+          Bilgileriniz yalnızca bu cihazda kaydedilir, hiçbir yere gönderilmez. Kesin vergiyi vergi dairesi hesaplar.
         </p>
         <button
           type="button"
@@ -557,10 +557,12 @@ function TutarAlani({ etiket, aciklama, deger, onChange }: { etiket: string; aci
 
 function Grup({ baslik, children }: { baslik: string; children: React.ReactNode }) {
   return (
-    <fieldset className="space-y-4 border-t border-cizgi pt-4 first-of-type:border-t-0 first-of-type:pt-0">
-      <legend className="float-left mb-2 w-full font-serif text-lg font-semibold">{baslik}</legend>
+    <div className="border-t border-cizgi pt-4 first-of-type:border-t-0 first-of-type:pt-0">
+    <fieldset className="space-y-4">
+      <legend className="mb-2 font-serif text-lg font-semibold">{baslik}</legend>
       {children}
     </fieldset>
+    </div>
   );
 }
 

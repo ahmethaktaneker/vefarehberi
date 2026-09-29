@@ -183,7 +183,7 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
           </div>
         )}
       </section>
-      <p className="text-base text-metin-ikincil">
+      <p className="text-sm text-metin-ikincil">
         {parametreler.yil} tarifesiyle hesaplanır; borçlar düşülmez. Kesin tutarı vergi dairesi hesaplar. Girdiğiniz bilgiler hiçbir
         yere gönderilmez.
       </p>
