@@ -155,7 +155,7 @@ export default function AnaSayfa() {
         {yorumlar.length > 0 && (
           <section aria-labelledby="yorumlar-baslik">
             <h2 id="yorumlar-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
-              Kullananlar ne diyor
+              İlk kullanıcılarımız ne diyor
             </h2>
             <ul className="mt-6 grid gap-4 md:grid-cols-3">
               {yorumlar.map((y) => (

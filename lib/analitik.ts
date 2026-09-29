@@ -17,6 +17,9 @@ export type Olaylar = {
   paket_tiklandi: { paket: string; onerilen: string };
   eposta_birakildi: { paket: string };
   arac_onerisi_tiklandi: { arac: string };
+  sonuc_paylasildi: { yontem: string };
+  hata: { sayfa: string; mesaj: string; tur: string };
+  memnuniyet: { puan: number };
   beyanname_basladi: undefined;
   beyanname_yazdirildi: undefined;
   erisim_kodu_girildi: undefined;
@@ -46,4 +49,15 @@ export function kaynakSayfa(): string {
   } catch {
     return "dogrudan";
   }
+}
+
+/**
+ * Hata mesajını ölçüme göndermeden önce temizler: uzun sayılar (ör. kimlik numarası) ve e-posta
+ * benzeri ifadeler silinir, metin kısaltılır. Böylece hata kaydı kişisel veri taşımaz.
+ */
+export function hataMetni(mesaj: unknown): string {
+  return String(mesaj ?? "bilinmeyen hata")
+    .replace(/\S+@\S+/g, "[e-posta]")
+    .replace(/\d{4,}/g, "[sayı]")
+    .slice(0, 120);
 }

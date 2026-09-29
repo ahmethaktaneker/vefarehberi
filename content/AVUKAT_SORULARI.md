@@ -86,6 +86,9 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 21. **Sözlük** (21 terim, şu an gizli), **rehber sayfaları** (12 sayfa) ve **kurum ziyaret sayfaları**
     (yayında; her kurum için "gişede şöyle diyebilirsiniz" cümleleri): genel bir okuma.
 
+21a. **Yeni rehberler (30.09.2026)**: tapu intikali, araç devri, veraset vergisi nasıl ödenir, vefat edenin
+    kredi kartı borcu, ölüm aylığı oranları. Sitedeki adım içeriklerinden derlendi; genel bir okuma.
+
 ## E. Paketler ve satış (ödeme almadan önce)
 
 22. **Beyanname aracının ileride ücretli olması** ya da ücretli bir "uzman kontrolü" hizmeti eklenmesi

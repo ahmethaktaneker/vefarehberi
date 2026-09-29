@@ -5,7 +5,6 @@ import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { SablonDoldurucu } from "@/components/SablonDoldurucu";
 import { TaslakNotu } from "@/components/TaslakNotu";
 import { sablonlariYukle } from "@/lib/icerik/metinler";
-import { KONTROL_ROZETLERI } from "@/lib/marka";
 
 export const dynamicParams = false;
 
@@ -33,7 +32,7 @@ export default async function Page({ params }: PageProps<"/sablonlar/[id]">) {
       </CihazdaKalir>
       <div className="yazdirma-gizle">
         <TaslakNotu>
-          Bu taslak genel bir örnektir{KONTROL_ROZETLERI && !s.dogrulandi && " ve hukuk uzmanı kontrolünden geçmemiştir"}.
+          Bu taslak genel bir örnektir.
           Kurumun kendi formu varsa onu kullanın; göndermeden önce içeriği kendi durumunuza göre kontrol edin.
         </TaslakNotu>
       </div>

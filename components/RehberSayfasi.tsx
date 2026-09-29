@@ -3,9 +3,8 @@ import { marked } from "marked";
 import { ARAC_TANIMLARI, aracGorunur } from "@/lib/araclar";
 import { jsonLdMetni } from "@/lib/jsonld";
 import { Sayfa, type Kirinti } from "@/components/Sayfa";
-import { TaslakNotu } from "@/components/TaslakNotu";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
-import { hataBildirBaglantisi, KONTROL_ROZETLERI, SITE_URL } from "@/lib/marka";
+import { hataBildirBaglantisi, SITE_URL } from "@/lib/marka";
 
 const tarih = (t: string) => t.split("-").reverse().join(".");
 
@@ -75,12 +74,6 @@ export function RehberSayfasi({
         />
       )}
       <p className="text-base text-metin-ikincil">Son güncelleme: {tarih(sayfa.son_kontrol)}</p>
-      {KONTROL_ROZETLERI && !sayfa.dogrulandi && (
-        <TaslakNotu>
-          Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır ve henüz hukuk uzmanı kontrolünden geçmedi. Resmi
-          kaynaktan teyit edin.
-        </TaslakNotu>
-      )}
       <div className="metin" dangerouslySetInnerHTML={{ __html: html }} />
       {children}
       {sayfa.araclar.some(aracGorunur) && (

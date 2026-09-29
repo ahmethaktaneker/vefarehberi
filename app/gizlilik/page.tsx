@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Sayfa } from "@/components/Sayfa";
-import { TaslakNotu } from "@/components/TaslakNotu";
-import { KONTROL_ROZETLERI, URUN_ADI } from "@/lib/marka";
+import { URUN_ADI } from "@/lib/marka";
 
 export const metadata: Metadata = {
   title: "Gizlilik",
@@ -15,12 +14,6 @@ export const metadata: Metadata = {
 export default function Gizlilik() {
   return (
     <Sayfa baslik="Gizlilik">
-      {KONTROL_ROZETLERI && (
-        <TaslakNotu>
-          Bu sayfa taslaktır ve avukat kontrolü beklemektedir. Kesin metin yayından önce eklenecektir.
-        </TaslakNotu>
-      )}
-
       <Bolum baslik="Kısaca">
         <p>
           {URUN_ADI}, kişisel bilgilerinizi istemeden çalışacak şekilde tasarlanmıştır. Sorulara

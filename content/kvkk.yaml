@@ -7,11 +7,10 @@ iletisim_eposta: "ahmethaktaneker@gmail.com"
 
 acik_riza:
   paket_ilgi:
-    surum: "2026-09-29-4"
+    surum: "2026-09-30-1"
     # Aydınlatma, rıza kutusunun dışında ayrı bir cümleyle yapılır (EpostaFormu). Rıza metni aydınlatmayı içermez.
     metin: >
-      Yeni özellikler (son tarih hatırlatmaları, uzman kontrolü gibi) kullanıma açıldığında bana e-posta
-      ile haber verilmesi amacıyla e-posta adresimin işlenmesine ve bu amaçla e-posta hizmeti sağlayıcısı
+      Sitede yeni özellikler ve paketler kullanıma açıldığında bana e-posta ile haber verilmesi amacıyla e-posta adresimin işlenmesine ve bu amaçla e-posta hizmeti sağlayıcısı
       INBOX'ta saklanmasına açık rıza veriyorum. Rızamı istediğim zaman geri alabilirim.
 
 kaynak:

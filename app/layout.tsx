@@ -4,6 +4,7 @@ import { Atkinson_Hyperlegible, Lora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { GuvenNotu } from "@/components/GuvenNotu";
+import { HataIzleyici } from "@/components/HataIzleyici";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, UMAMI_BETIK_AYARLARI, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
 
@@ -12,12 +13,14 @@ const govde = Atkinson_Hyperlegible({
   variable: "--font-govde",
   weight: ["400", "700"],
   subsets: ["latin", "latin-ext"],
+  // Gövde metni yedek yazı tipiyle hemen görünür; önceden yükleme başlık yazı tipine bırakılır (ilk açılış hızı).
+  preload: false,
 });
 
 /** Başlıklar: sıcak, okunaklı bir serif. */
 const baslik = Lora({
   variable: "--font-baslik",
-  weight: ["500", "600"],
+  weight: ["600"],
   subsets: ["latin", "latin-ext"],
 });
 
@@ -74,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <GuvenNotu />
+        <HataIzleyici />
         {UMAMI_SITE_KIMLIGI && (
           // Çerezsiz analitik. Adresin # ve ? kısımları gönderilmez (paylaşım linkindeki cevaplar).
           <Script

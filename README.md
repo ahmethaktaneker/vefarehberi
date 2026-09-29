@@ -18,6 +18,13 @@ npm run build    # üretim derlemesi
 - `content/`: tüm içerik (adımlar, kurumlar, şablonlar, tutarlar). Kodun içine içerik yazılmaz.
 - `app/globals.css`: renkler ve tasarım temeli.
 
+## Kullanıcı yorumlarını yayınlama
+
+1. Liste sayfasındaki deneyim kutusundan gelen e-postalarda "yayınlanmasına izin veriyorum" cümlesi olanlar yayınlanabilir; olmayanlar yalnızca geri bildirimdir.
+2. Yorumu kısaltmak gerekirse anlamını değiştirmeden kısaltın ve kişiye son hâlini onaylatın.
+3. `content/yorumlar.yaml` dosyasına `metin`, `kim` (baş harf ve şehir) ve `puan` ile ekleyin. Uydurma ya da onaysız yorum eklenmez.
+4. Genel memnuniyet, Umami'de "memnuniyet" olayındaki puanlardan izlenir.
+
 ## İçerik güncelleme takvimi
 
 - **Her yıl Ocak ve Temmuz:** `content/parametreler.yaml` içindeki tutarları (cenaze ödeneği,

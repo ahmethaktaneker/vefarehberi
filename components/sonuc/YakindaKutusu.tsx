@@ -10,13 +10,15 @@ export function YakindaKutusu({ riza }: { riza: { surum: string; metin: string }
   return (
     <section aria-labelledby="yakinda-baslik" className="rounded-2xl border border-cizgi bg-yuzey p-5">
       <h2 id="yakinda-baslik" className="font-semibold">
-        Yakında: son tarih hatırlatmaları ve uzman kontrolü
+        Yeni özellikler ve paketler geldiğinde haber verelim mi?
       </h2>
       {acik ? (
         <EpostaFormu paket="yenilikler" riza={riza} />
       ) : (
         <>
-          <p className="mt-1 text-base text-metin-ikincil">Kullanıma açıldığında haber almak ister misiniz?</p>
+          <p className="mt-1 text-base text-metin-ikincil">
+            Siteye yeni araçlar ve ailelere yardımcı olacak paketler ekliyoruz. Açıldığında size bir e-posta gönderelim.
+          </p>
           <button
             type="button"
             onClick={() => {

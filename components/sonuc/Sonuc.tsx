@@ -13,6 +13,7 @@ import type { Paket } from "@/lib/paket";
 import { aracOnerileri, paketOnerisi } from "@/lib/araclar";
 import { AracOnerileri } from "@/components/sonuc/AracOnerileri";
 import { YakindaKutusu } from "@/components/sonuc/YakindaKutusu";
+import { DeneyimKutusu } from "@/components/sonuc/DeneyimKutusu";
 import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
 import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
 import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
@@ -219,6 +220,12 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
         {oneri && (
           <div className="yazdirma-gizle">
             <PaketKarti paket={paket} riza={riza} oneri={oneri} />
+          </div>
+        )}
+
+        {yapilanlar.size >= 2 && (
+          <div className="yazdirma-gizle">
+            <DeneyimKutusu />
           </div>
         )}
 

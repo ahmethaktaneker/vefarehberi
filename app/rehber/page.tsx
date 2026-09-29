@@ -31,6 +31,16 @@ const GRUPLAR: { baslik: string; aciklama: string; sayfalar: { href: string; slu
       { href: "/rehber/mirascilik-belgesi-nasil-alinir", slug: "rehber/mirascilik-belgesi-nasil-alinir" },
       { href: "/rehber/reddi-miras-suresi", slug: "rehber/reddi-miras-suresi" },
       { href: "/rehber/vefat-edenin-banka-hesaplari", slug: "rehber/vefat-edenin-banka-hesaplari" },
+      { href: "/rehber/vefat-edenin-kredi-karti-borcu", slug: "rehber/vefat-edenin-kredi-karti-borcu" },
+    ],
+  },
+  {
+    baslik: "Mal varlığı ve vergi",
+    aciklama: "Beyanname, vergi, tapu ve araç.",
+    sayfalar: [
+      { href: "/rehber/veraset-vergisi-nasil-odenir", slug: "rehber/veraset-vergisi-nasil-odenir" },
+      { href: "/rehber/tapu-intikali-nasil-yapilir", slug: "rehber/tapu-intikali-nasil-yapilir" },
+      { href: "/rehber/vefat-edenin-araci-devri", slug: "rehber/vefat-edenin-araci-devri" },
     ],
   },
   {
@@ -39,6 +49,7 @@ const GRUPLAR: { baslik: string; aciklama: string; sayfalar: { href: string; slu
     sayfalar: [
       { href: "/rehber/cenaze-odenegi", slug: "rehber/cenaze-odenegi" },
       { href: "/rehber/olum-ayligi-basvurusu", slug: "rehber/olum-ayligi-basvurusu" },
+      { href: "/rehber/olum-ayligi-ne-kadar", slug: "rehber/olum-ayligi-ne-kadar" },
       { href: "/rehber/vefat-edenin-hayat-sigortasi-sorgulama", slug: "rehber/vefat-edenin-hayat-sigortasi-sorgulama" },
     ],
   },

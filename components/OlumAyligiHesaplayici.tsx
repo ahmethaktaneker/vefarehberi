@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { CihazdaKalir } from "@/components/CihazdaKalir";
+import { SonucuPaylas } from "@/components/SonucuPaylas";
 import { olay } from "@/lib/analitik";
 import { tutarOku } from "@/lib/hesaplayici";
 import { olumAyligiPaylari, type CocukDurumu, type DigerEbeveyn, type EbeveynGeliri, type OlumCocuk, type OlumEbeveyn } from "@/lib/olumAyligi";
@@ -174,6 +175,11 @@ export function OlumAyligiHesaplayici() {
                 payların oranı değişebilir.
               </p>
             )}
+            <SonucuPaylas
+              baslik="Ölüm aylığı paylaşımı"
+              satirlar={sonuc.satirlar.map((s) => `${s.kim}: ${yuzde(s.oran)}, ${tl(s.tutar)}`)}
+              yol="/hesaplayici/olum-ayligi"
+            />
           </div>
         )}
       </section>

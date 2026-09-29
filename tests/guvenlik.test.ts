@@ -128,3 +128,11 @@ describe("erişim kodu (/api/erisim)", () => {
     expect(cerezler.yazilan).toEqual([]);
   });
 });
+
+describe("hata bildirimi kişisel veri taşımaz", () => {
+  it("uzun sayılar ve e-posta adresleri silinir, metin kısaltılır", async () => {
+    const { hataMetni } = await import("@/lib/analitik");
+    expect(hataMetni("TC 10000000146 ve ali@ornek.com için hata")).toBe("TC [sayı] ve [e-posta] için hata");
+    expect(hataMetni("x".repeat(500)).length).toBe(120);
+  });
+});

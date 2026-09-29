@@ -1,9 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { Sayfa } from "@/components/Sayfa";
+import { hataMetni, olay } from "@/lib/analitik";
 
-export default function HataSayfasi({ retry }: { error: Error & { digest?: string }; retry: () => void }) {
+export default function HataSayfasi({ error, retry }: { error: Error & { digest?: string }; retry: () => void }) {
+  useEffect(() => {
+    olay("hata", { sayfa: window.location.pathname, mesaj: hataMetni(error.digest ?? error.message), tur: "sayfa" });
+  }, [error]);
   return (
     <Sayfa baslik="Bir sorun oluştu">
       <p className="text-lg">

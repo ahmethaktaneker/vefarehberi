@@ -44,12 +44,6 @@ export const EPOSTA_TOPLAMA_AKTIF = true;
 export const INBOX_FORM_ADRESI = "https://joinbox.today/form/6abc02e5d2a8a60001835ab2/6abc03c05177fb2d30a0a24d";
 export const INBOX_EPOSTA_ALANI = "cf_0";
 
-/**
- * "Kontrol ediliyor" rozetleri ve "hukuk uzmanı kontrolünden geçmedi" notları.
- * Proje sahibinin kararıyla kapalı; içerik avukat kontrolünden geçene kadar yayına almadan önce
- * yeniden değerlendirilecek. true yapılınca tüm rozetler geri gelir.
- */
-export const KONTROL_ROZETLERI = false;
 
 /**
  * Ücretli araçlar (şimdilik beyanname hazırlık aracı) erişim kodu ister. false yapılırsa herkese açılır.
@@ -68,7 +62,7 @@ export const PAKET_TANITIMI_AKTIF = false;
  * Şimdilik gizlenen sayfalar: menüden, sayfa altından, adımlardan ve önerilerden kalkar; adresleri
  * "sayfa bulunamadı" verir. Kod duruyor; listeden çıkarılınca geri gelir.
  */
-export const GIZLI_SAYFALAR: readonly string[] = ["/sozluk", "/kurum-ziyaret"];
+export const GIZLI_SAYFALAR: readonly string[] = ["/kurum-ziyaret"];
 export const sayfaGizli = (yol: string) => GIZLI_SAYFALAR.includes(yol);
 
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */

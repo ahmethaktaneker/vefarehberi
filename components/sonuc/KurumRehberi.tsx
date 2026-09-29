@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import type { Belge, Kurum, KurumTuru } from "@/lib/icerik/sema";
-import { KONTROL_ROZETLERI } from "@/lib/marka";
 
 const TUR_ETIKETLERI: Record<KurumTuru, string> = {
   operator: "Telefon ve internet",
@@ -55,11 +54,6 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
           <span className="text-lg font-semibold">{k.ad}</span>
           {k.bolge && <span className="block text-base text-metin-ikincil">{k.bolge}</span>}
           <span className="mt-1 flex flex-wrap items-center gap-2">
-            {KONTROL_ROZETLERI && !k.dogrulandi && (
-              <span className="rounded-full border border-cizgi bg-bilgi-acik px-2.5 py-0.5 text-base text-metin-ikincil">
-                Kontrol ediliyor
-              </span>
-            )}
             <span className="text-base text-vurgu-koyu underline underline-offset-4 group-open:hidden">Ayrıntılar</span>
             <span className="hidden text-base text-vurgu-koyu underline underline-offset-4 group-open:inline">Kapat</span>
           </span>

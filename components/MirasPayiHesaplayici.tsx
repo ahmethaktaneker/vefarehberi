@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { useEffect, useId, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
+import { SonucuPaylas } from "@/components/SonucuPaylas";
 import { aracGorunur } from "@/lib/araclar";
 import { mirasPaylari, ortakPaydayla, yuzde, type BuyukKol, type Kardes, type KardesTuru, type Kisi } from "@/lib/mirasPayi";
 
@@ -214,6 +215,11 @@ export function MirasPayiHesaplayici() {
                 </Link>
               </p>
             )}
+            <SonucuPaylas
+              baslik="Yasal miras payları"
+              satirlar={sonuc.satirlar.map((s) => `${s.kim}: ${ortakPaydayla(s.pay, sonuc.ortakPayda)} (%${yuzdeBicim.format(yuzde(s.pay))})`)}
+              yol="/hesaplayici/miras-payi"
+            />
           </>
         )}
         {sonuc?.durum === "kapsam_disi" && (

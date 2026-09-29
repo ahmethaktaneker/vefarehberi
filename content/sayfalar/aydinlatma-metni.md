@@ -47,6 +47,11 @@ Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi ta
 
 Bu haklarınızı kullanmak veya rızanızı geri almak için {{iletisim_eposta}} adresine yazabilirsiniz.
 
+## Puan ve yorumlar
+
+- Liste sayfasında verdiğiniz 1-5 arası puan, kim olduğunuz bilinmeden yalnızca sayı olarak ziyaret istatistiklerine eklenir.
+- Deneyiminizi yazmak isterseniz, yorumunuz kendi e-posta uygulamanızdan bize e-posta olarak gelir; sitede saklanmaz. Yorumunuzu, baş harflerinizle ve şehrinizle, yalnızca ayrıca izin verdiyseniz sitede yayınlarız. İzninizi geri almak ya da yorumunuzun kaldırılmasını istemek için bize yazabilirsiniz.
+
 ## Ziyaret istatistikleri
 
 Siteyi geliştirmek için Umami (Umami Software, Inc.) ile çerez kullanmayan ziyaret sayımı yapılır. Sayıma ziyaret edilen sayfa, geldiğiniz site, tarayıcı ve cihaz türü, ülke ve "hesaplayıcı kullanıldı" gibi genel olaylar girer. IP adresiniz saklanmaz; cevaplarınızın, yazdığınız bilgilerin ve e-posta adresinizin içeriği bu sayımlara eklenmez. Sayımlar Umami'nin yurt dışındaki sunucularında, hizmet sağlayıcının saklama süresine göre tutulur.
