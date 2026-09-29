@@ -109,9 +109,6 @@
         alınır. Paraya erken ihtiyacınız varsa beyannameyi 4 aylık süreyi beklemeden verebilirsiniz.
   nereye: "e-Devlet, Vâris Hizmetleri"
   belgeler: [mirascilik_belgesi]
-  istege_bagli_belgeler:
-    - belge: ilisik_kesme
-      neden: "Parayı çekecekseniz gerekir. Hesapları bulmak ve bakiyeyi öğrenmek için gerekmez; beyanname verilip vergi ödendikten sonra vergi dairesinden alınır."
   cevrimici: "Evet, e-Devlet üzerinden."
   baglantilar:
     - { ad: "e-Devlet: Mirasçı adına banka sorgulama", url: "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama" }

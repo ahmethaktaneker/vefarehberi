@@ -77,7 +77,6 @@ export function icerikYukle(klasor: string = ICERIK_KLASORU): Icerik {
   const belgeler = Object.fromEntries(belgeListesi.map((b) => [b.id, b]));
   const belgeReferanslari = [
     ...adimlar.flatMap((a) => a.belgeler.map((b) => [a.id, b] as const)),
-    ...adimlar.flatMap((a) => a.istege_bagli_belgeler.map((b) => [a.id, b.belge] as const)),
     ...kurumlar.flatMap((k) => k.islemler.flatMap((i) => i.belgeler.map((b) => [k.id, b] as const))),
   ];
   for (const [kimden, b] of belgeReferanslari) {

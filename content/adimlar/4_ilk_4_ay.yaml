@@ -22,12 +22,7 @@
   nereye: >
     Vefat edenin ikametgâhının bulunduğu yerdeki vergi dairesi; ikametgâhı yurtdışındaysa
     Türkiye'deki son ikametgâhının bulunduğu yerdeki vergi dairesi (VİVK m.6)
-  istege_bagli_belgeler:
-    - { belge: rayic_bedel, neden: "Ev, arsa gibi taşınmaz varsa gerekir." }
-    - { belge: bakiye_yazisi, neden: "Banka hesabı varsa gerekir." }
-    - { belge: kasko_degeri, neden: "Araç varsa gerekir." }
-    - { belge: tapu_ruhsat, neden: "Taşınmaz ya da araç varsa gerekir." }
-    - { belge: borc_belgeleri, neden: "Mirastan düşülecek borç ya da cenaze masrafı varsa gerekir." }
+  belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
   arac: [beyanname_araci, veraset_hesaplayici]
   cevrimici: >
     Evet. İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden beyanname gönderilebilir;

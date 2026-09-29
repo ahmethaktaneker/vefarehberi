@@ -316,13 +316,7 @@ function YaninizaAlin({
       kurumdan.set(b, [...new Set([...(kurumdan.get(b) ?? []), k.ad])]);
     }
   }
-  const secimlik = new Map(a.istege_bagli_belgeler.map((b) => [b.belge, b.neden]));
-  for (const id of [...a.belgeler, ...secimlik.keys()]) kurumdan.delete(id);
-  const satirlar = [
-    ...a.belgeler.map((id) => ({ id, kurumlar: [] as string[], neden: undefined as string | undefined })),
-    ...[...kurumdan].map(([id, k]) => ({ id, kurumlar: k, neden: undefined })),
-    ...[...secimlik].map(([id, neden]) => ({ id, kurumlar: [] as string[], neden })),
-  ];
+  const satirlar = [...a.belgeler.map((id) => ({ id, kurumlar: [] as string[] })), ...[...kurumdan].map(([id, k]) => ({ id, kurumlar: k }))];
   const beyanname = a.arac.includes("beyanname_araci") && aracGorunur("beyanname_araci");
   if (satirlar.length === 0 && a.sablonlar.length === 0 && !beyanname) return null;
 
@@ -333,7 +327,7 @@ function YaninizaAlin({
       </h3>
       {satirlar.length > 0 && (
         <ul className="mt-2 space-y-1">
-          {satirlar.map(({ id, kurumlar: k, neden }) => {
+          {satirlar.map(({ id, kurumlar: k }) => {
             const b = belgeler[id];
             if (!b) return null;
             const kaynak = turetilmis.get(id);
@@ -343,7 +337,6 @@ function YaninizaAlin({
                 {yazdirma ? (
                   <span>
                     {secili ? "☑" : "☐"} {b.ad}
-                    {neden && ` (isteğe bağlı: ${neden})`}
                   </span>
                 ) : (
                   <label className={`flex min-h-11 items-start gap-3 py-1.5 ${kaynak ? "" : "cursor-pointer"}`}>
@@ -355,9 +348,7 @@ function YaninizaAlin({
                       className="mt-0.5 size-6 shrink-0 accent-vurgu"
                     />
                     <span>
-                      {neden && <span className="block text-sm text-metin-ikincil">İsteğe bağlı</span>}
-                      <span className={secili ? "text-metin-ikincil line-through" : neden ? "font-semibold" : "font-bold"}>{b.ad}</span>
-                      {neden && !secili && <span className="block text-base text-metin-ikincil">{neden}</span>}
+                      <span className={secili ? "text-metin-ikincil line-through" : "font-bold"}>{b.ad}</span>
                       {kaynak && <span className="block text-base text-vurgu">Hazır: &ldquo;{kaynak}&rdquo; adımını yaptınız.</span>}
                       {!kaynak && k.length > 0 && <span className="block text-base text-metin-ikincil">Bazı kurumlar istiyor: {k.join(", ")}</span>}
                       {!secili && b.not && <span className="block text-base text-metin-ikincil">{b.not}</span>}

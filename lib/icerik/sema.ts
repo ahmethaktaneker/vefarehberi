@@ -107,8 +107,6 @@ export const AdimSemasi = z.strictObject({
   neden: z.string().optional(),
   nereye: z.string().optional(),
   belgeler: z.array(z.string()).default([]),
-  /** Herkes için gerekmeyen belgeler ve hangi durumda gerektikleri; "İsteğe bağlı" etiketiyle gösterilir. */
-  istege_bagli_belgeler: z.array(z.strictObject({ belge: z.string(), neden: z.string().min(1) })).default([]),
   cevrimici: z.string().optional(),
   ipuclari: z.array(IpucuSemasi).default([]),
   uyari: z.string().optional(),

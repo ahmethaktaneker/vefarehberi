@@ -31,7 +31,7 @@ export type Liste = {
   /** Cevaplara göre ilgili kurumlar. */
   kurumlar: Kurum[];
   /** Gösterilen adımlarda istenen belgelerin birleşik listesi; hangi adımlarda istendiğiyle. */
-  belgeListesi: { belge: Belge; adimlar: { id: string; baslik: string; neden?: string }[] }[];
+  belgeListesi: { belge: Belge; adimlar: { id: string; baslik: string }[] }[];
 };
 
 /**
@@ -109,13 +109,10 @@ export function listeOlustur(hamCevaplar: Cevaplar, icerik: Icerik, bugun: strin
 
   const kurumlar = icerik.kurumlar.filter((k) => kosulSaglaniyor(k.kosul, c));
 
-  const belgeHaritasi = new Map<string, { id: string; baslik: string; neden?: string }[]>();
+  const belgeHaritasi = new Map<string, { id: string; baslik: string }[]>();
   for (const a of adimlar) {
     for (const b of a.belgeler) {
       belgeHaritasi.set(b, [...(belgeHaritasi.get(b) ?? []), { id: a.id, baslik: a.baslik }]);
-    }
-    for (const { belge, neden } of a.istege_bagli_belgeler) {
-      belgeHaritasi.set(belge, [...(belgeHaritasi.get(belge) ?? []), { id: a.id, baslik: a.baslik, neden }]);
     }
   }
   const belgeListesi = [...belgeHaritasi]
