@@ -49,6 +49,8 @@
     - "https://www.ozcanlarhukuk.com/mirasin-hukmen-reddi-davasi/"
     - "https://www.palmahukuk.com/reddi-miras-yapinca-borc-kime-kalir/"
     - "https://www.sikayetvar.com/avukat/miras"
+  baglantilar:
+    - { ad: "e-Devlet: İcra dosyası sorgulama (mirasçı adına)", url: "https://www.turkiye.gov.tr/adalet-murise-ait-icra-dosyasi-sorgulama" }
   sablonlar: [mirasin_reddi]
   yer: noter_mahkeme
   son_kontrol: "2026-09-28"

@@ -16,7 +16,7 @@ dogrulandi: false
 ---
 ## Hesapları öğrenme
 
-e-Devlet'teki **Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz Kişi Adına)** hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu görebilirsiniz. Bunun için [mirasçılık belgesi](/rehber/mirascilik-belgesi-nasil-alinir) gerekir.
+e-Devlet'teki **Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz Kişi Adına)** hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu görebilirsiniz. Bu sorgu bakiyeyi göstermez; bakiyeyi ve varsa kredi, kart borcunu bankalara mirasçılık belgesi ve kimliğinizle giderek öğrenirsiniz. Sorgu için [mirasçılık belgesi](/rehber/mirascilik-belgesi-nasil-alinir) gerekir.
 
 ## Hesaptan para çekmeyin
 

@@ -22,29 +22,28 @@ Bir yakınınızı kaybettikten sonra yapılması gereken işler çoktur, ama he
 
 ## İlk hafta
 
-- **Ölüm belgesi:** Sağlık kurumundaki vefatlarda kurum, kurum dışındaki vefatlarda belediye tabibi veya toplum sağlığı merkezi hekimi düzenler. Ölüm nüfusa elektronik olarak bildirilir.
+- **Ölüm belgesi:** Sağlık kurumundaki vefatlarda kurum, kurum dışındaki vefatlarda belediye tabibi veya toplum sağlığı merkezi hekimi düzenler. Ölümü nüfusa halk sağlığı müdürlüğü bildirir; ailenin ayrıca bildirmesi gerekmez.
 - **Cenaze ve defin:** Birçok belediye 188 cenaze hattı üzerinden nakil, yıkama ve defin hizmeti sunuyor. Ayrıntılar için [İlk 48 saat rehberine](/ilk-48-saat) bakın.
 - **Vefat edenin hesabından para çekmeyin.** Vefattan sonra yatan emekli maaşı gibi ödemeler iade edilmesi gereken tutarlar olabilir.
 
 ## İlk ay
 
 - [Mirasçılık belgesi (veraset ilamı)](/rehber/mirascilik-belgesi-nasil-alinir) alın; bankalar, sigorta ve vergi işlemlerinin çoğunda istenir.
-- e-Devlet'teki **Vâris Hizmetleri** üzerinden [banka hesaplarını](/rehber/vefat-edenin-banka-hesaplari), hayat sigortasını, icra dosyalarını sorgulayın.
+- e-Devlet'teki **Vâris Hizmetleri** üzerinden [banka hesaplarını](/rehber/vefat-edenin-banka-hesaplari), taşınmazları, hayat sigortasını ve icra dosyalarını sorgulayın.
 - [Hayat ve ferdi kaza sigortası](/rehber/vefat-edenin-hayat-sigortasi-sorgulama) olup olmadığına bakın; birçok aile bundan habersiz.
-- Borç olabileceğini düşünüyorsanız kredi ve borç risk raporu alın.
-- Elektrik, su, doğalgaz ve [telefon aboneliklerini](/rehber/vefat-edenin-telefon-hatti) devralmayı ya da kapatmayı değerlendirin.
+- Bankalara giderek bakiyeyi ve borçları öğrenin. Tüm borçları tek belgede görmek isterseniz Risk Merkezi'nden risk raporu alabilirsiniz.
+- [Ölüm aylığı](/rehber/olum-ayligi-basvurusu) ve [cenaze ödeneği](/rehber/cenaze-odenegi) başvurularını yapın; ikisi de mirasçılık belgesi istemez.
+- Elektrik, su, doğalgaz ve [telefon aboneliklerini](/rehber/vefat-edenin-telefon-hatti) devralmayı ya da kapatmayı değerlendirin; kapatınca güvence bedelini geri isteyin.
 
 ## İlk 3 ay
 
 - **Mirası reddetme süresi 3 aydır.** Borçlar mal varlığından fazla olabilirse [reddi mirası](/rehber/reddi-miras-suresi) değerlendirin.
-- [Ölüm aylığı](/rehber/olum-ayligi-basvurusu) ve [cenaze ödeneği](/rehber/cenaze-odenegi) başvurularını yapın.
-
 ## İlk 4 ay
 
 - **Veraset ve intikal vergisi beyannamesi:** Vefat Türkiye'de olduysa Türkiye'deki mirasçılar için süre 4 aydır. Yurtdışındaki mirasçılar için süreler farklıdır. [Vergi çıkıp çıkmayacağını hesaplayın](/hesaplayici/veraset-vergisi).
 
 ## Sonra (acelesi olmayanlar)
 
-- Tapu intikali, araç devri, abonelik güvence bedelinin iadesi ve dijital hesaplar.
+- Tapu intikali, araç devri ve dijital hesaplar.
 
 Yurtdışında yaşıyorsanız [yurtdışındaki mirasçılar için rehbere](/yurtdisi) bakın.

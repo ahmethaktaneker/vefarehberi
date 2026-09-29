@@ -19,7 +19,7 @@ const KONTROLLER = [
   { id: "varis", metin: "e-Devlet Vâris Hizmetleri'nden hesaplar ve kayıtlar sorgulandı" },
   { id: "vergi", metin: "Vergi dairesine ödenmemiş vergi borcu soruldu" },
   { id: "kefalet", metin: "Başkasının borcuna kefil olup olmadığı bankalara soruldu" },
-  { id: "icra", metin: "Hakkında icra takibi ya da dava olup olmadığı araştırıldı" },
+  { id: "icra", metin: "Hakkında icra takibi ya da dava olup olmadığı e-Devlet'ten araştırıldı", url: "https://www.turkiye.gov.tr/adalet-murise-ait-icra-dosyasi-sorgulama" },
 ];
 
 /** Reddi miras son gününü .ics olarak indirir; 7 gün ve 1 gün önce hatırlatır. Tarayıcıda üretilir. */
@@ -167,7 +167,14 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
                       }
                       className="mt-1 size-6 shrink-0 accent-vurgu-koyu"
                     />
-                    <span className={secili ? "text-metin-ikincil line-through" : ""}>{k.metin}</span>
+                    <span>
+                      <span className={secili ? "text-metin-ikincil line-through" : ""}>{k.metin}</span>
+                      {"url" in k && k.url && (
+                        <a href={k.url} target="_blank" rel="noopener noreferrer" className="baglanti mt-1 block text-base">
+                          e-Devlet&apos;te aç<span className="sr-only"> (yeni sekmede açılır)</span>
+                        </a>
+                      )}
+                    </span>
                   </label>
                 </li>
               );

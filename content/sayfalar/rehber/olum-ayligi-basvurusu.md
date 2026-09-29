@@ -4,7 +4,7 @@ seo_baslik: "Ölüm Aylığı Başvurusu: Dul ve Yetim Aylığı Nasıl Alınır
 aciklama: "Vefat edenin eşi ve çocukları için ölüm aylığı (dul ve yetim aylığı) başvurusu nereye yapılır, ne zaman başlar ve nelere dikkat edilmeli."
 sss:
   - soru: "Ölüm aylığı ne zaman başlar?"
-    cevap: "Aylık, ölümü izleyen ayın başından başlar."
+    cevap: "Zamanında başvurulursa aylık, ölümü izleyen ayın başından başlar. Geç başvurularda kural farklıdır; aşağıda anlatılıyor."
   - soru: "Ölüm aylığı başvurusu nereden yapılır?"
     cevap: "e-Devlet üzerinden veya SGK'ya başvurularak yapılır."
   - soru: "Mirası reddedersem ölüm aylığı alabilir miyim?"
@@ -15,13 +15,13 @@ kaynak:
 son_kontrol: "2026-09-28"
 dogrulandi: false
 ---
-Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Kimlerin hangi şartlarla alabileceği vefat edenin sigorta durumuna ve hak sahiplerinin durumuna göre değişir; SGK'dan teyit edin.
+Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Evli olmayan kızlara yaşları ne olursa olsun, çalışamayacak durumdaki çocuklara ve şartları varsa anne ve babaya da bağlanabilir. Kimin ne kadar alacağını [ölüm aylığı hesaplayıcısında](/hesaplayici/olum-ayligi) görebilirsiniz.
 
 ## Başvuru
 
 - Başvuru **e-Devlet üzerinden** veya **SGK'ya** yapılır.
-- Aylık, **ölümü izleyen ayın başından** başlar.
-- Geç başvurularda 5 yıla kadar geriye dönük ödeme yapıldığı belirtiliyor.
+- Zamanında başvurulursa aylık, **ölümü izleyen ayın başından** başlar.
+- **Geç başvurmayın.** SGK (5510) kapsamında hak kazanılmış ama ödenmemiş aylıkların, başvuru tarihinden geriye en fazla 5 yıllık kısmı ödenir. Emekli Sandığı (5434) kapsamında ise hak kazanılan tarihten 5 yıl geçtikten sonra ilk kez başvurulursa aylık, kural olarak başvurudan sonraki ay başlar.
 - Mirası reddetmek bu aylığı etkilemez.
 
 ## Başvurudan sonra
