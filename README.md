@@ -1,6 +1,6 @@
 # Vefat Rehberi
 
-Vefat sonrası işlemler, adım adım. Ürün tanımı ve kurallar: [PROJE_BRIEF.md](PROJE_BRIEF.md).
+Vefat sonrası işlemler, adım adım.
 
 ## Kurulum
 

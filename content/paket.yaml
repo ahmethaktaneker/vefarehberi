@@ -1,4 +1,4 @@
-# Paketler: ilgi testi (Brief 10). Gerçek ödeme yok, fiyat gösterilmiyor.
+# Paketler: ilgi testi. Gerçek ödeme yok, fiyat gösterilmiyor.
 # Zorunlu bilgi asla ücretli değildir; pakette zaman kazandıran ve işi bizzat kolaylaştıran araçlar var.
 # Her içerik maddesi bir araca bağlıdır. Satışta olmayan araçların sayfası gizli olsa da (lib/marka.ts
 # GIZLI_SAYFALAR) paketlerde tanıtım için anlatılır. Öne çıkan paket cevaplara göre seçilir (lib/araclar.ts).

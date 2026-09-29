@@ -1,6 +1,0 @@
-{
-  "version": "0.0.1",
-  "configurations": [
-    { "name": "vefa-dev", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--prefix", "C:/projeler/vefa-rehberi"], "port": 3000 }
-  ]
-}

@@ -3,7 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { URUN_ADI, URUN_ALT_BASLIK } from "@/lib/marka";
 
-/** Sosyal medyada paylaşım görseli: logo, marka ve alt başlık birlikte (Brief 14a). */
+/** Sosyal medyada paylaşım görseli: logo, marka ve alt başlık birlikte. */
 export const alt = `${URUN_ADI}: ${URUN_ALT_BASLIK}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

@@ -9,7 +9,7 @@ const BUGUN = "2026-09-28";
 const idler = (c: Cevaplar) => listeOlustur(c, icerik, BUGUN).adimlar.map((a) => a.id);
 const adim = (c: Cevaplar, id: string) => listeOlustur(c, icerik, BUGUN).adimlar.find((a) => a.id === id);
 
-// Brief Bölüm 2'deki personalar.
+// Örnek kullanıcı durumları.
 const MEHMET: Cevaplar = {
   vefat_tarihi: "2026-08-10",
   vefat_yeri: "turkiye",

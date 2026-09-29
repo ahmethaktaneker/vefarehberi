@@ -1,5 +1,5 @@
 /**
- * Çerezsiz, kişisel veri içermeyen olay sayımı (Brief 11). Umami betiği yüklü değilse hiçbir şey yapmaz.
+ * Çerezsiz, kişisel veri içermeyen olay sayımı. Umami betiği yüklü değilse hiçbir şey yapmaz.
  * Cevapların içeriği asla gönderilmez; yalnızca kategorik ve anonim bilgiler.
  */
 

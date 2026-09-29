@@ -3,13 +3,13 @@ import type { Kosul } from "@/lib/kurallar/kosul";
 import { SORU_DEGERLERI } from "@/lib/sorular";
 
 /**
- * content/ klasöründeki YAML dosyalarının şeması (Brief 6.1, 6.2).
+ * content/ klasöründeki YAML dosyalarının şeması.
  * Kaynağı, son kontrol tarihi veya doğrulama durumu olmayan içerik geçersizdir.
  */
 
 const tarih = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD biçiminde olmalı");
 
-/** Her içerik maddesinde zorunlu doğruluk alanları (Brief 0.5, 4.5). */
+/** Her içerik maddesinde zorunlu doğruluk alanları. */
 const dogrulukAlanlari = {
   kaynak: z.array(z.string().min(1)).min(1, "En az bir kaynak gerekli"),
   son_kontrol: tarih,
@@ -74,7 +74,7 @@ const SonTarihSemasi = z.strictObject({
   sure: z.union([
     z.strictObject({ ay: z.number().int().positive() }),
     z.strictObject({ parametre: z.enum(SURE_PARAMETRELERI) }),
-    /** Vefat yeri ve mirasçıların yerine göre değişen süre (Brief 6.3). */
+    /** Vefat yeri ve mirasçıların yerine göre değişen süre. */
     z.strictObject({ kural: z.literal("veraset_beyannamesi") }),
   ]),
   /** Süreyle ilgili genel not. */
@@ -139,7 +139,7 @@ export const BelgeSemasi = z.strictObject({
 });
 
 
-/** Kurum rehberi (Brief 8). Resmi notlar ve kullanıcı deneyimleri ayrı tutulur. */
+/** Kurum rehberi. Resmi notlar ve kullanıcı deneyimleri ayrı tutulur. */
 export const KurumSemasi = z.strictObject({
   id: z.string().regex(/^[a-z0-9_]+$/),
   ad: z.string().min(1),

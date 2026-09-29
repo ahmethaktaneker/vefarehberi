@@ -11,7 +11,7 @@ type PaketId = Paket["paketler"][number]["id"];
 type IlgiKonusu = PaketId | "yenilikler";
 
 /**
- * Paketler: liste sayfasının en altında sade bir liste (ilgi testi, Brief 10). Fiyat yok; düğme "Açılınca
+ * Paketler: liste sayfasının en altında sade bir liste (ilgi testi). Fiyat yok; düğme "Açılınca
  * haber ver". Cevaplara göre önerilen paket işaretlenir. Gizli araçlara bağlı maddeler görünmez; maddesi
  * kalmayan paket listelenmez.
  */

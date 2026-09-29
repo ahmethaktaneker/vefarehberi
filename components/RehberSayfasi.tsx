@@ -9,7 +9,7 @@ import { hataBildirBaglantisi, KONTROL_ROZETLERI, SITE_URL } from "@/lib/marka";
 const tarih = (t: string) => t.split("-").reverse().join(".");
 
 /**
- * content/sayfalar altındaki Markdown sayfalar (Brief 14). İçerik yalnızca projenin kendi dosyalarından gelir.
+ * content/sayfalar altındaki Markdown sayfalar. İçerik yalnızca projenin kendi dosyalarından gelir.
  * Sık sorulan sorular hem sayfada gösterilir hem FAQPage yapılandırılmış verisi olarak eklenir.
  */
 export function RehberSayfasi({

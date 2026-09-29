@@ -75,7 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <GuvenNotu />
         {UMAMI_SITE_KIMLIGI && (
-          // Çerezsiz analitik (Brief 11). Adresin # ve ? kısımları gönderilmez (paylaşım linkindeki cevaplar).
+          // Çerezsiz analitik. Adresin # ve ? kısımları gönderilmez (paylaşım linkindeki cevaplar).
           <Script
             src="https://cloud.umami.is/script.js"
             data-website-id={UMAMI_SITE_KIMLIGI}

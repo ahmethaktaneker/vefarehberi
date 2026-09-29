@@ -15,7 +15,7 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 | Konu | Bulgu | Kaynak |
 |---|---|---|
 | Veraset beyannamesi süreleri | Ölüm TR: mirasçı TR 4 ay, yurtdışı 6 ay. Ölüm yurtdışı: mirasçı TR 6 ay, aynı ülke 4 ay, başka ülke 8 ay. **Kod güncellendi** (önceden ölüm yurtdışı + mirasçı TR için 4 ay gösteriliyordu, doğrusu 6 ay). | VİVK m.9, mevzuat.gov.tr |
-| Taksit ve tapu tescili | 3 yıl, mayıs-kasım, 6 taksit; tescil tahakkuk beklenmeden, devir için ilişik kesme belgesi. Brief doğru. | VİVK m.19, mevzuat.gov.tr |
+| Taksit ve tapu tescili | 3 yıl, mayıs-kasım, 6 taksit; tescil tahakkuk beklenmeden, devir için ilişik kesme belgesi. Doğru. | VİVK m.19, mevzuat.gov.tr |
 | Cenaze ödeneği | 6.398 TL (2026). Şartlar: iş kazası/meslek hastalığı, emekli aylığı alırken ölüm veya en az 360 gün prim. Sıra: eş, çocuklar, anne-baba, kardeşler. 5 yıl zamanaşımı. **Metne eklendi.** | sgk.gov.tr |
 | Emekli Sandığı ölüm yardımı | SGK sayfası 26.369,55 TL'yi yalnızca 01.01–30.06.2026 için veriyor. Temmuz tutarı resmi kaynakta bulunamadı. Sitede tutar gösterilmiyor. | sgk.gov.tr |
 | Ölüm belgesini kim düzenler | Sağlık kurumu; kurum dışında belediye tabibi, yoksa TSM hekimi, yoksa aile hekimi. 10 gün içinde nüfusa elektronik bildirim. **Metin düzeltildi.** | nvi.gov.tr |
@@ -41,17 +41,17 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 3. **Soru akışı ayrımı:** "Yurtdışında" cevabı, mirasçının vefatın olduğu ülkede mi başka bir
    ülkede mi olduğunu ayırt etmiyor; bu durumda 4 ay (en kısa) gösteriliyor. Bir alt soru eklensin mi?
 4. ~~Cenaze ödeneği her kullanıcıya gösteriliyor.~~ Artık yalnızca 4a/4b ya da "bilmiyorum" diyenlere gösteriliyor.
-5. **Uyarı metinleri** Avukatlık Kanunu m.35 açısından yeterli mi? (Brief 16.3)
+5. **Uyarı metinleri** Avukatlık Kanunu m.35 açısından yeterli mi?
 6. **Kullanıcı deneyimi notları** (Ekşi Sözlük, Şikayetvar vb.) doğası gereği resmi kaynakla
    doğrulanamaz; "Kullanıcı deneyimi" etiketiyle ayrı gösteriliyor.
-7. Brief'teki "ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmak gerekebilir" ipucu
+7. İlk tasarımdaki "ayrıntılı ölüm belgesi için birkaç gün sonra yeniden başvurmak gerekebilir" ipucu
    kaynaksız olduğu için kaldırıldı.
 
 ## Dilekçe taslakları ve rehber sayfaları (Faz 2a)
 
 - `sablonlar/*.md`: banka bakiye yazısı, abonelik iptali ve güvence bedeli iadesi, otomatik ödeme
   iptali. Dil ve içerik avukat tarafından kontrol edilmeli (Avukatlık K. m.35 sınırı: genel örnek metin).
-  ~~Reddi miras için bilinçli olarak şablon yok (Brief 9).~~ Proje sahibinin kararıyla (29.09.2026) `mirasin_reddi` şablonu eklendi; avukat kontrolü şart.
+  ~~Reddi miras için bilinçli olarak şablon yok.~~ Proje sahibinin kararıyla (29.09.2026) `mirasin_reddi` şablonu eklendi; avukat kontrolü şart.
 - `sayfalar/ilk-48-saat.md`, `sayfalar/yurtdisi.md`: tüm metin. 188 cenaze hattı birkaç belediyenin
   kendi sitesinden doğrulandı; kapsam belediyeye göre değişiyor.
 
@@ -71,12 +71,12 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 
 ## Yayın öncesi (proje sahibinin kararları, 28.09.2026)
 
-- **"Kontrol ediliyor" rozetleri gizlendi** (`lib/marka.ts` > `KONTROL_ROZETLERI = false`). Brief 0.5 rozet
+- **"Kontrol ediliyor" rozetleri gizlendi** (`lib/marka.ts` > `KONTROL_ROZETLERI = false`). Rozet
   istiyor; proje sahibi yayından önce avukat kontrolünü halledecek. Kontrol tamamlanmadan yayına alınırsa
   bu ayar yeniden değerlendirilmeli.
 - `sozluk.yaml`: 21 terimin genel tanımı; avukat kontrolü gerekli.
 - `sayfalar/hakkimizda.md`: proje sahibi kendi hikâyesini ekleyebilir (dosyada yorum satırıyla yer ayrıldı).
-- Brief'teki 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı; akış 11 soru.
+- Eski 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı; akış 11 soru.
 
 ## Dosyalar
 

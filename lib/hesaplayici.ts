@@ -1,7 +1,7 @@
 import type { Parametreler } from "@/lib/icerik/sema";
 
 /**
- * Veraset ve intikal vergisi tahmini (Brief 7, Faz 2). Yasal miras payı hesaplanmaz;
+ * Veraset ve intikal vergisi tahmini. Yasal miras payı hesaplanmaz;
  * kullanıcı kendi payına düşen tutarı girer ya da eşit pay varsayımı seçer.
  *
  * İstisna (VİVK m.4, 2026 tutarları parametreler.yaml'da):

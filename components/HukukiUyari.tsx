@@ -1,4 +1,4 @@
-/** Her sayfanın altındaki kısa uyarı (Brief 4.2). Proje sahibinin isteğiyle sönük ve küçük. */
+/** Her sayfanın altındaki kısa uyarı. Proje sahibinin isteğiyle sönük ve küçük. */
 export function HukukiUyari() {
   return (
     <p className="text-base leading-snug text-metin-ikincil">

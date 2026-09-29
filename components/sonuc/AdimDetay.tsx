@@ -57,7 +57,7 @@ export function SonTarihKutusu({ adim: a }: { adim: HesaplanmisAdim }) {
 
 /**
  * Bir adımın tüm ayrıntıları: panelde ve yazdırılan listede kullanılır.
- * Her adımda aynı yapı (Brief 13): Ne? / Neden önemli? / Nereye? / Hangi belgeler? / Çevrimiçi? / İpucu.
+ * Her adımda aynı yapı: Ne? / Neden önemli? / Nereye? / Hangi belgeler? / Çevrimiçi? / İpucu.
  */
 export function AdimDetay({
   adim: a,

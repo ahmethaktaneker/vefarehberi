@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Yerel çalışma notları (depoya girmez)
+CLAUDE.md
+AGENTS.md
+PROJE_BRIEF.md
+.claude/

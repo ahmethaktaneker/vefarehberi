@@ -14,7 +14,7 @@ const dugme =
   "dugme dugme-ikincil";
 
 /**
- * Şablonu kullanıcının cihazında doldurur (Brief 9). Girilen bilgiler hiçbir yere gönderilmez ve
+ * Şablonu kullanıcının cihazında doldurur. Girilen bilgiler hiçbir yere gönderilmez ve
  * saklanmaz; sayfa kapanınca silinir.
  */
 export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: string; alanlar: Alan[] }) {

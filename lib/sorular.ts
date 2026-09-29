@@ -1,6 +1,6 @@
 /**
- * Soru akışı (Brief 5.2). Sorular arayüz metnidir; hukuki içerik değildir.
- * Brief'teki 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı (28.09.2026).
+ * Soru akışı. Sorular arayüz metnidir; hukuki içerik değildir.
+ * Eski 4. soru (yakınlık) hiçbir kuralda kullanılmadığı için kaldırıldı (28.09.2026).
  * Seçenek değerleri content/ içindeki koşullarda kullanılır, değiştirilirse içerik de güncellenmeli.
  */
 

@@ -3,7 +3,7 @@ import path from "node:path";
 import { parse } from "yaml";
 import { z } from "zod";
 
-/** content/paket.yaml: Beyanname ve Aile paketleri, ilgi testi (Brief 10). */
+/** content/paket.yaml: Beyanname ve Aile paketleri, ilgi testi. */
 export const PaketSemasi = z.strictObject({
   paketler: z
     .array(

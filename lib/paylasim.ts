@@ -2,7 +2,7 @@ import { tarihGecerli } from "@/lib/kurallar/tarih";
 import { SORULAR, type Cevaplar } from "@/lib/sorular";
 
 /**
- * Aileyle paylaşım bağlantısı (Brief 4.4, 12). Cevaplar sıkıştırılmış olarak adresin "#"
+ * Aileyle paylaşım bağlantısı. Cevaplar sıkıştırılmış olarak adresin "#"
  * kısmında taşınır; bu kısım tarayıcıdan sunucuya gönderilmez, sunucu loglarına düşmez.
  *
  * Biçim: "1." + vefat tarihi (YYYYMMDD) + "." + her soru için bir parça, "." ile ayrılmış.

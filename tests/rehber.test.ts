@@ -6,8 +6,8 @@ import { hazirSayfa } from "@/lib/icerik/sayfalar";
 const SAYFALAR = [...rehberSluglari().map((s) => `rehber/${s}`), "ilk-48-saat", "yurtdisi", "veraset-vergisi-hesaplama"];
 const yollar = new Set(sitemap().map((s) => new URL(s.url).pathname));
 
-describe("arama motoru sayfaları (Brief 14)", () => {
-  it("brief'teki 10 konu var", () => {
+describe("arama motoru sayfaları", () => {
+  it("10 rehber konusu var", () => {
     expect(SAYFALAR.length).toBe(12); // 10 konu + ilk 48 saat + yas desteği
   });
 

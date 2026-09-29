@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Tarayıcıda saklama (Brief 4.4, 12). Sunucuya hiçbir şey gönderilmez.
+ * Tarayıcıda saklama. Sunucuya hiçbir şey gönderilmez.
  * localStorage erişilemezse (gizli pencere, engellenmiş site verisi) bellek içinde devam eder;
  * sayfa yenilenince kaybolur ama akış çalışmaya devam eder.
  *

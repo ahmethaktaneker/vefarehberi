@@ -13,7 +13,7 @@ export const YAYINDA = false;
 
 /**
  * "Hukuk uzmanı kontrolünde hazırlanır" rozeti.
- * İçerik avukat kontrolünden geçene kadar kapalı kalır (Brief 5.1).
+ * İçerik avukat kontrolünden geçene kadar kapalı kalır.
  */
 export const AVUKAT_ROZETI_AKTIF = true;
 
@@ -45,7 +45,7 @@ export const INBOX_FORM_ADRESI = "https://joinbox.today/form/6abc02e5d2a8a600018
 export const INBOX_EPOSTA_ALANI = "cf_0";
 
 /**
- * "Kontrol ediliyor" rozetleri ve "hukuk uzmanı kontrolünden geçmedi" notları (Brief 0.5).
+ * "Kontrol ediliyor" rozetleri ve "hukuk uzmanı kontrolünden geçmedi" notları.
  * Proje sahibinin kararıyla kapalı; içerik avukat kontrolünden geçene kadar yayına almadan önce
  * yeniden değerlendirilecek. true yapılınca tüm rozetler geri gelir.
  */

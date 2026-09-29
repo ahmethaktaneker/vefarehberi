@@ -35,7 +35,7 @@ export type Liste = {
 };
 
 /**
- * Veraset beyannamesi süresi (VİVK m.9/1, Brief 6.3).
+ * Veraset beyannamesi süresi (VİVK m.9/1).
  *   Ölüm Türkiye'de:   mirasçı Türkiye'de 4 ay, yabancı ülkede 6 ay.
  *   Ölüm yurtdışında:  mirasçı Türkiye'de 6 ay, ölümün olduğu ülkede 4 ay, başka bir yabancı ülkede 8 ay.
  * Soru akışı "yurtdışı"nın aynı ülke mi başka ülke mi olduğunu, "karışık" da mirasçıların
