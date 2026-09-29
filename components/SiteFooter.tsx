@@ -70,7 +70,7 @@ export function SiteFooter() {
         </p>
         <div className="space-y-2 border-t border-white/15 pt-6 [&_p]:text-white/70">
           <HukukiUyari />
-          <p className="text-base">Bağımsız bir projedir; resmi bir kurum sitesi değildir.</p>
+          <p className="text-base">Vefat Rehberi resmi bir kurum sitesi değildir.</p>
         </div>
       </div>
     </footer>

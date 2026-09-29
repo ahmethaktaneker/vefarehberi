@@ -185,6 +185,10 @@ const TutarSemasi = z.strictObject({
   /** "2026" (tüm yıl) veya "2026-01-01..2026-06-30" */
   gecerlilik: z.string().regex(/^(\d{4}|\d{4}-\d{2}-\d{2}\.\.\d{4}-\d{2}-\d{2})$/),
   not: z.string().optional(),
+  /** Tutar bir alt sınırsa arayüzde "en az" yazılır. */
+  en_az: z.boolean().optional(),
+  /** Kullanıcıya tutarın altında gösterilen kısa açıklama. */
+  kullanici_notu: z.string().optional(),
 });
 
 export const ParametrelerSemasi = z.strictObject({

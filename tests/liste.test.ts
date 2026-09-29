@@ -225,7 +225,11 @@ describe("kurallar", () => {
     expect(donemGecerli("2026", BUGUN)).toBe(true);
     expect(donemGecerli("2026-01-01..2026-06-30", BUGUN)).toBe(false);
     const c = { ...MEHMET, sosyal_guvenlik: "4c" };
-    expect(adim(c, "emekli_sandigi_olum_yardimi")?.tutarBilgisi).toEqual({ durum: "guncel_degil" });
+    // Emekli Sandığı ölüm yardımı: Temmuz-Aralık 2026 tutarı, "en az" olarak
+    expect(adim(c, "emekli_sandigi_olum_yardimi")?.tutarBilgisi).toMatchObject({ durum: "gecerli", tutar: 29934.73, enAz: true });
+    expect(listeOlustur(c, icerik, "2027-01-05").adimlar.find((x) => x.id === "emekli_sandigi_olum_yardimi")?.tutarBilgisi).toEqual({
+      durum: "guncel_degil",
+    });
     expect(adim(MEHMET, "cenaze_odenegi")?.tutarBilgisi).toMatchObject({ durum: "gecerli", tutar: 6398 });
     // Memurlarda (4/c) SGK cenaze ödeneği yerine Emekli Sandığı ölüm yardımı çıkar.
     expect(adim(c, "cenaze_odenegi")).toBeUndefined();

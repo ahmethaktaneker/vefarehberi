@@ -12,7 +12,7 @@ import { usePanelAc } from "@/components/sonuc/Panel";
 const SABLON_ADLARI: Record<string, string> = {
   banka_bakiye_yazisi: "Bankadan bakiye yazısı talebi",
   abonelik_iptal: "Abonelik iptali ve güvence bedeli iadesi talebi",
-  otomatik_odeme_iptal: "Otomatik ödeme talimatlarının iptali talebi",
+  otomatik_odeme_iptal: "Otomatik ödemeleri durdurmak isterseniz: talimat iptali",
 };
 
 const paraBicimi = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -23,8 +23,9 @@ export function TutarSatiri({ bilgi }: { bilgi: TutarBilgisi }) {
   }
   return (
     <span className="block text-base">
-      Genel bilgi olarak {bilgi.donem.slice(0, 4)} tutarı: <strong>{paraBicimi.format(bilgi.tutar)} TL</strong>{" "}
+      {bilgi.donem.slice(0, 4)} tutarı: <strong>{bilgi.enAz ? "en az " : ""}{paraBicimi.format(bilgi.tutar)} TL</strong>{" "}
       <span className="text-metin-ikincil">(kaynak: {bilgi.kaynak})</span>
+      {bilgi.not && <span className="mt-1 block text-metin-ikincil">{bilgi.not}</span>}
     </span>
   );
 }

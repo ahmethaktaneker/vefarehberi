@@ -95,8 +95,9 @@
   ipuclari:
     - tur: genel
       metin: >
-        Otomatik ödeme talimatlarının listesini isteyin. Devam edecek faturaları başka bir hesaba
-        taşıyın; bu liste hangi abonelikler olduğunu görmenize de yardımcı olur.
+        Bankadan otomatik ödeme talimatlarının listesini de isteyin; hangi abonelikler olduğunu
+        görmenize yardımcı olur. Devam edecek faturaları başka bir hesaba taşıyın, durdurmak
+        istediklerinizi aşağıdaki dilekçeyle bankaya bildirin.
   nereye: "e-Devlet, Vâris Hizmetleri"
   belgeler: [mirascilik_belgesi]
   cevrimici: "Evet, e-Devlet üzerinden."

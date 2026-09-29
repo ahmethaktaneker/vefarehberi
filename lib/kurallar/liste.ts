@@ -12,7 +12,7 @@ export type SonTarihBilgisi = {
 };
 
 export type TutarBilgisi =
-  | { durum: "gecerli"; tutar: number; donem: string; kaynak: string }
+  | { durum: "gecerli"; tutar: number; donem: string; kaynak: string; enAz?: boolean; not?: string }
   /** Parametre dosyasındaki tutarın geçerlilik dönemi bitmiş; tutar gösterilmez. */
   | { durum: "guncel_degil" };
 
@@ -86,7 +86,7 @@ function tutarHesapla(a: Adim, p: Parametreler, bugun: string): TutarBilgisi | u
   if (!a.tutar) return undefined;
   const t = p.cenaze_odenegi[a.tutar];
   if (!donemGecerli(t.gecerlilik, bugun)) return { durum: "guncel_degil" };
-  return { durum: "gecerli", tutar: t.tutar, donem: t.gecerlilik, kaynak: t.kaynak };
+  return { durum: "gecerli", tutar: t.tutar, donem: t.gecerlilik, kaynak: t.kaynak, enAz: t.en_az, not: t.kullanici_notu };
 }
 
 export function listeOlustur(hamCevaplar: Cevaplar, icerik: Icerik, bugun: string): Liste {

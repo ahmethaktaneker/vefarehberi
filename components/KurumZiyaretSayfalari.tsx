@@ -23,7 +23,7 @@ const SOYLENECEK: Record<KurumTuru, string> = {
 const SABLON_ADLARI: Record<string, string> = {
   banka_bakiye_yazisi: "Bankadan bakiye yazısı talebi",
   abonelik_iptal: "Abonelik iptali ve güvence bedeli iadesi talebi",
-  otomatik_odeme_iptal: "Otomatik ödeme talimatlarının iptali talebi",
+  otomatik_odeme_iptal: "Otomatik ödemeleri durdurmak isterseniz: talimat iptali",
 };
 
 type Sayfa = { kurum: Kurum; belgeler: { id: string; ad: string; hazir: boolean }[]; sablonlar: string[] };

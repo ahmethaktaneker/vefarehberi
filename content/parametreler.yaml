@@ -16,7 +16,15 @@ cenaze_odenegi:
   # SGK sayfası (28.09.2026) bu tutarı yalnızca 01.01-30.06.2026 için veriyor.
   # Geçerlilik 30 Haziran 2026'da bitti. Temmuz tutarı bilinmediği için arayüzde tutar
   # gösterilmez, "güncel tutar kontrol ediliyor" yazar. Güncel tutar bulununca güncellenecek.
-  emekli_sandigi_4c: { tutar: 26369.55, kaynak: "SGK", gecerlilik: "2026-01-01..2026-06-30", not: "Temmuz'da güncellenir, kontrol et" }
+  # Temmuz-Aralık 2026: memur aylık katsayısıyla yapılan hesaplama (proje sahibi, Eylül 2026). SGK'nın
+  # tutar sayfası henüz yalnızca Ocak-Haziran tutarını (26.369,55 TL) gösteriyor; SGK güncelleyince teyit et.
+  emekli_sandigi_4c:
+    tutar: 29934.73
+    kaynak: "Temmuz-Aralık 2026 memur aylık katsayısıyla hesaplama"
+    gecerlilik: "2026-07-01..2026-12-31"
+    en_az: true
+    kullanici_notu: "Vefat edenin emekli aylığı bu tutardan yüksekse yardım o aylıktan az olamaz."
+    not: "SGK sayfası güncellenince teyit et"
   zamanasimi_yil: 5
 
 veraset_vergisi:

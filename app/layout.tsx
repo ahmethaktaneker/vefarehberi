@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Atkinson_Hyperlegible, Lora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+import { GuvenNotu } from "@/components/GuvenNotu";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, UMAMI_SITE_KIMLIGI, URUN_ADI, URUN_ALT_BASLIK, YAYINDA } from "@/lib/marka";
 
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <GuvenNotu />
         {UMAMI_SITE_KIMLIGI && (
           // Çerezsiz analitik (Brief 11). Yalnızca olay sayıları; kişisel veri ve cevap içeriği gönderilmez.
           <Script
