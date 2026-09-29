@@ -259,6 +259,37 @@
   dogrulandi: false
   ucretli_icerik: false
 
+- id: kira_sozlesmesi
+  baslik: "Kira sözleşmesine karar verin"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul: { abonelikler: ["kira"] }
+  ne: >
+    Vefat eden kirada oturuyorsa sözleşme kendiliğinden bitmez; mirasçılara geçer. Evde kimse
+    oturmayacaksa mirasçılar, yasal bildirim süresine uyarak en yakın fesih dönemi sonu için
+    sözleşmeyi feshedebilir (Türk Borçlar Kanunu m.333). Evde kalacak biri varsa ev sahibiyle
+    sözleşmeyi onun adına yenilemeyi konuşun.
+  neden: >
+    Sözleşme feshedilene kadar kira borcu işlemeye devam eder ve mirasçılardan istenebilir.
+    Depozito da sözleşme bitince iade edilir.
+  nereye: "Ev sahibi. Fesih bildirimini yazılı yapın (noter ya da iadeli taahhütlü mektup)."
+  belgeler: [olum_belgesi, mirascilik_belgesi]
+  ipuclari:
+    - tur: genel
+      metin: >
+        Konut kiralarında yasal bildirim süresi 3 aydır; fesih dönemi sözleşmenin başlangıç tarihine
+        göre hesaplanır (TBK m.328, 329). Sözleşmede daha uzun bir süre yazıyorsa o geçerlidir.
+    - tur: genel
+      metin: >
+        Mirası reddetmeyi düşünüyorsanız, fesih ve ev boşaltma gibi işlemleri yapmadan önce bir
+        avukata danışın; bazı davranışlar mirası kabul sayılabilir.
+  kaynak: ["https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6098.pdf"]
+  yer: ev
+  son_kontrol: "2026-09-29"
+  dogrulandi: false
+  ucretli_icerik: false
+
 - id: otomatik_odeme_talimatlari
   baslik: "Otomatik ödeme talimatlarını kontrol edin"
   kategori: borc_risk

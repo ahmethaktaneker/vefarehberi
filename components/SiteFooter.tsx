@@ -9,6 +9,7 @@ const SUTUNLAR: { baslik: string; baglantilar: [string, string][] }[] = [
       ["/rehber/vefat-sonrasi-yapilacak-islemler", "Vefat sonrası işlemler"],
       ["/ilk-48-saat", "İlk 48 saat"],
       ["/yurtdisi", "Yurtdışında yaşayanlar"],
+      ["/rehber/yas-surecinde-destek", "Yas sürecinde destek"],
       ["/rehber", "Tüm rehberler"],
     ],
   },

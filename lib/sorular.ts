@@ -124,7 +124,7 @@ export const SORULAR: Soru[] = [
   {
     id: "abonelikler",
     tip: "coklu",
-    soru: "Üzerine kayıtlı abonelikler hangileri?",
+    soru: "Üzerine kayıtlı abonelik ve sözleşmeler hangileri?",
     aciklama: "Birden fazla seçebilirsiniz.",
     secenekler: [
       { deger: "cep", etiket: "Cep telefonu" },
@@ -133,6 +133,7 @@ export const SORULAR: Soru[] = [
       { deger: "su", etiket: "Su" },
       { deger: "dogalgaz", etiket: "Doğalgaz" },
       { deger: "dijital", etiket: "Dijital abonelikler" },
+      { deger: "kira", etiket: "Kira sözleşmesi (kirada oturuyordu)" },
       HICBIRI,
       BILMIYORUM,
     ],

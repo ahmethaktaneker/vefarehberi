@@ -13,7 +13,7 @@ import { SORULAR, type Cevaplar } from "@/lib/sorular";
  * Seçeneklerin sırası değişirse eski bağlantılar yanlış çözülür; sıralama değişirse sürümü artırın.
  */
 
-const SURUM = "2"; // 2: yakınlık sorusu kaldırıldı
+const SURUM = "3"; // 2: yakınlık sorusu kaldırıldı; 3: aboneliklere "kira" eklendi
 export const PAYLASIM_ANAHTARI = "p";
 
 export function paylasimKodla(c: Cevaplar): string {

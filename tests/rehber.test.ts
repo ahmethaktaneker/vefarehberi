@@ -8,7 +8,7 @@ const yollar = new Set(sitemap().map((s) => new URL(s.url).pathname));
 
 describe("arama motoru sayfaları (Brief 14)", () => {
   it("brief'teki 10 konu var", () => {
-    expect(SAYFALAR.length).toBe(11); // 10 konu + ilk 48 saat
+    expect(SAYFALAR.length).toBe(12); // 10 konu + ilk 48 saat + yas desteği
   });
 
   it.each(SAYFALAR)("%s: kaynaklı, sık sorulan sorulu, doldurulmamış yer tutucusu yok", (slug) => {
