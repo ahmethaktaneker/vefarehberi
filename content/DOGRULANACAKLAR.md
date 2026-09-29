@@ -106,3 +106,7 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 - Kira adımı: konutta bildirim süresi 3 ay (TBK m.329); fesihin mirası kabul sayılıp sayılmayacağı avukata sorulmalı.
 - Reddi miras tablosu: karar vermiyor, yalnızca karşılaştırıyor. "Borca batık miras" açıklaması avukat kontrolüne.
 - Kurum ziyaret sayfaları: "gişede şöyle diyebilirsiniz" cümleleri genel; kurumlara göre değişebilir.
+
+## Tutarlar (29.09.2026)
+
+- Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026: 29.934,73 TL alt sınır, memur aylık katsayısıyla hesaplandı (proje sahibi). SGK tutar sayfası güncellenince teyit et (content/parametreler.yaml).
