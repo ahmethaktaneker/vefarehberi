@@ -28,7 +28,7 @@ export default async function Page({ params }: PageProps<"/sablonlar/[id]">) {
   return (
     <Sayfa baslik={s.baslik}>
       <p className="yazdirma-gizle text-lg text-metin-ikincil">{s.aciklama}</p>
-      <CihazdaKalir className="yazdirma-gizle">
+      <CihazdaKalir kutu className="yazdirma-gizle">
         Bu dilekçeye yazdıklarınızı biz görmüyoruz; bilgiler yalnızca bu cihazda kullanılır ve sayfa kapanınca silinir.
       </CihazdaKalir>
       <div className="yazdirma-gizle">

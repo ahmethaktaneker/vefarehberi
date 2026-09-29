@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { useEffect, useMemo } from "react";
 import { veriyiTamamla } from "@/lib/beyanname/hesap";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
@@ -74,6 +75,7 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
   return (
     <>
       <div className="ekran-icerik space-y-8">
+        <CihazdaKalir kutu>Buraya yazdıklarınızı biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
         <div className={`rounded-2xl p-5 ${sure && sure.kalanGun <= 30 ? "bg-uyari-acik" : "bg-vurgu-acik"}`}>
           {sure ? (
             <>
@@ -150,17 +152,22 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
           </p>
           {ozet.eksik > 0 && <p className="text-base text-metin-ikincil">{ozet.eksik} kalemin tutarı boş; toplama eklenmedi.</p>}
           {ozet.borc > 0 && ozet.fark < 0 && (!sure || sure.kalanGun >= 0) && (
-            <div className="rounded-xl border-l-4 border-uyari bg-uyari-acik p-4">
-              <p className="font-semibold">Bildiğiniz borçlar, bildiğiniz varlıklardan fazla görünüyor.</p>
-              <p className="mt-1 text-base">
-                Bu tablo yalnızca yazdıklarınızı toplar, karar vermez. Bu durumdaki aileler genellikle mirası reddetmeyi, borçlar
-                belirsizse resmi defter tutulmasını ya da borca batık miras tespitini değerlendirir (aşağıda anlatıldı). Ret her
-                mirasçı için ayrı yapılır ve payın sizin çocuklarınıza geçmesine yol açabilir.
+            <div className="space-y-3 rounded-2xl border-2 border-uyari bg-uyari-acik p-5 sm:p-6">
+              <p className="font-serif text-2xl font-semibold text-vurgu-koyu">Borçlar varlıklardan fazla görünüyor</p>
+              <p className="text-lg">
+                Mirası reddetmek isterseniz ret beyanı dilekçenizi burada birkaç dakikada hazırlayabilirsiniz. Her mirasçı kendi
+                dilekçesini verir.
               </p>
-              <p className="mt-2 text-base">İsterseniz ret beyanı dilekçesini burada birkaç dakikada hazırlayabilirsiniz.</p>
-              <Link href="/sablonlar/mirasin_reddi" className="dugme dugme-birincil mt-3 min-h-11 px-5 py-2 text-base">
-                Ret beyanı dilekçesini hazırla
+              <Link
+                href="/sablonlar/mirasin_reddi"
+                className="dugme dugme-birincil w-full px-6 py-4 text-xl sm:w-auto"
+              >
+                Miras ret dilekçesini hazırla
               </Link>
+              <p className="text-base text-metin-ikincil">
+                Bu tablo yalnızca yazdıklarınızı toplar, karar vermez. Borçlar belirsizse resmi defter tutulmasını ya da borca batık
+                miras tespitini de değerlendirebilirsiniz (aşağıda anlatıldı). Ret, payın sizin çocuklarınıza geçmesine yol açabilir.
+              </p>
             </div>
           )}
         </section>

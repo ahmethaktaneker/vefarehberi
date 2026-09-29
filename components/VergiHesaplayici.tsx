@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { olay } from "@/lib/analitik";
 import type { Parametreler } from "@/lib/icerik/sema";
 import { tutarOku, verasetVergisiHesapla, type MirasciTuru } from "@/lib/hesaplayici";
@@ -47,6 +48,7 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
   return (
     <div className="space-y-8">
       <form className="space-y-6 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
+        <CihazdaKalir kutu>Buraya yazdıklarınızı biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
         <div>
           <label htmlFor="toplam" className="block font-semibold">
             Mirasın toplam değeri (TL)

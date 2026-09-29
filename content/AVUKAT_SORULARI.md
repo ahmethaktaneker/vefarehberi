@@ -7,9 +7,9 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 
 1. **Sitenin genel konumu.** Site kişiye özel bir yapılacaklar listesi üretiyor. Bu, Avukatlık Kanunu
    m.35 anlamında hukuki danışmanlık sayılır mı? Sayfa altındaki uyarı yeterli mi?
-   > "İçerikler avukat desteğiyle hazırlanır. Genel bilgilendirme amaçlıdır, kişiye özel
+   > "İçerikler avukat ve mali müşavir desteğiyle hazırlanır. Genel bilgilendirme amaçlıdır, kişiye özel
    > hukuki danışmanlık yerine geçmez; son tarih ve tutarları resmi kaynaktan teyit edin."
-2. **"Avukat desteğiyle hazırlanır" ifadesi.** (Gelir uzmanı ifadesi kaldırıldı.) Ruhsatlı bir mali
+2. **"Avukat ve mali müşavir desteğiyle hazırlanır" ifadesi.** (Gelir uzmanı ifadesi kaldırıldı.) Ruhsatlı bir mali
    müşavir kontrol ederse "avukat ve mali müşavir desteğiyle" yazılabilir mi?
 3. **Mirasın reddi beyanı dilekçesi** (`sablonlar/mirasin_reddi.md`). Metin doğru mu? Hangi mahkemeye
    verilir (vefat edenin son yerleşim yeri sulh hukuk mahkemesi mi, herhangi bir sulh hukuk mahkemesi

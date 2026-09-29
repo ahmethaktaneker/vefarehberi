@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { olay } from "@/lib/analitik";
 import { tutarOku } from "@/lib/hesaplayici";
 import { olumAyligiPaylari, type CocukDurumu, type DigerEbeveyn, type EbeveynGeliri, type OlumCocuk, type OlumEbeveyn } from "@/lib/olumAyligi";
@@ -53,6 +54,7 @@ export function OlumAyligiHesaplayici() {
   return (
     <div className="space-y-8">
       <form className="space-y-8 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
+        <CihazdaKalir kutu>Buraya yazdıklarınızı biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
         <div>
           <label htmlFor="sistem" className="block font-semibold">
             Vefat edenin aylığı hangi kurumdan?

@@ -37,10 +37,10 @@ Bir yakınınızı kaybettikten sonra yapılması gereken işler çoktur, ama he
 
 ## İlk 3 ay
 
-- **Mirası reddetme süresi 3 aydır.** Borçlar mal varlığından fazla olabilirse [reddi mirası](/rehber/reddi-miras-suresi) değerlendirin.
+- **Mirası reddetme süresi, ölümü öğrendiğiniz tarihten itibaren 3 aydır.** Borçlar mal varlığından fazla olabilirse [reddi mirası](/rehber/reddi-miras-suresi) değerlendirin.
 ## İlk 4 ay
 
-- **Veraset ve intikal vergisi beyannamesi:** Vefat Türkiye'de olduysa Türkiye'deki mirasçılar için süre 4 aydır. Yurtdışındaki mirasçılar için süreler farklıdır. [Vergi çıkıp çıkmayacağını hesaplayın](/hesaplayici/veraset-vergisi).
+- **Veraset ve intikal vergisi beyannamesi:** Vefat Türkiye'de olduysa Türkiye'deki mirasçılar için süre, vefat tarihinden itibaren 4 aydır. Yurtdışındaki mirasçılar için süreler farklıdır. [Vergi çıkıp çıkmayacağını hesaplayın](/hesaplayici/veraset-vergisi).
 
 ## Sonra (acelesi olmayanlar)
 

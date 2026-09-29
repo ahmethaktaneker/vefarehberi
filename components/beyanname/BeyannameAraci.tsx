@@ -20,6 +20,7 @@ import {
 import type { BeyannameIcerik } from "@/lib/beyanname/sema";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import { tutarOku } from "@/lib/hesaplayici";
+import { PDF_GENISLIK_PX, formuPdfYap } from "@/lib/pdf";
 import type { Parametreler } from "@/lib/icerik/sema";
 import type { Cevaplar } from "@/lib/sorular";
 import { CihazdaKalir } from "@/components/CihazdaKalir";
@@ -63,6 +64,8 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const ham = useDepo(ANAHTARLAR.beyanname);
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const [adim, setAdim] = useState(0);
+  const [pdfDurum, setPdfDurum] = useState<"bos" | "hazirlaniyor" | "hata">("bos");
+  const pdfKap = useRef<HTMLDivElement>(null);
   const baslik = useRef<HTMLHeadingElement>(null);
   const ilkCizim = useRef(true);
 
@@ -91,6 +94,17 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const murisAlani = (k: keyof Muris) => ({ deger: v.muris[k], onChange: (x: string) => guncelle((d) => void (d.muris[k] = x)) });
   const ozet = beyannameOzeti(v, parametreler);
   const ekler = ekListesi(v, icerik);
+  async function pdfIndir() {
+    if (!pdfKap.current) return;
+    setPdfDurum("hazirlaniyor");
+    try {
+      await formuPdfYap(pdfKap.current, "veraset-beyannamesi.pdf");
+      olay("beyanname_yazdirildi");
+      setPdfDurum("bos");
+    } catch {
+      setPdfDurum("hata");
+    }
+  }
   const git = (n: number) => {
     setAdim(n);
     document.getElementById("beyanname-adimlar")?.scrollIntoView();
@@ -131,6 +145,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
           <h2 id="adim-baslik" ref={baslik} tabIndex={-1} className="font-serif text-2xl font-semibold text-vurgu-koyu outline-none">
             {ADIMLAR[adim].ad}
           </h2>
+          <CihazdaKalir kutu>Bu sayfaya yazdıklarınızı biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
 
           {adim === 0 && (
             <>
@@ -405,9 +420,18 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
               </div>
 
               <div className="space-y-3">
-                <button type="button" onClick={formuYazdir} className="dugme dugme-birincil">
-                  Beyanname formunu yazdır
-                </button>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <button type="button" onClick={pdfIndir} disabled={pdfDurum === "hazirlaniyor"} className="dugme dugme-birincil">
+                    {pdfDurum === "hazirlaniyor" ? "PDF hazırlanıyor…" : "PDF olarak indir"}
+                  </button>
+                  <button type="button" onClick={formuYazdir} className="dugme dugme-ikincil">
+                    Doğrudan yazdır
+                  </button>
+                </div>
+                <p className="text-base text-metin-ikincil">
+                  Telefondan yazdıracaksanız PDF olarak indirip açın ve oradan yazdırın; form A4 sayfaya tam sığar.
+                </p>
+                {pdfDurum === "hata" && <p className="text-base text-uyari">PDF hazırlanamadı. &ldquo;Doğrudan yazdır&rdquo; düğmesini deneyin.</p>}
                 <ol className="list-decimal space-y-1 pl-5 text-base">
                   <li>Formu iki sayfa olarak yazdırın (arkalı önlü de olur).</li>
                   <li>Boş kalan yerleri elle doldurun. Mirasçılar, ön yüzdeki kendi satırlarını imzalar.</li>
@@ -465,6 +489,13 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
       <div className="form-yazdirma">
         <ResmiForm veri={v} icerik={icerik} />
       </div>
+      {adim === ADIMLAR.length - 1 && (
+        <div aria-hidden="true" className="yazdirma-gizle pointer-events-none fixed top-0 -left-[9999px]" style={{ width: PDF_GENISLIK_PX }}>
+          <div ref={pdfKap}>
+            <ResmiForm veri={v} icerik={icerik} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

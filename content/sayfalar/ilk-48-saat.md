@@ -27,7 +27,7 @@ Yurtdışında vefat eden Türk vatandaşlarının ölümü, yerel makamlardan a
 ## 4. Acele etmemeniz gerekenler
 
 - **Vefat edenin banka hesabından para çekmeyin.** Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler iade edilmesi gereken tutarlar olabilir. Mirasçılardan birinin kendi başına para çekmesi, diğer mirasçılar açısından sorun doğurabilir.
-- **Vefat edenin borçlarını ödemeye acele etmeyin.** Borç olabileceğini düşünüyorsanız, mirası reddetmek için yasal süre 3 aydır. Karar vermeden önce borç durumunu öğrenmeniz ve bir avukata danışmanız önerilir.
+- **Vefat edenin borçlarını ödemeye acele etmeyin.** Borç olabileceğini düşünüyorsanız, mirası reddetmek için yasal süre, ölümü öğrendiğiniz tarihten itibaren 3 aydır. Karar vermeden önce borç durumunu öğrenmeniz ve bir avukata danışmanız önerilir.
 
 ## Sonrası için
 

@@ -28,7 +28,7 @@ Veraseten devir için gerekli belgelerle (mirasçılık belgesi ve kimlik) **Tur
 
 ## Türk Telekom
 
-- **İptal:** Türk Telekom ofisleri veya mağazalarına, ya da e-posta veya faksla başvurulur. Ölüm belgesi, defin belgesi ve mirasçılık belgesi istenir. Hizmet 24 saat içinde durdurulur, iptal 7 gün içinde tamamlanır. Modem gibi şirkete ait cihazlar iade edilmelidir.
+- **İptal:** Türk Telekom ofisleri veya mağazalarına, ya da e-posta veya faksla başvurulur. Ölüm belgesi, defin belgesi ve mirasçılık belgesi istenir. Türk Telekom'un kendi sayfasına göre hizmet 24 saat içinde durdurulur, iptal 7 gün içinde tamamlanır. Modem gibi şirkete ait cihazlar iade edilmelidir.
 - **Devir:** Bayilere mirasçılık belgesi ve ölüm belgesiyle başvurulur. Devralacak kişinin hazır bulunması veya vekaletname sunması gerekir. Taahhüt varsa cayma bedeli ödenmesi gerekir.
 
 ## Dilekçe

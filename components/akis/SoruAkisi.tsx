@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { kaynakSayfa, olay } from "@/lib/analitik";
@@ -79,7 +80,6 @@ export function SoruAkisi() {
           <span>
             Soru {sira + 1} / {sorular.length}
           </span>
-          <span>Cevaplarınız yalnızca bu cihazda kalır</span>
         </p>
         <div
           role="progressbar"
@@ -91,6 +91,7 @@ export function SoruAkisi() {
         >
           <div className="h-full rounded-full bg-vurgu transition-[width] duration-500" style={{ width: `${ilerleme}%` }} />
         </div>
+        <CihazdaKalir className="mt-3">Cevaplarınızı biz görmüyoruz; yalnızca bu cihazda kalır. İsim ya da T.C. kimlik numarası sormuyoruz.</CihazdaKalir>
       </div>
 
       <fieldset key={soru.id} className="rounded-2xl bg-yuzey p-5 shadow-yuksek sm:p-7">

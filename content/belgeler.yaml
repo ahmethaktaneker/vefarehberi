@@ -39,7 +39,7 @@
   dogrulandi: false
 
 - id: bakiye_yazisi
-  ad: "Bankalardan vefat tarihi itibarıyla bakiye yazısı"
+  ad: "Bankalardan vefat tarihi itibarıyla (işlemiş faiz dahil) bakiye yazısı"
   kaynak: ["https://www.hancizadehukuk.com/veraset-ve-intikal-vergisi-beyannamesi/"]
   son_kontrol: "2026-09-28"
   dogrulandi: false

@@ -94,7 +94,7 @@
     Kişi Adına)" hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu sorgulayabilirsiniz.
     Bu sorgu yalnızca hangi bankalarda hesap olduğunu gösterir, bakiyeyi göstermez. Sonra bu
     bankalara mirasçılık belgesi ve kimliğinizle gidip hesap bakiyesini, kredi ve kredi kartı
-    borcunu ve otomatik ödeme talimatlarını sorun. Vefat tarihindeki bakiyeyi gösteren yazıyı da
+    borcunu ve otomatik ödeme talimatlarını sorun. Vefat tarihindeki bakiyeyi, işlemiş faiziyle birlikte gösteren yazıyı da
     isteyin; veraset beyannamesinde gerekir.
   ipuclari:
     - tur: genel

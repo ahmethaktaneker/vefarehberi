@@ -235,7 +235,7 @@
       belgeler: [olum_belgesi, mirascilik_belgesi, kimlik, dask]
       notlar_resmi:
         - "Su aboneliği belediyenin su idaresindedir. Mirasçılar aboneliği kapatabilir ya da içlerinden biri adına devralabilir."
-        - "Bazı idareler devir için süre (ör. 2 ay) tanıyor ve konutlarda DASK poliçesi istiyor. Süreyi idareye sorun."
+        - "Bazı idareler devir için süre tanıyor (ör. TİSKİ kendi sitesinde 2 ay diyor) ve konutlarda DASK poliçesi istiyor. Süreyi idareye sorun."
         - "Birçok su idaresinde abonelik iptali e-Devlet'ten de yapılabiliyor."
   edevlet:
     - { ad: "Abonelik sözleşme feshi (su idarenizi seçin)", url: "https://www.turkiye.gov.tr/arama?aranan=Abonelik+S%C3%B6zle%C5%9Fme+Feshi+Ba%C5%9Fvurusu" }

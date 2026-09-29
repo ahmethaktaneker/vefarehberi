@@ -61,7 +61,7 @@
       kanal: ["Türk Telekom ofisleri veya mağazaları", "E-posta veya faks"]
       belgeler: [olum_belgesi, defin_belgesi, mirascilik_belgesi]
       notlar_resmi:
-        - "İptal talebinden sonra hizmet 24 saat içinde durdurulur, iptal 7 gün içinde tamamlanır."
+        - "Türk Telekom'un kendi sayfasına göre, iptal talebinden sonra hizmet 24 saat içinde durdurulur, iptal 7 gün içinde tamamlanır."
         - "Şirkete ait cihazlar (modem vb.) iade edilmelidir; iade edilmeyenlerin bedeli son faturaya yansıtılır."
       notlar_deneyim:
         - "Kullanıcılar müşteri hizmetlerinden iptal ettiremediklerini bildiriyor; mağaza veya yazılı başvuru daha etkili olabilir. İptal edilene kadar fatura gelmeye devam edebilir."

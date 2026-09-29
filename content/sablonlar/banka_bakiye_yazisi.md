@@ -20,7 +20,7 @@ ucretli_icerik: false
 
 Konu: Vefat tarihi itibarıyla hesap bakiyelerinin bildirilmesi talebi
 
-{{vefat_tarihi}} tarihinde vefat eden {{vefat_eden}}, bankanızda hesap sahibidir. Mirasçısı olarak, veraset ve intikal vergisi beyannamesinde kullanılmak üzere, vefat edenin bankanız nezdindeki tüm hesaplarının (vadeli ve vadesiz mevduat, döviz, altın ve yatırım hesapları dahil) vefat tarihi itibarıyla bakiyelerini gösteren bir yazı verilmesini arz ederim.
+{{vefat_tarihi}} tarihinde vefat eden {{vefat_eden}}, bankanızda hesap sahibidir. Mirasçısı olarak, veraset ve intikal vergisi beyannamesinde kullanılmak üzere, vefat edenin bankanız nezdindeki tüm hesaplarının (vadeli ve vadesiz mevduat, döviz, altın ve yatırım hesapları dahil) vefat tarihi itibarıyla, o tarihe kadar işlemiş faiz dahil bakiyelerini gösteren bir yazı verilmesini arz ederim.
 
 Mirasçılık belgesi ekte sunulmuştur.
 

@@ -38,7 +38,7 @@ export default async function Page() {
         </Link>{" "}
         kullanabilirsiniz.
         </p>
-        <CihazdaKalir className="mt-3">
+        <CihazdaKalir kutu className="mt-4">
           Yazdığınız hiçbir bilgiyi (T.C. kimlik numarası, adres, tutarlar) biz görmüyoruz; yalnızca bu cihazda kalır.
         </CihazdaKalir>
       </div>

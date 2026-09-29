@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { useEffect, useId, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
 import { aracGorunur } from "@/lib/araclar";
@@ -49,6 +50,7 @@ export function MirasPayiHesaplayici() {
   return (
     <div className="space-y-8">
       <form className="space-y-8 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
+        <CihazdaKalir kutu>Buraya yazdıklarınızı biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
         <fieldset>
           <legend className="font-semibold">Vefat edenin eşi hayatta mı?</legend>
           <p className="text-base text-metin-ikincil">Boşanmış eş mirasçı olmaz.</p>
