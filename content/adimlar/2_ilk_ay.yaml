@@ -131,7 +131,11 @@
   ne: >
     Türkiye Bankalar Birliği Risk Merkezi, mirasçılık belgesiyle başvuran mirasçılara vefat
     edenin kredi ve kredi kartı risk raporunu veriyor.
-  neden: "Borç olup olmadığını görmek, mirası reddetmeyi değerlendirirken önemlidir."
+  neden: >
+    Borç olup olmadığını görmek, mirası reddetmeyi değerlendirirken önemlidir. Bankalar yalnızca
+    kendi alacaklarını söyler; bu rapor tüm bankalardaki kredi ve kredi kartı borçlarını tek belgede
+    gösterir. e-Devlet'teki banka sorgusu yalnızca mevduat hesabı olan bankaları listelediği için,
+    sadece kredi kartı ya da kredisi olan bir banka orada çıkmayabilir.
   nereye: "Türkiye Bankalar Birliği Risk Merkezi"
   belgeler: [mirascilik_belgesi]
   kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
