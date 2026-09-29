@@ -4,7 +4,7 @@ seo_baslik: "Yurtdışında Yaşayan Mirasçılar: Vekaletname, Süreler ve Vera
 aciklama: "Yurtdışında yaşıyorsanız vefat sonrası işlemleri nasıl yürütebilirsiniz: vekaletname, son tarihler, veraset beyannamesi ve banka işlemleri."
 sss:
   - soru: "Yurtdışından vekaletname nasıl verilir?"
-    cevap: "Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir; ayrıca apostil gerekmez. Yabancı noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor."
+    cevap: "Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir; ayrıca apostil gerekmez. Yabancı noterde düzenlenirse, ülke Apostil Sözleşmesi'ne tarafsa apostil, değilse tasdik zinciri gerekir; Türkçe tercüme de istenebilir."
   - soru: "Yurtdışındaki mirasçılar için veraset beyannamesi süresi nedir?"
     cevap: "Vefat Türkiye'de olduysa yurtdışındaki mirasçılar için 6 ay. Vefat yurtdışında olduysa, vefatın olduğu ülkedeki mirasçılar için 4 ay, başka bir yabancı ülkedekiler için 8 ay, Türkiye'dekiler için 6 ay (Veraset ve İntikal Vergisi Kanunu m.9)."
   - soru: "Veraset beyannamesini konsolosluğa verebilir miyim?"
@@ -23,16 +23,17 @@ Türkiye'deki işlemlerin çoğunu, Türkiye'ye gelmeden bir yakınınıza veya 
 
 ## Vekaletname
 
-Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir; ayrıca apostil gerekmez. Yabancı bir noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor. Tapu işlemleri için fotoğraflı ve "düzenleme şeklinde" vekaletname gerekebiliyor.
+Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir; ayrıca apostil gerekmez. Yabancı bir noterde düzenlenirse, ülke Apostil Sözleşmesi'ne tarafsa apostil, değilse o ülkenin tasdik zinciri gerekir; Türkçe tercüme de istenebilir. Taşınmaz üzerinde işlem için fotoğraflı, "düzenleme şeklinde" ve özel yetkili vekaletname gerekebilir.
 
-Vekaletnamede açıkça yazılması önerilen yetkiler:
+Vekaletnameye yalnızca yaptırmak istediğiniz işlemlerin yetkisini yazdırın. Sık kullanılanlar:
 
 - mirasçılık belgesi alma,
 - tapu intikal ve tescil işlemleri,
-- mirasın reddi veya kabulü,
 - veraset ve intikal vergisi beyannamesi verme,
 - banka işlemleri,
 - gerekirse dava açma.
+
+Satış, bağış, ipotek ya da mirası reddetme yetkisini yalnızca gerçekten istiyorsanız ekleyin.
 
 Vekalet bir aile üyesine de avukata da verilebilir. Hangisinin uygun olduğu durumunuzun karmaşıklığına bağlıdır.
 

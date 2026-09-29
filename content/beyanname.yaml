@@ -15,9 +15,10 @@ vergi_dairesi: >
   Beyanname, vefat edenin son ikametgâhının bağlı olduğu vergi dairesine verilir. Mirasçılar tek bir
   beyanname verebilir ya da her biri ayrı verebilir (VİVK m.8).
 cevrimici: >
-  GİB kılavuzuna göre İnteraktif Vergi Dairesi'nde "Veraset İşlemleri" bölümünden de verilebiliyor;
-  birlikte verilen beyannameyi diğer mirasçıların da kendi şifreleriyle onaylaması gerekiyor. Uygulamada
-  bu yolla verilemediğini anlatanlar var; sorun yaşarsanız vergi dairesine gidin.
+  İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden de gönderilebilir; birlikte verilen
+  beyannameyi diğer mirasçıların da kendi şifreleriyle onaylaması gerekir. Bazı kullanıcılar bu yolla
+  veremediklerini anlatıyor; önce online deneyin, olmazsa vergi dairesine gidin. Bu araç yalnızca
+  kendi beyannamenizi hazırlamanıza yardım eder; beyannameyi siz verirsiniz.
 beyan_edilmeyenler:
   - "Ev eşyası, vefat edenin kişisel eşyası ve aile hatırası olarak saklanan eşya (VİVK m.4/a)."
   - "Dul ve yetim aylıkları ve emekli ikramiyeleri gibi kamu kurumlarından yapılan ödemeler (VİVK m.4/g)."
@@ -48,8 +49,8 @@ digerleri:
     ad: "Araç"
     ornek: "Örn. 34 ABC 123, 2018 model otomobil"
     deger_nasil: >
-      Menkul mallar rayiç bedelle (piyasa değeri) yazılır (VİVK m.10/c). Uygulamada kasko değer
-      listesindeki değerin kullanıldığı anlatılıyor; vergi dairesine sorun.
+      Menkul mallar ölüm tarihindeki rayiç bedelle (piyasa değeri) yazılır (VİVK m.10/c). Kasko
+      değer listesi karşılaştırma için yardımcı olabilir; kesin değeri vergi dairesine sorun.
     ekler: ["Araç ruhsatı (fotokopi)"]
   - id: doviz_altin
     ad: "Döviz veya altın"
@@ -69,8 +70,9 @@ digerleri:
     ad: "Sigorta"
     ornek: "Örn. birikimli hayat sigortası"
     deger_nasil: >
-      GİB kılavuzunda sigorta da bu bölümde sayılıyor. Hangi sigorta ödemesinin beyan edileceğini
-      vergi dairesine sorun.
+      GİB'in online beyannamesinde sigorta bir servet kalemi olarak yer alıyor. Beyan edilip
+      edilmeyeceği ödemenin kime ve hangi nedenle yapıldığına göre değişir: kredi borcunu kapatan
+      sigorta ile mirasçıya ya da lehtara doğrudan yapılan ödeme ayrıdır. Poliçe için vergi dairesine sorun.
     ekler: ["Sigorta şirketinden tutar yazısı"]
   - id: ticari
     ad: "İşletme veya şirket payı"

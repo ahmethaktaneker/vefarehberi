@@ -22,6 +22,7 @@ import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
 import { tutarOku } from "@/lib/hesaplayici";
 import type { Parametreler } from "@/lib/icerik/sema";
 import type { Cevaplar } from "@/lib/sorular";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { ResmiForm } from "./ResmiForm";
 
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
@@ -55,12 +56,6 @@ function cevaplardanBaslat(c: Cevaplar): BeyannameVerisi {
 
 function formuYazdir() {
   olay("beyanname_yazdirildi");
-  document.body.classList.add("yazdir-form");
-  const temizle = () => {
-    document.body.classList.remove("yazdir-form");
-    window.removeEventListener("afterprint", temizle);
-  };
-  window.addEventListener("afterprint", temizle);
   window.print();
 }
 
@@ -140,7 +135,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
           {adim === 0 && (
             <>
               <Grup baslik="Kimlik">
-                <Alan etiket="T.C. kimlik numarası" sayi {...murisAlani("tc")} aciklama="İsterseniz çıktıya elle yazın." />
+                <Alan etiket="T.C. kimlik numarası" sayi gizli {...murisAlani("tc")} aciklama="İsterseniz boş bırakıp çıktıya elle yazın." />
                 <Izgara>
                   <Alan etiket="Adı" {...murisAlani("ad")} />
                   <Alan etiket="Soyadı" {...murisAlani("soyad")} />
@@ -159,6 +154,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
                   <Alan etiket="İl / ilçe" ornek="Örn. İstanbul / Kadıköy" {...murisAlani("il_ilce")} />
                   <Alan etiket="Posta kodu" sayi {...murisAlani("posta_kodu")} />
                 </Izgara>
+                <CihazdaKalir>Adres bilgilerini biz görmüyoruz; yalnızca bu cihazda kalır.</CihazdaKalir>
               </Grup>
               <Grup baslik="Vergi dairesi">
                 <p className="text-base text-metin-ikincil">{icerik.vergi_dairesi}</p>
@@ -206,10 +202,10 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
                         secenekler={Object.entries(YAKINLIK_ETIKETLERI)}
                         onChange={(x) => guncelle((d) => void (d.mirascilar[i].yakinlik = x as Yakinlik))}
                       />
-                      <Alan etiket="T.C. kimlik numarası" sayi {...alan("tc")} />
+                      <Alan etiket="T.C. kimlik numarası" sayi gizli {...alan("tc")} />
                       <Alan etiket="Doğum tarihi" tip="date" {...alan("dogum_tarihi")} />
                     </Izgara>
-                    <Alan etiket="Adresi ve telefonu" ornek="Örn. Moda Mah. ... Kadıköy / İstanbul, 0555 ..." {...alan("adres_tel")} />
+                    <Alan etiket="Adresi ve telefonu" ornek="Örn. Moda Mah. ... Kadıköy / İstanbul, 0555 ..." gizli {...alan("adres_tel")} />
                     <Alan
                       etiket={`Payı${v.payda ? ` (… / ${v.payda})` : ""}`}
                       aciklama="Mirasçılık belgesindeki payın üst sayısı. Örneğin 3/8 ise 3 yazın."
@@ -482,6 +478,7 @@ function Alan({
   tip = "text",
   sayi,
   hata,
+  gizli,
 }: {
   etiket: string;
   aciklama?: string;
@@ -491,6 +488,8 @@ function Alan({
   tip?: "text" | "date";
   sayi?: boolean;
   hata?: string;
+  /** Hassas bilgi: altında "bunu biz görmüyoruz" notu çıkar. */
+  gizli?: boolean;
 }) {
   const id = useId();
   return (
@@ -516,6 +515,7 @@ function Alan({
         className={`${kutu} mt-2`}
       />
       {hata && <p className="mt-1 text-base text-uyari">{hata}</p>}
+      {gizli && <CihazdaKalir className="mt-1" />}
     </div>
   );
 }

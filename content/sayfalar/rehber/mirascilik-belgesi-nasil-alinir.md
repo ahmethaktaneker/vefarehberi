@@ -8,7 +8,7 @@ sss:
   - soru: "Mirasçılık belgesi nereden alınır?"
     cevap: "Notere veya Sulh Hukuk Mahkemesine başvurularak alınır. Mirasçılardan birinin başvurması yeterlidir."
   - soru: "Noter hangi durumlarda mirasçılık belgesi veremez?"
-    cevap: "Mirasçılık konusu tartışmalıysa, akrabalık nüfus kayıtlarından anlaşılamıyorsa veya mirasçılar arasında yabancı uyruklu biri varsa. Bu durumlarda Sulh Hukuk Mahkemesine başvurulur."
+    cevap: "Nüfus kayıtları mirasçıları belirlemeye yetmiyorsa, yabancılık unsuru varsa ya da tanık, bilirkişi gibi bir yargılama gerekiyorsa. Bu durumlarda Sulh Hukuk Mahkemesine başvurulur."
 kaynak:
   - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
   - "https://avukatmurataydar.com/blog/veraset-ilami-mirascilik-belgesi-nasil-alinir/"
@@ -22,7 +22,7 @@ Mirasçılık belgesi (veraset ilamı), vefat edenin mirasçılarını gösteren
 ## Nereden alınır
 
 - **Noter** veya **Sulh Hukuk Mahkemesi**. Mirasçılardan birinin başvurması yeterlidir.
-- Uygulamada birçok noterin mirasçılık belgesi düzenlemediği veya bu işlemi bilmediği görülüyor. **Gitmeden önce noteri arayıp sorun**; yapmıyorsa Sulh Hukuk Mahkemesine başvurabilirsiniz.
+- Noterlerin mirasçılık belgesi düzenlemesi görece yeni bir uygulama; bazı kullanıcılar noterin bu işlemi yapmadığını ya da bilmediğini anlatıyor. **Gitmeden önce noteri arayıp sorun**; yapmıyorsa Sulh Hukuk Mahkemesine başvurabilirsiniz.
 
 ## e-Devlet'ten alınabilir mi
 
@@ -32,9 +32,9 @@ Yeni belge e-Devlet'ten alınamaz. e-Devlet'teki **Veraset İlamı Sorgulama** h
 
 Noterlik Kanunu'na göre (m.71/B) noter şu durumlarda belge düzenleyemez; Sulh Hukuk Mahkemesine başvurmak gerekir:
 
-- mirasçılık konusu tartışmalıysa,
-- akrabalık nüfus kayıtlarından anlaşılamıyorsa,
-- mirasçılar arasında yabancı uyruklu biri varsa.
+- nüfus kayıtları mirasçıları belirlemeye yetmiyorsa,
+- yabancılık unsuru varsa,
+- tanık, bilirkişi gibi bir yargılama gerekiyorsa.
 
 ## Pratik öneri
 

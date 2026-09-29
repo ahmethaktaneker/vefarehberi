@@ -8,16 +8,18 @@
   kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
   ne: >
     Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir, ayrıca apostil
-    gerekmez. Yabancı noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor.
-    Tapu işlemleri için fotoğraflı ve "düzenleme şeklinde" vekaletname gerekebiliyor.
+    gerekmez. Yabancı noterde düzenlenirse, ülke Apostil Sözleşmesi'ne tarafsa apostil, değilse o
+    ülkenin tasdik zinciri gerekir; Türkçe tercüme de istenebilir. Taşınmaz üzerinde işlem için
+    fotoğraflı, "düzenleme şeklinde" ve özel yetkili vekaletname gerekebilir.
   neden: "Türkiye'ye gelmeden işlemlerin bir yakınınız veya avukat tarafından yürütülmesini sağlar."
   nereye: "Bulunduğunuz ülkedeki Türk konsolosluğu"
   ipuclari:
     - tur: genel
       metin: >
-        Vekaletnamede açıkça yazılması önerilen yetkiler: mirasçılık belgesi alma, tapu intikal
-        ve tescil işlemleri, mirasın reddi veya kabulü, veraset ve intikal vergisi beyannamesi
-        verme, banka işlemleri ve gerekirse dava açma.
+        Vekaletnameye yalnızca yaptırmak istediğiniz işlemlerin yetkisini yazdırın. Sık kullanılanlar:
+        mirasçılık belgesi alma, tapu intikali ve tescil, veraset ve intikal vergisi beyannamesi verme
+        ve banka işlemleri. Satış, bağış, ipotek ya da mirası reddetme yetkisini yalnızca gerçekten
+        istiyorsanız ekleyin.
     - tur: genel
       metin: "Vekalet aile üyesine de avukata da verilebilir. Hangisinin uygun olduğu durumun karmaşıklığına bağlıdır."
     - tur: genel
@@ -56,14 +58,14 @@
       metin: "Pratikte 4-5 kopya almanın işe yaradığı belirtiliyor."
     - tur: deneyim
       metin: >
-        Birçok noterin mirasçılık belgesi düzenlemediği veya bu işlemi bilmediği görülüyor. Gitmeden
-        önce noteri arayıp bu işlemi yapıp yapmadığını sorun; yapmıyorsa Sulh Hukuk Mahkemesine
-        başvurabilirsiniz.
+        Noterlerin mirasçılık belgesi düzenlemesi görece yeni bir uygulama; bazı kullanıcılar noterin
+        bu işlemi yapmadığını ya da bilmediğini anlatıyor. Gitmeden önce noteri arayıp sorun; yapmıyorsa
+        Sulh Hukuk Mahkemesine başvurabilirsiniz.
     - tur: genel
       metin: >
-        Noter bazı durumlarda belge düzenleyemez ve Sulh Hukuk Mahkemesine başvurmak gerekir:
-        mirasçılık konusu tartışmalıysa, akrabalık nüfus kayıtlarından anlaşılamıyorsa veya
-        mirasçılar arasında yabancı uyruklu biri varsa.
+        Noter bazı durumlarda belge düzenleyemez ve Sulh Hukuk Mahkemesine başvurmak gerekir: nüfus
+        kayıtları mirasçıları belirlemeye yetmiyorsa, yabancılık unsuru varsa ya da tanık, bilirkişi
+        gibi bir yargılama gerekiyorsa.
     - tur: genel
       metin: "Daha önce alınıp alınmadığını bilmiyorsanız, e-Devlet'teki \"Veraset İlamı Sorgulama\" hizmetine bakabilirsiniz."
   baglantilar:
@@ -100,6 +102,11 @@
         Bankadan otomatik ödeme talimatlarının listesini de isteyin; hangi abonelikler olduğunu
         görmenize yardımcı olur. Devam edecek faturaları başka bir hesaba taşıyın, durdurmak
         istediklerinizi aşağıdaki dilekçeyle bankaya bildirin.
+    - tur: genel
+      metin: >
+        Bu aşamada ilişik kesme belgesi gerekmez. Parayı mirasçılara çekmek için ise banka genellikle
+        vergi dairesinden alınan ilişik kesme belgesini ister; bu belge beyanname verildikten sonra
+        alınır. Paraya erken ihtiyacınız varsa beyannameyi 4 aylık süreyi beklemeden verebilirsiniz.
   nereye: "e-Devlet, Vâris Hizmetleri"
   belgeler: [mirascilik_belgesi]
   cevrimici: "Evet, e-Devlet üzerinden."
@@ -164,11 +171,10 @@
         dese bile "Hayat ve ferdi kaza sigortası" adımındaki e-Devlet ve SBM sorgusuyla kendiniz
         de kontrol edin.
   uyari: >
-    Genel bilgi olarak: Hayat sigortası varken bankanın sigortaya başvurmadan doğrudan
-    mirasçılardan tahsilat yapmasının hukuka aykırı sayılabileceğine dair görüşler ve yargı
-    kararları bulunuyor. Sigorta şirketi ödemeyi reddederse (sık görülen gerekçe, poliçe
-    yapılırken hastalığın bildirilmediği iddiasıdır) bir avukata danışmanız ve Sigorta Tahkim
-    Komisyonu yolunu değerlendirmeniz önerilir.
+    Poliçe kapsamındaysa kalan borcun sigortadan karşılanmasını talep edebilirsiniz. Bu, vefat
+    tarihindeki teminata, istisnalara, lehtara ve kalan borca göre değerlendirilir. Sigorta şirketi
+    yazılı olarak reddederse ya da cevap vermezse, uygun şartlarda Sigorta Tahkim Komisyonu'na
+    başvurulabilir.
   kaynak:
     - "https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"
     - "https://odenhukuk.com/kredi-borclusunun-olumu-sigorta-odeme-yargitay-kararlari/"
@@ -342,12 +348,14 @@
   ipuclari:
     - tur: genel
       metin: >
-        Konut kiralarında yasal bildirim süresi 3 aydır; fesih dönemi sözleşmenin başlangıç tarihine
-        göre hesaplanır (TBK m.328, 329). Sözleşmede daha uzun bir süre yazıyorsa o geçerlidir.
+        Konut kiralarında yasal bildirim süresi 3 aydır, ama bu sözleşmenin 3 ay sonra kesin biteceği
+        anlamına gelmez: fesih, sözleşmenin başlangıç tarihine göre hesaplanan fesih dönemi sonunda
+        geçerli olur (TBK m.328, 329). Sözleşmede daha uzun bir süre yazıyorsa o geçerlidir.
     - tur: genel
       metin: >
-        Mirası reddetmeyi düşünüyorsanız, fesih ve ev boşaltma gibi işlemleri yapmadan önce bir
-        avukata danışın; bazı davranışlar mirası kabul sayılabilir.
+        Evi korumak için sözleşmeyi feshetmek tek başına mirası kabul sayılmayabilir. Ama vefat edenin
+        eşyalarını sahiplenmek, dağıtmak ya da satmak mirası kabul sayılabilir (TMK m.610). Mirası
+        reddetmeyi düşünüyorsanız eşyaların listesini tutun ve kime teslim ettiğinizi kaydedin.
   kaynak: ["https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6098.pdf"]
   yer: ev
   son_kontrol: "2026-09-29"
@@ -367,8 +375,9 @@
   neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
   nereye: "İlgili elektrik, doğalgaz ve su kurumları. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
   uyari: >
-    Mirası reddetmeyi düşünüyorsanız güvence bedelini tahsil etmeden önce bir avukata danışın;
-    vefat edenin alacaklarını almak mirası kabul sayılabilir (TMK m.610).
+    Mirası reddetmeyi düşünüyorsanız güvence bedelini kendi hesabınıza almak risklidir; vefat edenin
+    alacaklarını sahiplenmek mirası kabul sayılabilir (TMK m.610). Önce kurumdan bakiyeyi ve ödeme
+    yöntemini yazılı olarak isteyin.
   belgeler: [mirascilik_belgesi]
   ipuclari:
     - tur: genel
@@ -404,7 +413,8 @@
     devredilebilir ya da kapatılabilir. Operatörler devir için genellikle mirasçılık belgesi istiyor.
   uyari: >
     Vodafone'un açıklamasına göre mirası reddeden kişi, vefat edenin hattını üzerine alamıyor.
-    Mirası reddetmeyi düşünüyorsanız hattı devralmadan önce bunu göz önünde bulundurun.
+    Hattı devralmanın mirası kabul sayılıp sayılmayacağı sözleşmeye ve yapılan işleme bağlıdır;
+    mirası reddetmeyi düşünüyorsanız devirden önce bunu değerlendirin.
   nereye: "İlgili operatör. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
   belgeler: [mirascilik_belgesi, kimlik]
   kaynak:

@@ -27,6 +27,10 @@ export const SablonSemasi = z.strictObject({
       }),
     )
     .min(1),
+  /** Dilekçeyi vermeden önce bilinmesi gerekenler; dilekçenin yanında madde madde gösterilir. */
+  notlar: z.array(z.string().min(1)).default([]),
+  /** Notların altında küçük ve silik yazılan tek cümle (ör. kalemden teyit). */
+  kucuk_not: z.string().optional(),
   ...dogruluk,
   ucretli_icerik: z.boolean(),
 });

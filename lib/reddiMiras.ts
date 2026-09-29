@@ -8,7 +8,7 @@ import { ayEkle, kalanGun, tarihGecerli } from "@/lib/kurallar/tarih";
  */
 
 export type TabloKalemi = { id: string; ad: string; tutar: string };
-export type ReddiMirasVerisi = { surum: 1; varliklar: TabloKalemi[]; borclar: TabloKalemi[]; kontroller: string[] };
+export type ReddiMirasVerisi = { surum: 1; varliklar: TabloKalemi[]; borclar: TabloKalemi[]; kontroller: string[]; ogrenme?: string };
 
 let sayac = 0;
 const kimlik = () => `${Date.now().toString(36)}r${(sayac++).toString(36)}`;
@@ -72,7 +72,7 @@ export function tabloOzeti(t: ReddiMirasVerisi) {
   return { varlik, borc, fark: varlik - borc, eksik };
 }
 
-/** Reddin son günü: ölümü öğrenme tarihinden itibaren 3 ay (TMK m.606). Ölüm tarihi esas alınır. */
+/** Reddin son günü: ölümü öğrenme tarihinden itibaren 3 ay (TMK m.606). Öğrenme tarihi girilmediyse ölüm tarihi esas alınır. */
 export function redSuresi(vefatTarihi: string, bugun: string, ay = 3) {
   if (!tarihGecerli(vefatTarihi)) return null;
   const sonGun = ayEkle(vefatTarihi, ay);

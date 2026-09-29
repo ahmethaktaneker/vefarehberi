@@ -35,4 +35,4 @@ Vefat edenin kredisi varsa bankaya krediye bağlı bir hayat sigortası olup olm
 
 Kullanıcılar, aynı bankada bir aileye "sigorta yok" denip borcun aileden istendiğini, başka bir ailenin kredisinin ise sigortadan kapatıldığını anlatıyor. **Banka "sigorta yok" dese bile yukarıdaki sorgularla kendiniz de kontrol edin.**
 
-Genel bilgi olarak: Hayat sigortası varken bankanın sigortaya başvurmadan doğrudan mirasçılardan tahsilat yapmasının hukuka aykırı sayılabileceğine dair görüşler ve yargı kararları bulunuyor. Sigorta şirketi ödemeyi reddederse bir avukata danışmanız ve Sigorta Tahkim Komisyonu yolunu değerlendirmeniz önerilir.
+Poliçe kapsamındaysa kalan borcun sigortadan karşılanmasını talep edebilirsiniz; bu, vefat tarihindeki teminata, istisnalara, lehtara ve kalan borca göre değerlendirilir. Sigorta şirketi yazılı olarak reddederse ya da cevap vermezse, uygun şartlarda Sigorta Tahkim Komisyonu'na başvurulabilir.

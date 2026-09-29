@@ -52,7 +52,7 @@ export const PAKET_TANITIMI_AKTIF = false;
  * Şimdilik gizlenen sayfalar: menüden, sayfa altından, adımlardan ve önerilerden kalkar; adresleri
  * "sayfa bulunamadı" verir. Kod duruyor; listeden çıkarılınca geri gelir.
  */
-export const GIZLI_SAYFALAR: readonly string[] = ["/sozluk"];
+export const GIZLI_SAYFALAR: readonly string[] = ["/sozluk", "/kurum-ziyaret"];
 export const sayfaGizli = (yol: string) => GIZLI_SAYFALAR.includes(yol);
 
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */

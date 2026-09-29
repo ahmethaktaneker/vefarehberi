@@ -29,7 +29,7 @@ function takvimeEkle(sonGun: string) {
       id: "reddi-miras",
       baslik: "Mirası reddetmek için son gün",
       tarih: sonGun,
-      aciklama: "Ret beyanı sulh hukuk mahkemesine yapılır (TMK m.605, 606, 609). Karar vermeden önce bir avukata danışın.",
+      aciklama: "Ret beyanı sulh hukuk mahkemesine yapılır (TMK m.605, 606, 609).",
     },
   ]);
   const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
@@ -41,12 +41,6 @@ function takvimeEkle(sonGun: string) {
 }
 
 function yazdir() {
-  document.body.classList.add("yazdir-form");
-  const temizle = () => {
-    document.body.classList.remove("yazdir-form");
-    window.removeEventListener("afterprint", temizle);
-  };
-  window.addEventListener("afterprint", temizle);
   window.print();
 }
 
@@ -73,31 +67,53 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
   };
   const ozet = tabloOzeti(t);
   const vefat = typeof cevaplar.vefat_tarihi === "string" ? cevaplar.vefat_tarihi : "";
-  const sure = redSuresi(vefat, istanbulBugun(), redAy);
+  const baslangic = t.ogrenme && t.ogrenme >= vefat ? t.ogrenme : vefat;
+  const sure = redSuresi(baslangic, istanbulBugun(), redAy);
   const enBuyuk = Math.max(ozet.varlik, ozet.borc, 1);
 
   return (
     <>
       <div className="ekran-icerik space-y-8">
-        {sure && (
-          <div className={`rounded-2xl p-5 ${sure.kalanGun <= 30 ? "bg-uyari-acik" : "bg-vurgu-acik"}`}>
-            <p className="font-serif text-2xl font-semibold text-vurgu-koyu">
-              {sure.kalanGun >= 0 ? `${sure.kalanGun} gün kaldı` : "Süre geçmiş görünüyor"}
+        <div className={`rounded-2xl p-5 ${sure && sure.kalanGun <= 30 ? "bg-uyari-acik" : "bg-vurgu-acik"}`}>
+          {sure ? (
+            <>
+              <p className="font-serif text-2xl font-semibold text-vurgu-koyu">
+                {sure.kalanGun >= 0 ? `${sure.kalanGun} gün kaldı` : "Süre geçmiş görünüyor"}
+              </p>
+              <p className="mt-1">
+                Mirası reddetmek için son gün: <strong>{tarihMetni(sure.sonGun)}</strong>. Süre, ölümü öğrendiğiniz tarihten
+                itibaren 3 aydır.
+              </p>
+            </>
+          ) : (
+            <p className="text-lg">Ölümü öğrendiğiniz tarihi girin; mirası reddetmek için kalan süreyi hesaplayalım.</p>
+          )}
+          <label className="mt-3 block max-w-xs">
+            <span className="block text-base font-semibold">Ölümü öğrendiğiniz tarih</span>
+            <input
+              type="date"
+              value={t.ogrenme || vefat}
+              min={vefat || undefined}
+              max={istanbulBugun()}
+              onChange={(e) => guncelle((d) => void (d.ogrenme = e.target.value))}
+              className={`${kutu} mt-1`}
+            />
+          </label>
+          {sure && sure.kalanGun < 0 && (
+            <p className="mt-2">
+              Borçlar varlıklardan açıkça fazlaysa, süre geçmiş olsa da aşağıdaki &ldquo;borca batık miras&rdquo; yolu olabilir.
             </p>
-            <p className="mt-1">
-              Mirası reddetmek için son gün: <strong>{tarihMetni(sure.sonGun)}</strong>. Süre, ölümün öğrenildiği tarihten itibaren 3 aydır.
-            </p>
-            {sure.kalanGun < 0 && <p className="mt-2">Süre geçtiyse de bir avukata danışın; bazı durumlarda başka yollar olabilir.</p>}
-            {sure.kalanGun >= 0 && (
+          )}
+          {sure && sure.kalanGun >= 0 && (
+            <>
               <button type="button" onClick={() => takvimeEkle(sure.sonGun)} className="dugme dugme-ikincil mt-4 min-h-11 px-4 py-2 text-base">
                 Son günü takvime ekle
               </button>
-            )}
-            {sure.kalanGun >= 0 && (
               <p className="mt-2 text-sm text-metin-ikincil">Telefonunuzun takvimi 7 gün ve 1 gün önce hatırlatır.</p>
-            )}
-          </div>
-        )}
+            </>
+          )}
+          <p className="mt-2 text-sm text-metin-ikincil">Özel durumlar varsa bir avukata danışın.</p>
+        </div>
 
         <Liste
           baslik="Bildiğiniz varlıklar"
@@ -135,13 +151,15 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
           {ozet.eksik > 0 && <p className="text-base text-metin-ikincil">{ozet.eksik} kalemin tutarı boş; toplama eklenmedi.</p>}
           {ozet.borc > 0 && ozet.fark < 0 && (!sure || sure.kalanGun >= 0) && (
             <div className="rounded-xl border-l-4 border-uyari bg-uyari-acik p-4">
-              <p className="font-semibold">Borçlar varlıklardan fazla görünüyor.</p>
+              <p className="font-semibold">Bildiğiniz borçlar, bildiğiniz varlıklardan fazla görünüyor.</p>
               <p className="mt-1 text-base">
-                Mirası reddetmeyi düşünüyorsanız, süre dolmadan sulh hukuk mahkemesine ret beyanı verilir. Her mirasçı kendi adına
-                verir. Dilekçeyi doldurup bir avukata kontrol ettirebilirsiniz.
+                Bu tablo yalnızca yazdıklarınızı toplar, karar vermez. Bu durumdaki aileler genellikle mirası reddetmeyi, borçlar
+                belirsizse resmi defter tutulmasını ya da borca batık miras tespitini değerlendirir (aşağıda anlatıldı). Ret her
+                mirasçı için ayrı yapılır ve payın sizin çocuklarınıza geçmesine yol açabilir.
               </p>
+              <p className="mt-2 text-base">İsterseniz ret beyanı dilekçesini burada birkaç dakikada hazırlayabilirsiniz.</p>
               <Link href="/sablonlar/mirasin_reddi" className="dugme dugme-birincil mt-3 min-h-11 px-5 py-2 text-base">
-                Ret beyanı dilekçesini doldur
+                Ret beyanı dilekçesini hazırla
               </Link>
             </div>
           )}
@@ -196,15 +214,17 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
             Borçların ne kadar olduğundan emin değilseniz, sulh hukuk mahkemesinden terekenin resmi defterinin tutulmasını
             isteyebilirsiniz. Bu istek 1 ay içinde yapılır; mahkeme varlık ve borçları tespit eder (TMK m.619, 620).
           </Secenek>
-          <Secenek baslik="Borca batık miras">
-            Ölüm tarihinde borçların varlıkları aştığı açıkça belliyse miras reddedilmiş sayılır. Bunun tespiti için genellikle
-            mahkemeye başvurulur (TMK m.605).
+          <Secenek baslik="Borca batık miras (hükmen red)">
+            Vefat tarihinde vefat edenin borç ödeyemeyecek durumda olduğu açıkça belliyse ya da resmen tespit edilmişse, miras
+            reddedilmiş sayılır; ayrıca ret beyanı vermek gerekmez (TMK m.605/2). Bu, 3 aylık süreye bağlı değildir. Alacaklılar
+            itiraz edebildiği için durum çoğu zaman mahkemede tespit ettirilir. Bu arada terekeye karışmamak (mal satmamak,
+            hesaptan para çekmemek) önemlidir.
           </Secenek>
           <Secenek baslik="Reddedenin payı kime geçer?">
             Mirası reddeden kişinin payı, o kişi hiç yokmuş gibi sıradaki hak sahiplerine geçer (TMK m.611). Örneğin bir çocuk
             reddederse payı onun çocuklarına geçebilir; borç nedeniyle reddediliyorsa onların da ayrıca reddetmesi gerekebilir.
             Çocukların hepsi reddederse payları eşe geçer (m.613). En yakın mirasçıların hepsi reddederse miras mahkemece tasfiye
-            edilir (m.612). Aileniz için doğru sırayı bir avukata sorun.
+            edilir (m.612).
           </Secenek>
           <p className="rounded-xl border-l-4 border-vurgu bg-vurgu-acik px-4 py-3">
             Karar vermeden önce vefat edenin mallarını satmayın, hesabından para çekmeyin. Süre içinde terekeye karışan kişi mirası

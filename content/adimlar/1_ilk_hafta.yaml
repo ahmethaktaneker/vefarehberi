@@ -67,7 +67,10 @@
     gereken tutarlar olabilir. Mirasçılardan birinin vefat edenin hesabından kendi başına para
     çekmesi, diğer mirasçılar açısından hukuki sorun doğurabilir.
   neden: "Sonradan iade talebiyle ya da mirasçılar arasında anlaşmazlıkla karşılaşmamak için."
-  uyari: "Hesaptan işlem yapılması gerekiyorsa önce diğer mirasçılarla konuşmanız, durumunuza göre bir avukata danışmanız önerilir."
+  uyari: >
+    Vefat edenin kartıyla ya da şifresiyle işlem yapmayın. Hesaptaki parayı kendiniz için kullanmak
+    ya da vefat edenin mallarını satmak, mirası kabul sayılabilir (TMK m.610); mirası reddetmeyi
+    düşünüyorsanız bu işlemlerden özellikle kaçının.
   kaynak:
     - "https://www.gecmezhukuk.com/vefat-edenin-banka-hesabindan-para-cekilmesi/"
     - "https://www.sikayetvar.com/sgk/maas/vefat"

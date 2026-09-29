@@ -8,7 +8,7 @@ sss:
   - soru: "Reddi miras için nereye başvurulur?"
     cevap: "Vefat edenin son yerleşim yerindeki Sulh Hukuk Mahkemesine."
   - soru: "3 ay geçtiyse ne olur?"
-    cevap: "Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da hükmen red yolu olabilir. Bu durumda bir avukata danışmanız önerilir."
+    cevap: "Vefat tarihinde borçların mal varlığını aştığı açıkça belliyse ya da resmen tespit edilmişse, miras reddedilmiş sayılabilir (hükmen red). Bu, süreyi kaçırmanın garantili bir çözümü değildir; durumu bir avukatla değerlendirin."
   - soru: "Yurtdışından reddi miras yapılabilir mi?"
     cevap: "Genel bilgi olarak vekaletle yapılabilir. Türk konsolosluğunda düzenlenen vekaletname Türkiye'de geçerlidir."
 kaynak:
@@ -29,24 +29,26 @@ Genel bilgi olarak: Vefat eden kişinin borçları mal varlığından fazlaysa, 
 - Mirasçı olduğunu daha sonra öğrendiğini ispat eden için süre o tarihten başlar.
 - Vasiyetle atanmış mirasçılar için süre, tasarrufun kendilerine bildirildiği tarihten başlar.
 
-Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da "hükmen red" yolu olabilir. Bu durumda bir avukata danışın.
+Vefat tarihinde borçların mal varlığını aştığı açıkça belliyse ya da resmen tespit edilmişse, miras reddedilmiş sayılabilir ("hükmen red", TMK m.605). Bunun için borçların fazla olduğunu tahmin etmek yetmez ve mirası kabul sayılabilecek davranışlar sonucu etkileyebilir; süreyi kaçırmanın garantili çözümü değildir.
 
 ## Karar vermeden önce
 
 - Borç olup olmadığını öğrenin: e-Devlet'ten vefat edenin hangi bankalarda hesabı olduğunu bulup bankalara sorabilirsiniz. Tüm bankalardaki kredi ve kart borçlarını tek belgede görmek isterseniz Türkiye Bankalar Birliği Risk Merkezi mirasçılara risk raporu veriyor. Hakkında icra takibi olup olmadığına e-Devlet'teki [İcra Dosyası Sorgulama (Mirasçısı Olduğunuz Kişi Adına)](https://www.turkiye.gov.tr/adalet-murise-ait-icra-dosyasi-sorgulama) hizmetinden bakabilirsiniz.
 - Bildiğiniz varlık ve borçları [karşılaştırma tablosunda](/reddi-miras) yan yana koyabilirsiniz.
-- **Karar vermeden vefat edenin mallarını satmayın, hesabından para çekmeyin, alacaklarını (ör. abonelik güvence bedeli) tahsil etmeyin.** Süre içinde terekeye karışan kişi mirası reddedemez (TMK m.610).
+- **Karar vermeden vefat edenin mallarını satmayın, hesaptaki parayı kendiniz için kullanmayın, kartıyla ya da şifresiyle işlem yapmayın.** Olağan yönetim ve korumanın ötesine geçen, tereke malını sahiplenen davranışlar mirası kabul sayılabilir (TMK m.610). Alacakları (ör. abonelik güvence bedeli) kendi hesabınıza almak da risklidir.
 - Krediye bağlı hayat sigortası varsa kalan borç sigortadan ödenebilir. Bankanın söylediğiyle yetinmeyin, [kendiniz de sorgulayın](/rehber/vefat-edenin-hayat-sigortasi-sorgulama).
 - Mirası reddetmek ölüm aylığını etkilemez.
 - Vodafone'un açıklamasına göre mirası reddeden kişi, vefat edenin hattını üzerine alamıyor.
 
 ## Nereye, hangi belgelerle
 
-Vefat edenin son yerleşim yerindeki **Sulh Hukuk Mahkemesine** sözlü ya da yazılı başvurulur (TMK m.609). Genellikle nüfus kayıt örneği ve ölüm belgesi istenir. Her mirasçı kendi adına reddeder. Yazılı başvuru için [ret beyanı dilekçe taslağını](/sablonlar/mirasin_reddi) kullanabilirsiniz; vermeden önce bir avukata kontrol ettirmeniz önerilir.
+Ret, **sulh hukuk mahkemesine** sözlü ya da yazılı, kayıtsız ve şartsız bir beyanla yapılır (TMK m.609). Vefat edenin son yerleşim yerindeki sulh hukuk mahkemesine başvurulabilir; Yargıtay'ın 2022 tarihli kararına göre reddeden mirasçının oturduğu yerdeki sulh hukuk mahkemesi de yetkilidir. Her mirasçı kendi adına reddeder. Kimliğinizi, ölüm ve mirasçılık kayıtlarını, varsa ret yetkisi içeren vekaletnameyi hazırlayın. Yazılı başvuru için [ret beyanı dilekçe taslağını](/sablonlar/mirasin_reddi) kullanabilirsiniz.
+
+<small>Ek belge, harç ve başvurunun kayda geçmesi için mahkeme kaleminden teyit edin.</small>
 
 ## Reddedenin payı kime geçer
 
-Mirası reddeden kişinin payı, o kişi hiç yokmuş gibi sıradaki hak sahiplerine geçer (TMK m.611). Örneğin bir çocuk reddederse payı onun çocuklarına geçebilir; borç nedeniyle reddediliyorsa onların da ayrıca reddetmesi gerekebilir. Çocukların hepsi reddederse payları eşe geçer (m.613). En yakın mirasçıların hepsi reddederse miras mahkemece tasfiye edilir (m.612).
+Mirası reddeden kişinin payı, o kişi hiç yokmuş gibi sıradaki hak sahiplerine geçer (TMK m.611). Örneğin bir çocuk reddederse payı onun çocuklarına geçebilir; borç nedeniyle reddediliyorsa onların da ayrıca reddetmesi gerekebilir. Altsoyun tamamı (torunlar dahil) reddederse payları eşe geçer (m.613). En yakın yasal mirasçıların hepsi reddederse miras mahkemece tasfiye edilir; artan olursa, reddetmemişler gibi hak sahiplerine verilir (m.612). Reddedenler, sonraki mirasçılara mirası kabul edip etmeyeceklerinin sorulmasını da isteyebilir (m.614).
 
 ## Karardan sonra
 

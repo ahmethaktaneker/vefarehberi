@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { olay } from "@/lib/analitik";
 import { sablonDoldur } from "@/lib/sablonlar/doldur";
 
 type Alan = { id: string; etiket: string; ornek?: string; cok_satirli?: boolean };
+
+/** Kişisel bilgi istenen alanlar: altında "bunu biz görmüyoruz" notu çıkar. */
+const HASSAS = /adres|iletisim|abone_no|tc|iban/;
 
 const dugme =
   "dugme dugme-ikincil";
@@ -43,8 +47,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
     <div className="space-y-8">
       <form className="yazdirma-gizle space-y-5 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <p className="text-base text-metin-ikincil">
-          Girdiğiniz bilgiler yalnızca bu cihazda kullanılır; hiçbir yere gönderilmez ve saklanmaz. T.C. kimlik
-          numarası ve IBAN gibi bilgileri çıktı üzerine elle yazmanızı öneririz.
+          T.C. kimlik numarası ve IBAN gibi bilgileri çıktı üzerine elle yazmanızı öneririz.
         </p>
         {alanlar.map((a) => (
           <div key={a.id}>
@@ -70,6 +73,7 @@ export function SablonDoldurucu({ id, govde, alanlar }: { id: string; govde: str
                 className="mt-2 min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg"
               />
             )}
+            {HASSAS.test(a.id) && <CihazdaKalir className="mt-1" />}
           </div>
         ))}
       </form>

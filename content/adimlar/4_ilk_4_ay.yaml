@@ -25,9 +25,10 @@
   belgeler: [rayic_bedel, kasko_degeri, bakiye_yazisi, tapu_ruhsat, borc_belgeleri]
   arac: [beyanname_araci, veraset_hesaplayici]
   cevrimici: >
-    GİB'in kılavuzuna göre İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden elektronik
-    beyanname verilebiliyor; ancak uygulamada bu yolla beyanname verilemediği görülüyor. Vergi
-    dairesine giderek vermeyi planlayın. Belgeler, sahip olunan varlıklara göre değişir.
+    Evet. İnternet Vergi Dairesi'ndeki "Veraset İşlemleri" bölümünden beyanname gönderilebilir;
+    mirasçılık belgesi, ekler ve birlikte beyanda bulunan mirasçıların onayı gerekir. Bazı
+    kullanıcılar bu yolla beyanname veremediklerini anlatıyor; önce online denemeniz, olmazsa vergi
+    dairesine gitmeniz önerilir.
   uyari: >
     Taşınmazı satmayı planlıyorsanız: Taşınmaz, vergi tahakkuku beklenmeden mirasçılar adına
     tescil edilebilir; ancak ona düşen vergi tamamen ödenmeden satılamaz ve tapuda ilişik kesme

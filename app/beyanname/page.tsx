@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BeyannameAraci } from "@/components/beyanname/BeyannameAraci";
@@ -37,6 +38,9 @@ export default async function Page() {
         </Link>{" "}
         kullanabilirsiniz.
         </p>
+        <CihazdaKalir className="mt-3">
+          Yazdığınız hiçbir bilgiyi (T.C. kimlik numarası, adres, tutarlar) biz görmüyoruz; yalnızca bu cihazda kalır.
+        </CihazdaKalir>
       </div>
       <div className="mt-6 print:mt-0">
       {acik ? (

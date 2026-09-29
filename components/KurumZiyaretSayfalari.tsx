@@ -30,12 +30,6 @@ const SABLON_ADLARI: Record<string, string> = {
 type Sayfa = { kurum: Kurum; belgeler: { id: string; ad: string; hazir: boolean }[]; sablonlar: string[] };
 
 function yazdir() {
-  document.body.classList.add("yazdir-form");
-  const temizle = () => {
-    document.body.classList.remove("yazdir-form");
-    window.removeEventListener("afterprint", temizle);
-  };
-  window.addEventListener("afterprint", temizle);
   window.print();
 }
 

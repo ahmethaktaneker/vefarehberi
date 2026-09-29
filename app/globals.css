@@ -67,6 +67,24 @@ h3 {
   text-wrap: balance;
 }
 
+/* iPhone Safari tarih kutusuna kendi genişliğini verir ve kutudan taşar; genişliği kutuya bağla. */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  text-align: left;
+}
+input[type="date"]::-webkit-date-and-time-value {
+  margin: 0;
+  text-align: left;
+}
+label,
+.grid > * {
+  min-width: 0;
+}
+
 :focus-visible {
   outline: 3px solid var(--altin);
   outline-offset: 3px;
@@ -261,6 +279,12 @@ html:has(dialog[open]) {
 .metin strong {
   color: var(--metin);
 }
+.metin small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--metin-ikincil);
+}
 
 /* Yazdırma: dilekçe sayfasında yalnızca dilekçe metni */
 @media print {
@@ -286,10 +310,10 @@ html:has(dialog[open]) {
   display: none;
 }
 @media print {
-  body.yazdir-liste .ekran-icerik {
+  body:has(.yazdirma-listesi) .ekran-icerik {
     display: none !important;
   }
-  body.yazdir-liste .yazdirma-listesi {
+  .yazdirma-listesi {
     display: block;
   }
   .yazdirma-listesi li {
@@ -306,10 +330,12 @@ html:has(dialog[open]) {
     size: A4;
     margin: 10mm;
   }
-  body.yazdir-form .ekran-icerik {
+  /* Sayfada yazdırılacak form varsa çıktı her zaman formdur. Sınıf açıp kapatmaya dayanmaz: telefonda
+     tarayıcı "yazdırma bitti" olayını pencere açılır açılmaz gönderir, kâğıt boyutu değişince sayfa yeniden çizilir. */
+  body:has(.form-yazdirma) .ekran-icerik {
     display: none !important;
   }
-  body.yazdir-form .form-yazdirma {
+  .form-yazdirma {
     display: block;
   }
   .resmi-form-sayfa {

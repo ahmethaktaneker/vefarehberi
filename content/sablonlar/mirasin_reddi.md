@@ -1,9 +1,16 @@
 ---
 id: mirasin_reddi
 baslik: "Mirasın reddi beyanı (sulh hukuk mahkemesine)"
-aciklama: "Vefat eden kişinin mirasını reddetmek için sulh hukuk mahkemesine verilen yazılı beyan. Her mirasçı kendi adına verir ve imzalar. Vermeden önce bir avukata kontrol ettirmeniz önerilir."
+aciklama: "Vefat eden kişinin mirasını reddetmek için sulh hukuk mahkemesine verilen yazılı beyan. Her mirasçı kendi adına verir ve imzalar. Vefat edenin son yerleşim yerindeki ya da sizin oturduğunuz yerdeki sulh hukuk mahkemesine verilebilir."
+notlar:
+  - "Süre: Ölümü öğrendiğiniz tarihten itibaren 3 ay (TMK m.606). Son güne bırakmayın."
+  - "Ret kayıtsız ve şartsız olmalıdır. \"Şu malı alırım, borcu almam\" gibi kısmi ya da şartlı ret geçerli olmaz."
+  - "Reddeden kişinin payı sıradaki mirasçılara geçer. Çocuklarınız, torunlarınız da borç nedeniyle ayrıca reddetmek zorunda kalabilir; süreleri ayrı işler."
+  - "Karar vermeden önce vefat edenin mallarını satmak, hesabından para çekmek, kartıyla işlem yapmak mirası kabul sayılabilir ve reddi engelleyebilir (TMK m.610)."
+  - "Yanınızda kimliğiniz, ölüm belgesi ve nüfus kayıt örneği bulunsun. Mirasçılık belgesi varsa ekleyin."
+kucuk_not: "Ek belge, harç ve başvurunun kayda geçmesi için mahkeme kaleminden teyit edin."
 alanlar:
-  - { id: mahkeme, etiket: "Mahkeme", ornek: "Kadıköy Nöbetçi Sulh Hukuk Mahkemesi" }
+  - { id: mahkeme, etiket: "Mahkeme", ornek: "İstanbul Anadolu Nöbetçi Sulh Hukuk Mahkemesi" }
   - { id: reddeden, etiket: "Adınız soyadınız" }
   - { id: reddeden_adres, etiket: "Adresiniz", cok_satirli: true }
   - { id: yakinlik, etiket: "Vefat edene yakınlığınız", ornek: "oğlu" }
