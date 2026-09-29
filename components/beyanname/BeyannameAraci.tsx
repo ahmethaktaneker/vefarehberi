@@ -66,8 +66,16 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const [adim, setAdim] = useState(0);
   const [pdfDurum, setPdfDurum] = useState<"bos" | "hazirlaniyor" | "hata">("bos");
-  const [pdf, setPdf] = useState<{ url: string; dosya: File } | null>(null);
-  useEffect(() => () => void (pdf && URL.revokeObjectURL(pdf.url)), [pdf]);
+  // url: PDF olarak açmak için; indirUrl: iPhone Safari PDF'i açmak yerine indirsin diye genel dosya türüyle.
+  const [pdf, setPdf] = useState<{ url: string; indirUrl: string; dosya: File } | null>(null);
+  useEffect(
+    () => () => {
+      if (!pdf) return;
+      URL.revokeObjectURL(pdf.url);
+      URL.revokeObjectURL(pdf.indirUrl);
+    },
+    [pdf],
+  );
   const pdfKap = useRef<HTMLDivElement>(null);
   const baslik = useRef<HTMLHeadingElement>(null);
   const ilkCizim = useRef(true);
@@ -113,7 +121,11 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
     try {
       const blob = await formuPdfYap(pdfKap.current);
       const dosya = new File([blob], PDF_ADI, { type: "application/pdf" });
-      setPdf({ url: URL.createObjectURL(dosya), dosya });
+      setPdf({
+        url: URL.createObjectURL(dosya),
+        indirUrl: URL.createObjectURL(new Blob([blob], { type: "application/octet-stream" })),
+        dosya,
+      });
       olay("beyanname_yazdirildi");
       setPdfDurum("bos");
     } catch {
@@ -450,20 +462,21 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
                   <div role="status" className="space-y-3 rounded-xl border-2 border-vurgu bg-vurgu-acik p-4">
                     <p className="font-semibold text-vurgu-koyu">PDF hazır.</p>
                     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                      <a href={pdf.url} download={PDF_ADI} className="dugme dugme-birincil">
-                        PDF&apos;i indir
-                      </a>
                       {paylasilabilir && (
-                        <button type="button" onClick={pdfPaylas} className="dugme dugme-ikincil">
-                          Paylaş veya kaydet
+                        <button type="button" onClick={pdfPaylas} className="dugme dugme-birincil">
+                          Dosyalar&apos;a kaydet veya paylaş
                         </button>
                       )}
+                      <a href={pdf.indirUrl} download={PDF_ADI} className={`dugme ${paylasilabilir ? "dugme-ikincil" : "dugme-birincil"}`}>
+                        PDF&apos;i indir
+                      </a>
                       <a href={pdf.url} target="_blank" rel="noopener" className="dugme dugme-ikincil">
                         Yeni sekmede aç<span className="sr-only"> (yeni sekmede açılır)</span>
                       </a>
                     </div>
                     <p className="text-base text-metin-ikincil">
-                      İndirme başlamazsa &ldquo;Paylaş veya kaydet&rdquo; ile Dosyalar&apos;a kaydedin ya da yeni sekmede açıp oradan yazdırın.
+                      iPhone&apos;da &ldquo;Dosyalar&apos;a kaydet veya paylaş&rdquo; düğmesinden &ldquo;Dosyalar&apos;a Kaydet&rdquo;i ya da
+                      &ldquo;Yazdır&rdquo;ı seçebilirsiniz. İndirilen dosya Dosyalar uygulamasındaki İndirilenler klasörüne gider.
                     </p>
                   </div>
                 )}
