@@ -56,11 +56,6 @@ function cevaplardanBaslat(c: Cevaplar): BeyannameVerisi {
   return v;
 }
 
-function formuYazdir() {
-  olay("beyanname_yazdirildi");
-  window.print();
-}
-
 export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcerik; parametreler: Parametreler }) {
   const ham = useDepo(ANAHTARLAR.beyanname);
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
@@ -447,40 +442,38 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
               </div>
 
               <div className="space-y-3">
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <button type="button" onClick={pdfIndir} disabled={pdfDurum === "hazirlaniyor"} className="dugme dugme-birincil">
-                    {pdfDurum === "hazirlaniyor" ? "PDF hazırlanıyor…" : pdf ? "PDF'i yeniden hazırla" : "PDF hazırla"}
-                  </button>
-                  <button type="button" onClick={formuYazdir} className="dugme dugme-ikincil">
-                    Doğrudan yazdır
-                  </button>
-                </div>
-                <p className="text-base text-metin-ikincil">
-                  Telefondan yazdıracaksanız önce PDF hazırlayın, indirip açın ve oradan yazdırın; form A4 sayfaya tam sığar.
-                </p>
+                <button
+                  type="button"
+                  onClick={pdfIndir}
+                  disabled={pdfDurum === "hazirlaniyor"}
+                  className={`dugme ${pdf ? "dugme-ikincil" : "dugme-birincil"}`}
+                >
+                  {pdfDurum === "hazirlaniyor" ? "PDF hazırlanıyor…" : pdf ? "PDF'i yeniden hazırla" : "PDF hazırla"}
+                </button>
+                <p className="text-base text-metin-ikincil">PDF&apos;i indirip açın ve oradan yazdırın; form A4 sayfaya tam sığar.</p>
                 {pdf && (
                   <div role="status" className="space-y-3 rounded-xl border-2 border-vurgu bg-vurgu-acik p-4">
                     <p className="font-semibold text-vurgu-koyu">PDF hazır.</p>
                     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                      <a href={pdf.indirUrl} download={PDF_ADI} className="dugme dugme-birincil">
+                        PDF&apos;i indir
+                      </a>
                       {paylasilabilir && (
-                        <button type="button" onClick={pdfPaylas} className="dugme dugme-birincil">
+                        <button type="button" onClick={pdfPaylas} className="dugme dugme-ikincil">
                           Dosyalar&apos;a kaydet veya paylaş
                         </button>
                       )}
-                      <a href={pdf.indirUrl} download={PDF_ADI} className={`dugme ${paylasilabilir ? "dugme-ikincil" : "dugme-birincil"}`}>
-                        PDF&apos;i indir
-                      </a>
                       <a href={pdf.url} target="_blank" rel="noopener" className="dugme dugme-ikincil">
                         Yeni sekmede aç<span className="sr-only"> (yeni sekmede açılır)</span>
                       </a>
                     </div>
                     <p className="text-base text-metin-ikincil">
-                      iPhone&apos;da &ldquo;Dosyalar&apos;a kaydet veya paylaş&rdquo; düğmesinden &ldquo;Dosyalar&apos;a Kaydet&rdquo;i ya da
-                      &ldquo;Yazdır&rdquo;ı seçebilirsiniz. İndirilen dosya Dosyalar uygulamasındaki İndirilenler klasörüne gider.
+                      iPhone&apos;da indirilen dosya Dosyalar uygulamasındaki İndirilenler klasörüne gider. Doğrudan yazdırmak için
+                      &ldquo;Dosyalar&apos;a kaydet veya paylaş&rdquo; düğmesinden &ldquo;Yazdır&rdquo;ı seçebilirsiniz.
                     </p>
                   </div>
                 )}
-                {pdfDurum === "hata" && <p className="text-base text-uyari">PDF hazırlanamadı. &ldquo;Doğrudan yazdır&rdquo; düğmesini deneyin.</p>}
+                {pdfDurum === "hata" && <p className="text-base text-uyari">PDF hazırlanamadı. Sayfayı yenileyip tekrar deneyin.</p>}
                 <ol className="list-decimal space-y-1 pl-5 text-base">
                   <li>Formu iki sayfa olarak yazdırın (arkalı önlü de olur).</li>
                   <li>Boş kalan yerleri elle doldurun. Mirasçılar, ön yüzdeki kendi satırlarını imzalar.</li>
