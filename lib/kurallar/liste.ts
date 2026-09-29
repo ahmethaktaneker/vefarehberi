@@ -31,7 +31,7 @@ export type Liste = {
   /** Cevaplara göre ilgili kurumlar. */
   kurumlar: Kurum[];
   /** Gösterilen adımlarda istenen belgelerin birleşik listesi; hangi adımlarda istendiğiyle. */
-  belgeListesi: { belge: Belge; adimlar: { id: string; baslik: string }[] }[];
+  belgeListesi: { belge: Belge; adimlar: { id: string; baslik: string; neden?: string }[] }[];
 };
 
 /**
