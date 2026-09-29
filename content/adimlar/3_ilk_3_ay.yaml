@@ -70,6 +70,9 @@
     bu aylığı etkilemez.
   nereye: "SGK"
   cevrimici: "Evet, e-Devlet üzerinden başvurulabilir."
+  baglantilar:
+    - { ad: "e-Devlet: Gelir, Aylık, Ödenek Talep Belgesi (SGK)", url: "https://www.turkiye.gov.tr/sgk-tahsis-talep-taahhut-beyan" }
+    - { ad: "e-Devlet: Ölüm Yardımı ve Dul / Yetim Aylığı Talebi (memurlar, 4/c)", url: "https://www.turkiye.gov.tr/sosyal-guvenlik-olum-yardimi-ve-dul-yetim-ayligi-talebi" }
   ipuclari:
     - tur: deneyim
       metin: >

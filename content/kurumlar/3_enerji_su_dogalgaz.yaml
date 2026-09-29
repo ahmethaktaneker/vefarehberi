@@ -137,6 +137,8 @@
       notlar_deneyim:
         - "Tek mirasçı varsa abonelik onun adına; birden fazla mirasçı varsa diğerlerinin yazılı olarak belirlediği mirasçı adına yapıldığı aktarılıyor."
   usulsuz_kullanim_uyarisi: false
+  edevlet:
+    - { ad: "İzmir Doğalgaz Dağıtım A.Ş. hizmetleri", url: "https://www.turkiye.gov.tr/izmir-dogalgaz-dagitim-as" }
   kaynak:
     - "https://www.izmirgaz.com.tr/musteri_hizmetleri.php?data=id5"
     - "https://www.sikayetvar.com/izmir-dogalgaz/guvence-bedeli"
@@ -156,6 +158,8 @@
         - "Mirasçılık belgesinde adı geçenler aboneliği sonlandırabilir ya da içlerinden biri adına devir veya yeni abonelik isteyebilir."
         - "Birçok şirkette sözleşme sonlandırma e-Devlet üzerinden de yapılabiliyor; e-Devlet'te şirketin adını aratın."
         - "Güvence bedeli, son tüketim düşüldükten sonra mirasçılara iade edilir. Tüm mirasçıların onayı (muvafakatname) istenebilir."
+  edevlet:
+    - { ad: "Doğal gaz abonelik sözleşme feshi (şirketinizi seçin)", url: "https://www.turkiye.gov.tr/arama?aranan=Do%C4%9Fal+Gaz+Abonelik+S%C3%B6zle%C5%9Fme+Feshi+Ba%C5%9Fvurusu" }
   usulsuz_kullanim_uyarisi: true
   kaynak: ["https://www.turkiye.gov.tr"]
   son_kontrol: "2026-09-29"
@@ -172,6 +176,8 @@
   islemler:
     - tip: iptal
       kanal: ["e-Devlet", "İSKİ e-Şube", "Mobil İSKİ", "İSKİ şube müdürlükleri"]
+  edevlet:
+    - { ad: "İSKİ abonelik sözleşme feshi", url: "https://www.turkiye.gov.tr/iski-abonelik-iptali-basvurusu" }
   usulsuz_kullanim_uyarisi: false
   kaynak: ["https://iski.istanbul/abone-hizmetleri/abone-rehberi/abonelik-iptal-islemleri/"]
   son_kontrol: "2026-09-28"
@@ -210,6 +216,8 @@
       notlar_deneyim:
         - "Mirasçıların birikmiş borcu ödeyip aboneliği 2 ay içinde devralması gerektiği, aksi hâlde aboneliğin iptal edildiği aktarılıyor."
   usulsuz_kullanim_uyarisi: false
+  edevlet:
+    - { ad: "İZSU abonelik sözleşme feshi", url: "https://www.turkiye.gov.tr/izmir-su-ve-kanalizasyon-idaresi-abonelik-sozlesme-feshi-basvurusu" }
   kaynak:
     - "https://www.izsu.gov.tr/tr/AbonelikIslemleriMobil/Detay/62"
     - "https://www.hurriyet.com.tr/egitim/izmir-izsu-su-abonelik-kapatma-nasil-yapilir-izsu-abonelik-iptali-icin-yapilacak-islemler-41804766"
@@ -229,6 +237,8 @@
         - "Su aboneliği belediyenin su idaresindedir. Mirasçılar aboneliği kapatabilir ya da içlerinden biri adına devralabilir."
         - "Bazı idareler devir için süre (ör. 2 ay) tanıyor ve konutlarda DASK poliçesi istiyor. Süreyi idareye sorun."
         - "Birçok su idaresinde abonelik iptali e-Devlet'ten de yapılabiliyor."
+  edevlet:
+    - { ad: "Abonelik sözleşme feshi (su idarenizi seçin)", url: "https://www.turkiye.gov.tr/arama?aranan=Abonelik+S%C3%B6zle%C5%9Fme+Feshi+Ba%C5%9Fvurusu" }
   usulsuz_kullanim_uyarisi: false
   kaynak: ["https://tiski.gov.tr/icerik/yakinlarini-kaybeden-vatandaslara-tiskiden-onemli-uyari-abonelik-devir-islemleri-icin-2-aylik-sureyi-kacirmayin"]
   son_kontrol: "2026-09-29"

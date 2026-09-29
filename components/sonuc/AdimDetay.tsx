@@ -84,6 +84,9 @@ export function AdimDetay({
   const genelIpuclari = a.ipuclari.filter((i) => i.tur === "genel");
   const deneyimler = a.ipuclari.filter((i) => i.tur === "deneyim");
   const ilgiliKurumlar = kurumlar.filter((k) => a.kurum_turleri.includes(k.tur));
+  // e-Devlet bağlantıları "Çevrimiçi yapılabilir mi?" satırında düğme olarak gösterilir; diğerleri altta.
+  const edevlet = a.baglantilar.filter((b) => b.url.includes("turkiye.gov.tr"));
+  const digerBaglantilar = a.baglantilar.filter((b) => !b.url.includes("turkiye.gov.tr"));
   const metin = (m: string) => (yazdirma ? m : <TerimliMetin metin={m} sozluk={sozluk} />);
 
   return (
@@ -135,7 +138,27 @@ export function AdimDetay({
           </Alan>
         )}
         {a.nereye && <Alan etiket="Nereye?">{metin(a.nereye)}</Alan>}
-        {a.cevrimici && <Alan etiket="Çevrimiçi yapılabilir mi?">{metin(a.cevrimici)}</Alan>}
+        {(a.cevrimici || (edevlet.length > 0 && !yazdirma)) && (
+          <Alan etiket="Çevrimiçi yapılabilir mi?">
+            {a.cevrimici && metin(a.cevrimici)}
+            {!yazdirma && edevlet.length > 0 && (
+              <span className="mt-2 flex flex-col gap-2">
+                {edevlet.map((b) => (
+                  <a
+                    key={b.url}
+                    href={b.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center gap-2 self-start rounded-xl border-2 border-vurgu-koyu px-4 py-2 font-semibold text-vurgu-koyu no-underline hover:bg-vurgu-acik"
+                  >
+                    {b.ad.replace(/^e-Devlet: /, "e-Devlet'te aç: ")}
+                    <span className="sr-only"> (yeni sekmede açılır)</span>
+                  </a>
+                ))}
+              </span>
+            )}
+          </Alan>
+        )}
         {ilgiliKurumlar.length > 0 && !yazdirma && (
           <Alan etiket="İlgili kurumlar">
             <ul className="flex flex-wrap gap-2">
@@ -182,7 +205,7 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.arac.includes("reddi_miras_tablosu") || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.arac.includes("reddi_miras_tablosu") || digerBaglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
           {a.arac.includes("reddi_miras_tablosu") && aracGorunur("reddi_miras_tablosu") && (
             <p>
@@ -212,7 +235,7 @@ export function AdimDetay({
               </Link>
             </p>
           )}
-          {a.baglantilar.map((b) => (
+          {digerBaglantilar.map((b) => (
             <p key={b.url}>
               <a href={b.url} target="_blank" rel="noopener noreferrer" className="baglanti">
                 {b.ad}

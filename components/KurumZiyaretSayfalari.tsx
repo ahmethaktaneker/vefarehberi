@@ -151,11 +151,22 @@ function KurumIcerigi({ sayfa: { kurum: k, belgeler, sablonlar }, yazdirma }: { 
         <p className="font-semibold">Gişede şöyle diyebilirsiniz</p>
         <p className={yazdirma ? "border-l-4 border-black pl-3" : "mt-1 border-l-4 border-altin pl-3"}>&ldquo;{SOYLENECEK[k.tur]}&rdquo;</p>
       </div>
-      {(kanallar.length > 0 || k.iletisim) && (
+      {(kanallar.length > 0 || k.iletisim || k.edevlet.length > 0) && (
         <div>
           <p className="font-semibold">Nereye</p>
           {kanallar.length > 0 && <p>{kanallar.join(", ")}</p>}
           {k.iletisim && <p>{k.iletisim}</p>}
+          {k.edevlet.map((e) =>
+            yazdirma ? (
+              <p key={e.url}>e-Devlet: {e.ad}</p>
+            ) : (
+              <p key={e.url}>
+                <a href={e.url} target="_blank" rel="noopener noreferrer" className="baglanti">
+                  e-Devlet&apos;te aç: {e.ad}
+                </a>
+              </p>
+            ),
+          )}
         </div>
       )}
       {notlar.length > 0 && (

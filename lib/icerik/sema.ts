@@ -166,6 +166,8 @@ export const KurumSemasi = z.strictObject({
     )
     .min(1),
   guvence_bedeli_iadesi: z.array(z.string()).default([]),
+  /** Kurumun e-Devlet'teki ilgili hizmetleri (yalnızca adresi doğrulanmış olanlar). */
+  edevlet: z.array(z.strictObject({ ad: z.string(), url: z.url() })).default([]),
   usulsuz_kullanim_uyarisi: z.boolean(),
   ...dogrulukAlanlari,
 });

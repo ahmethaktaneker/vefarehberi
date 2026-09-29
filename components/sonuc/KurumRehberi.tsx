@@ -105,6 +105,30 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
             </div>
           )}
 
+          {k.edevlet.length > 0 && (
+            <div className="space-y-2">
+              <h4 className="font-semibold">e-Devlet</h4>
+              <div className="flex flex-col gap-2">
+                {k.edevlet.map((e) => (
+                  <a
+                    key={e.url}
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center self-start rounded-xl border-2 border-vurgu-koyu px-4 py-2 text-base font-semibold text-vurgu-koyu no-underline hover:bg-vurgu-acik"
+                  >
+                    e-Devlet&apos;te aç: {e.ad}
+                    <span className="sr-only"> (yeni sekmede açılır)</span>
+                  </a>
+                ))}
+              </div>
+              {k.tur !== "banka" && (
+                <p className="text-sm text-metin-ikincil">
+                  Abonelik vefat edenin adına kayıtlıysa e-Devlet&apos;te sizin hesabınızda görünmeyebilir; o durumda kurumun şubesine başvurun.
+                </p>
+              )}
+            </div>
+          )}
           {k.web && (
             <a href={k.web} target="_blank" rel="noopener noreferrer" className="inline-block text-base text-vurgu-koyu underline underline-offset-4">
               Kurumun sayfası<span className="sr-only"> (yeni sekmede açılır)</span>
