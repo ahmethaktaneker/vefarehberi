@@ -18,13 +18,13 @@ Vefat Rehberi'nin yapılacaklar listesi, hesaplayıcı ve dilekçe taslakları h
 
 Yalnızca şu durumda kişisel veri işlenir:
 
-- **Takip Paketi için e-posta bırakırsanız:** e-posta adresiniz, size gösterilen paket fiyatı, kayıt tarihi ve verdiğiniz açık rızanın metin sürümü.
+- **Bir paket için e-posta bırakırsanız:** e-posta adresiniz, ilgilendiğiniz paket, kayıt tarihi ve verdiğiniz açık rızanın metin sürümü.
 
 T.C. kimlik numarası, sağlık bilgisi, adres, banka hesap bilgisi, vefat eden kişinin veya mirasçıların isimleri gibi bilgileri istemiyor ve işlemiyoruz.
 
 ## İşleme amacı
 
-E-posta adresiniz yalnızca Takip Paketi kullanıma açıldığında size haber vermek amacıyla işlenir. Başka bir amaçla kullanılmaz, üçüncü kişilere satılmaz.
+E-posta adresiniz yalnızca seçtiğiniz paket kullanıma açıldığında size haber vermek amacıyla işlenir. Başka bir amaçla kullanılmaz, üçüncü kişilere satılmaz.
 
 ## Hukuki sebep ve toplama yöntemi
 

@@ -1,14 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { aracOnerileri, paketOnerisi } from "@/lib/araclar";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { listeOlustur } from "@/lib/kurallar/liste";
 import { paketYukle } from "@/lib/paket";
-import { paketTetikleyici } from "@/lib/paketTetikleyici";
 import type { Cevaplar } from "@/lib/sorular";
 
 const icerik = icerikYukle();
-const paket = paketYukle();
-const tetik = (c: Cevaplar, bugun = "2026-09-28") => paketTetikleyici(paket, c, listeOlustur(c, icerik, bugun)).id;
-
 const temel: Cevaplar = {
   vefat_tarihi: "2026-08-10",
   vefat_yeri: "turkiye",
@@ -22,23 +19,54 @@ const temel: Cevaplar = {
   mirasci_sayisi: "2_3",
   mirascilik_belgesi: "hayir",
 };
+const oner = (c: Cevaplar, yapilan: string[] = [], bugun = "2026-09-28") => paketOnerisi(c, listeOlustur(c, icerik, bugun), new Set(yapilan));
+const araclar = (c: Cevaplar, bugun = "2026-09-28") => aracOnerileri(listeOlustur(c, icerik, bugun), new Set()).map((o) => o.arac.id);
 
-describe("Takip Paketi", () => {
-  it("brief'teki üç fiyat", () => {
-    expect(paket.fiyatlar).toEqual([499, 999, 1999]);
+describe("paketler", () => {
+  it("iki paket var, fiyat yok", () => {
+    const p = paketYukle();
+    expect(p.paketler.map((x) => x.id)).toEqual(["beyanname", "aile"]);
+    expect(JSON.stringify(p)).not.toMatch(/fiyat/);
   });
 
-  it("tetikleyiciler brief'e göre", () => {
-    expect(tetik(temel)).toBe("genel");
-    expect(tetik({ ...temel, varliklar: ["baska_sehir_tasinmaz"] })).toBe("baska_sehir_tasinmaz");
-    expect(tetik({ ...temel, mirasci_yeri: "karisik" })).toBe("yurtdisi_mirasci");
-    expect(tetik({ ...temel, mirasci_sayisi: "4_arti" })).toBe("kalabalik_aile");
+  it("yalnızca mal varsa Beyanname Paketi önerilir, kalan gün yazılır", () => {
+    const o = oner(temel);
+    expect(o?.paket).toBe("beyanname");
+    expect(o?.nedenler[0]).toMatch(/Beyanname için \d+ gününüz var/);
   });
 
-  it("veraset son tarihine 30 gün veya daha az kaldıysa beyanname tetikleyicisi önce gelir", () => {
-    // Son tarih 2026-12-10; 2026-11-15'te 25 gün kalır
-    expect(tetik({ ...temel, varliklar: ["baska_sehir_tasinmaz"] }, "2026-11-15")).toBe("veraset_30_gun");
-    // Süre geçtiyse tetiklenmez
-    expect(tetik(temel, "2026-12-20")).toBe("genel");
+  it("borç riski varsa Aile Paketi önerilir ve reddi miras süresi söylenir", () => {
+    const o = oner({ ...temel, borc: "bilmiyorum", varliklar: ["ev_arsa", "kredi"] });
+    expect(o?.paket).toBe("aile");
+    expect(o?.nedenler[0]).toMatch(/Mirası reddetmek için \d+ gününüz var/);
+  });
+
+  it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir", () => {
+    expect(oner({ ...temel, mirasci_sayisi: "4_arti" })?.paket).toBe("aile");
+    expect(oner({ ...temel, mirasci_yeri: "karisik" })?.paket).toBe("aile");
+  });
+
+  it("mal da borç da yoksa paket önerilmez", () => {
+    expect(oner({ ...temel, varliklar: ["hicbiri"], borc: "hayir" })).toBeNull();
+  });
+
+  it("beyanname yapıldıysa artık Beyanname Paketi önerilmez", () => {
+    expect(oner(temel, ["veraset_beyannamesi"])).toBeNull();
+  });
+});
+
+describe("araç önerileri", () => {
+  it("listedeki adımlara göre araçlar, son tarihi yakın olan önce", () => {
+    const ids = araclar({ ...temel, borc: "bilmiyorum" });
+    expect(ids[0]).toBe("reddi_miras_tablosu");
+    expect(ids).toContain("beyanname_araci");
+    expect(ids).toContain("miras_payi");
+    expect(ids).toContain("kurum_ziyaret");
+  });
+
+  it("mal yoksa beyanname araçları önerilmez", () => {
+    const ids = araclar({ ...temel, varliklar: ["hicbiri"] });
+    expect(ids).not.toContain("beyanname_araci");
+    expect(ids).not.toContain("veraset_hesaplayici");
   });
 });

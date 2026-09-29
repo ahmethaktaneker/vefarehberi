@@ -1,29 +1,25 @@
-# Takip Paketi: ödeme isteği testi (Brief 10). Gerçek ödeme yok.
-# Zorunlu bilgi asla ücretli değildir; pakette yalnızca zaman kazandıran ve düzen sağlayan şeyler var.
+# Paketler: ilgi testi (Brief 10). Gerçek ödeme yok, fiyat gösterilmiyor.
+# Zorunlu bilgi asla ücretli değildir; pakette zaman kazandıran ve işi bizzat kolaylaştıran araçlar var.
+# Hangi paketin öne çıkacağı cevaplara göre kodda seçilir (lib/araclar.ts paketOnerisi).
+# Tüm tanıtımı kapatmak için lib/marka.ts PAKET_TANITIMI_AKTIF = false.
 
-ad: "Takip Paketi"
-aciklama: "İşlemleri kendiniz yaparken size zaman kazandıran ve düzen sağlayan ek araçlar."
-icerik:
-  - "Veraset beyannamesi hazırlık dosyası: varlıklarınıza göre belge listesi ve adım adım vergi dairesi rehberi"
-  - "Tüm dilekçe ve başvuru taslakları (işverene, sigorta şirketine, belediyeye)"
-  - "E-posta ile haftalık \"bu hafta şunu yapın\" planı"
-  - "Yurtdışındaki mirasçılar için ayrıntılı rehber"
-fiyatlar: [499, 999, 1999]
+paketler:
+  - id: beyanname
+    ad: "Beyanname Paketi"
+    aciklama: "Veraset beyannamesini kendiniz, kolayca verin."
+    icerik:
+      - "Resmi veraset ve intikal vergisi beyannamesini adım adım doldurma ve yazdırma"
+      - "Her varlık için değerin nereden bulunacağı ve eklenecek belgeler"
+      - "Mirasçı paylarına göre herkesin vergisi"
+  - id: aile
+    ad: "Aile Paketi"
+    aciklama: "Borç riski, kalabalık aile ya da çok kurum varsa işleri tek elden yürütün."
+    icerik:
+      - "Beyanname Paketi'ndeki her şey"
+      - "Mirası reddetmeli miyim? Varlık ve borç tablosu, kalan gün sayacı ve avukat için özet"
+      - "Gideceğiniz her kurum için tek sayfa: ne götürülecek, gişede ne denecek, hangi dilekçe"
+
 yakinda_metni: >
-  Paket çok yakında açılıyor. Şu an ödeme almıyoruz. Listeniz, son tarihler ve hak edebileceğiniz
-  ödemeler her zaman ücretsiz kalacak.
+  Paketler çok yakında açılıyor. Şu an ödeme almıyoruz. Listeniz, son tarihler, hesaplayıcılar ve
+  hak edebileceğiniz ödemeler her zaman ücretsiz kalacak.
 eposta_yakinda_metni: "Paket açıldığında haber almak için e-posta bırakma seçeneği de çok yakında burada olacak."
-
-# Doğru anda gösterilen kısa not (Brief 10 "tetikleyiciler"). İlk eşleşen gösterilir.
-tetikleyiciler:
-  - id: veraset_30_gun
-    metin: "Beyanname için gereken tüm belgeler pakette tek listede."
-  - id: baska_sehir_tasinmaz
-    kosul: { varliklar: "baska_sehir_tasinmaz" }
-    metin: "Başka şehirdeki taşınmazlar için rayiç bedel ve vekaletname adımları pakette hazır."
-  - id: yurtdisi_mirasci
-    kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
-    metin: "Yurtdışındaki mirasçılar için özel rehber pakette."
-  - id: kalabalik_aile
-    kosul: { mirasci_sayisi: "4_arti" }
-    metin: "Kardeşlerinizle görev paylaşımı ve imza takibi pakette olacak."

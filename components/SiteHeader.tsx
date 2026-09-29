@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { hrefGorunur, hrefPakette } from "@/lib/araclar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
@@ -108,7 +109,7 @@ export function SiteHeader() {
       {menuAcik && (
         <nav id="ana-menu" aria-label="Ana menü" className="absolute inset-x-0 top-full border-t border-white/10 bg-yuzey text-metin shadow-yuksek">
           <ul className="mx-auto grid max-w-4xl gap-x-6 px-4 py-2 sm:grid-cols-2 sm:px-6 sm:py-4">
-            {MENU.map((m) => (
+            {MENU.filter((m) => hrefGorunur(m.href)).map((m) => (
               <li key={m.href} className="border-b border-cizgi sm:border-b-0">
                 <Link
                   href={m.href}
@@ -117,6 +118,7 @@ export function SiteHeader() {
                   className="flex min-h-16 flex-col justify-center rounded-xl py-3 sm:px-3 sm:hover:bg-zemin"
                 >
                   <span className={`text-lg font-bold ${aktif(m.href) ? "text-vurgu underline underline-offset-4" : "text-vurgu-koyu"}`}>{m.ad}</span>
+                  {hrefPakette(m.href) && <span className="ml-2 rounded-full bg-altin-acik px-2 py-0.5 text-sm text-altin-koyu">Pakette</span>}
                   <span className="text-base text-metin-ikincil">{m.aciklama}</span>
                 </Link>
               </li>

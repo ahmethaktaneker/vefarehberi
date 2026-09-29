@@ -2,10 +2,9 @@ import { Redis } from "@upstash/redis";
 import { z } from "zod";
 import { epostaTemizle } from "@/lib/eposta";
 import { kvkkYukle } from "@/lib/kvkk";
-import { paketYukle } from "@/lib/paket";
 
 /**
- * Takip Paketi için e-posta bırakma (Brief 10, 12). Yalnızca e-posta, fiyat varyantı, tarih ve
+ * Paketler için e-posta bırakma (Brief 10, 12). Yalnızca e-posta, ilgilenilen paket, tarih ve
  * rıza sürümü saklanır. Kayıt 12 ay sonra kendiliğinden silinir (aydınlatma metni).
  */
 
@@ -13,7 +12,7 @@ const SAKLAMA_SN = 60 * 60 * 24 * 365;
 
 const Istek = z.strictObject({
   eposta: z.string(),
-  fiyat: z.number().int(),
+  paket: z.enum(["beyanname", "aile"]),
   riza: z.literal(true),
   riza_surumu: z.string(),
   site: z.string().optional(),
@@ -28,21 +27,20 @@ function redis(): Redis | null {
 export async function POST(request: Request) {
   const govde = Istek.safeParse(await request.json().catch(() => null));
   if (!govde.success) return Response.json({ hata: "gecersiz" }, { status: 400 });
-  const { eposta, fiyat, riza_surumu, site } = govde.data;
+  const { eposta, paket, riza_surumu, site } = govde.data;
 
   // Bot tuzağı: sessizce başarılı görün.
   if (site) return Response.json({ tamam: true });
 
   const temiz = epostaTemizle(eposta);
   if (!temiz) return Response.json({ hata: "eposta" }, { status: 400 });
-  if (!paketYukle().fiyatlar.includes(fiyat)) return Response.json({ hata: "gecersiz" }, { status: 400 });
   if (riza_surumu !== kvkkYukle().acik_riza.paket_ilgi.surum) return Response.json({ hata: "riza" }, { status: 400 });
 
   const db = redis();
   if (!db) return Response.json({ hata: "hazir_degil" }, { status: 503 });
 
   const anahtar = `paket_ilgi:${temiz}`;
-  await db.hset(anahtar, { fiyat, tarih: new Date().toISOString(), riza_surumu });
+  await db.hset(anahtar, { paket, tarih: new Date().toISOString(), riza_surumu });
   await db.expire(anahtar, SAKLAMA_SN);
   return Response.json({ tamam: true });
 }

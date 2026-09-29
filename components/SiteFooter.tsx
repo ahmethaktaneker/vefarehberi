@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HukukiUyari } from "@/components/HukukiUyari";
+import { hrefGorunur } from "@/lib/araclar";
 import { hataBildirBaglantisi, URUN_ADI, URUN_ALT_BASLIK } from "@/lib/marka";
 
 const SUTUNLAR: { baslik: string; baglantilar: [string, string][] }[] = [
@@ -50,7 +51,7 @@ export function SiteFooter() {
             <div key={s.baslik}>
               <h2 className="mb-2 font-bold text-altin">{s.baslik}</h2>
               <ul className="space-y-1">
-                {s.baglantilar.map(([href, ad]) => (
+                {s.baglantilar.filter(([href]) => hrefGorunur(href)).map(([href, ad]) => (
                   <li key={href}>
                     <Link href={href} className="inline-block py-1.5 text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">
                       {ad}

@@ -24,7 +24,7 @@ export const AVUKAT_ROZETI_AKTIF = true;
 export const UMAMI_SITE_KIMLIGI = "6fd3f51a-07b7-4236-b40a-afb4401f54db";
 
 /**
- * Takip Paketi için e-posta bırakma formu açık mı? Veritabanı Vercel'e bağlanınca true yapılır.
+ * Paketler için e-posta bırakma formu açık mı? Veritabanı Vercel'e bağlanınca true yapılır.
  */
 export const EPOSTA_TOPLAMA_AKTIF = true;
 
@@ -40,6 +40,13 @@ export const KONTROL_ROZETLERI = false;
  * Kodlar: content/erisim.yaml, üretmek için npm run kod-uret.
  */
 export const UCRETLI_KILIT_AKTIF = true;
+
+/**
+ * Paket tanıtımları: liste sayfasındaki paket kartı, "Pakette" etiketleri ve kilitli araçlara giden tüm
+ * bağlantılar (menü, sayfa altı, adım ayrıntıları, araç önerileri). false yapılınca hepsi kaybolur;
+ * kilitli araç sayfaları yalnızca adresi bilenlere açık kalır.
+ */
+export const PAKET_TANITIMI_AKTIF = true;
 
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */
 export const ILETISIM_EPOSTA = "ahmethaktaneker@gmail.com";

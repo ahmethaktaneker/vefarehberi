@@ -91,8 +91,14 @@ export default function AnaSayfa() {
             Ücretsiz araçlar ve rehberler
           </h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <AracKarti href="/hesaplayici/miras-payi" baslik="Miras payı hesaplayıcı">
+              Eşe, çocuklara, anne-babaya ne oranda kalır?
+            </AracKarti>
+            <AracKarti href="/hesaplayici/olum-ayligi" baslik="Ölüm aylığı hesaplayıcı">
+              Eşe ve çocuklara ne kadar aylık bağlanır?
+            </AracKarti>
             <AracKarti href="/hesaplayici/veraset-vergisi" baslik="Veraset vergisi hesaplayıcı">
-              Size vergi çıkar mı, yaklaşık ne kadar?
+              Size vergi çıkar mı, ne kadar?
             </AracKarti>
             <AracKarti href="/sablonlar" baslik="Dilekçe taslakları">
               Banka ve abonelik dilekçelerini doldurup yazdırın.

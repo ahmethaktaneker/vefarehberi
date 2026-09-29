@@ -60,7 +60,7 @@ export default function Gizlilik() {
 
       <Bolum baslik="E-posta adresi">
         <p>
-          Takip Paketi için e-posta bırakırsanız, yalnızca e-posta adresiniz, size gösterilen fiyat, kayıt
+          Bir paket için e-posta bırakırsanız, yalnızca e-posta adresiniz, ilgilendiğiniz paket, kayıt
           tarihi ve rıza metninin sürümü saklanır. Kayıt en geç 12 ay sonra silinir. Ayrıntılar aydınlatma
           metnindedir.
         </p>

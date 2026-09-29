@@ -13,9 +13,10 @@ export type Olaylar = {
   takvime_eklendi: undefined;
   sablon_indirildi: { sablon_id: string };
   hesaplayici_kullanildi: undefined;
-  paket_karti_goruldu: { fiyat: number; tetikleyici: string };
-  paket_tiklandi: { fiyat: number; tetikleyici: string };
-  eposta_birakildi: { fiyat: number };
+  paket_karti_goruldu: { paket: string };
+  paket_tiklandi: { paket: string; onerilen: string };
+  eposta_birakildi: { paket: string };
+  arac_onerisi_tiklandi: { arac: string };
   beyanname_basladi: undefined;
   beyanname_yazdirildi: undefined;
   erisim_kodu_girildi: undefined;

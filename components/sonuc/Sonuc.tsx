@@ -9,7 +9,8 @@ import { bekledikleri, donemler, hazirBelgeler, siradakiAdim, simdikiDonem, yere
 import { listeOlustur } from "@/lib/kurallar/liste";
 import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import type { Paket } from "@/lib/paket";
-import { paketTetikleyici } from "@/lib/paketTetikleyici";
+import { aracOnerileri, paketOnerisi } from "@/lib/araclar";
+import { AracOnerileri } from "@/components/sonuc/AracOnerileri";
 import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
 import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
 import { AdimDetay } from "@/components/sonuc/AdimDetay";
@@ -54,6 +55,7 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
   const isaretliBelgeler = useMemo(() => new Set(jsonCoz<string[]>(hamBelgeler, [])), [hamBelgeler]);
   const bugun = istanbulBugun();
   const liste = useMemo(() => listeOlustur(cevaplar, icerik, bugun), [cevaplar, icerik, bugun]);
+  const oneri = useMemo(() => paketOnerisi(cevaplar, liste, yapilanlar), [cevaplar, liste, yapilanlar]);
   const [panel, setPanel] = useState<PanelDurumu | null>(null);
   const [sonYapilan, setSonYapilan] = useState<string | null>(null);
   const hash = useSyncExternalStore(hashAbone, () => window.location.hash, () => "");
@@ -172,6 +174,10 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
 
         <SonTarihKartlari adimlar={liste.sonTarihliler} yapilanlar={yapilanlar} />
 
+        <div className="yazdirma-gizle">
+          <AracOnerileri oneriler={aracOnerileri(liste, yapilanlar)} />
+        </div>
+
         {liste.avukatUyarilari.length > 0 && (
           <aside aria-label="Not" className="border-l-2 border-cizgi pl-3 text-base text-metin-ikincil">
             {liste.avukatUyarilari.map((u) => (
@@ -199,9 +205,11 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           }}
         />
 
-        <div className="yazdirma-gizle">
-          <PaketKarti paket={paket} riza={riza} tetikleyici={paketTetikleyici(paket, cevaplar, liste)} />
-        </div>
+        {oneri && (
+          <div className="yazdirma-gizle">
+            <PaketKarti paket={paket} riza={riza} oneri={oneri} />
+          </div>
+        )}
       </div>
 
       <YazdirmaListesi icerik={icerik} liste={liste} yapilanlar={yapilanlar} cevaplar={cevaplar} />

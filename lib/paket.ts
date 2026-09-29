@@ -2,24 +2,21 @@ import fs from "node:fs";
 import path from "node:path";
 import { parse } from "yaml";
 import { z } from "zod";
-import { KosulSemasi } from "@/lib/icerik/sema";
 
-/** content/paket.yaml: Takip Paketi ödeme isteği testi (Brief 10). */
+/** content/paket.yaml: Beyanname ve Aile paketleri, ilgi testi (Brief 10). */
 export const PaketSemasi = z.strictObject({
-  ad: z.string(),
-  aciklama: z.string(),
-  icerik: z.array(z.string()).min(1),
-  fiyatlar: z.array(z.number().int().positive()).min(1),
+  paketler: z
+    .array(
+      z.strictObject({
+        id: z.enum(["beyanname", "aile"]),
+        ad: z.string(),
+        aciklama: z.string(),
+        icerik: z.array(z.string()).min(1),
+      }),
+    )
+    .length(2),
   yakinda_metni: z.string(),
   eposta_yakinda_metni: z.string(),
-  tetikleyiciler: z.array(
-    z.strictObject({
-      id: z.string().regex(/^[a-z0-9_]+$/),
-      /** Yoksa kodda hesaplanan özel tetikleyicidir (veraset_30_gun). */
-      kosul: KosulSemasi.optional(),
-      metin: z.string(),
-    }),
-  ),
 });
 
 export type Paket = z.infer<typeof PaketSemasi>;

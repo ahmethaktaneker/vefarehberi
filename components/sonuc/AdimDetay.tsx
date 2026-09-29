@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { aracGorunur } from "@/lib/araclar";
 import type { Belge, Kurum, Terim } from "@/lib/icerik/sema";
 import type { HesaplanmisAdim, TutarBilgisi } from "@/lib/kurallar/liste";
 import { tarihMetni } from "@/lib/kurallar/tarih";
@@ -183,7 +184,7 @@ export function AdimDetay({
 
       {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.arac.includes("reddi_miras_tablosu") || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
-          {a.arac.includes("reddi_miras_tablosu") && (
+          {a.arac.includes("reddi_miras_tablosu") && aracGorunur("reddi_miras_tablosu") && (
             <p>
               <Link href="/reddi-miras" className="dugme dugme-birincil">
                 Varlık ve borçları karşılaştırın
@@ -289,7 +290,7 @@ function YaninizaAlin({
     }
   }
   const satirlar = [...a.belgeler.map((id) => ({ id, kurumlar: [] as string[] })), ...[...kurumdan].map(([id, k]) => ({ id, kurumlar: k }))];
-  const beyanname = a.arac.includes("beyanname_araci");
+  const beyanname = a.arac.includes("beyanname_araci") && aracGorunur("beyanname_araci");
   if (satirlar.length === 0 && a.sablonlar.length === 0 && !beyanname) return null;
 
   return (
