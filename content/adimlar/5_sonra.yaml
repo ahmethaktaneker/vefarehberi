@@ -8,8 +8,9 @@
   kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "bilmiyorum"] }
   belirsizse: { varliklar: "bilmiyorum" }
   ne: >
-    Mirasçılardan biri Web Tapu üzerinden başvurur. Tapu müdürlüğü harç tutarını SMS ile bildirir;
-    harç ödendikten sonra randevu gününde tapu müdürlüğünde işlem tamamlanır.
+    Mirasçılardan biri Web Tapu üzerinden başvurur. Mirasla intikalde tapu harcı alınmaz; yalnızca
+    döner sermaye ücreti ödenir. Ödemeden sonra randevu gününde tapu müdürlüğünde işlem tamamlanır.
+    Taşınmaz konutsa geçerli bir zorunlu deprem sigortası (DASK) poliçesi istenir.
   neden: >
     Tescil, veraset ve intikal vergisinin tahakkuku beklenmeden yapılabilir. Ancak taşınmaza düşen
     vergi tamamen ödenmeden taşınmaz satılamaz; satış için ilişik kesme belgesi istenir.
@@ -20,6 +21,7 @@
     - { ad: "Web Tapu", url: "https://webtapu.tkgm.gov.tr" }
   kaynak:
     - "https://www.tkgm.gov.tr/en/node/207"
+    - "https://ayboga.av.tr/miras-intikali-nasil-yapilir/"
     - "https://www.mevzuat.gov.tr/mevzuatmetin/1.3.7338.pdf"
   yer: tapu
   onceki: [mirascilik_belgesi]

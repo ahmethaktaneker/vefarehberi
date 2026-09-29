@@ -110,3 +110,9 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 ## Tutarlar (29.09.2026)
 
 - Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026: 29.934,73 TL alt sınır, memur aylık katsayısıyla hesaplandı (proje sahibi). SGK tutar sayfası güncellenince teyit et (content/parametreler.yaml).
+
+## Adım incelemesi (29.09.2026)
+
+- Kıdem tazminatı adımı ("en az 1 yıl kıdem, paylara göre mirasçılara") yalnızca yerel bir gazete haberine dayanıyor; 1475 s. İş Kanunu m.14 ile avukata teyit ettirilmeli.
+- Ölüm aylığı: "geç başvurularda 5 yıla kadar geriye dönük ödeme" bilgisi SGKya teyit ettirilmeli.
+- Tapu intikali: döner sermaye ücreti ve DASK şartı TKGMden teyit edilmeli.

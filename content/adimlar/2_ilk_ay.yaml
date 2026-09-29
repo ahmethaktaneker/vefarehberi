@@ -90,8 +90,10 @@
   ne: >
     e-Devlet'teki "Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz
     Kişi Adına)" hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu sorgulayabilirsiniz.
-    Sonra bu bankalara mirasçılık belgesiyle gidip hesap bakiyesini, kredi ve kredi kartı borcunu
-    ve otomatik ödeme talimatlarını sorun.
+    Bu sorgu yalnızca hangi bankalarda hesap olduğunu gösterir, bakiyeyi göstermez. Sonra bu
+    bankalara mirasçılık belgesi ve kimliğinizle gidip hesap bakiyesini, kredi ve kredi kartı
+    borcunu ve otomatik ödeme talimatlarını sorun. Vefat tarihindeki bakiyeyi gösteren yazıyı da
+    isteyin; veraset beyannamesinde gerekir.
   ipuclari:
     - tur: genel
       metin: >
@@ -107,7 +109,7 @@
   kaynak:
     - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
     - "https://www.turkiye.gov.tr/varis-hizmetleri"
-  sablonlar: [otomatik_odeme_iptal]
+  sablonlar: [banka_bakiye_yazisi, otomatik_odeme_iptal]
   kurum_turleri: [banka]
   yer: ev
   onceki: [mirascilik_belgesi]
@@ -188,9 +190,11 @@
   oncelik: normal
   kosul: { varliklar: ["ev_arsa", "baska_sehir_tasinmaz", "bilmiyorum"] }
   belirsizse: { varliklar: "bilmiyorum" }
-  ne: "Web Tapu'daki \"Miras Kalan Taşınmazları Ara\" bölümünden vefat edenin taşınmazlarını sorgulayabilirsiniz."
-  nereye: "Web Tapu (Tapu ve Kadastro Genel Müdürlüğü)"
-  cevrimici: "Evet, Web Tapu üzerinden."
+  ne: >
+    e-Devlet'teki "Tapu Bilgileri Sorgulama (Mirasçısı Olduğunuz Kişi Adına)" hizmetinden ya da Web
+    Tapu'daki "Miras Kalan Taşınmazları Ara" bölümünden vefat edenin taşınmazlarını sorgulayabilirsiniz.
+  nereye: "e-Devlet veya Web Tapu (Tapu ve Kadastro Genel Müdürlüğü)"
+  cevrimici: "Evet, e-Devlet veya Web Tapu üzerinden."
   ipuclari:
     - tur: genel
       metin: "Mirasçılık belgesi yoksa sorgulamanın yalnızca anne, baba ve eş için nüfus bilgileriyle yapılabildiği belirtiliyor."
@@ -234,10 +238,12 @@
   zaman_grubu: ilk_ay
   oncelik: yuksek
   arac: olum_ayligi
-  kosul: { hak_sahipleri: ["esi_var", "cocuk_18_alti", "ogrenci_cocuk", "bilmiyorum"] }
+  kosul: { hak_sahipleri: ["esi_var", "cocuk_18_alti", "ogrenci_cocuk", "diger_cocuk", "bilmiyorum"] }
   belirsizse: { hak_sahipleri: "bilmiyorum" }
   ne: >
-    Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Başvuru
+    Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Evli olmayan
+    kızlara yaşları ne olursa olsun, çalışamayacak durumdaki çocuklara ve şartları varsa anne ve
+    babaya da bağlanabilir. Başvuru
     e-Devlet üzerinden veya SGK'ya yapılır. Aylık, ölümü izleyen ayın başından başlar.
   neden: >
     Geç başvurularda 5 yıla kadar geriye dönük ödeme yapıldığı belirtiliyor. Mirası reddetmek
@@ -301,6 +307,10 @@
   ne: >
     Emekli Sandığı'na (4c) bağlı olanlar için ölüm yardımı, cenaze ödeneğinden ayrı bir
     ödemedir. Dul veya yetim aylığı alırken vefat edenler için ödenmez.
+  nereye: "SGK"
+  cevrimici: "Evet, e-Devlet üzerinden başvurulabilir."
+  baglantilar:
+    - { ad: "e-Devlet: Ölüm Yardımı ve Dul / Yetim Aylığı Talebi (memurlar, 4/c)", url: "https://www.turkiye.gov.tr/sosyal-guvenlik-olum-yardimi-ve-dul-yetim-ayligi-talebi" }
   kaynak:
     - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
     - "https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"
@@ -352,6 +362,9 @@
     kapatmayı değerlendirin.
   neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
   nereye: "İlgili elektrik, doğalgaz ve su kurumları. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
+  uyari: >
+    Mirası reddetmeyi düşünüyorsanız güvence bedelini tahsil etmeden önce bir avukata danışın;
+    vefat edenin alacaklarını almak mirası kabul sayılabilir (TMK m.610).
   belgeler: [mirascilik_belgesi]
   ipuclari:
     - tur: genel

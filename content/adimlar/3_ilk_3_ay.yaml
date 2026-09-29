@@ -25,8 +25,8 @@
   nereye: "Vefat edenin son yerleşim yerindeki Sulh Hukuk Mahkemesi"
   belgeler: [nufus_kaydi, olum_belgesi]
   uyari: >
-    Borcun kapsamını bilmiyorsanız önce "Kredi ve borç risk raporu alın" adımına bakın. Karar
-    vermeden önce bir avukata danışmanız önerilir.
+    Borcun kapsamını bilmiyorsanız önce "Banka hesaplarını bulun" ve risk raporu adımlarına bakın.
+    Karar vermeden önce bir avukata danışmanız önerilir.
   ipuclari:
     - tur: genel
       metin: >

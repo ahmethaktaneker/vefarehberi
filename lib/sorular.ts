@@ -96,6 +96,7 @@ export const SORULAR: Soru[] = [
       { deger: "esi_var", etiket: "Eşi var" },
       { deger: "cocuk_18_alti", etiket: "18 yaşından küçük çocuğu var" },
       { deger: "ogrenci_cocuk", etiket: "Öğrenci çocuğu var" },
+      { deger: "diger_cocuk", etiket: "Evli olmayan kızı ya da çalışamayacak durumda çocuğu var" },
       HICBIRI,
       BILMIYORUM,
     ],
