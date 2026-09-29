@@ -113,6 +113,4 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 
 ## Adım incelemesi (29.09.2026)
 
-- Kıdem tazminatı adımı ("en az 1 yıl kıdem, paylara göre mirasçılara") yalnızca yerel bir gazete haberine dayanıyor; 1475 s. İş Kanunu m.14 ile avukata teyit ettirilmeli.
-- Ölüm aylığı: "geç başvurularda 5 yıla kadar geriye dönük ödeme" bilgisi SGKya teyit ettirilmeli.
-- Tapu intikali: döner sermaye ücreti ve DASK şartı TKGMden teyit edilmeli.
+- ✓ Kıdem tazminatı, ölüm aylığında geriye dönük ödeme (5510 / 5434 farkı) ve tapu intikalinde döner sermaye / DASK: proje sahibi resmi kaynaklardan (ÇSGB, Resmî Gazete, SGK, TKGM) teyit etti (29.09.2026); metinler buna göre güncellendi. Avukat kontrolü yine de önerilir.

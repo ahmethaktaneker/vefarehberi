@@ -63,11 +63,12 @@
   kosul: { calisma_durumu: ["calisiyordu", "bilmiyorum"] }
   belirsizse: { calisma_durumu: "bilmiyorum" }
   ne: >
-    Genel bilgi olarak: Çalışırken vefat eden ve en az 1 yıl kıdemi olan kişinin kıdem
-    tazminatı, mirasçılık belgesindeki paylara göre mirasçılara ödenir.
+    Genel bilgi olarak: Çalışırken vefat eden kişi kıdem tazminatına hak kazanma koşullarını
+    (en az 1 yıl kıdem) taşıyorsa, tazminat yasal mirasçılarına mirasçılık belgesindeki payları
+    oranında ödenir. Ödeme işverenden talep edilir.
   nereye: "Vefat edenin işvereni"
   belgeler: [mirascilik_belgesi]
-  kaynak: ["https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"]
+  kaynak: ["https://www.csgb.gov.tr", "1475 sayılı İş Kanunu m.14"]
   yer: isveren
   onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"

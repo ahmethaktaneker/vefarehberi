@@ -244,10 +244,12 @@
     Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Evli olmayan
     kızlara yaşları ne olursa olsun, çalışamayacak durumdaki çocuklara ve şartları varsa anne ve
     babaya da bağlanabilir. Başvuru
-    e-Devlet üzerinden veya SGK'ya yapılır. Aylık, ölümü izleyen ayın başından başlar.
+    e-Devlet üzerinden veya SGK'ya yapılır. Zamanında başvurulursa aylık, ölümü izleyen ayın başından başlar.
   neden: >
-    Geç başvurularda 5 yıla kadar geriye dönük ödeme yapıldığı belirtiliyor. Mirası reddetmek
-    bu aylığı etkilemez.
+    Geç başvurmayın. SGK (5510) kapsamında hak kazanılmış ama ödenmemiş aylıkların, başvuru
+    tarihinden geriye en fazla 5 yıllık kısmı ödenir. Emekli Sandığı (5434) kapsamında ise hak
+    kazanılan tarihten 5 yıl geçtikten sonra ilk kez başvurulursa aylık, kural olarak başvurudan
+    sonraki ay başlar. Mirası reddetmek bu aylığı etkilemez.
   nereye: "SGK"
   cevrimici: "Evet, e-Devlet üzerinden başvurulabilir."
   baglantilar:
@@ -262,6 +264,8 @@
     - tur: genel
       metin: "Bağlanan aylığın oranını kontrol edin. Hata olduğunu düşünüyorsanız itiraz edebilirsiniz."
   kaynak:
+    - "https://www.resmigazete.gov.tr"
+    - "https://www.sgk.gov.tr"
     - "https://www.serafettinkaya.av.tr/olum-ayligi-dul-yetim-ayligi-sartlari/"
     - "https://www.sikayetvar.com/sgk/dul-ve-yetim-ayligi"
   yer: ev

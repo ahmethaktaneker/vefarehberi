@@ -82,7 +82,7 @@
   dogrulandi: false
 
 - id: dask
-  ad: "Zorunlu deprem sigortası (DASK) poliçesi (binalar için)"
+  ad: "Zorunlu deprem sigortası (DASK) poliçesi (konut gibi binalar için; boş arsada gerekmez)"
   kaynak: ["https://www.tkgm.gov.tr/en/node/207"]
   son_kontrol: "2026-09-28"
   dogrulandi: false
