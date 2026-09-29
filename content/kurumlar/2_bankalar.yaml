@@ -9,8 +9,9 @@
   islemler:
     - tip: genel
       kanal: ["Hesabın bulunduğu banka şubesi"]
-      belgeler: [mirascilik_belgesi, ilisik_kesme]
+      belgeler: [mirascilik_belgesi, kimlik, ilisik_kesme]
       notlar_resmi:
+        - "Hangi bankalarda hesap olduğunu e-Devlet'ten öğrenirsiniz; bakiye ve borç bilgisini bankaya mirasçılık belgesi ve kimliğinizle giderek alırsınız. Bunun için ilişik kesme belgesi gerekmez."
         - "Kanuna göre bankalar, mirasçılara para ödemeden önce veraset ve intikal vergisinin ödendiğini gösteren belge ister. Bu belge sunulmazsa, veraset yoluyla intikallerde ödemeden %5 vergi karşılığı kesinti yapıp kalanı ödeyebilir (Veraset ve İntikal Vergisi Kanunu m.17)."
         - "Vefat edenin bankada kiralık kasası varsa, kasa vergi dairesinin yetkili bir memuru hazır bulunmadan açılamaz ve içindekiler mirasçılara verilemez (Veraset ve İntikal Vergisi Kanunu m.23)."
   edevlet:
