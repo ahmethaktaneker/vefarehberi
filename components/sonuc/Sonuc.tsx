@@ -143,6 +143,7 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
             <div>
               <h1 className="font-serif text-3xl font-semibold leading-tight text-vurgu-koyu sm:text-4xl">Size özel listeniz</h1>
               <p className="mt-1 text-metin-ikincil">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}</p>
+              <p className="mt-3 max-w-xl">Her şeyi bugün yapmanız gerekmiyor. Sıradaki adıma odaklanın; son tarihleri biz takip ediyoruz.</p>
             </div>
             <Link href="/liste" onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")} className="dugme dugme-ikincil min-h-11 px-4 py-2 text-base">
               Cevaplarımı değiştir
@@ -178,14 +179,6 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           <AracOnerileri oneriler={aracOnerileri(liste, yapilanlar)} />
         </div>
 
-        {liste.avukatUyarilari.length > 0 && (
-          <aside aria-label="Not" className="border-l-2 border-cizgi pl-3 text-base text-metin-ikincil">
-            {liste.avukatUyarilari.map((u) => (
-              <p key={u.id}>{u.metin}</p>
-            ))}
-          </aside>
-        )}
-
         <Yolculuk
           donemler={donemler({ ...liste, adimlar: islemler }, yapilanlar)}
           simdiki={simdikiDonem(liste, yapilanlar)}
@@ -209,6 +202,14 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           <div className="yazdirma-gizle">
             <PaketKarti paket={paket} riza={riza} oneri={oneri} />
           </div>
+        )}
+
+        {liste.avukatUyarilari.length > 0 && (
+          <aside aria-label="Not" className="space-y-1 text-sm text-metin-ikincil">
+            {liste.avukatUyarilari.map((u) => (
+              <p key={u.id}>{u.metin}</p>
+            ))}
+          </aside>
         )}
       </div>
 

@@ -18,7 +18,7 @@ export default function AnaSayfa() {
               Yakınınızı kaybettiniz. Sırada ne var, birlikte bakalım.
             </h1>
             <p className="mt-5 text-xl leading-relaxed text-metin">
-              Birkaç soruya cevap verin; size özel yapılacaklar listesini, son tarihleri ve hak edebileceğiniz ödemeleri görün.
+              Bu günlerde yapılacak işler çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
               <Link href="/liste" className="dugme dugme-birincil px-8 text-lg">
@@ -47,7 +47,7 @@ export default function AnaSayfa() {
             Bazı işlerin süresi vefat tarihinden itibaren işler
           </h2>
           <p className="mt-2 max-w-2xl text-metin-ikincil">
-            Kaçırılan süreler sonradan sorun çıkarabilir. Listeniz bu tarihleri sizin için hesaplar ve kaç gün kaldığını gösterir.
+            Bu tarihleri akılda tutmanıza gerek yok: listeniz hepsini sizin için hesaplar ve her açtığınızda kaç gün kaldığını gösterir.
           </p>
           <ol className="relative mt-8 grid gap-6 before:absolute before:top-3 before:bottom-3 before:left-[11px] before:border-l-2 before:border-dashed before:border-altin sm:grid-cols-3 sm:gap-4 sm:before:hidden">
             <span aria-hidden="true" className="absolute top-3 right-0 left-0 hidden border-t-2 border-dashed border-altin sm:block" />

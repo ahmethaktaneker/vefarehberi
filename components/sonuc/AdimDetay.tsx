@@ -159,23 +159,6 @@ export function AdimDetay({
             )}
           </Alan>
         )}
-        {ilgiliKurumlar.length > 0 && !yazdirma && (
-          <Alan etiket="İlgili kurumlar">
-            <ul className="flex flex-wrap gap-2">
-              {ilgiliKurumlar.map((k) => (
-                <li key={k.id}>
-                  <button
-                    type="button"
-                    onClick={() => ac({ tur: "kurum", id: k.id })}
-                    className="inline-flex min-h-11 items-center rounded-full border border-cizgi bg-yuzey px-4 text-base text-vurgu hover:border-vurgu"
-                  >
-                    {k.ad}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </Alan>
-        )}
         {genelIpuclari.length > 0 && (
           <Alan etiket="İpucu">
             <ul className="space-y-2">
@@ -192,6 +175,23 @@ export function AdimDetay({
               {deneyimler.map((i) => (
                 <li key={i.metin} className="border-l-2 border-altin pl-3">
                   {i.metin}
+                </li>
+              ))}
+            </ul>
+          </Alan>
+        )}
+        {ilgiliKurumlar.length > 0 && !yazdirma && (
+          <Alan etiket="İlgili kurumlar">
+            <ul className="flex flex-wrap gap-2">
+              {ilgiliKurumlar.map((k) => (
+                <li key={k.id}>
+                  <button
+                    type="button"
+                    onClick={() => ac({ tur: "kurum", id: k.id })}
+                    className="inline-flex min-h-11 items-center rounded-full border border-cizgi bg-yuzey px-4 text-base text-vurgu hover:border-vurgu"
+                  >
+                    {k.ad}
+                  </button>
                 </li>
               ))}
             </ul>
