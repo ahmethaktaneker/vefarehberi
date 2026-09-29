@@ -1,0 +1,6 @@
+# Siteyi kullananların sözleri (ana sayfada "Kullananlar ne diyor" bölümü). Boşken bölüm görünmez.
+# Yalnızca yazılı izin alınmış sözler eklenir; isim yerine baş harf ve il yazılır.
+# Örnek:
+#   - metin: "Babamı kaybettikten sonra neyi ne zaman yapacağımı buradan öğrendim."
+#     kim: "A. K., İzmir"
+yorumlar: []

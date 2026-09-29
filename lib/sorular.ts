@@ -18,6 +18,8 @@ type SoruTemel = {
   id: string;
   soru: string;
   aciklama?: string;
+  /** "Neden soruyoruz?" satırı: cevabın listeyi nasıl etkilediği. */
+  neden?: string;
   /** Verilmezse soru her zaman gösterilir. */
   goster?: (c: Cevaplar) => boolean;
 };
@@ -34,12 +36,13 @@ export const SORULAR: Soru[] = [
     id: "vefat_tarihi",
     tip: "tarih",
     soru: "Vefat tarihi nedir?",
-    aciklama: "Son tarihleri bu tarihe göre hesaplıyoruz.",
+    neden: "Reddi miras ve beyanname gibi son tarihleri bu tarihe göre hesaplıyoruz.",
   },
   {
     id: "vefat_yeri",
     tip: "tek",
     soru: "Vefat nerede gerçekleşti?",
+    neden: "Ölüm belgesi ve beyanname süresi, vefatın Türkiye'de ya da yurtdışında olmasına göre değişir.",
     secenekler: [
       { deger: "turkiye", etiket: "Türkiye'de" },
       { deger: "yurtdisi", etiket: "Yurtdışında" },
@@ -49,6 +52,7 @@ export const SORULAR: Soru[] = [
     id: "mirasci_yeri",
     tip: "tek",
     soru: "Siz veya mirasçıların çoğu nerede yaşıyor?",
+    neden: "Yurtdışındaki mirasçılar için süreler ve vekaletname adımları farklıdır.",
     secenekler: [
       { deger: "turkiye", etiket: "Türkiye'de" },
       { deger: "yurtdisi", etiket: "Yurtdışında" },
@@ -59,6 +63,7 @@ export const SORULAR: Soru[] = [
     id: "calisma_durumu",
     tip: "tek",
     soru: "Vefat eden kişinin çalışma durumu neydi?",
+    neden: "Ölüm aylığı ve kıdem tazminatı gibi ödemeleri doğru göstermek için.",
     secenekler: [
       { deger: "emekli", etiket: "Emekliydi" },
       { deger: "calisiyordu", etiket: "Çalışıyordu (sigortalı)" },
@@ -72,6 +77,7 @@ export const SORULAR: Soru[] = [
     id: "sosyal_guvenlik",
     tip: "tek",
     soru: "Hangi sosyal güvenlik kurumuna bağlıydı?",
+    neden: "Cenaze ödeneği ya da ölüm yardımının hangi kurumdan alınacağı buna göre değişir.",
     goster: (c) => c.calisma_durumu !== "calismiyordu",
     secenekler: [
       { deger: "4a", etiket: "SGK (4a)" },
@@ -84,6 +90,7 @@ export const SORULAR: Soru[] = [
     id: "hak_sahipleri",
     tip: "coklu",
     soru: "Geride eşi veya bakmakla yükümlü olduğu çocuğu var mı?",
+    neden: "Ölüm aylığı başvurusunun listenize eklenip eklenmeyeceğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz.",
     secenekler: [
       { deger: "esi_var", etiket: "Eşi var" },
@@ -97,6 +104,7 @@ export const SORULAR: Soru[] = [
     id: "varliklar",
     tip: "coklu",
     soru: "Aşağıdakilerden hangileri var?",
+    neden: "Hangi kurumlara gideceğinizi ve beyanname gerekip gerekmediğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz. Tutar sormuyoruz.",
     secenekler: [
       { deger: "ev_arsa", etiket: "Ev veya arsa (Türkiye'de)" },
@@ -115,6 +123,7 @@ export const SORULAR: Soru[] = [
     id: "borc",
     tip: "tek",
     soru: "Vefat eden kişinin borcu olabilir mi?",
+    neden: "Mirası reddetme süresi gibi önemli bir tarihi kaçırmamanız için.",
     secenekler: [
       { deger: "evet", etiket: "Evet" },
       { deger: "hayir", etiket: "Hayır" },
@@ -125,6 +134,7 @@ export const SORULAR: Soru[] = [
     id: "abonelikler",
     tip: "coklu",
     soru: "Üzerine kayıtlı abonelik ve sözleşmeler hangileri?",
+    neden: "Listenize hangi kurumların ekleneceğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz.",
     secenekler: [
       { deger: "cep", etiket: "Cep telefonu" },
@@ -142,6 +152,7 @@ export const SORULAR: Soru[] = [
     id: "mirasci_sayisi",
     tip: "tek",
     soru: "Tahminen kaç mirasçı var?",
+    neden: "Bazı işlemlerde tüm mirasçıların onayı gerektiği için.",
     secenekler: [
       { deger: "1", etiket: "1" },
       { deger: "2_3", etiket: "2-3" },
@@ -153,6 +164,7 @@ export const SORULAR: Soru[] = [
     id: "mirascilik_belgesi",
     tip: "tek",
     soru: "Mirasçılık belgesi (veraset ilamı) alındı mı?",
+    neden: "Birçok işlem bu belgeyle başlar; alındıysa o adımı listeden çıkarıyoruz.",
     secenekler: [
       { deger: "evet", etiket: "Evet" },
       { deger: "hayir", etiket: "Hayır" },

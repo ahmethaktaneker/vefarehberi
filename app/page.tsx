@@ -2,9 +2,11 @@ import Link from "next/link";
 import { DevamKarti } from "@/components/DevamKarti";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { AVUKAT_ROZETI_AKTIF } from "@/lib/marka";
+import { yorumlariYukle } from "@/lib/yorumlar";
 
 export default function AnaSayfa() {
   const { sureler, cenaze_odenegi } = icerikYukle().parametreler;
+  const yorumlar = yorumlariYukle();
 
   return (
     <>
@@ -64,6 +66,24 @@ export default function AnaSayfa() {
             Hak edebileceğiniz ödemelerin de süresi var: örneğin cenaze ödeneği için {cenaze_odenegi.zamanasimi_yil} yıllık zamanaşımı bulunuyor.
           </p>
         </section>
+
+        {yorumlar.length > 0 && (
+          <section aria-labelledby="yorumlar-baslik">
+            <h2 id="yorumlar-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
+              Kullananlar ne diyor
+            </h2>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+              {yorumlar.map((y) => (
+                <li key={y.metin}>
+                  <figure className="h-full rounded-2xl border-l-4 border-altin bg-yuzey p-5 shadow-kart">
+                    <blockquote className="font-serif text-lg leading-relaxed">&ldquo;{y.metin}&rdquo;</blockquote>
+                    <figcaption className="mt-3 text-base text-metin-ikincil">{y.kim}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* Gerçek bir sıra: numaralar bilgi taşıyor */}
         <section aria-labelledby="nasil-baslik">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { listeyiYazdir } from "@/lib/yazdir";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { olay } from "@/lib/analitik";
 import { ANAHTARLAR, jsonCoz, useDepo, yaz } from "@/lib/depo";
@@ -55,6 +56,7 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
   const isaretliBelgeler = useMemo(() => new Set(jsonCoz<string[]>(hamBelgeler, [])), [hamBelgeler]);
   const bugun = istanbulBugun();
   const liste = useMemo(() => listeOlustur(cevaplar, icerik, bugun), [cevaplar, icerik, bugun]);
+  const sonGuncelleme = useMemo(() => icerik.adimlar.reduce((m, a) => (a.son_kontrol > m ? a.son_kontrol : m), ""), [icerik]);
   const oneri = useMemo(() => paketOnerisi(cevaplar, liste, yapilanlar), [cevaplar, liste, yapilanlar]);
   const [panel, setPanel] = useState<PanelDurumu | null>(null);
   const [sonYapilan, setSonYapilan] = useState<string | null>(null);
@@ -144,10 +146,16 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
               <h1 className="font-serif text-3xl font-semibold leading-tight text-vurgu-koyu sm:text-4xl">Size özel listeniz</h1>
               <p className="mt-1 text-metin-ikincil">Vefat tarihi: {tarihMetni(cevaplar.vefat_tarihi as string)}</p>
               <p className="mt-3 max-w-xl">Her şeyi bugün yapmanız gerekmiyor. Sıradaki adıma odaklanın; son tarihleri biz takip ediyoruz.</p>
+              <p className="mt-1 text-sm text-metin-ikincil">Bilgiler en son {tarihMetni(sonGuncelleme)} tarihinde güncellendi.</p>
             </div>
-            <Link href="/liste" onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")} className="dugme dugme-ikincil min-h-11 px-4 py-2 text-base">
-              Cevaplarımı değiştir
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" onClick={listeyiYazdir} className="dugme dugme-ikincil min-h-11 px-4 py-2 text-base">
+                Yazdır
+              </button>
+              <Link href="/liste" onClick={() => yaz(ANAHTARLAR.soruSirasi, "0")} className="dugme dugme-ikincil min-h-11 px-4 py-2 text-base">
+                Cevaplarımı değiştir
+              </Link>
+            </div>
           </div>
           <Ilerleme biten={islemler.filter((a) => yapilanlar.has(a.id)).length} toplam={islemler.length} />
           {uyarilar.map((u) => (

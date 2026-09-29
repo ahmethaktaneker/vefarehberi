@@ -100,6 +100,11 @@ export function SoruAkisi() {
           </h1>
         </legend>
         {soru.aciklama && <p className="mt-2 text-base text-metin-ikincil">{soru.aciklama}</p>}
+        {soru.neden && (
+          <p className="mt-2 text-base text-metin-ikincil">
+            <span className="font-semibold">Neden soruyoruz?</span> {soru.neden}
+          </p>
+        )}
 
         <div className="mt-6">
           {soru.tip === "tarih" ? (
