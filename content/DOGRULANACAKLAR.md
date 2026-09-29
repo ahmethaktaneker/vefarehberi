@@ -1,5 +1,8 @@
 # Doğrulanacaklar listesi (avukat / mali müşavir için)
 
+> Avukata sorulacakların güncel ve düzenli hâli: `content/AVUKAT_SORULARI.md` (29.09.2026).
+> Bu dosya araştırma geçmişini tutar; aşağıdaki bazı notlar sonradan güncellendi (üstü çizili).
+
 `content/` altındaki tüm maddeler şu an `dogrulandi: false` durumundadır ve sitede
 "Kontrol ediliyor" rozetiyle gösterilir. Kontrol edilen madde `dogrulandi: true` yapılır ve
 `son_kontrol` tarihi güncellenir.
@@ -32,15 +35,12 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 
 ## Hâlâ açık konular
 
-1. **Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026 tutarı.** Resmi olmayan bir hesap:
-   (1500 + 8500) × 2 × 1,575512 (Temmuz 2026 memur katsayısı) = 31.510,24 TL. Formül
-   memurlar.net (2021), katsayı mevzuatinyeri.com'dan; SGK'dan teyit edilmeden kullanılmamalı.
+1. ~~Emekli Sandığı ölüm yardımı Temmuz-Aralık 2026 tutarı (eski hesap 31.510,24 TL).~~ Güncel: 29.934,73 TL alt sınır, aşağıda "Tutarlar" bölümüne bakın.
 2. **Reddi miras süresi** kanun metninden (TMK m.606) doğrudan okunmalı; ayrıca arayüzde vefat
    tarihinden hesaplamak ve not düşmek yeterli mi?
 3. **Soru akışı ayrımı:** "Yurtdışında" cevabı, mirasçının vefatın olduğu ülkede mi başka bir
    ülkede mi olduğunu ayırt etmiyor; bu durumda 4 ay (en kısa) gösteriliyor. Bir alt soru eklensin mi?
-4. **Cenaze ödeneği** her kullanıcıya gösteriliyor (şartlar metinde). Çalışma durumuna göre
-   gizlenmeli mi?
+4. ~~Cenaze ödeneği her kullanıcıya gösteriliyor.~~ Artık yalnızca 4a/4b ya da "bilmiyorum" diyenlere gösteriliyor.
 5. **Uyarı metinleri** Avukatlık Kanunu m.35 açısından yeterli mi? (Brief 16.3)
 6. **Kullanıcı deneyimi notları** (Ekşi Sözlük, Şikayetvar vb.) doğası gereği resmi kaynakla
    doğrulanamaz; "Kullanıcı deneyimi" etiketiyle ayrı gösteriliyor.
@@ -51,14 +51,14 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 
 - `sablonlar/*.md`: banka bakiye yazısı, abonelik iptali ve güvence bedeli iadesi, otomatik ödeme
   iptali. Dil ve içerik avukat tarafından kontrol edilmeli (Avukatlık K. m.35 sınırı: genel örnek metin).
-  Reddi miras için bilinçli olarak şablon yok (Brief 9).
+  ~~Reddi miras için bilinçli olarak şablon yok (Brief 9).~~ Proje sahibinin kararıyla (29.09.2026) `mirasin_reddi` şablonu eklendi; avukat kontrolü şart.
 - `sayfalar/ilk-48-saat.md`, `sayfalar/yurtdisi.md`: tüm metin. 188 cenaze hattı birkaç belediyenin
   kendi sitesinden doğrulandı; kapsam belediyeye göre değişiyor.
 
 ## KVKK metinleri (taslak, proje sahibinin isteğiyle avukat beklenmeden hazırlandı)
 
 - `content/kvkk.yaml` (açık rıza metni) ve `content/sayfalar/aydinlatma-metni.md` KVKK m.10'daki
-  başlıkları izleyen taslaklardır. **Veri sorumlusu adı ve iletişim e-postası eksik.**
+  başlıkları izleyen taslaklardır. Veri sorumlusu ve iletişim e-postası dolduruldu.
 - Kontrol edilecekler: yurt dışına aktarım dayanağı (m.9; veritabanı yurt dışında), 12 aylık saklama
   süresi, paket duyurusu e-postasının ticari elektronik ileti sayılıp sayılmadığı ve İYS kaydı gerekip
   gerekmediği, VERBİS kaydı gerekip gerekmediği.
