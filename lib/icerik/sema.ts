@@ -42,7 +42,7 @@ export const KosulSemasi: z.ZodType<Kosul> = z.lazy(() =>
   ]),
 ) as z.ZodType<Kosul>;
 
-export const ARACLAR = ["beyanname_araci", "veraset_hesaplayici"] as const;
+export const ARACLAR = ["beyanname_araci", "veraset_hesaplayici", "miras_payi"] as const;
 export const KURUM_TURLERI = ["banka", "operator", "enerji", "dogalgaz", "su", "dijital", "diger"] as const;
 /** Adımın yapıldığı yer ("Nereye gideceğim" görünümü). "dikkat": yapılacak iş değil, uyarı. */
 export const YERLER = [

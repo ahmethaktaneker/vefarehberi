@@ -5,6 +5,7 @@
   kategori: resmi
   zaman_grubu: ilk_ay
   oncelik: yuksek
+  arac: miras_payi
   kosul: { mirascilik_belgesi: ["hayir", "bilmiyorum"] }
   belirsizse: { mirascilik_belgesi: "bilmiyorum" }
   ne: >

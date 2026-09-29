@@ -12,8 +12,9 @@ type MenuOgesi = { href: string; ad: string; aciklama: string };
 
 const MENU: MenuOgesi[] = [
   { href: "/rehber", ad: "Rehberler", aciklama: "Reddi miras, cenaze ödeneği, ölüm aylığı ve daha fazlası" },
+  { href: "/hesaplayici/miras-payi", ad: "Miras payı hesaplayıcı", aciklama: "Eş, çocuklar, anne-baba ve kardeşlerin yasal payları" },
   { href: "/hesaplayici/veraset-vergisi", ad: "Veraset vergisi hesaplayıcı", aciklama: "Size vergi çıkar mı, yaklaşık ne kadar?" },
-  { href: "/beyanname", ad: "Beyanname hazırlık aracı", aciklama: "Veraset beyannamesini adım adım hazırlayın" },
+  { href: "/beyanname", ad: "Beyanname formu doldurma", aciklama: "Resmi veraset beyannamesini doldurup yazdırın" },
   { href: "/sablonlar", ad: "Dilekçe taslakları", aciklama: "Banka ve abonelik dilekçelerini doldurup yazdırın" },
   { href: "/ilk-48-saat", ad: "İlk 48 saat", aciklama: "İlk günlerde yapılması gerekenler" },
   { href: "/yurtdisi", ad: "Yurtdışında yaşıyorum", aciklama: "Vekaletname, süreler, konsolosluk" },

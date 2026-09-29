@@ -181,8 +181,15 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
+          {a.arac.includes("miras_payi") && (
+            <p>
+              <Link href="/hesaplayici/miras-payi" className="baglanti">
+                Miras payı hesaplayıcı: kime ne kadar kalır?
+              </Link>
+            </p>
+          )}
           {a.arac.includes("veraset_hesaplayici") && (
             <p>
               <Link href="/hesaplayici/veraset-vergisi" className="baglanti">
