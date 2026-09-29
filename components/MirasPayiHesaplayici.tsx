@@ -310,8 +310,8 @@ function BuyukKolu({
 }) {
   const oluVar = !kol.buyukanneSag || !kol.buyukbabaSag;
   return (
-    <div className="space-y-4 rounded-xl border border-cizgi p-4">
-      <h3 className="font-semibold">{baslik}</h3>
+    <div role="group" aria-label={baslik} className="space-y-4 rounded-xl border border-cizgi p-4">
+      <p className="font-semibold">{baslik}</p>
       <div className="flex flex-wrap gap-3">
         <Onay etiket={`${buyukanne} hayatta`} deger={kol.buyukanneSag} onChange={(x) => onChange({ ...kol, buyukanneSag: x })} />
         <Onay etiket={`${buyukbaba} hayatta`} deger={kol.buyukbabaSag} onChange={(x) => onChange({ ...kol, buyukbabaSag: x })} />
