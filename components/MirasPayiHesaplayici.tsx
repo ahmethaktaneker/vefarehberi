@@ -35,11 +35,6 @@ export function MirasPayiHesaplayici() {
 
   return (
     <div className="space-y-8">
-      <div role="note" className="rounded-xl border-l-4 border-altin bg-altin-acik px-4 py-3 text-base">
-        Vasiyet yoksa geçerli olan yasal paylardır. Resmi paylar mirasçılık belgesinde yazar. Girdiğiniz bilgiler hiçbir yere
-        gönderilmez.
-      </div>
-
       <form className="space-y-8 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <fieldset>
           <legend className="font-semibold">Vefat edenin eşi hayatta mı?</legend>
@@ -151,6 +146,10 @@ export function MirasPayiHesaplayici() {
                 ? "Çocuk veya torun olduğu için anne, baba ve kardeşler mirasçı olmaz."
                 : "Çocuk veya torun olmadığı için miras anne-baba tarafına geçer."}{" "}
               Mirası reddeden olursa paylar değişir.
+            </p>
+            <p className="mt-2 text-base text-metin-ikincil">
+              Vasiyet yoksa geçerli olan yasal paylardır; resmi paylar mirasçılık belgesinde yazar. Girdiğiniz bilgiler hiçbir yere
+              gönderilmez.
             </p>
             <p className="mt-3">
               <Link href="/beyanname" className="baglanti">

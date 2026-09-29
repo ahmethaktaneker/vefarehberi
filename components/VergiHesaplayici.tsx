@@ -43,18 +43,13 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
 
   return (
     <div className="space-y-8">
-      <div role="note" className="rounded-xl border-l-4 border-altin bg-altin-acik px-4 py-3 text-base">
-        Bu bir tahmindir. Kesin hesap için vergi dairesine veya bir mali müşavire danışın. Girdiğiniz bilgiler
-        yalnızca bu sayfada kullanılır, hiçbir yere gönderilmez.
-      </div>
-
       <form className="space-y-6 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="toplam" className="block font-semibold">
-            Mirasın tahmini toplam değeri (TL)
+            Mirasın toplam değeri (TL)
           </label>
           <p id="toplam-aciklama" className="text-base text-metin-ikincil">
-            Taşınmaz, araç, banka hesabı gibi tüm varlıkların tahmini toplamı. Örnek: 5.000.000
+            Taşınmaz, araç, banka hesabı gibi tüm varlıkların toplamı. Örnek: 5.000.000
           </p>
           <input
             id="toplam"
@@ -141,24 +136,24 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
 
       <section aria-live="polite" aria-labelledby="sonuc-baslik" className="rounded-2xl border-t-4 border-altin bg-yuzey p-5 shadow-yuksek sm:p-6">
         <h2 id="sonuc-baslik" className="font-serif text-xl font-semibold text-vurgu-koyu">
-          Tahmini sonuç
+          Sonuç
         </h2>
         {!sonuc ? (
           <p className="mt-2 text-metin-ikincil">Sonucu görmek için yukarıdaki alanları doldurun.</p>
         ) : (
           <div className="mt-3 space-y-4">
             <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-[auto_1fr]">
-              <dt>Size düşen tahmini pay</dt>
+              <dt>Size düşen pay</dt>
               <dd className="font-semibold">{tl(sonuc.pay)}</dd>
               <dt>Vergiden istisna tutar</dt>
               <dd className="font-semibold">{tl(sonuc.istisna)}</dd>
               <dt>Vergiye tabi tutar</dt>
               <dd className="font-semibold">{tl(sonuc.matrah)}</dd>
-              <dt>Tahmini vergi</dt>
+              <dt>Vergi</dt>
               <dd className="font-serif text-2xl font-semibold text-vurgu-koyu">{tl(sonuc.vergi)}</dd>
             </dl>
             {sonuc.vergi === 0 ? (
-              <p>Bu tahmine göre size düşen pay istisna tutarının altında kalıyor ve vergi çıkmıyor.</p>
+              <p>Size düşen pay istisna tutarının altında kalıyor; vergi çıkmıyor.</p>
             ) : (
               <>
                 <table className="w-full text-left text-base">
@@ -185,15 +180,13 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
                 <p className="text-base">Ödeme (genel bilgi): {parametreler.veraset_vergisi.odeme}.</p>
               </>
             )}
-            <p className="text-base text-metin-ikincil">
-              Bu hesaplama borçları ve düşülebilecek giderleri dikkate almaz. Vergi, malların resmi değerleme
-              kurallarına göre bulunan değeri üzerinden hesaplanır. Bazı özel durumlarda farklı oranlar
-              uygulanabilir; bu hesaplayıcı bunları kapsamaz. {parametreler.yil} tarifesi ve istisna tutarları
-              kullanılmıştır.
-            </p>
           </div>
         )}
       </section>
+      <p className="text-base text-metin-ikincil">
+        {parametreler.yil} tarifesiyle hesaplanır; borçlar düşülmez. Kesin tutarı vergi dairesi hesaplar. Girdiğiniz bilgiler hiçbir
+        yere gönderilmez.
+      </p>
     </div>
   );
 }

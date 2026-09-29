@@ -104,10 +104,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   return (
     <>
       <div className="ekran-icerik">
-        <div role="note" className="rounded-xl border-l-4 border-altin bg-altin-acik px-4 py-3 text-base">
-          Yazdıklarınız yalnızca bu cihazda saklanır, hiçbir yere gönderilmez. Bilmediğiniz alanları boş bırakın; formda boş
-          çıkar, elle doldurursunuz.
-        </div>
+        <p className="text-base text-metin-ikincil">Bilmediğiniz alanları boş bırakın; formda boş çıkar, elle doldurursunuz.</p>
 
         <nav id="beyanname-adimlar" aria-label="Beyanname adımları" className="mt-6 scroll-mt-4">
           <p className="text-base text-metin-ikincil">
@@ -179,7 +176,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
               <Grup baslik="Miras paydası">
                 <Alan
                   etiket="Toplam miras paydası"
-                  aciklama="Mirasçılık belgesinde yazar. Örneğin paylar 2/8, 3/8, 3/8 ise payda 8'dir. Vergiyi tahmin etmek için kullanılır; formda yer almaz."
+                  aciklama="Mirasçılık belgesinde yazar. Örneğin paylar 2/8, 3/8, 3/8 ise payda 8'dir. Vergiyi hesaplamak için kullanılır; formda yer almaz."
                   ornek="Örn. 8"
                   sayi
                   deger={v.payda}
@@ -392,7 +389,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
               )}
 
               <div className="rounded-xl border-2 border-vurgu-koyu p-4">
-                <h3 className="font-serif text-xl font-semibold text-vurgu-koyu">Tahmini vergi</h3>
+                <h3 className="font-serif text-xl font-semibold text-vurgu-koyu">Vergi</h3>
                 <dl className="mt-2 space-y-1 text-base">
                   <OzetSatiri ad="Varlıklar toplamı" deger={tl(ozet.brut)} />
                   <OzetSatiri ad="Borç ve masraflar" deger={`− ${tl(ozet.indirim)}`} />
@@ -408,9 +405,7 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
                     ))}
                   </ul>
                 )}
-                <p className="mt-3 text-base text-metin-ikincil">
-                  Vergiyi vergi dairesi hesaplar; bu tahmindir. Vergi çıkarsa 3 yılda, mayıs ve kasım aylarında 6 eşit taksitte ödenir.
-                </p>
+                <p className="mt-3 text-base text-metin-ikincil">Vergi çıkarsa 3 yılda, mayıs ve kasım aylarında 6 eşit taksitte ödenir.</p>
               </div>
 
               <div className="space-y-3">
@@ -454,7 +449,8 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
         </section>
 
         <p className="mt-4 text-base text-metin-ikincil">
-          Şu ana kadarki net toplam: {tl(ozet.net)}. Bilgileriniz bu cihazda kaydedildi; sonra kaldığınız yerden devam edebilirsiniz.
+          Şu ana kadarki net toplam: {tl(ozet.net)}. Bilgileriniz yalnızca bu cihazda kaydedilir, hiçbir yere gönderilmez; sonra
+          kaldığınız yerden devam edebilirsiniz. Kesin vergiyi vergi dairesi hesaplar.
         </p>
         <button
           type="button"

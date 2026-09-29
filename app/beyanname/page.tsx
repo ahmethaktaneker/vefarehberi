@@ -10,14 +10,14 @@ import { UCRETLI_KILIT_AKTIF } from "@/lib/marka";
 export const metadata: Metadata = {
   title: "Veraset beyannamesi doldurma aracı",
   description:
-    "Veraset ve intikal vergisi beyannamesini adım adım doldurun, resmi form düzeninde yazdırıp vergi dairesine götürün. Eklenecek belgeler ve tahmini vergi dahil.",
+    "Veraset ve intikal vergisi beyannamesini adım adım doldurun, resmi form düzeninde yazdırıp vergi dairesine götürün. Eklenecek belgeler ve vergi hesabı dahil.",
   alternates: { canonical: "/beyanname" },
 };
 
 const FAYDALAR = [
   "Soruları cevaplarsınız; araç GİB'in resmi Veraset ve İntikal Vergisi Beyannamesi formunu sizin için doldurur.",
   "Her varlığın değerini nereden bulacağınızı ve hangi belgenin ekleneceğini gösterir.",
-  "Mirasçı paylarına göre herkesin tahmini vergisini hesaplar.",
+  "Mirasçı paylarına göre herkesin vergisini hesaplar.",
   "Formu yazdırır, imzalar, vergi dairesine götürürsünüz.",
   "Bilgileriniz yalnızca kendi cihazınızda kalır; kaldığınız yerden devam edersiniz.",
 ];
@@ -29,7 +29,7 @@ export default async function Page() {
       <div className="ekran-icerik">
         <h1 className="font-serif text-3xl font-semibold leading-tight text-vurgu-koyu sm:text-4xl">Veraset beyannamesi</h1>
         <p className="mt-6 text-lg">
-        Beyannameyi resmi form düzeninde doldurup yazdırın; imzalayıp vergi dairesine götürün. Yalnızca tahmini vergiyi görmek için{" "}
+        Beyannameyi resmi form düzeninde doldurup yazdırın; imzalayıp vergi dairesine götürün. Yalnızca vergiyi görmek için{" "}
         <Link href="/hesaplayici/veraset-vergisi" className="baglanti">
           ücretsiz hesaplayıcıyı
         </Link>{" "}
