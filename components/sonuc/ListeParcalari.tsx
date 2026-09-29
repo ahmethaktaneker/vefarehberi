@@ -115,7 +115,7 @@ export function OdakKarti({
               </>
             )}
           </dl>
-          <div className="mt-5 grid grid-cols-[1.3fr_1fr] gap-3">
+          <div className="mt-5 grid grid-cols-1 gap-3 min-[360px]:grid-cols-[1.3fr_1fr]">
             <button type="button" onClick={() => onYaptim(a.id)} className="dugme dugme-birincil">
               <Tik className="size-5" />
               Yaptım
@@ -124,7 +124,7 @@ export function OdakKarti({
               Ayrıntılar
             </button>
           </div>
-          <a href="#yolculuk" className="baglanti mt-4 inline-block py-1 text-base">
+          <a href="#yolculuk" className="baglanti mt-3 inline-flex min-h-11 items-center text-base">
             Başka bir adım seçmek istiyorum
           </a>
         </>

@@ -170,7 +170,7 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
                     <span>
                       <span className={secili ? "text-metin-ikincil line-through" : ""}>{k.metin}</span>
                       {"url" in k && k.url && (
-                        <a href={k.url} target="_blank" rel="noopener noreferrer" className="baglanti mt-1 block text-base">
+                        <a href={k.url} target="_blank" rel="noopener noreferrer" className="baglanti mt-1 inline-flex min-h-11 items-center text-base">
                           e-Devlet&apos;te aç<span className="sr-only"> (yeni sekmede açılır)</span>
                         </a>
                       )}

@@ -95,7 +95,7 @@ export function RehberSayfasi({
         </section>
       )}
       <details className="text-base text-metin-ikincil">
-        <summary className="cursor-pointer">Kaynaklar</summary>
+        <summary className="flex min-h-11 cursor-pointer items-center">Kaynaklar</summary>
         <ul className="mt-2 space-y-1 break-words">
           {sayfa.kaynak.map((k) => (
             <li key={k}>

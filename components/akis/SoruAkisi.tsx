@@ -356,7 +356,7 @@ function HazirPaneli({ onGozdenGecir }: { onGozdenGecir: () => void }) {
         onClick={() => {
           if (window.confirm("Bu cihazdaki tüm cevaplarınız ve işaretleriniz silinecek. Emin misiniz?")) tumunuSil();
         }}
-        className="mt-8 text-base text-metin-ikincil underline underline-offset-4"
+        className="mt-8 inline-flex min-h-11 items-center text-base text-metin-ikincil underline underline-offset-4"
       >
         Baştan başla (cevaplarımı sil)
       </button>
