@@ -1,5 +1,40 @@
 # Zaman grubu: İlk ay (Brief 7). Avukat kontrolünden GEÇMEDİ.
 
+- id: yurtdisi_vekaletname
+  baslik: "Yurtdışından vekaletname vermeyi değerlendirin"
+  kategori: resmi
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
+  ne: >
+    Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir, ayrıca apostil
+    gerekmez. Yabancı noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor.
+    Tapu işlemleri için fotoğraflı ve "düzenleme şeklinde" vekaletname gerekebiliyor.
+  neden: "Türkiye'ye gelmeden işlemlerin bir yakınınız veya avukat tarafından yürütülmesini sağlar."
+  nereye: "Bulunduğunuz ülkedeki Türk konsolosluğu"
+  ipuclari:
+    - tur: genel
+      metin: >
+        Vekaletnamede açıkça yazılması önerilen yetkiler: mirasçılık belgesi alma, tapu intikal
+        ve tescil işlemleri, mirasın reddi veya kabulü, veraset ve intikal vergisi beyannamesi
+        verme, banka işlemleri ve gerekirse dava açma.
+    - tur: genel
+      metin: "Vekalet aile üyesine de avukata da verilebilir. Hangisinin uygun olduğu durumun karmaşıklığına bağlıdır."
+    - tur: genel
+      metin: "Bankadaki parayı Türkiye'deki bir yakınınıza aldırmak için vekaletnamenin yanında mirasçılık belgesi de isteniyor."
+    - tur: deneyim
+      metin: "Türkiye'de banka hesabı olmayan mirasçılar için ödemenin nasıl alınacağını bankaya önceden sorun. Hesabı olmadığı için ödeme alamayan bir mirasçı örneği anlatılıyor."
+  kaynak:
+    - "https://www.arinhukuk.av.tr/yurt-disinda-yasayanlar-turkiyede-nasil-vekalet-verebilir/"
+    - "https://www.harbiyehukuk.com/yurt-disindan-vekaletname-nasil-verilir/"
+    - "https://www.hancizadehukuk.com/yurt-disinda-yasayanlarin-turkiyedeki-miras-islemleri/"
+    - "https://acikgozlawcom.wordpress.com/2020/10/21/yurt-disindan-vekalet-nasil-cikarilir-nelere-dikkat-edilmelidir/"
+    - "https://www.tripadvisor.com/ShowTopic-g293969-i367-k14085671-Collecting_inheritance_in_Istanbul-Turkiye.html"
+  yer: konsolosluk
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
 - id: mirascilik_belgesi
   baslik: "Mirasçılık belgesi (veraset ilamı) alın"
   kategori: resmi
@@ -50,11 +85,18 @@
   kategori: resmi
   zaman_grubu: ilk_ay
   oncelik: yuksek
-  kosul: { varliklar: ["banka", "bilmiyorum"] }
+  kosul: { varliklar: ["banka", "kredi_karti", "bilmiyorum"] }
   belirsizse: { varliklar: "bilmiyorum" }
   ne: >
     e-Devlet'teki "Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Mirasçısı Olduğunuz
     Kişi Adına)" hizmetiyle vefat edenin hangi bankalarda hesabı olduğunu sorgulayabilirsiniz.
+    Sonra bu bankalara mirasçılık belgesiyle gidip hesap bakiyesini, kredi ve kredi kartı borcunu
+    ve otomatik ödeme talimatlarını sorun.
+  ipuclari:
+    - tur: genel
+      metin: >
+        Otomatik ödeme talimatlarının listesini isteyin. Devam edecek faturaları başka bir hesaba
+        taşıyın; bu liste hangi abonelikler olduğunu görmenize de yardımcı olur.
   nereye: "e-Devlet, Vâris Hizmetleri"
   belgeler: [mirascilik_belgesi]
   cevrimici: "Evet, e-Devlet üzerinden."
@@ -64,9 +106,76 @@
   kaynak:
     - "https://www.turkiye.gov.tr/bdvd-murise-ait-mevduat-katilim-fonu-hesabi-bulunan-banka-sorgulama"
     - "https://www.turkiye.gov.tr/varis-hizmetleri"
+  sablonlar: [otomatik_odeme_iptal]
   kurum_turleri: [banka]
   yer: ev
   onceki: [mirascilik_belgesi]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: risk_raporu
+  baslik: "İsterseniz tüm borçları tek belgede görün (risk raporu)"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul:
+    any:
+      - { borc: ["evet", "bilmiyorum"] }
+      - { varliklar: ["kredi", "kredi_karti"] }
+  belirsizse: { borc: "bilmiyorum" }
+  ne: >
+    Pratikte aileler çoğunlukla e-Devlet'ten vefat edenin hangi bankalarda hesabı olduğuna bakıp o
+    bankalara borcu soruyor; bankalar kendi kredi ve kart borçlarını söylüyor. Tüm bankalardaki
+    kredi ve kredi kartı borçlarını tek belgede görmek isterseniz, Türkiye Bankalar Birliği Risk
+    Merkezi mirasçılık belgesiyle başvuran mirasçılara risk raporu veriyor.
+  neden: >
+    Tek belge, mirası reddetmeyi değerlendirirken ya da avukatla görüşürken işe yarar. e-Devlet'teki
+    banka sorgusu yalnızca mevduat hesabı olan bankaları listeler; sadece kredi kartı ya da kredisi
+    olan bir banka orada çıkmayabilir.
+  nereye: "Türkiye Bankalar Birliği Risk Merkezi"
+  belgeler: [mirascilik_belgesi]
+  kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
+  yer: risk_merkezi
+  onceki: [mirascilik_belgesi]
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: kredi_hayat_sigortasi
+  baslik: "Kredide hayat sigortası olup olmadığını kontrol edin"
+  kategori: borc_risk
+  zaman_grubu: ilk_ay
+  oncelik: yuksek
+  kosul: { varliklar: "kredi" }
+  ne: >
+    Bankaya krediye bağlı bir hayat sigortası olup olmadığını sorun. Sigorta varsa kalan borç,
+    poliçe şartlarına göre sigortadan ödenebilir. Kredi kartı ve ek hesap (KMH) borçları için
+    genellikle ayrı bir sigorta yoksa bu borçlar mirasçılara kalır.
+  nereye: "Krediyi veren banka"
+  ipuclari:
+    - tur: deneyim
+      metin: >
+        Kullanıcılar, aynı bankada bir aileye "sigorta yok" denip borcun aileden istendiğini,
+        başka bir ailenin kredisinin ise sigortadan kapatıldığını anlatıyor. Banka "sigorta yok"
+        dese bile "Hayat ve ferdi kaza sigortası" adımındaki e-Devlet ve SBM sorgusuyla kendiniz
+        de kontrol edin.
+  uyari: >
+    Genel bilgi olarak: Hayat sigortası varken bankanın sigortaya başvurmadan doğrudan
+    mirasçılardan tahsilat yapmasının hukuka aykırı sayılabileceğine dair görüşler ve yargı
+    kararları bulunuyor. Sigorta şirketi ödemeyi reddederse (sık görülen gerekçe, poliçe
+    yapılırken hastalığın bildirilmediği iddiasıdır) bir avukata danışmanız ve Sigorta Tahkim
+    Komisyonu yolunu değerlendirmeniz önerilir.
+  kaynak:
+    - "https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"
+    - "https://odenhukuk.com/kredi-borclusunun-olumu-sigorta-odeme-yargitay-kararlari/"
+    - "https://avukatkartal.com.tr/bilgi/olum-halinde-sigorta-odemesinin-mirascilara-yapilmamasi-halinde-dava"
+    - "https://www.sigortavantaj.com/kredi-borclusu-vefat-ederse-borcu-kim-oder.html"
+    - "https://www.sikayetvar.com/hayat-sigortasi/vefat"
+  kurum_turleri: [banka]
+  baglantilar:
+    - { ad: "e-Devlet: Hayat sigortası sorgulama (mirasçı adına)", url: "https://www.turkiye.gov.tr/sbvgm-hayat-sigortasi-police-ve-tazminat-bilgileri-sorgulama-mirascisi-oldugunuz-kisi-adina" }
+  yer: banka
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -118,151 +227,83 @@
   dogrulandi: false
   ucretli_icerik: false
 
-- id: risk_raporu
-  baslik: "Kredi ve borç risk raporu alın"
-  kategori: borc_risk
+- id: olum_ayligi
+  baslik: "Ölüm aylığı (dul ve yetim aylığı) başvurusu"
+  kategori: odeme
   zaman_grubu: ilk_ay
   oncelik: yuksek
-  kosul:
-    any:
-      - { borc: ["evet", "bilmiyorum"] }
-      - { varliklar: ["kredi", "kredi_karti"] }
-  belirsizse: { borc: "bilmiyorum" }
+  arac: olum_ayligi
+  kosul: { hak_sahipleri: ["esi_var", "cocuk_18_alti", "ogrenci_cocuk", "bilmiyorum"] }
+  belirsizse: { hak_sahipleri: "bilmiyorum" }
   ne: >
-    Türkiye Bankalar Birliği Risk Merkezi, mirasçılık belgesiyle başvuran mirasçılara vefat
-    edenin kredi ve kredi kartı risk raporunu veriyor.
+    Geride kalan eş ve çocuklar için ölüm aylığı (dul ve yetim aylığı) bağlanabilir. Başvuru
+    e-Devlet üzerinden veya SGK'ya yapılır. Aylık, ölümü izleyen ayın başından başlar.
   neden: >
-    Borç olup olmadığını görmek, mirası reddetmeyi değerlendirirken önemlidir. Bankalar yalnızca
-    kendi alacaklarını söyler; bu rapor tüm bankalardaki kredi ve kredi kartı borçlarını tek belgede
-    gösterir. e-Devlet'teki banka sorgusu yalnızca mevduat hesabı olan bankaları listelediği için,
-    sadece kredi kartı ya da kredisi olan bir banka orada çıkmayabilir.
-  nereye: "Türkiye Bankalar Birliği Risk Merkezi"
-  belgeler: [mirascilik_belgesi]
-  kaynak: ["https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"]
-  yer: risk_merkezi
-  onceki: [mirascilik_belgesi]
-  son_kontrol: "2026-09-28"
-  dogrulandi: false
-  ucretli_icerik: false
-
-- id: kredi_hayat_sigortasi
-  baslik: "Kredide hayat sigortası olup olmadığını kontrol edin"
-  kategori: borc_risk
-  zaman_grubu: ilk_ay
-  oncelik: yuksek
-  kosul: { varliklar: "kredi" }
-  ne: >
-    Bankaya krediye bağlı bir hayat sigortası olup olmadığını sorun. Sigorta varsa kalan borç,
-    poliçe şartlarına göre sigortadan ödenebilir. Kredi kartı ve ek hesap (KMH) borçları için
-    genellikle ayrı bir sigorta yoksa bu borçlar mirasçılara kalır.
-  nereye: "Krediyi veren banka"
-  ipuclari:
-    - tur: deneyim
-      metin: >
-        Kullanıcılar, aynı bankada bir aileye "sigorta yok" denip borcun aileden istendiğini,
-        başka bir ailenin kredisinin ise sigortadan kapatıldığını anlatıyor. Banka "sigorta yok"
-        dese bile "Hayat ve ferdi kaza sigortası" adımındaki e-Devlet ve SBM sorgusuyla kendiniz
-        de kontrol edin.
-  uyari: >
-    Genel bilgi olarak: Hayat sigortası varken bankanın sigortaya başvurmadan doğrudan
-    mirasçılardan tahsilat yapmasının hukuka aykırı sayılabileceğine dair görüşler ve yargı
-    kararları bulunuyor. Sigorta şirketi ödemeyi reddederse (sık görülen gerekçe, poliçe
-    yapılırken hastalığın bildirilmediği iddiasıdır) bir avukata danışmanız ve Sigorta Tahkim
-    Komisyonu yolunu değerlendirmeniz önerilir.
-  kaynak:
-    - "https://borc.org.tr/vefat-eden-kisinin-kredi-karti-ve-ihtiyac-kredisi-borcu/"
-    - "https://odenhukuk.com/kredi-borclusunun-olumu-sigorta-odeme-yargitay-kararlari/"
-    - "https://avukatkartal.com.tr/bilgi/olum-halinde-sigorta-odemesinin-mirascilara-yapilmamasi-halinde-dava"
-    - "https://www.sigortavantaj.com/kredi-borclusu-vefat-ederse-borcu-kim-oder.html"
-    - "https://www.sikayetvar.com/hayat-sigortasi/vefat"
-  kurum_turleri: [banka]
+    Geç başvurularda 5 yıla kadar geriye dönük ödeme yapıldığı belirtiliyor. Mirası reddetmek
+    bu aylığı etkilemez.
+  nereye: "SGK"
+  cevrimici: "Evet, e-Devlet üzerinden başvurulabilir."
   baglantilar:
-    - { ad: "e-Devlet: Hayat sigortası sorgulama (mirasçı adına)", url: "https://www.turkiye.gov.tr/sbvgm-hayat-sigortasi-police-ve-tazminat-bilgileri-sorgulama-mirascisi-oldugunuz-kisi-adina" }
-  yer: banka
-  son_kontrol: "2026-09-28"
-  dogrulandi: false
-  ucretli_icerik: false
-
-- id: abonelikler
-  baslik: "Abonelikleri üzerinize almayı ya da kapatmayı değerlendirin"
-  kategori: kurum
-  zaman_grubu: ilk_ay
-  oncelik: yuksek
-  kosul: { abonelikler: ["elektrik", "su", "dogalgaz", "bilmiyorum"] }
-  belirsizse: { abonelikler: "bilmiyorum" }
-  ne: >
-    Vefat eden kişinin üzerindeki elektrik, doğalgaz ve su aboneliklerini devralmayı ya da
-    kapatmayı değerlendirin.
-  neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
-  nereye: "İlgili elektrik, doğalgaz ve su kurumları. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
+    - { ad: "e-Devlet: Gelir, Aylık, Ödenek Talep Belgesi (SGK)", url: "https://www.turkiye.gov.tr/sgk-tahsis-talep-taahhut-beyan" }
+    - { ad: "e-Devlet: Ölüm Yardımı ve Dul / Yetim Aylığı Talebi (memurlar, 4/c)", url: "https://www.turkiye.gov.tr/sosyal-guvenlik-olum-yardimi-ve-dul-yetim-ayligi-talebi" }
   ipuclari:
     - tur: deneyim
-      metin: "Kullanıcılar, kullanılmaya devam eden aboneliklerde hizmetin kesildiği ve usulsüz kullanım işlemi yapıldığı örnekler bildiriyor."
-  kaynak:
-    - "https://www.sikayetvar.com/baskent-dogalgaz/vefat"
-    - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
-    - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
-  sablonlar: [abonelik_iptal]
-  kurum_turleri: [enerji, dogalgaz, su]
-  yer: kurumlar
-  onceki: [mirascilik_belgesi]
-  son_kontrol: "2026-09-28"
-  dogrulandi: false
-  ucretli_icerik: false
-
-- id: yurtdisi_vekaletname
-  baslik: "Yurtdışından vekaletname vermeyi değerlendirin"
-  kategori: resmi
-  zaman_grubu: ilk_ay
-  oncelik: yuksek
-  kosul: { mirasci_yeri: ["yurtdisi", "karisik"] }
-  ne: >
-    Türk konsolosluğunda düzenlenen vekaletname Türkiye'de doğrudan geçerlidir, ayrıca apostil
-    gerekmez. Yabancı noterde düzenlenirse apostil ve çoğu zaman Türkçe tercüme istenebiliyor.
-    Tapu işlemleri için fotoğraflı ve "düzenleme şeklinde" vekaletname gerekebiliyor.
-  neden: "Türkiye'ye gelmeden işlemlerin bir yakınınız veya avukat tarafından yürütülmesini sağlar."
-  nereye: "Bulunduğunuz ülkedeki Türk konsolosluğu"
-  ipuclari:
-    - tur: genel
       metin: >
-        Vekaletnamede açıkça yazılması önerilen yetkiler: mirasçılık belgesi alma, tapu intikal
-        ve tescil işlemleri, mirasın reddi veya kabulü, veraset ve intikal vergisi beyannamesi
-        verme, banka işlemleri ve gerekirse dava açma.
+        Kullanıcılar başvurunun sonuçlanması için uzun süre beklediklerini anlatıyor. e-Devlet'ten
+        başvuru durumunu takip edebilir; uzun süre değişmezse SGK'nın iletişim kanallarından
+        (ALO 170) ve CİMER'den durum sorabilirsiniz.
     - tur: genel
-      metin: "Vekalet aile üyesine de avukata da verilebilir. Hangisinin uygun olduğu durumun karmaşıklığına bağlıdır."
-    - tur: genel
-      metin: "Bankadaki parayı Türkiye'deki bir yakınınıza aldırmak için vekaletnamenin yanında mirasçılık belgesi de isteniyor."
-    - tur: deneyim
-      metin: "Türkiye'de banka hesabı olmayan mirasçılar için ödemenin nasıl alınacağını bankaya önceden sorun. Hesabı olmadığı için ödeme alamayan bir mirasçı örneği anlatılıyor."
+      metin: "Bağlanan aylığın oranını kontrol edin. Hata olduğunu düşünüyorsanız itiraz edebilirsiniz."
   kaynak:
-    - "https://www.arinhukuk.av.tr/yurt-disinda-yasayanlar-turkiyede-nasil-vekalet-verebilir/"
-    - "https://www.harbiyehukuk.com/yurt-disindan-vekaletname-nasil-verilir/"
-    - "https://www.hancizadehukuk.com/yurt-disinda-yasayanlarin-turkiyedeki-miras-islemleri/"
-    - "https://acikgozlawcom.wordpress.com/2020/10/21/yurt-disindan-vekalet-nasil-cikarilir-nelere-dikkat-edilmelidir/"
-    - "https://www.tripadvisor.com/ShowTopic-g293969-i367-k14085671-Collecting_inheritance_in_Istanbul-Turkiye.html"
-  yer: konsolosluk
+    - "https://www.serafettinkaya.av.tr/olum-ayligi-dul-yetim-ayligi-sartlari/"
+    - "https://www.sikayetvar.com/sgk/dul-ve-yetim-ayligi"
+  yer: ev
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
 
-- id: varis_hizmetleri
-  baslik: "e-Devlet Vâris Hizmetleri'ne bakın"
-  kategori: resmi
+- id: cenaze_odenegi
+  baslik: "Cenaze ödeneği başvurusu"
+  kategori: odeme
   zaman_grubu: ilk_ay
   oncelik: normal
+  kosul: { sosyal_guvenlik: ["4a", "4b", "bilmiyorum"] }
+  belirsizse: { sosyal_guvenlik: "bilmiyorum" }
+  tutar: genel_sgk
   ne: >
-    e-Devlet'teki "Vâris Hizmetleri" bölümü, mirasçısı olduğunuz kişi adına yapabileceğiniz
-    sorgulamaları bir araya getirir. Banka hesabı ve hayat sigortası sorgulamalarının yanında,
-    "İcra Dosyası Sorgulama" ve "Hukuk Dava Dosyası Sorgulama (Mirasçısı Olduğunuz Kişi Adına)"
-    gibi hizmetler de bulunuyor.
-  neden: "Vefat eden hakkında açılmış icra takibi veya dava olup olmadığını görmek, borç durumunu değerlendirmeye yardımcı olur."
-  cevrimici: "Evet, e-Devlet üzerinden."
+    Cenaze ödeneği için SGK'ya "Gelir/Aylık/Ödenek Talep Belgesi" ile başvurulur. SGK'ya göre
+    ödenek; vefat eden kişi iş kazası veya meslek hastalığı sonucu vefat ettiyse, emekli aylığı
+    alıyorduysa ya da en az 360 gün prim bildirimi varsa ödenir. Ödenek sırasıyla eşe, yoksa
+    çocuklara, yoksa anne ve babaya, yoksa kardeşlere verilir.
+  neden: "Birçok aile bu ödemeden habersiz. Başvuru için 5 yıllık zamanaşımı süresi bulunuyor."
+  nereye: "SGK"
+  belgeler: [talep_belgesi]
+  uyari: "Ödemeden yararlanıp yararlanamayacağınızı SGK'dan teyit edin."
   baglantilar:
-    - { ad: "e-Devlet: Vâris Hizmetleri", url: "https://www.turkiye.gov.tr/varis-hizmetleri" }
+    - { ad: "SGK: Cenaze Ödeneği 2026 duyurusu", url: "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56" }
   kaynak:
-    - "https://www.turkiye.gov.tr/varis-hizmetleri"
-    - "https://www.turkiye.gov.tr/adalet-veraset-ilami-sorgulama"
-  yer: ev
+    - "https://www.sgk.gov.tr/Content/Post/fd3822ec-1d90-49fb-bd98-09ba1560465a/Cenaze-Odenegi-2026-01-09-02-37-56"
+    - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
+  yer: sgk
+  son_kontrol: "2026-09-28"
+  dogrulandi: false
+  ucretli_icerik: false
+
+- id: emekli_sandigi_olum_yardimi
+  baslik: "Emekli Sandığı ölüm yardımı"
+  kategori: odeme
+  zaman_grubu: ilk_ay
+  oncelik: normal
+  kosul: { sosyal_guvenlik: ["4c", "bilmiyorum"] }
+  belirsizse: { sosyal_guvenlik: "bilmiyorum" }
+  tutar: emekli_sandigi_4c
+  ne: >
+    Emekli Sandığı'na (4c) bağlı olanlar için ölüm yardımı, cenaze ödeneğinden ayrı bir
+    ödemedir. Dul veya yetim aylığı alırken vefat edenler için ödenmez.
+  kaynak:
+    - "https://www.erdemvarol.com.tr/yakininiz-vefat-ettiginde-hukuki-haklariniz/"
+    - "https://yenisokegazetesi.com/haber/28110901/parayi-almayan-binlerce-kisi-var-vefat-sonrasi-devlet-tam-26369-tl-oduyor"
+  yer: sgk
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false
@@ -298,21 +339,37 @@
   dogrulandi: false
   ucretli_icerik: false
 
-- id: otomatik_odeme_talimatlari
-  baslik: "Otomatik ödeme talimatlarını kontrol edin"
-  kategori: borc_risk
+- id: abonelikler
+  baslik: "Abonelikleri üzerinize almayı ya da kapatmayı değerlendirin"
+  kategori: kurum
   zaman_grubu: ilk_ay
-  oncelik: normal
-  kosul: { varliklar: ["banka", "kredi_karti", "bilmiyorum"] }
+  oncelik: yuksek
+  kosul: { abonelikler: ["elektrik", "su", "dogalgaz", "bilmiyorum"] }
+  belirsizse: { abonelikler: "bilmiyorum" }
   ne: >
-    Bankadan vefat edenin otomatik ödeme talimatlarının listesini isteyin. Devam edecek faturaları
-    başka bir hesaba taşıyın.
-  neden: "Hangi faturaların ve aboneliklerin olduğunu görmenize de yardımcı olabilir."
-  nereye: "Vefat edenin hesabının bulunduğu banka"
-  kaynak: ["PROJE_BRIEF.md Bölüm 7 madde 11 (proje sahibi araştırması; ayrı kaynak belirtilmemiş)"]
-  sablonlar: [otomatik_odeme_iptal]
-  kurum_turleri: [banka]
-  yer: banka
+    Vefat eden kişinin üzerindeki elektrik, doğalgaz ve su aboneliklerini devralmayı ya da
+    kapatmayı değerlendirin.
+  neden: "Vefat edenin aboneliğini kullanmaya devam etmek, kurumlarca \"usulsüz kullanım\" sayılabiliyor."
+  nereye: "İlgili elektrik, doğalgaz ve su kurumları. Aşağıdaki \"İlgili kurumlar\" bağlantılarına bakın."
+  belgeler: [mirascilik_belgesi]
+  ipuclari:
+    - tur: genel
+      metin: >
+        Aboneliği kapattıktan sonra yatırılmış güvence bedelini geri isteyin; birçok aile bu iadeden
+        habersiz. Bazı kurumlar tüm mirasçıların onayını içeren muvafakatname istiyor. Örneğin
+        Enerjisa, tutar 250 TL'yi aşıyorsa muvafakatnamenin noter onaylı olmasını istiyor.
+    - tur: deneyim
+      metin: "Kullanıcılar, kullanılmaya devam eden aboneliklerde hizmetin kesildiği ve usulsüz kullanım işlemi yapıldığı örnekler bildiriyor."
+  kaynak:
+    - "https://www.sikayetvar.com/baskent-dogalgaz/vefat"
+    - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
+    - "https://inceleriz.com/forum/konular/olu-insan-ustune-acik-olan-elektrik-aboneligi.9662/"
+    - "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
+    - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
+  sablonlar: [abonelik_iptal]
+  kurum_turleri: [enerji, dogalgaz, su]
+  yer: kurumlar
+  onceki: [mirascilik_belgesi]
   son_kontrol: "2026-09-28"
   dogrulandi: false
   ucretli_icerik: false

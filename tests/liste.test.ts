@@ -60,22 +60,19 @@ describe("persona: Mehmet (emekli baba, çok varlık, kredi)", () => {
       "hesaptan_para_cekmeyin",
       "mirascilik_belgesi",
       "banka_hesaplari",
-      "tasinmazlar",
-      "hayat_sigortasi_sorgulama",
       "risk_raporu",
       "kredi_hayat_sigortasi",
-      "abonelikler",
-      "varis_hizmetleri",
-      "otomatik_odeme_talimatlari",
-      "telefon_internet",
-      "reddi_miras",
+      "tasinmazlar",
+      "hayat_sigortasi_sorgulama",
       "olum_ayligi",
       "cenaze_odenegi",
+      "abonelikler",
+      "telefon_internet",
+      "reddi_miras",
       "veraset_beyannamesi",
       "ilisik_kesme",
       "tapu_intikali",
       "arac_devri",
-      "guvence_bedeli_iadesi",
       "dijital_hesaplar",
     ]);
   });
@@ -99,13 +96,11 @@ describe("persona: Zeynep (mal yok, kredi kartı borcu olabilir)", () => {
     expect(liste.adimlar.map((a) => a.id)).toEqual([
       "olum_belgesi",
       "mirascilik_belgesi",
-      "hayat_sigortasi_sorgulama",
+      "banka_hesaplari",
       "risk_raporu",
-      "varis_hizmetleri",
-      "otomatik_odeme_talimatlari",
+      "hayat_sigortasi_sorgulama",
       "telefon_internet",
       "reddi_miras",
-      "cenaze_odenegi",
       "dijital_hesaplar",
     ]);
   });
@@ -125,21 +120,18 @@ describe("persona: Ahmet (mirasçılar yurtdışında)", () => {
       "olum_belgesi",
       "hesaptan_para_cekmeyin",
       "hesap_ve_abonelikleri_not_alin",
+      "yurtdisi_vekaletname",
       "mirascilik_belgesi",
       "banka_hesaplari",
       "tasinmazlar",
       "hayat_sigortasi_sorgulama",
-      "abonelikler",
-      "yurtdisi_vekaletname",
-      "varis_hizmetleri",
-      "otomatik_odeme_talimatlari",
-      "telefon_internet",
       "olum_ayligi",
       "cenaze_odenegi",
+      "abonelikler",
+      "telefon_internet",
       "veraset_beyannamesi",
       "ilisik_kesme",
       "tapu_intikali",
-      "guvence_bedeli_iadesi",
       "dijital_hesaplar",
     ]);
   });
@@ -234,7 +226,9 @@ describe("kurallar", () => {
     expect(donemGecerli("2026-01-01..2026-06-30", BUGUN)).toBe(false);
     const c = { ...MEHMET, sosyal_guvenlik: "4c" };
     expect(adim(c, "emekli_sandigi_olum_yardimi")?.tutarBilgisi).toEqual({ durum: "guncel_degil" });
-    expect(adim(c, "cenaze_odenegi")?.tutarBilgisi).toMatchObject({ durum: "gecerli", tutar: 6398 });
+    expect(adim(MEHMET, "cenaze_odenegi")?.tutarBilgisi).toMatchObject({ durum: "gecerli", tutar: 6398 });
+    // Memurlarda (4/c) SGK cenaze ödeneği yerine Emekli Sandığı ölüm yardımı çıkar.
+    expect(adim(c, "cenaze_odenegi")).toBeUndefined();
   });
 
   it("şirket ve yurtdışı mal için avukat uyarısı", () => {
