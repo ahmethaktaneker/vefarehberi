@@ -6,6 +6,7 @@ import { kvkkYukle } from "@/lib/kvkk";
 
 export const metadata: Metadata = {
   title: "Size özel listeniz",
+  alternates: { canonical: "/liste/sonuc" },
   // Kişiye özel sayfa; yayına geçildiğinde de dizine eklenmez.
   robots: { index: false, follow: false },
 };

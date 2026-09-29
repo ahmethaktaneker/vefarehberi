@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps<"/rehber/[slug]">):
     title: s.seo_baslik ?? s.baslik,
     description: s.aciklama,
     alternates: { canonical: `/rehber/${slug}` },
-    openGraph: { title: s.seo_baslik ?? s.baslik, description: s.aciklama, type: "article" },
+    openGraph: { title: s.seo_baslik ?? s.baslik, description: s.aciklama, type: "article", images: ["/opengraph-image"] },
   };
 }
 

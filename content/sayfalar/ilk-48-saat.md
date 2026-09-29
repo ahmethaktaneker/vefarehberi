@@ -1,5 +1,6 @@
 ---
 baslik: "Vefatın ardından ilk 48 saat"
+seo_baslik: "Vefat Sonrası İlk 48 Saat: Ölüm Belgesi, Cenaze ve Defin İşlemleri"
 aciklama: "Vefatın ardından ilk günlerde yapılması gerekenler: ölüm belgesi, cenaze ve defin, yurtdışında vefat ve dikkat edilmesi gerekenler."
 kaynak:
   - "https://www.nvi.gov.tr/olum-islemleri"

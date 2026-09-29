@@ -2,7 +2,7 @@ import Link from "next/link";
 import { marked } from "marked";
 import { ARAC_TANIMLARI, aracGorunur } from "@/lib/araclar";
 import { jsonLdMetni } from "@/lib/jsonld";
-import { Sayfa } from "@/components/Sayfa";
+import { Sayfa, type Kirinti } from "@/components/Sayfa";
 import { TaslakNotu } from "@/components/TaslakNotu";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
 import { hataBildirBaglantisi, KONTROL_ROZETLERI, SITE_URL } from "@/lib/marka";
@@ -27,6 +27,12 @@ export function RehberSayfasi({
   children?: React.ReactNode;
 }) {
   const html = marked.parse(sayfa.govde, { async: false });
+  // Rehberler ve hesaplayıcılar için gezinme yolu; aynısı yapılandırılmış veri olarak da eklenir.
+  const kirintilar: Kirinti[] | undefined = yol?.startsWith("/rehber/")
+    ? [{ href: "/", ad: "Ana sayfa" }, { href: "/rehber", ad: "Rehberler" }]
+    : yol?.startsWith("/hesaplayici/") || yol === "/ilk-48-saat" || yol === "/yurtdisi"
+      ? [{ href: "/", ad: "Ana sayfa" }]
+      : undefined;
   const yapilandirilmis =
     yol &&
     [
@@ -38,6 +44,16 @@ export function RehberSayfasi({
         dateModified: sayfa.son_kontrol,
         inLanguage: "tr",
         mainEntityOfPage: `${SITE_URL}${yol}`,
+      },
+      kirintilar && {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [...kirintilar, { href: yol, ad: sayfa.baslik }].map((k, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: k.ad,
+          item: `${SITE_URL}${k.href === "/" ? "" : k.href}`,
+        })),
       },
       sayfa.sss.length > 0 && {
         "@context": "https://schema.org",
@@ -51,7 +67,7 @@ export function RehberSayfasi({
     ].filter(Boolean);
 
   return (
-    <Sayfa baslik={sayfa.baslik}>
+    <Sayfa baslik={sayfa.baslik} yol={kirintilar}>
       {yapilandirilmis && (
         <script
           type="application/ld+json"

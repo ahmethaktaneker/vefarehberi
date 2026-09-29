@@ -24,17 +24,17 @@ const baslik = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `Vefat Sonrası Yapılacak İşlemler: Size Özel Liste ve Son Tarihler | ${URUN_ADI}`,
+    default: `${URUN_ADI}: Vefat Sonrası Yapılacaklar Listesi ve Son Tarihler`,
     template: `%s | ${URUN_ADI}`,
   },
   description:
     "Vefat sonrası işlemler için size özel yapılacaklar listesi, son tarihler ve hak edebileceğiniz ödemeler. Ücretsiz, kişisel bilgi istemez.",
-  alternates: { canonical: "/" },
   openGraph: {
     siteName: `${URUN_ADI}: ${URUN_ALT_BASLIK}`,
     locale: "tr_TR",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

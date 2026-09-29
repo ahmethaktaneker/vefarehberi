@@ -1,12 +1,42 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { jsonLdMetni } from "@/lib/jsonld";
 import { DevamKarti } from "@/components/DevamKarti";
 import { ARAC_TANIMLARI, aracGorunur, type AracId } from "@/lib/araclar";
+import { hazirSayfa } from "@/lib/icerik/sayfalar";
 import { icerikYukle } from "@/lib/icerik/yukle";
-import { AVUKAT_ROZETI_AKTIF } from "@/lib/marka";
+import { AVUKAT_ROZETI_AKTIF, ILETISIM_EPOSTA, SITE_URL, URUN_ADI } from "@/lib/marka";
 import { yorumlariYukle } from "@/lib/yorumlar";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
+/** Google'ın site adını ve yayıncıyı doğru göstermesi için; yalnızca sayfada görünen bilgiler. */
+const YAPILANDIRILMIS = [
+  { "@context": "https://schema.org", "@type": "WebSite", name: URUN_ADI, url: SITE_URL, inLanguage: "tr" },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: URUN_ADI,
+    url: SITE_URL,
+    logo: `${SITE_URL}/android-chrome-512x512.png`,
+    email: ILETISIM_EPOSTA,
+  },
+];
 
 /** Ana sayfadaki araçlar, süresi en yakın işten başlayarak. */
 const ANA_SAYFA_ARACLARI: AracId[] = ["reddi_miras_tablosu", "beyanname_araci", "miras_payi", "olum_ayligi", "veraset_hesaplayici"];
+
+/** Ana sayfadan bağlantı verilen rehberler: ailelerin en çok aradığı konular. */
+const ANA_SAYFA_REHBERLERI = [
+  { href: "/rehber/vefat-sonrasi-yapilacak-islemler", slug: "rehber/vefat-sonrasi-yapilacak-islemler" },
+  { href: "/ilk-48-saat", slug: "ilk-48-saat" },
+  { href: "/rehber/mirascilik-belgesi-nasil-alinir", slug: "rehber/mirascilik-belgesi-nasil-alinir" },
+  { href: "/rehber/reddi-miras-suresi", slug: "rehber/reddi-miras-suresi" },
+  { href: "/rehber/cenaze-odenegi", slug: "rehber/cenaze-odenegi" },
+  { href: "/rehber/olum-ayligi-basvurusu", slug: "rehber/olum-ayligi-basvurusu" },
+  { href: "/rehber/vefat-edenin-banka-hesaplari", slug: "rehber/vefat-edenin-banka-hesaplari" },
+  { href: "/yurtdisi", slug: "yurtdisi" },
+];
 
 export default function AnaSayfa() {
   const { sureler, cenaze_odenegi } = icerikYukle().parametreler;
@@ -14,6 +44,7 @@ export default function AnaSayfa() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMetni(YAPILANDIRILMIS) }} />
       {/* Giriş: sayfanın tek hareketli anı, yolun çizilmesi */}
       <section className="relative overflow-hidden bg-[linear-gradient(180deg,#e6ecf4_0%,#f3f1ec_100%)]">
         <GirisYolu />
@@ -24,7 +55,7 @@ export default function AnaSayfa() {
               Yakınınızı kaybettiniz. Sırada ne var, birlikte bakalım.
             </h1>
             <p className="mt-5 text-xl leading-relaxed text-metin">
-              Bu günlerde yapılacak işler çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
+              Vefat sonrası işlemler bu günlerde çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
               <Link href="/liste" className="dugme dugme-birincil px-8 text-lg">
@@ -104,21 +135,18 @@ export default function AnaSayfa() {
               Banka, abonelik ve mirası reddetme dilekçelerini doldurup yazdırın.
             </AracKarti>
           </div>
-          <h3 className="mt-10 text-lg font-bold text-vurgu-koyu">Rehberler</h3>
-          <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
+          <h3 className="mt-10 text-lg font-bold text-vurgu-koyu">Sık sorulan konularda rehberler</h3>
+          <ul className="mt-2 grid gap-x-6 sm:grid-cols-2">
+            {ANA_SAYFA_REHBERLERI.map((r) => (
+              <li key={r.href}>
+                <Link href={r.href} className="baglanti inline-block py-2">
+                  {hazirSayfa(r.slug).baslik}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link href="/ilk-48-saat" className="baglanti inline-block py-2">
-                İlk 48 saat
-              </Link>
-            </li>
-            <li>
-              <Link href="/yurtdisi" className="baglanti inline-block py-2">
-                Yurtdışında yaşıyorum
-              </Link>
-            </li>
-            <li>
-              <Link href="/rehber" className="baglanti inline-block py-2">
-                Tüm rehberler: reddi miras, cenaze ödeneği, ölüm aylığı ve daha fazlası
+              <Link href="/rehber" className="baglanti inline-block py-2 font-bold">
+                Tüm rehberler
               </Link>
             </li>
           </ul>
