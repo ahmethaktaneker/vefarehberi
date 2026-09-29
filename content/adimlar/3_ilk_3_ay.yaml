@@ -5,6 +5,7 @@
   kategori: borc_risk
   zaman_grubu: ilk_3_ay
   oncelik: kritik
+  arac: reddi_miras_tablosu
   kosul:
     any:
       - { borc: ["evet", "bilmiyorum"] }

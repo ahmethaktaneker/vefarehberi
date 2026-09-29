@@ -2,5 +2,5 @@
 # Yeni kod: npm run kod-uret -- <adet> "<not>"   İptal: ilgili satırı silin.
 # Ödeme sistemi kurulunca kodlar satın alma sonrası otomatik üretilecek.
 kodlar:
-  - { ozet: "b9691426c4bfbfff7ca601d752250b7fafc2d038b3271dc126788fc7fed873ed", urunler: [beyanname], tarih: "2026-09-28", not: "Ahmet ve deneme kullanıcısı" }
-  - { ozet: "c2eadce3cf63a9300ee8011301801fbe0f358284a3e6d49551475e1374b22b86", urunler: [beyanname], tarih: "2026-09-28", not: "Ahmet ve deneme kullanıcısı" }
+  - { ozet: "b9691426c4bfbfff7ca601d752250b7fafc2d038b3271dc126788fc7fed873ed", urunler: [beyanname, aile], tarih: "2026-09-28", not: "Ahmet ve deneme kullanıcısı" }
+  - { ozet: "c2eadce3cf63a9300ee8011301801fbe0f358284a3e6d49551475e1374b22b86", urunler: [beyanname, aile], tarih: "2026-09-28", not: "Ahmet ve deneme kullanıcısı" }

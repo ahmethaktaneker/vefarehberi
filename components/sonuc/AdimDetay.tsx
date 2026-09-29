@@ -181,8 +181,15 @@ export function AdimDetay({
         )}
       </dl>
 
-      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.baglantilar.length > 0) && (
+      {!yazdirma && (a.arac.includes("veraset_hesaplayici") || a.arac.includes("miras_payi") || a.arac.includes("olum_ayligi") || a.arac.includes("reddi_miras_tablosu") || a.baglantilar.length > 0) && (
         <div className="space-y-2 border-t border-cizgi pt-4">
+          {a.arac.includes("reddi_miras_tablosu") && (
+            <p>
+              <Link href="/reddi-miras" className="dugme dugme-birincil">
+                Varlık ve borçları karşılaştırın
+              </Link>
+            </p>
+          )}
           {a.arac.includes("olum_ayligi") && (
             <p>
               <Link href="/hesaplayici/olum-ayligi" className="baglanti">

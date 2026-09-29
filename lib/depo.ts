@@ -15,6 +15,8 @@ export const ANAHTARLAR = {
   belgeler: "vefa:belgeler:v1",
   /** Beyanname hazırlık aracının verisi (varlıklar, tutarlar, mirasçılar). */
   beyanname: "vefa:beyanname:v1",
+  /** Reddi miras tablosu: varlık ve borç listesi, yapılan kontroller. */
+  reddiMiras: "vefa:reddi-miras:v1",
   /** Paket fiyat testi varyantı; "baştan başla" ile silinmez (aynı ziyaretçiye hep aynı fiyat). */
   fiyat: "vefa:fiyat:v1",
 } as const;

@@ -18,7 +18,7 @@ for (let i = 0; i < adet; i++) {
   const kod = `VR-${parca()}-${parca()}-${parca()}`;
   const ozet = createHash("sha256").update(`vefatrehberi:${kod.replace(/[^A-Z0-9]/g, "")}`).digest("hex");
   console.log(kod);
-  satirlar.push(`  - { ozet: "${ozet}", urunler: [beyanname], tarih: "${bugun}"${not ? `, not: "${not}"` : ""} }`);
+  satirlar.push(`  - { ozet: "${ozet}", urunler: [beyanname, aile], tarih: "${bugun}"${not ? `, not: "${not}"` : ""} }`);
 }
 fs.appendFileSync(dosya, satirlar.join("\n") + "\n");
 console.error(`\n${adet} kod eklendi: content/erisim.yaml. Commit edip yayınlayınca geçerli olur.`);

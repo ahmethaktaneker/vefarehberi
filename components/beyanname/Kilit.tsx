@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { olay } from "@/lib/analitik";
 
 /** Ücretli aracın kilit ekranı: ne işe yaradığını anlatır, erişim kodu ister. */
-export function Kilit({ urun, faydalar }: { urun: string; faydalar: string[] }) {
+export function Kilit({ urun, paket = "Beyanname Paketi", faydalar }: { urun: string; paket?: string; faydalar: string[] }) {
   const router = useRouter();
   const [kod, setKod] = useState("");
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "hata" | "sunucu">("bos");
@@ -47,7 +47,7 @@ export function Kilit({ urun, faydalar }: { urun: string; faydalar: string[] }) 
           ))}
         </ul>
         <p className="mt-4 text-base text-metin-ikincil">
-          Bu araç Beyanname Paketi&apos;nin parçasıdır ve çok yakında satışa açılacak. Yapılacaklar listeniz, son tarihler ve
+          Bu araç {paket}&apos;nin parçasıdır ve çok yakında satışa açılacak. Yapılacaklar listeniz, son tarihler ve
           vergi hesaplayıcı her zaman ücretsiz kalır.
         </p>
       </div>

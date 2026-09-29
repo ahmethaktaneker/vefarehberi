@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/yurtdisi",
     "/hesaplayici/veraset-vergisi",
     "/beyanname",
+    "/reddi-miras",
     "/hesaplayici/miras-payi",
     "/hesaplayici/olum-ayligi",
     "/sablonlar",

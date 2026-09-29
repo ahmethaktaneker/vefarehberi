@@ -13,7 +13,7 @@ import { z } from "zod";
  */
 
 export const ERISIM_CEREZI = "vr_erisim";
-export const URUNLER = ["beyanname"] as const;
+export const URUNLER = ["beyanname", "aile"] as const;
 export type Urun = (typeof URUNLER)[number];
 
 const DosyaSemasi = z.strictObject({

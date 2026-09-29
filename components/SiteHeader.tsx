@@ -15,6 +15,7 @@ const MENU: MenuOgesi[] = [
   { href: "/hesaplayici/miras-payi", ad: "Miras payı hesaplayıcı", aciklama: "Eş, çocuklar, anne-baba ve kardeşlerin yasal payları" },
   { href: "/hesaplayici/olum-ayligi", ad: "Ölüm aylığı hesaplayıcı", aciklama: "Eşe, çocuklara ve anne-babaya ne kadar bağlanır?" },
   { href: "/hesaplayici/veraset-vergisi", ad: "Veraset vergisi hesaplayıcı", aciklama: "Size vergi çıkar mı, yaklaşık ne kadar?" },
+  { href: "/reddi-miras", ad: "Mirası reddetmeli miyim?", aciklama: "Varlık ve borçları yan yana koyun, kalan süreyi görün" },
   { href: "/beyanname", ad: "Beyanname formu doldurma", aciklama: "Resmi veraset beyannamesini doldurup yazdırın" },
   { href: "/sablonlar", ad: "Dilekçe taslakları", aciklama: "Banka ve abonelik dilekçelerini doldurup yazdırın" },
   { href: "/ilk-48-saat", ad: "İlk 48 saat", aciklama: "İlk günlerde yapılması gerekenler" },
