@@ -8,6 +8,7 @@ import { tutarOku } from "@/lib/hesaplayici";
 import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import { bosTablo, redSuresi, tabloBaslat, tabloOzeti, yeniKalem, type ReddiMirasVerisi, type TabloKalemi } from "@/lib/reddiMiras";
 import type { Cevaplar } from "@/lib/sorular";
+import { icsOlustur } from "@/lib/takvim";
 
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
 const para = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -20,6 +21,24 @@ const KONTROLLER = [
   { id: "kefalet", metin: "Başkasının borcuna kefil olup olmadığı bankalara soruldu" },
   { id: "icra", metin: "Hakkında icra takibi ya da dava olup olmadığı araştırıldı" },
 ];
+
+/** Reddi miras son gününü .ics olarak indirir; 7 gün ve 1 gün önce hatırlatır. Tarayıcıda üretilir. */
+function takvimeEkle(sonGun: string) {
+  const ics = icsOlustur([
+    {
+      id: "reddi-miras",
+      baslik: "Mirası reddetmek için son gün",
+      tarih: sonGun,
+      aciklama: "Ret beyanı sulh hukuk mahkemesine yapılır (TMK m.605, 606, 609). Karar vermeden önce bir avukata danışın.",
+    },
+  ]);
+  const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "reddi-miras-son-gun.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+}
 
 function yazdir() {
   document.body.classList.add("yazdir-form");
@@ -69,6 +88,14 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
               Mirası reddetmek için son gün: <strong>{tarihMetni(sure.sonGun)}</strong>. Süre, ölümün öğrenildiği tarihten itibaren 3 aydır.
             </p>
             {sure.kalanGun < 0 && <p className="mt-2">Süre geçtiyse de bir avukata danışın; bazı durumlarda başka yollar olabilir.</p>}
+            {sure.kalanGun >= 0 && (
+              <button type="button" onClick={() => takvimeEkle(sure.sonGun)} className="dugme dugme-ikincil mt-4 min-h-11 px-4 py-2 text-base">
+                Son günü takvime ekle
+              </button>
+            )}
+            {sure.kalanGun >= 0 && (
+              <p className="mt-2 text-sm text-metin-ikincil">Telefonunuzun takvimi 7 gün ve 1 gün önce hatırlatır.</p>
+            )}
           </div>
         )}
 
@@ -151,6 +178,12 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
           <Secenek baslik="Borca batık miras">
             Ölüm tarihinde borçların varlıkları aştığı açıkça belliyse miras reddedilmiş sayılır. Bunun tespiti için genellikle
             mahkemeye başvurulur (TMK m.605).
+          </Secenek>
+          <Secenek baslik="Reddedenin payı kime geçer?">
+            Mirası reddeden kişinin payı, o kişi hiç yokmuş gibi sıradaki hak sahiplerine geçer (TMK m.611). Örneğin bir çocuk
+            reddederse payı onun çocuklarına geçebilir; borç nedeniyle reddediliyorsa onların da ayrıca reddetmesi gerekebilir.
+            Çocukların hepsi reddederse payları eşe geçer (m.613). En yakın mirasçıların hepsi reddederse miras mahkemece tasfiye
+            edilir (m.612). Aileniz için doğru sırayı bir avukata sorun.
           </Secenek>
           <p className="rounded-xl border-l-4 border-vurgu bg-vurgu-acik px-4 py-3">
             Karar vermeden önce vefat edenin mallarını satmayın, hesabından para çekmeyin. Süre içinde terekeye karışan kişi mirası

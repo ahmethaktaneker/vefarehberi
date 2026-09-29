@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BeyannameAraci } from "@/components/beyanname/BeyannameAraci";
 import { Kilit } from "@/components/beyanname/Kilit";
 import { beyannameIcerikYukle } from "@/lib/beyanname/yukle";
 import { erisimVar } from "@/lib/erisim";
 import { icerikYukle } from "@/lib/icerik/yukle";
-import { UCRETLI_KILIT_AKTIF } from "@/lib/marka";
+import { UCRETLI_KILIT_AKTIF, sayfaGizli } from "@/lib/marka";
 
 export const metadata: Metadata = {
   title: "Veraset beyannamesi doldurma aracı",
@@ -23,6 +24,7 @@ const FAYDALAR = [
 ];
 
 export default async function Page() {
+  if (sayfaGizli("/beyanname")) notFound();
   const acik = !UCRETLI_KILIT_AKTIF || (await erisimVar("beyanname"));
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10 pb-6 sm:px-6 sm:pt-14 print:p-0">

@@ -1,5 +1,5 @@
 import type { Liste } from "@/lib/kurallar/liste";
-import { PAKET_TANITIMI_AKTIF, UCRETLI_KILIT_AKTIF } from "@/lib/marka";
+import { PAKET_TANITIMI_AKTIF, sayfaGizli, UCRETLI_KILIT_AKTIF } from "@/lib/marka";
 import { gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
 
 /**
@@ -46,6 +46,7 @@ export const ARAC_TANIMLARI: Record<AracId, Arac> = {
 
 /** Araç sitede gösterilir mi? Kilitli araçlar, paket tanıtımı kapalıyken gizlenir. */
 export function aracGorunur(id: AracId): boolean {
+  if (sayfaGizli(ARAC_TANIMLARI[id].href)) return false;
   return !ARAC_TANIMLARI[id].paket || !UCRETLI_KILIT_AKTIF || PAKET_TANITIMI_AKTIF;
 }
 
@@ -98,16 +99,17 @@ export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<s
   const oneriler = aracOnerileri(liste, yapilanlar);
   const neden = (id: AracId) => oneriler.find((o) => o.arac.id === id)?.neden;
 
+  const kurumAcik = aracGorunur("kurum_ziyaret");
   const aileNedenleri = [
     acik("reddi_miras") && neden("reddi_miras_tablosu") && `${neden("reddi_miras_tablosu")} Varlık ve borç tablosu hazır.`,
-    c.mirasci_sayisi === "4_arti" && "Kalabalık bir aile için her kuruma ne götürüleceği tek sayfada.",
-    (c.mirasci_yeri === "yurtdisi" || c.mirasci_yeri === "karisik") && "Yurtdışındaki mirasçılarla işleri düzenli tutmanız kolaylaşır.",
+    kurumAcik && c.mirasci_sayisi === "4_arti" && "Kalabalık bir aile için her kuruma ne götürüleceği tek sayfada.",
+    kurumAcik && (c.mirasci_yeri === "yurtdisi" || c.mirasci_yeri === "karisik") && "Yurtdışındaki mirasçılarla işleri düzenli tutmanız kolaylaşır.",
   ].filter((x): x is string => !!x);
 
-  const beyannameNedeni = acik("veraset_beyannamesi") ? neden("beyanname_araci") : undefined;
+  const beyannameNedeni = acik("veraset_beyannamesi") && aracGorunur("beyanname_araci") ? neden("beyanname_araci") : undefined;
 
   if (aileNedenleri.length > 0) {
-    const kurum = liste.kurumlar.length > 0 ? `Gideceğiniz ${liste.kurumlar.length} kurum için hazır sayfalar.` : null;
+    const kurum = kurumAcik && liste.kurumlar.length > 0 ? `Gideceğiniz ${liste.kurumlar.length} kurum için hazır sayfalar.` : null;
     return {
       paket: "aile",
       nedenler: [...aileNedenleri, ...(kurum ? [kurum] : []), ...(beyannameNedeni ? [`${beyannameNedeni} Resmi form da dahil.`] : [])],
@@ -119,6 +121,7 @@ export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<s
 
 /** Menü ve sayfa altı bağlantıları için: adres bir araca aitse o aracın görünürlüğü, değilse her zaman görünür. */
 export function hrefGorunur(href: string): boolean {
+  if (sayfaGizli(href)) return false;
   const arac = Object.values(ARAC_TANIMLARI).find((a) => a.href === href);
   return !arac || aracGorunur(arac.id);
 }

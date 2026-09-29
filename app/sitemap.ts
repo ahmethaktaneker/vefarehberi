@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { rehberSluglari, sablonlariYukle } from "@/lib/icerik/metinler";
-import { SITE_URL } from "@/lib/marka";
+import { SITE_URL, sayfaGizli } from "@/lib/marka";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const yollar = [
@@ -22,5 +22,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gizlilik",
     "/aydinlatma-metni",
   ];
-  return yollar.map((y) => ({ url: `${SITE_URL}${y}` }));
+  return yollar.filter((y) => !sayfaGizli(y)).map((y) => ({ url: `${SITE_URL}${y}` }));
 }

@@ -206,18 +206,18 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
           }}
         />
 
-        {oneri && (
-          <div className="yazdirma-gizle">
-            <PaketKarti paket={paket} riza={riza} oneri={oneri} />
-          </div>
-        )}
-
         {liste.avukatUyarilari.length > 0 && (
           <aside aria-label="Not" className="space-y-1 text-sm text-metin-ikincil">
             {liste.avukatUyarilari.map((u) => (
               <p key={u.id}>{u.metin}</p>
             ))}
           </aside>
+        )}
+
+        {oneri && (
+          <div className="yazdirma-gizle">
+            <PaketKarti paket={paket} riza={riza} oneri={oneri} />
+          </div>
         )}
       </div>
 

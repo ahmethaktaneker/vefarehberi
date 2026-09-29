@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aracOnerileri, paketOnerisi } from "@/lib/araclar";
+import { aracGorunur, aracOnerileri, paketOnerisi } from "@/lib/araclar";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { listeOlustur } from "@/lib/kurallar/liste";
 import { paketYukle } from "@/lib/paket";
@@ -29,8 +29,9 @@ describe("paketler", () => {
     expect(JSON.stringify(p)).not.toMatch(/fiyat/);
   });
 
-  it("yalnızca mal varsa Beyanname Paketi önerilir, kalan gün yazılır", () => {
+  it("yalnızca mal varsa Beyanname Paketi önerilir (araç gizliyse hiçbiri)", () => {
     const o = oner(temel);
+    if (!aracGorunur("beyanname_araci")) return expect(o).toBeNull();
     expect(o?.paket).toBe("beyanname");
     expect(o?.nedenler[0]).toMatch(/Beyanname için \d+ gününüz var/);
   });
@@ -41,9 +42,10 @@ describe("paketler", () => {
     expect(o?.nedenler[0]).toMatch(/Mirası reddetmek için \d+ gününüz var/);
   });
 
-  it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir", () => {
-    expect(oner({ ...temel, mirasci_sayisi: "4_arti" })?.paket).toBe("aile");
-    expect(oner({ ...temel, mirasci_yeri: "karisik" })?.paket).toBe("aile");
+  it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir (kurum sayfaları açıksa)", () => {
+    const beklenen = aracGorunur("kurum_ziyaret") ? "aile" : aracGorunur("beyanname_araci") ? "beyanname" : undefined;
+    expect(oner({ ...temel, mirasci_sayisi: "4_arti" })?.paket).toBe(beklenen);
+    expect(oner({ ...temel, mirasci_yeri: "karisik" })?.paket).toBe(beklenen);
   });
 
   it("mal da borç da yoksa paket önerilmez", () => {
@@ -59,9 +61,14 @@ describe("araç önerileri", () => {
   it("listedeki adımlara göre araçlar, son tarihi yakın olan önce", () => {
     const ids = araclar({ ...temel, borc: "bilmiyorum" });
     expect(ids[0]).toBe("reddi_miras_tablosu");
-    expect(ids).toContain("beyanname_araci");
     expect(ids).toContain("miras_payi");
-    expect(ids).toContain("kurum_ziyaret");
+    expect(ids.includes("beyanname_araci")).toBe(aracGorunur("beyanname_araci"));
+    expect(ids.includes("kurum_ziyaret")).toBe(aracGorunur("kurum_ziyaret"));
+  });
+
+  it("gizli sayfalardaki araçlar hiçbir öneride çıkmaz", () => {
+    const ids = araclar({ ...temel, borc: "bilmiyorum", mirasci_sayisi: "4_arti" });
+    expect(ids.every((id) => aracGorunur(id))).toBe(true);
   });
 
   it("mal yoksa beyanname araçları önerilmez", () => {

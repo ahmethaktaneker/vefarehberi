@@ -48,6 +48,13 @@ export const UCRETLI_KILIT_AKTIF = true;
  */
 export const PAKET_TANITIMI_AKTIF = true;
 
+/**
+ * Şimdilik gizlenen sayfalar: menüden, sayfa altından, adımlardan ve önerilerden kalkar; adresleri
+ * "sayfa bulunamadı" verir. Kod duruyor; listeden çıkarılınca geri gelir.
+ */
+export const GIZLI_SAYFALAR: readonly string[] = ["/beyanname", "/kurum-ziyaret", "/sozluk"];
+export const sayfaGizli = (yol: string) => GIZLI_SAYFALAR.includes(yol);
+
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */
 export const ILETISIM_EPOSTA = "ahmethaktaneker@gmail.com";
 

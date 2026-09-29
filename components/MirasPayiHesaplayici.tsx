@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
+import { aracGorunur } from "@/lib/araclar";
 import { mirasPaylari, ortakPaydayla, yuzde, type Kardes, type KardesTuru, type Kisi } from "@/lib/mirasPayi";
 
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
@@ -153,11 +154,13 @@ export function MirasPayiHesaplayici() {
               Vasiyet yoksa geçerli olan yasal paylardır; resmi paylar mirasçılık belgesinde yazar. Girdiğiniz bilgiler hiçbir yere
               gönderilmez.
             </p>
-            <p className="mt-3">
-              <Link href="/beyanname" className="baglanti">
-                Bu paylarla veraset beyannamesini doldurun
-              </Link>
-            </p>
+            {aracGorunur("beyanname_araci") && (
+              <p className="mt-3">
+                <Link href="/beyanname" className="baglanti">
+                  Bu paylarla veraset beyannamesini doldurun
+                </Link>
+              </p>
+            )}
           </>
         )}
         {sonuc?.durum === "kapsam_disi" && (

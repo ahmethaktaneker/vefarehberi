@@ -1,6 +1,7 @@
 # Paketler: ilgi testi (Brief 10). Gerçek ödeme yok, fiyat gösterilmiyor.
 # Zorunlu bilgi asla ücretli değildir; pakette zaman kazandıran ve işi bizzat kolaylaştıran araçlar var.
-# Hangi paketin öne çıkacağı cevaplara göre kodda seçilir (lib/araclar.ts paketOnerisi).
+# Her içerik maddesi bir araca bağlıdır; araç gizliyse (lib/marka.ts GIZLI_SAYFALAR) madde görünmez,
+# hiç maddesi kalmayan paket listeden düşer. Öne çıkan paket cevaplara göre seçilir (lib/araclar.ts).
 # Tüm tanıtımı kapatmak için lib/marka.ts PAKET_TANITIMI_AKTIF = false.
 
 paketler:
@@ -8,16 +9,18 @@ paketler:
     ad: "Beyanname Paketi"
     aciklama: "Veraset beyannamesini kendiniz, kolayca verin."
     icerik:
-      - "Resmi veraset ve intikal vergisi beyannamesini adım adım doldurma ve yazdırma"
-      - "Her varlık için değerin nereden bulunacağı ve eklenecek belgeler"
-      - "Mirasçı paylarına göre herkesin vergisi"
+      - { arac: beyanname_araci, metin: "Resmi veraset ve intikal vergisi beyannamesini adım adım doldurma ve yazdırma" }
+      - { arac: beyanname_araci, metin: "Her varlık için değerin nereden bulunacağı ve eklenecek belgeler" }
+      - { arac: beyanname_araci, metin: "Mirasçı paylarına göre herkesin vergisi" }
   - id: aile
     ad: "Aile Paketi"
-    aciklama: "Borç riski, kalabalık aile ya da çok kurum varsa işleri tek elden yürütün."
+    aciklama: "Borç riski varsa mirası reddedip reddetmemeye karar vermenizi kolaylaştırır."
     icerik:
-      - "Beyanname Paketi'ndeki her şey"
-      - "Mirası reddetmeli miyim? Varlık ve borç tablosu, kalan gün sayacı ve avukat için özet"
-      - "Gideceğiniz her kurum için tek sayfa: ne götürülecek, gişede ne denecek, hangi dilekçe"
+      - { arac: beyanname_araci, metin: "Beyanname Paketi'ndeki her şey" }
+      - { arac: reddi_miras_tablosu, metin: "Mirası reddetmeli miyim? Varlık ve borç tablosu, kalan gün sayacı" }
+      - { arac: reddi_miras_tablosu, metin: "Reddi miras son gününü, hatırlatmalarıyla takviminize ekleme" }
+      - { arac: reddi_miras_tablosu, metin: "Avukatla görüşürken elinizde olacak yazdırılabilir özet" }
+      - { arac: kurum_ziyaret, metin: "Gideceğiniz her kurum için tek sayfa: ne götürülecek, gişede ne denecek" }
 
 yakinda_metni: >
   Paketler çok yakında açılıyor. Şu an ödeme almıyoruz. Listeniz, son tarihler, hesaplayıcılar ve

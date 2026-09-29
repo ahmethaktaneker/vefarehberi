@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { sayfaGizli } from "@/lib/marka";
 import { Sayfa } from "@/components/Sayfa";
 import { icerikYukle } from "@/lib/icerik/yukle";
 
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  if (sayfaGizli("/sozluk")) notFound();
   const terimler = [...icerikYukle().sozluk].sort((a, b) => a.terim.localeCompare(b.terim, "tr"));
   return (
     <Sayfa baslik="Sözlük">

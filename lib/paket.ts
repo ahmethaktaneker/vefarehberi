@@ -11,7 +11,14 @@ export const PaketSemasi = z.strictObject({
         id: z.enum(["beyanname", "aile"]),
         ad: z.string(),
         aciklama: z.string(),
-        icerik: z.array(z.string()).min(1),
+        icerik: z
+          .array(
+            z.strictObject({
+              arac: z.enum(["beyanname_araci", "reddi_miras_tablosu", "kurum_ziyaret"]),
+              metin: z.string(),
+            }),
+          )
+          .min(1),
       }),
     )
     .length(2),

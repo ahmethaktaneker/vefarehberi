@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Kilit } from "@/components/beyanname/Kilit";
 import { KurumZiyaretSayfalari } from "@/components/KurumZiyaretSayfalari";
 import { erisimVar } from "@/lib/erisim";
 import { icerikYukle } from "@/lib/icerik/yukle";
-import { UCRETLI_KILIT_AKTIF } from "@/lib/marka";
+import { UCRETLI_KILIT_AKTIF, sayfaGizli } from "@/lib/marka";
 
 export const metadata: Metadata = {
   title: "Kurum ziyaret sayfaları",
@@ -19,6 +20,7 @@ const FAYDALAR = [
 ];
 
 export default async function Page() {
+  if (sayfaGizli("/kurum-ziyaret")) notFound();
   const acik = !UCRETLI_KILIT_AKTIF || (await erisimVar("aile"));
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10 pb-6 sm:px-6 sm:pt-14 print:p-0">

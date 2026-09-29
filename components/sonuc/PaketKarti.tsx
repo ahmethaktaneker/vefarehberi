@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
-import type { PaketOnerisi } from "@/lib/araclar";
+import { aracGorunur, type PaketOnerisi } from "@/lib/araclar";
 import { epostaTemizle } from "@/lib/eposta";
 import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
 import type { Paket } from "@/lib/paket";
@@ -11,14 +11,13 @@ import type { Paket } from "@/lib/paket";
 type PaketId = Paket["paketler"][number]["id"];
 
 /**
- * Paket kartı: ilgi testi (Brief 10), fiyat gösterilmez. Cevaplara göre önerilen paket öne çıkar ve
- * "sizin durumunuzda" nedenleriyle anlatılır. Ekranı kaplamaz, kendiliğinden açılmaz, kapatılabilir.
- * Öneri yoksa (mal da borç da yoksa) hiç gösterilmez.
+ * Paketler: liste sayfasının en altında sade bir liste (ilgi testi, Brief 10). Fiyat yok; düğme "Açılınca
+ * haber ver". Cevaplara göre önerilen paket işaretlenir. Gizli araçlara bağlı maddeler görünmez; maddesi
+ * kalmayan paket listelenmez.
  */
 export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum: string; metin: string }; oneri: PaketOnerisi }) {
-  const [kapali, setKapali] = useState(false);
   const [secilen, setSecilen] = useState<PaketId | null>(null);
-  const kartRef = useRef<HTMLDivElement>(null);
+  const kartRef = useRef<HTMLElement>(null);
   const goruldu = useRef(false);
 
   useEffect(() => {
@@ -34,35 +33,31 @@ export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum
     return () => gozlemci.disconnect();
   }, [oneri.paket]);
 
-  if (kapali) return null;
-  const sirali = [...paket.paketler].sort((a, b) => (a.id === oneri.paket ? -1 : b.id === oneri.paket ? 1 : 0));
+  const paketler = paket.paketler
+    .map((p) => ({ ...p, icerik: p.icerik.filter((i) => aracGorunur(i.arac)) }))
+    .filter((p) => p.icerik.length > 0)
+    .sort((a, b) => (a.id === oneri.paket ? -1 : b.id === oneri.paket ? 1 : 0));
+  if (paketler.length === 0) return null;
 
   return (
-    <section ref={kartRef} aria-labelledby="paket-baslik" className="rounded-2xl border border-altin/60 bg-yuzey p-5 shadow-kart sm:p-6">
-      <div className="flex items-start justify-between gap-4">
-        <h2 id="paket-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu">
-          İşinizi kolaylaştıracak paketler
-        </h2>
-        <button
-          type="button"
-          onClick={() => setKapali(true)}
-          aria-label="Paket kartını kapat"
-          className="-mt-1 -mr-2 inline-flex size-10 shrink-0 items-center justify-center rounded-full text-xl text-metin-ikincil hover:bg-bilgi-acik"
-        >
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
+    <section ref={kartRef} aria-labelledby="paket-baslik" className="border-t border-cizgi pt-8">
+      <h2 id="paket-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu">
+        Paketler
+      </h2>
+      <p className="mt-1 text-base text-metin-ikincil">İşinizi kolaylaştıran ek araçlar. Çok yakında açılıyor.</p>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {sirali.map((p) => {
+      <ul className="mt-4 divide-y divide-cizgi">
+        {paketler.map((p) => {
           const onerilen = p.id === oneri.paket;
           return (
-            <div key={p.id} className={`flex flex-col rounded-xl p-4 ${onerilen ? "border-2 border-vurgu-koyu bg-vurgu-acik/60" : "border border-cizgi"}`}>
-              {onerilen && <p className="mb-2 self-start rounded-full bg-vurgu-koyu px-3 py-0.5 text-base font-bold text-white">Sizin için önerilen</p>}
-              <h3 className="font-serif text-xl font-semibold">{p.ad}</h3>
+            <li key={p.id} className="py-5 first:pt-2">
+              <h3 className="flex flex-wrap items-center gap-2 font-serif text-xl font-semibold">
+                {p.ad}
+                {onerilen && <span className="rounded-full bg-vurgu-acik px-3 py-0.5 font-sans text-base font-bold text-vurgu-koyu">Sizin için önerilen</span>}
+              </h3>
               <p className="mt-1 text-base text-metin-ikincil">{p.aciklama}</p>
               {onerilen && oneri.nedenler.length > 0 && (
-                <ul className="mt-3 space-y-2">
+                <ul className="mt-3 space-y-1">
                   {oneri.nedenler.map((n) => (
                     <li key={n} className="flex gap-2 text-base">
                       <span aria-hidden="true" className="text-altin-koyu">
@@ -75,44 +70,40 @@ export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum
               )}
               <ul className="mt-3 list-disc space-y-1 pl-5 text-base">
                 {p.icerik.map((i) => (
-                  <li key={i}>{i}</li>
+                  <li key={i.metin}>{i.metin}</li>
                 ))}
               </ul>
-              <div className="mt-auto pt-4">
+              {secilen === p.id ? (
+                <div role="status" className="mt-4 space-y-2 rounded-xl bg-bilgi-acik px-4 py-3 text-base">
+                  <p>{paket.yakinda_metni}</p>
+                  {EPOSTA_TOPLAMA_AKTIF ? <EpostaFormu paket={p.id} riza={riza} /> : <p className="text-metin-ikincil">{paket.eposta_yakinda_metni}</p>}
+                </div>
+              ) : (
                 <button
                   type="button"
                   onClick={() => {
                     setSecilen(p.id);
                     olay("paket_tiklandi", { paket: p.id, onerilen: onerilen ? "evet" : "hayir" });
                   }}
-                  className={`dugme ${onerilen ? "dugme-birincil" : "dugme-ikincil"} w-full`}
+                  className="dugme dugme-ikincil mt-4 min-h-11 px-5 py-2 text-base"
                 >
-                  {p.ad}&apos;ni istiyorum
+                  Açılınca haber ver
                 </button>
-              </div>
-            </div>
+              )}
+            </li>
           );
         })}
-      </div>
+      </ul>
 
-      {secilen && (
-        <div role="status" className="mt-4 space-y-2 rounded-xl bg-bilgi-acik px-4 py-3 text-base">
-          <p>{paket.yakinda_metni}</p>
-          {EPOSTA_TOPLAMA_AKTIF ? <EpostaFormu paket={secilen} riza={riza} /> : <p className="text-metin-ikincil">{paket.eposta_yakinda_metni}</p>}
-        </div>
+      {aracGorunur("reddi_miras_tablosu") && (
+        <p className="mt-2 text-sm text-metin-ikincil">
+          Erişim kodunuz varsa{" "}
+          <Link href="/reddi-miras" className="underline underline-offset-2">
+            aracı açıp
+          </Link>{" "}
+          kodu girin.
+        </p>
       )}
-
-      <p className="mt-4 text-sm text-metin-ikincil">
-        Erişim kodunuz varsa ilgili aracı açıp kodu girin:{" "}
-        <Link href="/beyanname" className="underline underline-offset-2">
-          beyanname
-        </Link>
-        ,{" "}
-        <Link href="/reddi-miras" className="underline underline-offset-2">
-          reddi miras
-        </Link>
-        .
-      </p>
     </section>
   );
 }
