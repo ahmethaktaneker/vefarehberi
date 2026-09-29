@@ -4,7 +4,7 @@ import type { Belge } from "@/lib/icerik/sema";
 import { listeyiYazdir } from "@/lib/yazdir";
 import { usePanelAc } from "@/components/sonuc/Panel";
 
-type Satir = { belge: Belge; adimlar: { id: string; baslik: string }[] };
+type Satir = { belge: Belge; adimlar: { id: string; baslik: string; neden?: string }[] };
 
 /** Birleşik belge listesi, kontrol listesi olarak. "Hazır" işaretleri yalnızca bu cihazda saklanır. */
 export function BelgeKontrolListesi({
@@ -52,7 +52,9 @@ export function BelgeKontrolListesi({
                   className="mt-0.5 size-6 shrink-0 accent-vurgu"
                 />
                 <span>
+                  {adimlar.every((x) => x.neden) && <span className="block text-sm text-metin-ikincil">İsteğe bağlı</span>}
                   <span className={`block text-lg font-bold leading-snug ${secili ? "text-metin-ikincil line-through" : ""}`}>{belge.ad}</span>
+                  {adimlar.every((x) => x.neden) && !secili && <span className="block text-base text-metin-ikincil">{adimlar[0].neden}</span>}
                   {secili && (
                     <span className="block text-base font-bold text-vurgu">{kaynak ? `Hazır: "${kaynak}" adımını yaptınız` : "Hazır"}</span>
                   )}

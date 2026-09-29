@@ -64,7 +64,7 @@ export function yereGore(liste: Liste, belgeler: Record<string, Belge>, sira: re
   return sira
     .map((yer) => {
       const adimlar = liste.adimlar.filter((a) => a.yer === yer);
-      const ids = [...new Set(adimlar.flatMap((a) => a.belgeler))];
+      const ids = [...new Set(adimlar.flatMap((a) => [...a.belgeler, ...a.istege_bagli_belgeler.map((b) => b.belge)]))];
       return { yer, adimlar, belgeler: ids.map((id) => belgeler[id]).filter(Boolean) };
     })
     .filter((y) => y.adimlar.length > 0);

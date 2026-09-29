@@ -17,7 +17,12 @@
     Tescil, veraset ve intikal vergisinin tahakkuku beklenmeden yapılabilir. Ancak taşınmaza düşen
     vergi tamamen ödenmeden taşınmaz satılamaz; satış için ilişik kesme belgesi istenir.
   nereye: "Web Tapu üzerinden başvuru, ardından tapu müdürlüğü"
-  belgeler: [kimlik, mirascilik_belgesi, dask]
+  belgeler: [kimlik, mirascilik_belgesi]
+  istege_bagli_belgeler:
+    - belge: dask
+      neden: "Taşınmaz bina ise (konut, işyeri) gerekir; boş arsada gerekmez."
+    - belge: ilisik_kesme
+      neden: "Taşınmazı satacaksanız gerekir; mirasçılar adına tescil için gerekmez."
   cevrimici: "Başvuru Web Tapu'dan yapılır; imza için tapu müdürlüğüne gidilir."
   baglantilar:
     - { ad: "Web Tapu", url: "https://webtapu.tkgm.gov.tr" }
