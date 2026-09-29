@@ -16,6 +16,7 @@ const MENU: MenuOgesi[] = [
   { href: "/hesaplayici/olum-ayligi", ad: "Ölüm aylığı hesaplayıcı", aciklama: "Eşe, çocuklara ve anne-babaya ne kadar bağlanır?" },
   { href: "/hesaplayici/veraset-vergisi", ad: "Veraset vergisi hesaplayıcı", aciklama: "Size vergi çıkar mı, yaklaşık ne kadar?" },
   { href: "/reddi-miras", ad: "Mirası reddetmeli miyim?", aciklama: "Varlık ve borçları yan yana koyun, kalan süreyi görün" },
+  { href: "/kurum-ziyaret", ad: "Kurum ziyaret sayfaları", aciklama: "Her kurum için ne götürülecek, ne denecek" },
   { href: "/beyanname", ad: "Beyanname formu doldurma", aciklama: "Resmi veraset beyannamesini doldurup yazdırın" },
   { href: "/sablonlar", ad: "Dilekçe taslakları", aciklama: "Banka ve abonelik dilekçelerini doldurup yazdırın" },
   { href: "/ilk-48-saat", ad: "İlk 48 saat", aciklama: "İlk günlerde yapılması gerekenler" },
