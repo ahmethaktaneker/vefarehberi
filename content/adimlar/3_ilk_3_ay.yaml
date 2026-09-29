@@ -49,6 +49,7 @@
     - "https://www.ozcanlarhukuk.com/mirasin-hukmen-reddi-davasi/"
     - "https://www.palmahukuk.com/reddi-miras-yapinca-borc-kime-kalir/"
     - "https://www.sikayetvar.com/avukat/miras"
+  sablonlar: [mirasin_reddi]
   yer: noter_mahkeme
   son_kontrol: "2026-09-28"
   dogrulandi: false

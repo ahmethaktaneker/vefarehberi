@@ -5,8 +5,8 @@ import { sablonDoldur } from "@/lib/sablonlar/doldur";
 describe("dilekçe şablonları", () => {
   const sablonlar = sablonlariYukle();
 
-  it("Brief 9'daki üç ücretsiz şablon var ve hepsi doğrulanmamış", () => {
-    expect(sablonlar.map((s) => s.id).sort()).toEqual(["abonelik_iptal", "banka_bakiye_yazisi", "otomatik_odeme_iptal"]);
+  it("Brief 9'daki üç ücretsiz şablon ve reddi miras beyanı var, hepsi doğrulanmamış", () => {
+    expect(sablonlar.map((s) => s.id).sort()).toEqual(["abonelik_iptal", "banka_bakiye_yazisi", "mirasin_reddi", "otomatik_odeme_iptal"]);
     expect(sablonlar.every((s) => !s.dogrulandi && !s.ucretli_icerik)).toBe(true);
   });
 
@@ -16,8 +16,8 @@ describe("dilekçe şablonları", () => {
     }
   });
 
-  it("mahkemeye verilecek belge (reddi miras) için şablon yok", () => {
-    expect(sablonlar.some((s) => /redd/i.test(s.id + s.baslik))).toBe(false);
+  it("reddi miras beyanı şablonu var (proje sahibinin 29.09.2026 kararı; brief'teki kısıt bu konu için kaldırıldı)", () => {
+    expect(sablonlar.some((s) => s.id === "mirasin_reddi")).toBe(true);
   });
 
   it("doldurma: girilen değerler yerleşir, boşlar noktalı kalır", () => {

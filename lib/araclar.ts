@@ -98,18 +98,23 @@ export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<s
   const acik = (id: string) => liste.adimlar.some((a) => a.id === id) && !yapilanlar.has(id);
   const oneriler = aracOnerileri(liste, yapilanlar);
   const neden = (id: AracId) => oneriler.find((o) => o.arac.id === id)?.neden;
+  // Önerilerde görünmeyen (sayfası gizli) araçlar için de süreye dayalı neden üretilir.
+  const paketNedeni = (adimId: string, onEk: string, yedek: string) => {
+    const b = liste.adimlar.find((a) => a.id === adimId)?.sonTarihBilgisi;
+    return b && !b.gecti ? `${onEk} ${b.kalanGun} gününüz var.` : yedek;
+  };
 
-  const kurumAcik = aracGorunur("kurum_ziyaret");
+  // Paket tanıtımında araçlar satışta olmasa (sayfası gizli olsa) da pakette anlatılır.
   const aileNedenleri = [
     acik("reddi_miras") && neden("reddi_miras_tablosu") && `${neden("reddi_miras_tablosu")} Varlık ve borç tablosu hazır.`,
-    kurumAcik && c.mirasci_sayisi === "4_arti" && "Kalabalık bir aile için her kuruma ne götürüleceği tek sayfada.",
-    kurumAcik && (c.mirasci_yeri === "yurtdisi" || c.mirasci_yeri === "karisik") && "Yurtdışındaki mirasçılarla işleri düzenli tutmanız kolaylaşır.",
+    c.mirasci_sayisi === "4_arti" && "Kalabalık bir aile için her kuruma ne götürüleceği tek sayfada.",
+    (c.mirasci_yeri === "yurtdisi" || c.mirasci_yeri === "karisik") && "Yurtdışındaki mirasçılarla işleri düzenli tutmanız kolaylaşır.",
   ].filter((x): x is string => !!x);
 
-  const beyannameNedeni = acik("veraset_beyannamesi") && aracGorunur("beyanname_araci") ? neden("beyanname_araci") : undefined;
+  const beyannameNedeni = acik("veraset_beyannamesi") ? paketNedeni("veraset_beyannamesi", "Beyanname için", "Beyannameyi resmi formda hazırlayın.") : undefined;
 
   if (aileNedenleri.length > 0) {
-    const kurum = kurumAcik && liste.kurumlar.length > 0 ? `Gideceğiniz ${liste.kurumlar.length} kurum için hazır sayfalar.` : null;
+    const kurum = liste.kurumlar.length > 0 ? `Gideceğiniz ${liste.kurumlar.length} kurum için hazır sayfalar.` : null;
     return {
       paket: "aile",
       nedenler: [...aileNedenleri, ...(kurum ? [kurum] : []), ...(beyannameNedeni ? [`${beyannameNedeni} Resmi form da dahil.`] : [])],

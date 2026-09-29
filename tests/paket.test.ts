@@ -29,9 +29,8 @@ describe("paketler", () => {
     expect(JSON.stringify(p)).not.toMatch(/fiyat/);
   });
 
-  it("yalnızca mal varsa Beyanname Paketi önerilir (araç gizliyse hiçbiri)", () => {
+  it("yalnızca mal varsa Beyanname Paketi önerilir (araç henüz satışta olmasa da tanıtılır)", () => {
     const o = oner(temel);
-    if (!aracGorunur("beyanname_araci")) return expect(o).toBeNull();
     expect(o?.paket).toBe("beyanname");
     expect(o?.nedenler[0]).toMatch(/Beyanname için \d+ gününüz var/);
   });
@@ -42,10 +41,9 @@ describe("paketler", () => {
     expect(o?.nedenler[0]).toMatch(/Mirası reddetmek için \d+ gününüz var/);
   });
 
-  it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir (kurum sayfaları açıksa)", () => {
-    const beklenen = aracGorunur("kurum_ziyaret") ? "aile" : aracGorunur("beyanname_araci") ? "beyanname" : undefined;
-    expect(oner({ ...temel, mirasci_sayisi: "4_arti" })?.paket).toBe(beklenen);
-    expect(oner({ ...temel, mirasci_yeri: "karisik" })?.paket).toBe(beklenen);
+  it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir", () => {
+    expect(oner({ ...temel, mirasci_sayisi: "4_arti" })?.paket).toBe("aile");
+    expect(oner({ ...temel, mirasci_yeri: "karisik" })?.paket).toBe("aile");
   });
 
   it("mal da borç da yoksa paket önerilmez", () => {

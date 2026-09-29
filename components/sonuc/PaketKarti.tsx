@@ -33,10 +33,8 @@ export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum
     return () => gozlemci.disconnect();
   }, [oneri.paket]);
 
-  const paketler = paket.paketler
-    .map((p) => ({ ...p, icerik: p.icerik.filter((i) => aracGorunur(i.arac)) }))
-    .filter((p) => p.icerik.length > 0)
-    .sort((a, b) => (a.id === oneri.paket ? -1 : b.id === oneri.paket ? 1 : 0));
+  // Satışta olmayan (sayfası gizli) araçlar da tanıtım için pakette anlatılır.
+  const paketler = [...paket.paketler].sort((a, b) => (a.id === oneri.paket ? -1 : b.id === oneri.paket ? 1 : 0));
   if (paketler.length === 0) return null;
 
   return (

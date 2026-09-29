@@ -169,7 +169,9 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
           </h2>
           <Secenek baslik="Mirası reddetmek">
             Sulh hukuk mahkemesine sözlü ya da yazılı başvurularak yapılır. Reddeden, miras kalan mallardan da borçlardan da pay
-            almaz (TMK m.605, 606, 609). <Link href="/rehber/reddi-miras-suresi" className="baglanti">Reddi miras rehberi</Link>
+            almaz (TMK m.605, 606, 609). <Link href="/sablonlar/mirasin_reddi" className="baglanti">Ret beyanı dilekçesini doldurun</Link>
+            {" · "}
+            <Link href="/rehber/reddi-miras-suresi" className="baglanti">Reddi miras rehberi</Link>
           </Secenek>
           <Secenek baslik="Resmi defter tutulmasını istemek">
             Borçların ne kadar olduğundan emin değilseniz, sulh hukuk mahkemesinden terekenin resmi defterinin tutulmasını

@@ -1,7 +1,7 @@
 # Paketler: ilgi testi (Brief 10). Gerçek ödeme yok, fiyat gösterilmiyor.
 # Zorunlu bilgi asla ücretli değildir; pakette zaman kazandıran ve işi bizzat kolaylaştıran araçlar var.
-# Her içerik maddesi bir araca bağlıdır; araç gizliyse (lib/marka.ts GIZLI_SAYFALAR) madde görünmez,
-# hiç maddesi kalmayan paket listeden düşer. Öne çıkan paket cevaplara göre seçilir (lib/araclar.ts).
+# Her içerik maddesi bir araca bağlıdır. Satışta olmayan araçların sayfası gizli olsa da (lib/marka.ts
+# GIZLI_SAYFALAR) paketlerde tanıtım için anlatılır. Öne çıkan paket cevaplara göre seçilir (lib/araclar.ts).
 # Tüm tanıtımı kapatmak için lib/marka.ts PAKET_TANITIMI_AKTIF = false.
 
 paketler:
@@ -14,7 +14,7 @@ paketler:
       - { arac: beyanname_araci, metin: "Mirasçı paylarına göre herkesin vergisi" }
   - id: aile
     ad: "Aile Paketi"
-    aciklama: "Borç riski varsa mirası reddedip reddetmemeye karar vermenizi kolaylaştırır."
+    aciklama: "Borç riski varsa ya da işler çoksa kararları ve kurumları tek elden yürütün."
     icerik:
       - { arac: beyanname_araci, metin: "Beyanname Paketi'ndeki her şey" }
       - { arac: reddi_miras_tablosu, metin: "Mirası reddetmeli miyim? Varlık ve borç tablosu, kalan gün sayacı" }
