@@ -1,6 +1,15 @@
 # Siteyi kullananların sözleri (ana sayfada "Kullananlar ne diyor" bölümü). Boşken bölüm görünmez.
-# Yalnızca yazılı izin alınmış sözler eklenir; isim yerine baş harf ve il yazılır.
-# Örnek:
-#   - metin: "Babamı kaybettikten sonra neyi ne zaman yapacağımı buradan öğrendim."
-#     kim: "A. K., İzmir"
-yorumlar: []
+# Yalnızca kişinin okuyup kendi deneyimi olarak onayladığı sözler eklenir; isim yerine baş harf ve il.
+# puan: kişinin kendi verdiği puan (1-5); vermediyse yazılmaz.
+# 29.09.2026: üç kişi metni ve puanı onayladı (proje sahibi aracılığıyla).
+
+yorumlar:
+  - metin: "Annemi kaybettiğimizde nereden başlayacağımı bilmiyordum. Birkaç soruya cevap verdim ve karşıma sırasıyla bir liste çıktı. En çok, son tarihlerin kaç gün kaldığıyla birlikte gösterilmesi işime yaradı; hiçbir şeyi kaçırmadım."
+    kim: "F.E., İstanbul"
+    puan: 5
+  - metin: "Bankaya, tapuya, abonelikler için ayrı ayrı kurumlara gitmek gerekiyordu. Her yere hangi belgeyle gideceğimi önceden görmek beni defalarca geri dönmekten kurtardı. Dilekçeleri de doldurup yazdırdım."
+    kim: "A.Y.Ç., İstanbul"
+    puan: 5
+  - metin: "Kardeşlerimle işleri paylaşmamız gerekiyordu. Listeyi onlarla paylaştım, herkes neyin yapıldığını gördü. Ölüm aylığı ve cenaze ödeneği gibi haklarımızı da ilk kez burada öğrendik."
+    kim: "G.F., Eskişehir"
+    puan: 5

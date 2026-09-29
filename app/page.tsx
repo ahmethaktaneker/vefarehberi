@@ -72,10 +72,16 @@ export default function AnaSayfa() {
             <h2 id="yorumlar-baslik" className="font-serif text-2xl font-semibold text-vurgu-koyu sm:text-3xl">
               Kullananlar ne diyor
             </h2>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            <ul className="mt-6 grid gap-4 md:grid-cols-3">
               {yorumlar.map((y) => (
                 <li key={y.metin}>
                   <figure className="h-full rounded-2xl border-l-4 border-altin bg-yuzey p-5 shadow-kart">
+                    {y.puan && (
+                      <p className="mb-2 text-lg tracking-wider text-altin" aria-label={`5 üzerinden ${y.puan} puan`}>
+                        {"★".repeat(y.puan)}
+                        <span className="text-cizgi">{"★".repeat(5 - y.puan)}</span>
+                      </p>
+                    )}
                     <blockquote className="font-serif text-lg leading-relaxed">&ldquo;{y.metin}&rdquo;</blockquote>
                     <figcaption className="mt-3 text-base text-metin-ikincil">{y.kim}</figcaption>
                   </figure>

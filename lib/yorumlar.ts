@@ -5,7 +5,7 @@ import { z } from "zod";
 
 /** content/yorumlar.yaml: izinle alınmış kullanıcı sözleri. */
 const YorumlarSemasi = z.strictObject({
-  yorumlar: z.array(z.strictObject({ metin: z.string().min(1), kim: z.string().min(1) })).default([]),
+  yorumlar: z.array(z.strictObject({ metin: z.string().min(1), kim: z.string().min(1), puan: z.number().int().min(1).max(5).optional() })).default([]),
 });
 
 export type Yorum = z.infer<typeof YorumlarSemasi>["yorumlar"][number];
