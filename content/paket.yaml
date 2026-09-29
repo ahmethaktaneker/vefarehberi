@@ -14,12 +14,9 @@ paketler:
       - { arac: beyanname_araci, metin: "Mirasçı paylarına göre herkesin vergisi" }
   - id: aile
     ad: "Aile Paketi"
-    aciklama: "Borç riski varsa ya da işler çoksa kararları ve kurumları tek elden yürütün."
+    aciklama: "Aile kalabalıksa ya da gidilecek kurum çoksa işleri tek elden yürütün."
     icerik:
       - { arac: beyanname_araci, metin: "Beyanname Paketi'ndeki her şey" }
-      - { arac: reddi_miras_tablosu, metin: "Mirası reddetmeli miyim? Varlık ve borç tablosu, kalan gün sayacı" }
-      - { arac: reddi_miras_tablosu, metin: "Reddi miras son gününü, hatırlatmalarıyla takviminize ekleme" }
-      - { arac: reddi_miras_tablosu, metin: "Avukatla görüşürken elinizde olacak yazdırılabilir özet" }
       - { arac: kurum_ziyaret, metin: "Gideceğiniz her kurum için tek sayfa: ne götürülecek, gişede ne denecek" }
 
 yakinda_metni: >

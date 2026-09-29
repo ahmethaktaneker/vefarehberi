@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
-import { aracGorunur, type PaketOnerisi } from "@/lib/araclar";
+import type { PaketOnerisi } from "@/lib/araclar";
 import { epostaTemizle } from "@/lib/eposta";
 import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
 import type { Paket } from "@/lib/paket";
@@ -93,15 +92,6 @@ export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum
         })}
       </ul>
 
-      {aracGorunur("reddi_miras_tablosu") && (
-        <p className="mt-2 text-sm text-metin-ikincil">
-          Erişim kodunuz varsa{" "}
-          <Link href="/reddi-miras" className="underline underline-offset-2">
-            aracı açıp
-          </Link>{" "}
-          kodu girin.
-        </p>
-      )}
     </section>
   );
 }

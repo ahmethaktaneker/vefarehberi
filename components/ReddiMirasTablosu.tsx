@@ -133,6 +133,18 @@ export function ReddiMirasTablosu({ redAy }: { redAy: number }) {
                 : `Bildiğiniz borçlar, bildiğiniz varlıklardan ${tl(-ozet.fark)} fazla.`}
           </p>
           {ozet.eksik > 0 && <p className="text-base text-metin-ikincil">{ozet.eksik} kalemin tutarı boş; toplama eklenmedi.</p>}
+          {ozet.borc > 0 && ozet.fark < 0 && (!sure || sure.kalanGun >= 0) && (
+            <div className="rounded-xl border-l-4 border-uyari bg-uyari-acik p-4">
+              <p className="font-semibold">Borçlar varlıklardan fazla görünüyor.</p>
+              <p className="mt-1 text-base">
+                Mirası reddetmeyi düşünüyorsanız, süre dolmadan sulh hukuk mahkemesine ret beyanı verilir. Her mirasçı kendi adına
+                verir. Dilekçeyi doldurup bir avukata kontrol ettirebilirsiniz.
+              </p>
+              <Link href="/sablonlar/mirasin_reddi" className="dugme dugme-birincil mt-3 min-h-11 px-5 py-2 text-base">
+                Ret beyanı dilekçesini doldur
+              </Link>
+            </div>
+          )}
         </section>
 
         <section aria-labelledby="bilinmeyen" className="space-y-3">

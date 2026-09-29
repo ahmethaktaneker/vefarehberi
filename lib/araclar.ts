@@ -33,7 +33,6 @@ export const ARAC_TANIMLARI: Record<AracId, Arac> = {
     href: "/reddi-miras",
     ad: "Mirası reddetmeli miyim?",
     aciklama: "Varlık ve borçları yan yana koyun, kalan süreyi görün",
-    paket: "aile",
   },
   kurum_ziyaret: {
     id: "kurum_ziyaret",
@@ -89,16 +88,14 @@ export function aracOnerileri(liste: Liste, yapilanlar: Set<string>): AracOneris
 export type PaketOnerisi = { paket: PaketId; nedenler: string[] };
 
 /**
- * Hangi paket öne çıkarılır? Borç riski, kalabalık ya da yurtdışındaki aile varsa Aile Paketi;
+ * Hangi paket öne çıkarılır? Kalabalık ya da yurtdışındaki aile varsa Aile Paketi;
  * yalnızca mal varsa Beyanname Paketi; ikisi de yoksa hiçbiri (boşuna para istenmez).
  */
 export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<string>): PaketOnerisi | null {
   if (!PAKET_TANITIMI_AKTIF) return null;
   const c = gecerliCevaplar(cevaplar);
   const acik = (id: string) => liste.adimlar.some((a) => a.id === id) && !yapilanlar.has(id);
-  const oneriler = aracOnerileri(liste, yapilanlar);
-  const neden = (id: AracId) => oneriler.find((o) => o.arac.id === id)?.neden;
-  // Önerilerde görünmeyen (sayfası gizli) araçlar için de süreye dayalı neden üretilir.
+  // Sayfası gizli (satışta olmayan) araçlar için de süreye dayalı neden üretilir.
   const paketNedeni = (adimId: string, onEk: string, yedek: string) => {
     const b = liste.adimlar.find((a) => a.id === adimId)?.sonTarihBilgisi;
     return b && !b.gecti ? `${onEk} ${b.kalanGun} gününüz var.` : yedek;
@@ -106,7 +103,6 @@ export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<s
 
   // Paket tanıtımında araçlar satışta olmasa (sayfası gizli olsa) da pakette anlatılır.
   const aileNedenleri = [
-    acik("reddi_miras") && neden("reddi_miras_tablosu") && `${neden("reddi_miras_tablosu")} Varlık ve borç tablosu hazır.`,
     c.mirasci_sayisi === "4_arti" && "Kalabalık bir aile için her kuruma ne götürüleceği tek sayfada.",
     (c.mirasci_yeri === "yurtdisi" || c.mirasci_yeri === "karisik") && "Yurtdışındaki mirasçılarla işleri düzenli tutmanız kolaylaşır.",
   ].filter((x): x is string => !!x);

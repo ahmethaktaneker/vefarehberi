@@ -35,10 +35,10 @@ describe("paketler", () => {
     expect(o?.nedenler[0]).toMatch(/Beyanname için \d+ gününüz var/);
   });
 
-  it("borç riski varsa Aile Paketi önerilir ve reddi miras süresi söylenir", () => {
+  it("reddi miras ücretsiz: borç riski tek başına Aile Paketi'ni önermez", () => {
     const o = oner({ ...temel, borc: "bilmiyorum", varliklar: ["ev_arsa", "kredi"] });
-    expect(o?.paket).toBe("aile");
-    expect(o?.nedenler[0]).toMatch(/Mirası reddetmek için \d+ gününüz var/);
+    expect(o?.paket).toBe("beyanname");
+    expect(o?.nedenler.join(" ")).not.toMatch(/reddetmek/);
   });
 
   it("kalabalık aile ya da yurtdışındaki mirasçı Aile Paketi'ne yönlendirir", () => {
