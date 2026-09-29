@@ -98,3 +98,11 @@ hukuk uzmanı kontrolü yerine geçmez; bu yüzden hiçbir madde `true` yapılma
 - Sigorta ödemelerinin hangilerinin beyan edileceği: GİB kılavuzunda sigorta sayılıyor ama ayrıntı yok.
 - Borçların mirasçılara bölünmesi: araç borçları toplamdan düşüp kalanı paylara bölüyor (basitleştirme). Mali müşavire sorulmalı.
 - Avukata sorulacak: "Kullanıcının kendi beyannamesini hazırlamasına yardım eden bir yazılım, 3568 s. Kanun'daki mali müşavirlik işi sayılır mı?"
+
+## Hesaplayıcılar ve yeni araçlar (29.09.2026)
+
+- Miras payı: büyük ana-baba zümresi hesaplanmıyor; evlatlık ve tanınmış çocuk "çocuk" sayılıyor (TMK m.498, 500). Avukat kontrol etmeli.
+- Ölüm aylığı: anne-babanın "toplam %25"i ikisi de hak kazanırsa eşit bölünüyor varsayıldı; biri 65 yaş üstü, diğeri değilse durum sadeleştirildi. Çocuğa %50 kuralı "eş aylık almıyorsa ya da çocuk başka ebeveyndense" olarak uygulandı. SGK'ya / avukata sorulmalı.
+- Kira adımı: konutta bildirim süresi 3 ay (TBK m.329); fesihin mirası kabul sayılıp sayılmayacağı avukata sorulmalı.
+- Reddi miras tablosu: karar vermiyor, yalnızca karşılaştırıyor. "Borca batık miras" açıklaması avukat kontrolüne.
+- Kurum ziyaret sayfaları: "gişede şöyle diyebilirsiniz" cümleleri genel; kurumlara göre değişebilir.
