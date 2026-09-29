@@ -66,7 +66,7 @@ export const GIZLI_SAYFALAR: readonly string[] = ["/kurum-ziyaret"];
 export const sayfaGizli = (yol: string) => GIZLI_SAYFALAR.includes(yol);
 
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */
-export const ILETISIM_EPOSTA = "ahmethaktaneker@gmail.com";
+export const ILETISIM_EPOSTA = "iletisim@vefatrehberi.com";
 
 /** Hata bildirimi için hazır konu satırlı e-posta bağlantısı. Kişisel bilgi içermez. */
 export function hataBildirBaglantisi(konu: string): string {

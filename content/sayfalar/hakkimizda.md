@@ -37,4 +37,4 @@ Sorulara verdiğiniz cevaplar yalnızca sizin cihazınızda kalır, bize gönder
 
 ## Bize yazın
 
-Bir bilgide hata veya eksik gördüyseniz, ya da bir kurumla yaşadığınız deneyimi paylaşmak isterseniz [ahmethaktaneker@gmail.com](mailto:ahmethaktaneker@gmail.com) adresine yazabilirsiniz. Her mesaj, bu rehberi bir sonraki aile için daha doğru hale getiriyor.
+Bir bilgide hata veya eksik gördüyseniz, ya da bir kurumla yaşadığınız deneyimi paylaşmak isterseniz [iletisim@vefatrehberi.com](mailto:iletisim@vefatrehberi.com) adresine yazabilirsiniz. Her mesaj, bu rehberi bir sonraki aile için daha doğru hale getiriyor.
