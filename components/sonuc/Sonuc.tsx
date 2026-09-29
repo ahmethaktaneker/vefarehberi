@@ -12,6 +12,8 @@ import { istanbulBugun, tarihMetni } from "@/lib/kurallar/tarih";
 import type { Paket } from "@/lib/paket";
 import { aracOnerileri, paketOnerisi } from "@/lib/araclar";
 import { AracOnerileri } from "@/components/sonuc/AracOnerileri";
+import { YakindaKutusu } from "@/components/sonuc/YakindaKutusu";
+import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
 import { PAYLASIM_ANAHTARI, paylasimCoz, paylasimKodla } from "@/lib/paylasim";
 import { akisTamam, gecerliCevaplar, type Cevaplar } from "@/lib/sorular";
 import { AdimDetay } from "@/components/sonuc/AdimDetay";
@@ -217,6 +219,12 @@ export function Sonuc({ icerik, paket, riza }: { icerik: Icerik; paket: Paket; r
         {oneri && (
           <div className="yazdirma-gizle">
             <PaketKarti paket={paket} riza={riza} oneri={oneri} />
+          </div>
+        )}
+
+        {!oneri && EPOSTA_TOPLAMA_AKTIF && (
+          <div className="yazdirma-gizle">
+            <YakindaKutusu riza={riza} />
           </div>
         )}
       </div>

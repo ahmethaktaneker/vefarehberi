@@ -92,7 +92,11 @@ export type PaketOnerisi = { paket: PaketId; nedenler: string[] };
  * yalnızca mal varsa Beyanname Paketi; ikisi de yoksa hiçbiri (boşuna para istenmez).
  */
 export function paketOnerisi(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<string>): PaketOnerisi | null {
-  if (!PAKET_TANITIMI_AKTIF) return null;
+  return PAKET_TANITIMI_AKTIF ? paketOnerisiHesapla(cevaplar, liste, yapilanlar) : null;
+}
+
+/** Paket tanıtımı ayarından bağımsız öneri hesabı (testler ve ileride yeniden açmak için). */
+export function paketOnerisiHesapla(cevaplar: Cevaplar, liste: Liste, yapilanlar: Set<string>): PaketOnerisi | null {
   const c = gecerliCevaplar(cevaplar);
   const acik = (id: string) => liste.adimlar.some((a) => a.id === id) && !yapilanlar.has(id);
   // Sayfası gizli (satışta olmayan) araçlar için de süreye dayalı neden üretilir.

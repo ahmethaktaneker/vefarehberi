@@ -18,13 +18,13 @@ Vefat Rehberi'nin yapılacaklar listesi, hesaplayıcı ve dilekçe taslakları h
 
 Yalnızca şu durumda kişisel veri işlenir:
 
-- **Bir paket için e-posta bırakırsanız:** e-posta adresiniz, ilgilendiğiniz paket, kayıt tarihi ve verdiğiniz açık rızanın metin sürümü.
+- **Yeni özelliklerden haber almak için e-posta bırakırsanız:** e-posta adresiniz, kayıt tarihi ve verdiğiniz açık rızanın metin sürümü.
 
 T.C. kimlik numarası, sağlık bilgisi, adres, banka hesap bilgisi, vefat eden kişinin veya mirasçıların isimleri gibi bilgileri istemiyor ve işlemiyoruz.
 
 ## İşleme amacı
 
-E-posta adresiniz yalnızca seçtiğiniz paket kullanıma açıldığında size haber vermek amacıyla işlenir. Başka bir amaçla kullanılmaz, üçüncü kişilere satılmaz.
+E-posta adresiniz yalnızca yeni özellikler kullanıma açıldığında size haber vermek amacıyla işlenir. Başka bir amaçla kullanılmaz, üçüncü kişilere satılmaz.
 
 ## Hukuki sebep ve toplama yöntemi
 
@@ -36,7 +36,7 @@ E-posta adresiniz, siteyi ve veritabanını barındıran hizmet sağlayıcılar�
 
 ## Saklama süresi
 
-E-posta adresiniz, paket açıldığında size haber verilmesinin ardından veya en geç 12 ay sonunda silinir. Rızanızı geri alırsanız daha önce silinir.
+E-posta adresiniz, yeni özellikler açıldığında size haber verilmesinin ardından veya en geç 12 ay sonunda silinir. Rızanızı geri alırsanız daha önce silinir.
 
 ## Haklarınız (KVKK m.11)
 

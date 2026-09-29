@@ -8,6 +8,7 @@ import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
 import type { Paket } from "@/lib/paket";
 
 type PaketId = Paket["paketler"][number]["id"];
+type IlgiKonusu = PaketId | "yenilikler";
 
 /**
  * Paketler: liste sayfasının en altında sade bir liste (ilgi testi, Brief 10). Fiyat yok; düğme "Açılınca
@@ -96,7 +97,7 @@ export function PaketKarti({ paket, riza, oneri }: { paket: Paket; riza: { surum
   );
 }
 
-function EpostaFormu({ paket, riza }: { paket: PaketId; riza: { surum: string; metin: string } }) {
+export function EpostaFormu({ paket, riza }: { paket: IlgiKonusu; riza: { surum: string; metin: string } }) {
   const [eposta, setEposta] = useState("");
   const [onay, setOnay] = useState(false);
   const [site, setSite] = useState("");
@@ -104,7 +105,7 @@ function EpostaFormu({ paket, riza }: { paket: PaketId; riza: { surum: string; m
   const [hata, setHata] = useState("");
 
   if (durum === "tamam") {
-    return <p className="font-semibold text-vurgu-koyu">Teşekkürler. Paket açıldığında size haber vereceğiz.</p>;
+    return <p className="font-semibold text-vurgu-koyu">Teşekkürler. Kullanıma açıldığında size haber vereceğiz.</p>;
   }
 
   async function gonder(e: React.FormEvent) {
@@ -131,7 +132,6 @@ function EpostaFormu({ paket, riza }: { paket: PaketId; riza: { surum: string; m
 
   return (
     <form onSubmit={gonder} noValidate className="space-y-3 pt-2">
-      <p>Paket açıldığında ilk haber alanlardan olmak isterseniz e-postanızı bırakın.</p>
       <label htmlFor="paket-eposta" className="block font-semibold">
         E-posta adresiniz
       </label>

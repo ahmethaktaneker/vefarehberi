@@ -12,7 +12,7 @@ const SAKLAMA_SN = 60 * 60 * 24 * 365;
 
 const Istek = z.strictObject({
   eposta: z.string(),
-  paket: z.enum(["beyanname", "aile"]),
+  paket: z.enum(["beyanname", "aile", "yenilikler"]),
   riza: z.literal(true),
   riza_surumu: z.string(),
   site: z.string().optional(),

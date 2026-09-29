@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aracGorunur, aracOnerileri, paketOnerisi } from "@/lib/araclar";
+import { aracGorunur, aracOnerileri, paketOnerisiHesapla as paketOnerisi } from "@/lib/araclar";
 import { icerikYukle } from "@/lib/icerik/yukle";
 import { listeOlustur } from "@/lib/kurallar/liste";
 import { paketYukle } from "@/lib/paket";

@@ -39,20 +39,20 @@ export const KONTROL_ROZETLERI = false;
  * Ücretli araçlar (şimdilik beyanname hazırlık aracı) erişim kodu ister. false yapılırsa herkese açılır.
  * Kodlar: content/erisim.yaml, üretmek için npm run kod-uret.
  */
-export const UCRETLI_KILIT_AKTIF = true;
+export const UCRETLI_KILIT_AKTIF = false;
 
 /**
  * Paket tanıtımları: liste sayfasındaki paket kartı, "Pakette" etiketleri ve kilitli araçlara giden tüm
  * bağlantılar (menü, sayfa altı, adım ayrıntıları, araç önerileri). false yapılınca hepsi kaybolur;
  * kilitli araç sayfaları yalnızca adresi bilenlere açık kalır.
  */
-export const PAKET_TANITIMI_AKTIF = true;
+export const PAKET_TANITIMI_AKTIF = false;
 
 /**
  * Şimdilik gizlenen sayfalar: menüden, sayfa altından, adımlardan ve önerilerden kalkar; adresleri
  * "sayfa bulunamadı" verir. Kod duruyor; listeden çıkarılınca geri gelir.
  */
-export const GIZLI_SAYFALAR: readonly string[] = ["/beyanname", "/kurum-ziyaret", "/sozluk"];
+export const GIZLI_SAYFALAR: readonly string[] = ["/sozluk"];
 export const sayfaGizli = (yol: string) => GIZLI_SAYFALAR.includes(yol);
 
 /** "Bize yazın" bağlantıları için iletişim adresi (aydınlatma metnindeki adresle aynı). */
