@@ -29,6 +29,10 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
    - Umami (çerezsiz ziyaret sayımı) aydınlatma metninde yeterince anlatılmış mı?
    - Erişim kodu tarayıcıda çerez olarak tutuluyor; ayrıca bilgi gerekir mi?
 
+5a. **Beyanname doldurma aracı** (artık ücretsiz ve yayında): Kullanıcının kendi veraset beyannamesini
+    GİB formuyla aynı düzende doldurup yazdırmasına yardım eden ücretsiz bir yazılım, 3568 sayılı Kanun'daki
+    mali müşavirlik işi sayılır mı?
+
 ## B. Reddi miras
 
 6. **Süre.** Sitede 3 aylık süre vefat tarihinden hesaplanıyor, "süre ölümü öğrendiğiniz tarihten başlar"
@@ -74,16 +78,17 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 20. **Kullanıcı deneyimi notları.** Şikâyet sitelerinden derlenen olumsuz deneyimler kurum adıyla
     yayınlanıyor (ör. "usulsüz kullanım işlemi yapıldığı örnekler anlatılıyor"), "resmi bilgi
     değildir" etiketiyle. İtibar ya da haksız rekabet açısından risk var mı?
-21. **Sözlük** (21 terim, şu an gizli) ve **rehber sayfaları** (12 sayfa): genel bir okuma.
+21. **Sözlük** (21 terim, şu an gizli), **rehber sayfaları** (12 sayfa) ve **kurum ziyaret sayfaları**
+    (yayında; her kurum için "gişede şöyle diyebilirsiniz" cümleleri): genel bir okuma.
 
 ## E. Paketler ve satış (ödeme almadan önce)
 
-22. **Beyanname doldurma aracı** (şu an gizli): Kullanıcının kendi beyannamesini doldurmasına yardım
-    eden yazılım, 3568 sayılı Kanun'daki mali müşavirlik işi sayılır mı?
+22. **Beyanname aracının ileride ücretli olması** ya da ücretli bir "uzman kontrolü" hizmeti eklenmesi
+    (ruhsatlı mali müşavirle) durumu değiştirir mi?
 23. **Satışa geçerken:** mesafeli satış sözleşmesi, ön bilgilendirme formu, dijital içerikte cayma
     hakkı istisnası (Mesafeli Sözleşmeler Yönetmeliği m.15) ve iade politikası metinleri.
-24. **Fiyatsız ilgi testi:** Henüz satışta olmayan paketler için "Açılınca haber ver" ile e-posta
-    toplamak tüketici mevzuatına uygun mu?
+24. **İlgi testi:** Liste sonunda "Yakında: son tarih hatırlatmaları ve uzman kontrolü, haber almak
+    ister misiniz?" ile açık rızayla e-posta toplanıyor. Tüketici ve KVKK mevzuatına uygun mu?
 25. **Kullanıcı yorumları:** Üç kişinin onayı sözlü alındı, baş harf ve ille yayınlanıyor. Yazılı onay
     gerekir mi?
 
