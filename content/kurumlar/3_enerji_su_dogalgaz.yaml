@@ -26,7 +26,7 @@
   guvence_bedeli_iadesi:
     - "Güvence bedeli iadesini mirasçılar veya tüm mirasçıları vekâleten temsil eden kişi talep edebilir."
     - "Tutar, sitedeki \"Güvence Bedeli Sorgulama\" ekranından öğrenilebilir. İade PTT şubelerinden de alınabilir; masrafı talep edene aittir."
-  usulsuz_kullanim_uyarisi: true
+  usulsuz_kullanim_uyarisi: false
   kaynak:
     - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
     - "https://www.sikayetvar.com/ck-bogazici-elektrik/vefat"
@@ -83,7 +83,7 @@
         - "Abonelik, faturada adı yazan tedarik şirketiyle yapılır. Aboneliği kapatmak veya üzerinize almak için oraya başvurursunuz."
         - "Mirasçılar aboneliği sonlandırabilir ya da içlerinden biri adına yeni abonelik açtırabilir. Diğer mirasçıların onayı (muvafakatname) istenebilir."
         - "Güvence bedeli, abonelik kapanıp son fatura düşüldükten sonra mirasçılara payları oranında iade edilir."
-  usulsuz_kullanim_uyarisi: true
+  usulsuz_kullanim_uyarisi: false
   kaynak:
     - "https://www.enerjisa.com.tr/tr/sikca-sorulan-sorular/guvence-bedeli-ve-teminat-mektubu/vefat-eden-sozlesme-sahibine-ait-guvence-bedeli-nasil-iade-ediliyor"
     - "https://www.ckbogazici.com.tr/tr/iletisim/sikca-sorulan-sorular"
@@ -119,7 +119,7 @@
         - "Aboneliği üzerine almak isteyenlere eski aboneliği iptal edip ücretli yeni abonelik açmalarının söylendiğini bildiren kullanıcılar var."
         - "Kullanılmaya devam eden aboneliklerde usulsüz kullanım işlemi yapıldığı örnekler anlatılıyor."
         - "Güvence bedelinin mirasçılık belgesiyle PTT'den alınabildiği söylenmiş."
-  usulsuz_kullanim_uyarisi: true
+  usulsuz_kullanim_uyarisi: false
   kaynak: ["https://www.sikayetvar.com/baskent-dogalgaz/vefat"]
   son_kontrol: "2026-09-28"
   dogrulandi: false
@@ -160,7 +160,7 @@
         - "Güvence bedeli, son tüketim düşüldükten sonra mirasçılara iade edilir. Tüm mirasçıların onayı (muvafakatname) istenebilir."
   edevlet:
     - { ad: "Doğal gaz abonelik sözleşme feshi (şirketinizi seçin)", url: "https://www.turkiye.gov.tr/arama?aranan=Do%C4%9Fal+Gaz+Abonelik+S%C3%B6zle%C5%9Fme+Feshi+Ba%C5%9Fvurusu" }
-  usulsuz_kullanim_uyarisi: true
+  usulsuz_kullanim_uyarisi: false
   kaynak: ["https://www.turkiye.gov.tr"]
   son_kontrol: "2026-09-29"
   dogrulandi: false

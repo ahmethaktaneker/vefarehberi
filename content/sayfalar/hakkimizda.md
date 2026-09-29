@@ -17,11 +17,11 @@ Türkiye'de her yıl yaklaşık 490 bin kişi vefat ediyor (TÜİK, 2025). Her v
 
 2024'te anneannemi kaybettiğimizde, ailemin acının ortasında neyi, ne zaman ve nereye giderek yapacağını bilemediğini gördüm. Kimse bir liste tutamıyordu; bir işi bitirince sıradakini hatırlamak bile zordu, bazı işler son güne kaldı. O günlerde, işlerin sırasını bilen ve son tarihleri bizim yerimize hatırlayan bir yer olsaydı çok şeyin daha kolay geçeceğini düşündüm. Vefat Rehberi'ni bunun için geliştirmeye karar verdim.
 
-Vefat Rehberi'ni hukuk öğrencisi Ahmet Haktan Eker hazırlıyor. Hukuki içerikler avukat, vergi ve beyanname içerikleri gelir uzmanı desteğiyle hazırlanır. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur; size bir kurumu ya da ürünü önermek için para almaz.
+Vefat Rehberi'ni hukuk öğrencisi Ahmet Haktan Eker hazırlıyor. İçerikler avukat desteğiyle hazırlanır. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur; size bir kurumu ya da ürünü önermek için para almaz.
 
 ## Ücretli mi?
 
-Sitedeki her şey ücretsiz: yapılacaklar listesi, tüm son tarihler, hak edebileceğiniz ödemeler, borç ve risk uyarıları, kurum rehberi ve kurum ziyaret sayfaları, dilekçe taslakları, veraset beyannamesi formunu doldurma, mirası reddetme tablosu ve miras payı, ölüm aylığı, vergi hesaplayıcıları.
+Sitedeki her şey ücretsiz: yapılacaklar listesi, tüm son tarihler, hak edebileceğiniz ödemeler, borç ve risk uyarıları, kurum rehberi, dilekçe taslakları, veraset beyannamesi formunu doldurma, mirası reddetme tablosu ve miras payı, ölüm aylığı, vergi hesaplayıcıları.
 
 ## Bilgileri nasıl hazırlıyoruz
 

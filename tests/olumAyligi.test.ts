@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { olumAyligiPaylari, type OlumCocuk, type OlumGirdisi } from "@/lib/olumAyligi";
 
-const yok = { ad: "", sag: false, gelirDusuk: false, yas65Ustu: false };
+const yok = { ad: "", sag: false, gelir: "bilinmiyor" as const, yas65Ustu: false };
 const temel: OlumGirdisi = { aylik: 20000, esVar: false, esCalisiyor: false, cocuklar: [], anne: { ...yok, ad: "Annesi" }, baba: { ...yok, ad: "Babası" } };
-const cocuk = (ad: string, durum: OlumCocuk["durum"] = "yas", ek: Partial<OlumCocuk> = {}): OlumCocuk => ({ ad, durum, calisiyor: false, baskaEbeveyn: false, ...ek });
+const cocuk = (ad: string, durum: OlumCocuk["durum"] = "yas", ek: Partial<OlumCocuk> = {}): OlumCocuk => ({ ad, durum, calisiyor: false, digerEbeveyn: "es", ...ek });
 const tablo = (g: OlumGirdisi) => Object.fromEntries(olumAyligiPaylari(g).satirlar.map((s) => [s.kim, Math.round(s.oran * 1000) / 10]));
 
 describe("ölüm aylığı paylaşımı (5510 m.34)", () => {
@@ -38,14 +38,38 @@ describe("ölüm aylığı paylaşımı (5510 m.34)", () => {
   });
 
   it("anne-baba: artan pay varsa toplam %25", () => {
-    const g = { ...temel, esVar: true, esCalisiyor: true, anne: { ad: "Annesi", sag: true, gelirDusuk: true, yas65Ustu: false } };
+    const g = { ...temel, esVar: true, esCalisiyor: true, anne: { ad: "Annesi", sag: true, gelir: "dusuk" as const, yas65Ustu: false } };
     expect(tablo(g)).toEqual({ Eşi: 50, Annesi: 25 });
   });
 
   it("anne-baba: artan pay yoksa alamaz, 65 yaş üstündeyse alır (sonra orantılı indirim)", () => {
     const dolu = { ...temel, cocuklar: [cocuk("A"), cocuk("B")] }; // %100
-    const anne = { ad: "Annesi", sag: true, gelirDusuk: true, yas65Ustu: false };
+    const anne = { ad: "Annesi", sag: true, gelir: "dusuk" as const, yas65Ustu: false };
     expect(olumAyligiPaylari({ ...dolu, anne }).alamayanlar).toEqual(["Annesi"]);
     expect(tablo({ ...dolu, anne: { ...anne, yas65Ustu: true } })).toEqual({ A: 40, B: 40, Annesi: 20 });
+  });
+
+  it("çocuğun %50 koşulları ayrı ayrı: diğer ebeveyn vefat, evlilik bağı yok, sonradan evlenme", () => {
+    const es = { ...temel, esVar: true, esCalisiyor: true };
+    expect(tablo({ ...es, cocuklar: [cocuk("A", "yas", { digerEbeveyn: "vefat" })] })).toEqual({ Eşi: 50, A: 50 });
+    expect(tablo({ ...es, cocuklar: [cocuk("A", "yas", { digerEbeveyn: "evli_degil" })] })).toEqual({ Eşi: 50, A: 50 });
+    expect(tablo({ ...es, cocuklar: [cocuk("A", "yas", { digerEbeveyn: "evlendi" })] })).toEqual({ Eşi: 50, A: 50 });
+    expect(tablo({ ...es, cocuklar: [cocuk("A")] })).toEqual({ Eşi: 50, A: 25 });
+  });
+
+  it("başka hak sahibi yoksa tek çocuk %50", () => {
+    expect(tablo({ ...temel, cocuklar: [cocuk("A")] })).toEqual({ A: 50 });
+  });
+
+  it("anne-babanın geliri bilinmiyorsa oran gösterilmez", () => {
+    const g = { ...temel, esVar: true, esCalisiyor: true, anne: { ad: "Annesi", sag: true, gelir: "bilinmiyor" as const, yas65Ustu: true } };
+    const s = olumAyligiPaylari(g);
+    expect(s.satirlar.map((x) => x.kim)).toEqual(["Eşi"]);
+    expect(s.belirsizler).toEqual(["Annesi"]);
+  });
+
+  it("geliri yüksek anne-baba alamaz", () => {
+    const g = { ...temel, esVar: true, esCalisiyor: true, baba: { ad: "Babası", sag: true, gelir: "yuksek" as const, yas65Ustu: false } };
+    expect(olumAyligiPaylari(g).alamayanlar).toEqual(["Babası"]);
   });
 });

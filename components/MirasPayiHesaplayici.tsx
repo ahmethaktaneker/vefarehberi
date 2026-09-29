@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
 import { aracGorunur } from "@/lib/araclar";
-import { mirasPaylari, ortakPaydayla, yuzde, type Kardes, type KardesTuru, type Kisi } from "@/lib/mirasPayi";
+import { mirasPaylari, ortakPaydayla, yuzde, type BuyukKol, type Kardes, type KardesTuru, type Kisi } from "@/lib/mirasPayi";
 
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
 const yuzdeBicim = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 2 });
@@ -21,9 +21,21 @@ export function MirasPayiHesaplayici() {
   const [anneSag, setAnneSag] = useState(false);
   const [babaSag, setBabaSag] = useState(false);
   const [kardesler, setKardesler] = useState<Kardes[]>([]);
+  const [anneKolu, setAnneKolu] = useState<BuyukKol>({ buyukanneSag: false, buyukbabaSag: false, cocuklar: [] });
+  const [babaKolu, setBabaKolu] = useState<BuyukKol>({ buyukanneSag: false, buyukbabaSag: false, cocuklar: [] });
+  const [uveyVar, setUveyVar] = useState(false);
 
   const altsoyVar = cocuklar.some((c) => c.sag || c.cocukSayisi > 0);
-  const girdi = { esSag: !!esSag, cocuklar, anneSag, babaSag, kardesler: altsoyVar ? [] : kardesler };
+  const ikinciZumreVar = anneSag || babaSag || kardesler.some((k) => k.sag || k.cocukSayisi > 0);
+  const girdi = {
+    esSag: !!esSag,
+    cocuklar,
+    anneSag,
+    babaSag,
+    kardesler: altsoyVar ? [] : kardesler,
+    buyukler: { anne: anneKolu, baba: babaKolu },
+    uveyVar,
+  };
   const sonuc = esSag === null ? null : mirasPaylari(altsoyVar ? { ...girdi, anneSag: false, babaSag: false } : girdi);
 
   const olculdu = useRef(false);
@@ -112,6 +124,41 @@ export function MirasPayiHesaplayici() {
           </fieldset>
           </div>
         )}
+
+        {!altsoyVar && !ikinciZumreVar && (
+          <div className="border-t border-cizgi pt-6">
+            <fieldset className="space-y-6">
+              <legend className="mb-2 font-semibold">Anne, baba ve kardeş de yoksa: büyükanne ve büyükbabalar</legend>
+              <p className="text-base text-metin-ikincil">
+                Vefat etmiş büyüklerin payı kendi çocuklarına (amca, hala, dayı, teyze) geçer.
+                {esSag ? " Eş hayatta olduğu için kuzenler mirasçı olmaz." : " Onlar da vefat etmişse çocuklarına (kuzenlere) geçer."}
+              </p>
+              <BuyukKolu
+                baslik="Anne tarafı"
+                buyukanne="Anneannesi"
+                buyukbaba="Anne tarafından dedesi"
+                cocukAdi="dayı / teyze"
+                kol={anneKolu}
+                esSag={!!esSag}
+                onChange={setAnneKolu}
+              />
+              <BuyukKolu
+                baslik="Baba tarafı"
+                buyukanne="Babaannesi"
+                buyukbaba="Baba tarafından dedesi"
+                cocukAdi="amca / hala"
+                kol={babaKolu}
+                esSag={!!esSag}
+                onChange={setBabaKolu}
+              />
+              <Onay
+                etiket="Yalnızca büyükanneden ya da yalnızca büyükbabadan olan (üvey) amca, hala, dayı ya da teyze var"
+                deger={uveyVar}
+                onChange={setUveyVar}
+              />
+            </fieldset>
+          </div>
+        )}
       </form>
 
       <section aria-live="polite" aria-labelledby="miras-sonuc">
@@ -147,7 +194,11 @@ export function MirasPayiHesaplayici() {
             <p className="mt-3 text-base text-metin-ikincil">
               {sonuc.zumre === 1
                 ? "Çocuk veya torun olduğu için anne, baba ve kardeşler mirasçı olmaz."
-                : "Çocuk veya torun olmadığı için miras anne-baba tarafına geçer."}{" "}
+                : sonuc.zumre === 2
+                  ? "Çocuk veya torun olmadığı için miras anne-baba tarafına geçer."
+                  : sonuc.zumre === 3
+                    ? "Çocuk, anne, baba ve kardeş olmadığı için miras büyükanne ve büyükbaba tarafına geçer."
+                    : "Mirasçı olacak başka akraba olmadığı için miras eşe, eş de yoksa Devlete kalır (TMK m.499, 501)."}{" "}
               Mirası reddeden olursa paylar değişir.
             </p>
             <p className="mt-2 text-sm text-metin-ikincil">
@@ -165,9 +216,9 @@ export function MirasPayiHesaplayici() {
         )}
         {sonuc?.durum === "kapsam_disi" && (
           <p className="mt-3 rounded-xl bg-vurgu-acik px-4 py-3 text-base">
-            Çocuk, torun, anne, baba ya da kardeş yoksa miras büyükanne ve büyükbabalara, onlar da yoksa amca, dayı, hala, teyze ve
-            çocuklarına geçer. Bu durumu hesaplamıyoruz; mirasçılık belgesi alırken noter ya da mahkeme belirler.
-            {sonuc.esPayi && " Eşin payı en az dörtte üçtür (%75); bu akrabalardan hiçbiri yoksa mirasın tamamı eşe kalır."}
+            Üvey amca, hala, dayı ya da teyze olduğunda paylar kimin çocuğu olduklarına göre değişir; bu durumu hesaplayamıyoruz.
+            Mirasçılık belgesi alırken noter ya da mahkeme belirler.
+            {sonuc.esPayi && " Eşin payı dörtte üçtür (%75)."}
           </p>
         )}
       </section>
@@ -217,7 +268,7 @@ function KisiKarti({
         ]}
         onChange={(d) => onChange({ ...kisi, sag: d === "sag" })}
       />
-      {!kisi.sag && (
+      {!kisi.sag && cocukEtiketi && (
         <div>
           <label htmlFor={`${id}-cs`} className="block font-semibold">
             {cocukEtiketi}
@@ -233,6 +284,57 @@ function KisiKarti({
             className={`${kutu} mt-2 max-w-40`}
           />
         </div>
+      )}
+    </div>
+  );
+}
+
+function BuyukKolu({
+  baslik,
+  buyukanne,
+  buyukbaba,
+  cocukAdi,
+  kol,
+  esSag,
+  onChange,
+}: {
+  baslik: string;
+  buyukanne: string;
+  buyukbaba: string;
+  cocukAdi: string;
+  kol: BuyukKol;
+  esSag: boolean;
+  onChange: (k: BuyukKol) => void;
+}) {
+  const oluVar = !kol.buyukanneSag || !kol.buyukbabaSag;
+  return (
+    <div className="space-y-4 rounded-xl border border-cizgi p-4">
+      <h3 className="font-semibold">{baslik}</h3>
+      <div className="flex flex-wrap gap-3">
+        <Onay etiket={`${buyukanne} hayatta`} deger={kol.buyukanneSag} onChange={(x) => onChange({ ...kol, buyukanneSag: x })} />
+        <Onay etiket={`${buyukbaba} hayatta`} deger={kol.buyukbabaSag} onChange={(x) => onChange({ ...kol, buyukbabaSag: x })} />
+      </div>
+      {oluVar && (
+        <>
+          <p className="text-base text-metin-ikincil">Vefat etmiş olanlar dahil tüm {cocukAdi} ekleyin.</p>
+          {kol.cocuklar.map((c, i) => (
+            <KisiKarti
+              key={i}
+              baslik={c.ad}
+              kisi={c}
+              cocukEtiketi={esSag ? "" : "Hayattaki çocuklarının (kuzenlerin) sayısı"}
+              onChange={(k) => onChange({ ...kol, cocuklar: kol.cocuklar.map((x, j) => (j === i ? k : x)) })}
+              onSil={() => onChange({ ...kol, cocuklar: kol.cocuklar.filter((_, j) => j !== i) })}
+            />
+          ))}
+          <button
+            type="button"
+            onClick={() => onChange({ ...kol, cocuklar: [...kol.cocuklar, { ad: `${kol.cocuklar.length + 1}. ${cocukAdi}`, sag: true, cocukSayisi: 0 }] })}
+            className="dugme dugme-ikincil"
+          >
+            + {cocukAdi[0].toUpperCase() + cocukAdi.slice(1)} ekle
+          </button>
+        </>
       )}
     </div>
   );

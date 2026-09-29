@@ -172,7 +172,9 @@ export function AdimDetay({
         )}
         {deneyimler.length > 0 && (
           <Alan etiket="Başka ailelerin deneyimi">
-            <p className="mb-2 text-base text-metin-ikincil">Resmi bilgi değildir; kullanıcıların anlattıklarıdır.</p>
+            <p className="mb-2 text-sm text-metin-ikincil">
+              Kullanıcıların şikâyet sitelerinde ve forumlarda anlattıklarıdır. Doğrulanmamıştır, resmi bilgi değildir.
+            </p>
             <ul className="space-y-2">
               {deneyimler.map((i) => (
                 <li key={i.metin} className="border-l-2 border-altin pl-3">

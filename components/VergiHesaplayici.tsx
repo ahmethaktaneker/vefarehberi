@@ -13,13 +13,16 @@ const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 tex
 
 export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler }) {
   const [toplamMetin, setToplamMetin] = useState("");
+  const [borcMetin, setBorcMetin] = useState("");
   const [yakinlik, setYakinlik] = useState<"cocuk" | "es" | "diger">("cocuk");
   const [cocukVar, setCocukVar] = useState(true);
   const [payYontemi, setPayYontemi] = useState<"biliyorum" | "esit">("esit");
   const [payMetin, setPayMetin] = useState("");
   const [mirasciMetin, setMirasciMetin] = useState("");
 
-  const toplam = tutarOku(toplamMetin);
+  const varlik = tutarOku(toplamMetin);
+  const borc = borcMetin === "" ? 0 : tutarOku(borcMetin);
+  const toplam = varlik !== null && borc !== null ? Math.max(0, varlik - borc) : null;
   const oran =
     payYontemi === "biliyorum"
       ? (() => {
@@ -64,6 +67,26 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
           {toplamMetin !== "" && toplam === null && (
             <p className="mt-1 text-base text-uyari">Lütfen yalnızca rakam girin (ör. 5.000.000).</p>
           )}
+        </div>
+
+        <div>
+          <label htmlFor="borc" className="block font-semibold">
+            Belgeli borçlar ve cenaze giderleri (TL)
+          </label>
+          <p id="borc-aciklama" className="text-base text-metin-ikincil">
+            Vefat edenin belgeyle kanıtlanabilen borçları ve cenaze masrafları toplamdan düşülür. Yoksa boş bırakın.
+          </p>
+          <input
+            id="borc"
+            inputMode="decimal"
+            autoComplete="off"
+            value={borcMetin}
+            onChange={(e) => setBorcMetin(e.target.value)}
+            aria-describedby="borc-aciklama"
+            aria-invalid={borcMetin !== "" && borc === null ? true : undefined}
+            className={`${kutu} mt-2`}
+          />
+          {borcMetin !== "" && borc === null && <p className="mt-1 text-base text-uyari">Lütfen yalnızca rakam girin (ör. 150.000).</p>}
         </div>
 
         <Secim
@@ -184,8 +207,7 @@ export function VergiHesaplayici({ parametreler }: { parametreler: Parametreler 
         )}
       </section>
       <p className="text-sm text-metin-ikincil">
-        {parametreler.yil} tarifesiyle hesaplanır; borçlar düşülmez. Kesin tutarı vergi dairesi hesaplar. Girdiğiniz bilgiler hiçbir
-        yere gönderilmez.
+        {parametreler.yil} tarifesiyle hesaplanır. Kesin tutarı vergi dairesi hesaplar. Girdiğiniz bilgiler hiçbir yere gönderilmez.
       </p>
     </div>
   );

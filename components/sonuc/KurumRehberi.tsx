@@ -60,9 +60,6 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
                 Kontrol ediliyor
               </span>
             )}
-            {k.usulsuz_kullanim_uyarisi && (
-              <span className="rounded-full bg-uyari-acik px-2.5 py-0.5 text-base text-uyari">Usulsüz kullanım riski</span>
-            )}
             <span className="text-base text-vurgu-koyu underline underline-offset-4 group-open:hidden">Ayrıntılar</span>
             <span className="hidden text-base text-vurgu-koyu underline underline-offset-4 group-open:inline">Kapat</span>
           </span>
@@ -90,7 +87,7 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
                   ))}
                 </ul>
               )}
-              {i.notlar_deneyim.length > 0 && <Deneyimler notlar={i.notlar_deneyim} />}
+              {i.notlar_deneyim.length > 0 && <Deneyimler notlar={i.notlar_deneyim} kaynaklar={k.kaynak} />}
             </div>
           ))}
 
@@ -141,10 +138,22 @@ function KurumKarti({ kurum: k, belgeler, acik }: { kurum: Kurum; belgeler: Reco
   );
 }
 
-function Deneyimler({ notlar }: { notlar: string[] }) {
+/** Kullanıcı deneyimlerinin alındığı şikâyet siteleri ve forumlar (kaynak adresinden). */
+const DENEYIM_SITELERI: [RegExp, string][] = [
+  [/sikayetvar.com/, "Şikayetvar"],
+  [/eksisozluk.com/, "Ekşi Sözlük"],
+  [/donanimhaber.com/, "DonanımHaber"],
+];
+
+function Deneyimler({ notlar, kaynaklar }: { notlar: string[]; kaynaklar: string[] }) {
+  const siteler = DENEYIM_SITELERI.filter(([d]) => kaynaklar.some((u) => d.test(u))).map(([, ad]) => ad);
   return (
     <div>
-      <p className="text-base font-semibold text-metin-ikincil">Kullanıcı deneyimi (resmi bilgi değildir)</p>
+      <p className="text-base font-semibold text-metin-ikincil">Kullanıcıların anlattıkları</p>
+      <p className="text-sm text-metin-ikincil">
+        {siteler.length > 0 ? `Kaynak: ${siteler.join(", ")}.` : "Kaynak: şikâyet siteleri ve forumlar."} Doğrulanmamıştır, resmi bilgi
+        değildir. Kurumu değerlendirmek için değil, hazırlıklı olmanız için paylaşıyoruz.
+      </p>
       <ul className="mt-1 space-y-2">
         {notlar.map((n) => (
           <li key={n} className="border-l-4 border-cizgi pl-3 text-base">

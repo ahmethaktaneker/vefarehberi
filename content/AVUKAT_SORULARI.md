@@ -7,10 +7,10 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 
 1. **Sitenin genel konumu.** Site kişiye özel bir yapılacaklar listesi üretiyor. Bu, Avukatlık Kanunu
    m.35 anlamında hukuki danışmanlık sayılır mı? Sayfa altındaki uyarı yeterli mi?
-   > "İçerikler avukat ve gelir uzmanı desteğiyle hazırlanır. Genel bilgilendirme amaçlıdır, kişiye özel
+   > "İçerikler avukat desteğiyle hazırlanır. Genel bilgilendirme amaçlıdır, kişiye özel
    > hukuki danışmanlık yerine geçmez; son tarih ve tutarları resmi kaynaktan teyit edin."
-2. **"Avukat ve gelir uzmanı desteğiyle hazırlanır" ifadesi.** Ücretsiz destek veren bir gelir uzmanı
-   (kamu görevlisi) için bu ifade sorun yaratır mı? Adı geçmeden kullanılabilir mi?
+2. **"Avukat desteğiyle hazırlanır" ifadesi.** (Gelir uzmanı ifadesi kaldırıldı.) Ruhsatlı bir mali
+   müşavir kontrol ederse "avukat ve mali müşavir desteğiyle" yazılabilir mi?
 3. **Mirasın reddi beyanı dilekçesi** (`sablonlar/mirasin_reddi.md`). Metin doğru mu? Hangi mahkemeye
    verilir (vefat edenin son yerleşim yeri sulh hukuk mahkemesi mi, herhangi bir sulh hukuk mahkemesi
    mi)? Harç ya da ek belge gerekir mi? Böyle bir şablon sunmak risk yaratır mı?
@@ -48,15 +48,18 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 ## C. Hesaplayıcılar
 
 10. **Miras payı hesaplayıcı** (TMK m.495-500). Eş, altsoy (önceden ölen çocuğun çocukları dahil),
-    anne-baba, kardeşler (tam / anne bir / baba bir) ve yeğenler hesaplanıyor. Büyükanne-büyükbaba
-    zümresi hesaplanmıyor. Evlatlık ve tanınmış evlilik dışı çocuk "çocuk" sayılıyor. Kurallar doğru mu?
+    anne-baba, kardeşler (tam / anne bir / baba bir), yeğenler ve büyükanne-büyükbaba zümresi (m.497:
+    amca, hala, dayı, teyze; eş yoksa kuzenler; eş varsa m.497 son fıkra) hesaplanıyor. Kimse yoksa
+    eşe, eş de yoksa Devlete (m.501). Üvey amca/dayı varsa hesaplanmıyor. Evlatlık ve tanınmış evlilik dışı çocuk "çocuk" sayılıyor. Kurallar doğru mu?
 11. **Ölüm aylığı hesaplayıcı** (5510 m.34).
     - Anne ve babaya "toplam %25": ikisi de hak kazanırsa eşit bölündüğü varsayıldı.
-    - Çocuğa %50: "eş aylık almıyorsa ya da çocuk başka ebeveyndense" diye uygulandı.
+    - Çocuğa %50: diğer ebeveyn de vefat etmiş, ebeveynler arasında evlilik bağı yok, hayatta kalan
+      ebeveyn sonradan evlenmiş ya da başka hak sahibi yok; her biri ayrı soruluyor.
+    - Anne-babanın gelir koşulu bilinmiyorsa oran gösterilmiyor. Emekli Sandığı (5434) kapsam dışı.
     - Toplam aylığı aşarsa orantılı indirim.
     Doğru mu?
-12. **Veraset vergisi hesaplayıcı.** İstisna ve tarife 2026 tutarlarıyla; borçlar düşülmüyor (sayfada
-    belirtiliyor). Yeterli mi?
+12. **Veraset vergisi hesaplayıcı.** İstisna ve tarife 2026 tutarlarıyla; kullanıcının yazdığı belgeli
+    borç ve cenaze giderleri toplamdan düşülüyor. Yeterli mi?
 
 ## D. Adım ve rehber içerikleri
 

@@ -155,14 +155,17 @@ export function EpostaFormu({ paket, riza }: { paket: IlgiKonusu; riza: { surum:
         onChange={(e) => setSite(e.target.value)}
         className="hidden"
       />
+      <p className="text-sm text-metin-ikincil">
+        E-posta adresinizin nasıl işlendiğini, ne kadar saklandığını ve haklarınızı{" "}
+        <a href="/aydinlatma-metni" target="_blank" className="text-vurgu-koyu underline underline-offset-4">
+          aydınlatma metninde
+          <span className="sr-only"> (yeni sekmede açılır)</span>
+        </a>{" "}
+        anlatıyoruz.
+      </p>
       <label className="flex cursor-pointer items-start gap-3 text-base">
         <input type="checkbox" checked={onay} onChange={(e) => setOnay(e.target.checked)} className="mt-1 size-5 shrink-0 accent-vurgu" />
-        <span>
-          {riza.metin.trim()}{" "}
-          <a href="/aydinlatma-metni" target="_blank" className="text-vurgu-koyu underline underline-offset-4">
-            Aydınlatma metni
-          </a>
-        </span>
+        <span>{riza.metin.trim()}</span>
       </label>
       {hata && <p className="text-uyari">{hata}</p>}
       <button type="submit" disabled={durum === "gonderiliyor"} className="dugme dugme-birincil">

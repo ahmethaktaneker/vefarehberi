@@ -39,4 +39,9 @@ SGK'ya **Gelir/Aylık/Ödenek Talep Belgesi** ile başvurulur. Başvuru için **
 
 ## Emekli Sandığı ölüm yardımı
 
-Emekli Sandığı'na (4c) bağlı olanlar için ölüm yardımı, cenaze ödeneğinden ayrı bir ödemedir. Dul veya yetim aylığı alırken vefat edenler için ödenmez. Güncel tutarı SGK'dan teyit edin.
+Emekli Sandığı'na (4c) bağlı olanlar için ölüm yardımı, cenaze ödeneğinden ayrı bir ödemedir. Dul veya yetim aylığı alırken vefat edenler için ödenmez.
+
+- Temmuz–Aralık 2026 için memur katsayısıyla hesapladığımız alt sınır: **29.934,73 TL**
+- SGK'nın son açıkladığı tutar (Ocak–Haziran 2026): **26.369,55 TL**
+
+Vefat edenin emekli aylığı bu tutardan yüksekse yardım o aylıktan az olamaz.

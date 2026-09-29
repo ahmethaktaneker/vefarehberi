@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { kesirToplami, mirasPaylari, ortakPaydayla, type Kardes, type Kisi, type MirasGirdisi } from "@/lib/mirasPayi";
+import { kesirToplami, mirasPaylari, ortakPaydayla, type BuyukKol, type Kardes, type Kisi, type MirasGirdisi } from "@/lib/mirasPayi";
 
 const kisi = (ad: string, sag = true, cocukSayisi = 0): Kisi => ({ ad, sag, cocukSayisi });
 const kardes = (ad: string, tur: Kardes["tur"], sag = true, cocukSayisi = 0): Kardes => ({ ad, tur, sag, cocukSayisi });
 const bos: MirasGirdisi = { esSag: false, cocuklar: [], anneSag: false, babaSag: false, kardesler: [] };
+const kol = (buyukanneSag: boolean, buyukbabaSag: boolean, cocuklar: Kisi[] = []): BuyukKol => ({ buyukanneSag, buyukbabaSag, cocuklar });
+const bosKol = kol(false, false);
 
 function paylar(g: MirasGirdisi) {
   const s = mirasPaylari(g);
@@ -59,8 +61,61 @@ describe("yasal miras payları (TMK m.495-499)", () => {
     expect(p).toEqual({ Annesi: "2/4", "Can adına 1. çocuğu (yeğen)": "1/4", "Can adına 2. çocuğu (yeğen)": "1/4" });
   });
 
-  it("çocuk, anne-baba, kardeş yoksa hesap kapsam dışıdır; eşe en az 3/4", () => {
+  it("büyükler bilgisi verilmezse ya da üvey amca/dayı varsa hesaplanmaz; eşe en az 3/4", () => {
     expect(mirasPaylari({ ...bos, esSag: true })).toEqual({ durum: "kapsam_disi", esPayi: { pay: 3, payda: 4 } });
     expect(mirasPaylari(bos)).toEqual({ durum: "kapsam_disi", esPayi: null });
+    expect(mirasPaylari({ ...bos, buyukler: { anne: kol(true, true), baba: bosKol }, uveyVar: true }).durum).toBe("kapsam_disi");
+  });
+});
+
+describe("büyük ana-baba zümresi (TMK m.497)", () => {
+  it("dört büyük de sağ: her biri 1/4", () => {
+    expect(paylar({ ...bos, buyukler: { anne: kol(true, true), baba: kol(true, true) } })).toEqual({
+      Anneannesi: "1/4",
+      "Anne tarafından dedesi": "1/4",
+      Babaannesi: "1/4",
+      "Baba tarafından dedesi": "1/4",
+    });
+  });
+
+  it("eş varsa eş 3/4, büyükler kalan 1/4ü paylaşır", () => {
+    expect(paylar({ ...bos, esSag: true, buyukler: { anne: kol(true, true), baba: kol(true, true) } })).toEqual({
+      Eşi: "12/16",
+      Anneannesi: "1/16",
+      "Anne tarafından dedesi": "1/16",
+      Babaannesi: "1/16",
+      "Baba tarafından dedesi": "1/16",
+    });
+  });
+
+  it("önceden ölen büyüğün payı çocuklarına (dayı, teyze) geçer", () => {
+    const p = paylar({ ...bos, buyukler: { anne: kol(true, false, [kisi("Dayı"), kisi("Teyze")]), baba: kol(true, true) } });
+    expect(p).toEqual({ Anneannesi: "2/8", Dayı: "1/8", Teyze: "1/8", Babaannesi: "2/8", "Baba tarafından dedesi": "2/8" });
+  });
+
+  it("çocuğu olmayan büyüğün payı aynı koldaki diğer büyüğe kalır", () => {
+    const p = paylar({ ...bos, buyukler: { anne: kol(true, false), baba: kol(true, true) } });
+    expect(p).toEqual({ Anneannesi: "2/4", Babaannesi: "1/4", "Baba tarafından dedesi": "1/4" });
+  });
+
+  it("bir kolda kimse yoksa bütün miras diğer kola geçer", () => {
+    expect(paylar({ ...bos, buyukler: { anne: bosKol, baba: kol(false, false, [kisi("Amca")]) } })).toEqual({ Amca: "1/1" });
+  });
+
+  it("eş yoksa önceden ölen amcanın payı kuzenlere geçer", () => {
+    const p = paylar({ ...bos, buyukler: { anne: bosKol, baba: kol(false, false, [kisi("Amca"), kisi("Hala", false, 2)]) } });
+    expect(p).toEqual({ Amca: "2/4", "Hala adına 1. çocuğu (kuzen)": "1/4", "Hala adına 2. çocuğu (kuzen)": "1/4" });
+  });
+
+  it("eş varsa kuzenler mirasçı olmaz; pay aynı koldaki büyüğe ya da diğer kola geçer", () => {
+    const p = paylar({ ...bos, esSag: true, buyukler: { anne: kol(true, false, [kisi("Dayı", false, 2)]), baba: bosKol } });
+    expect(p).toEqual({ Eşi: "3/4", Anneannesi: "1/4" });
+    const q = paylar({ ...bos, esSag: true, buyukler: { anne: kol(false, false, [kisi("Dayı", false, 2)]), baba: kol(true, false) } });
+    expect(q).toEqual({ Eşi: "3/4", Babaannesi: "1/4" });
+  });
+
+  it("hiç mirasçı yoksa eşe tamamı, eş de yoksa Devlete kalır", () => {
+    expect(paylar({ ...bos, esSag: true, buyukler: { anne: bosKol, baba: bosKol } })).toEqual({ Eşi: "1/1" });
+    expect(paylar({ ...bos, buyukler: { anne: bosKol, baba: bosKol } })).toEqual({ "Devlet (Hazine)": "1/1" });
   });
 });

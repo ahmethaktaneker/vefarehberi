@@ -23,7 +23,7 @@ cenaze_odenegi:
     kaynak: "Temmuz-Aralık 2026 memur aylık katsayısıyla hesaplama"
     gecerlilik: "2026-07-01..2026-12-31"
     en_az: true
-    kullanici_notu: "Vefat edenin emekli aylığı bu tutardan yüksekse yardım o aylıktan az olamaz."
+    kullanici_notu: "Bu tutar, Temmuz–Aralık 2026 memur katsayısıyla hesapladığımız alt sınırdır. SGK’nın son açıkladığı tutar (Ocak–Haziran 2026) 26.369,55 TL’dir. Vefat edenin emekli aylığı daha yüksekse yardım o aylıktan az olamaz."
     not: "SGK sayfası güncellenince teyit et"
   zamanasimi_yil: 5
 

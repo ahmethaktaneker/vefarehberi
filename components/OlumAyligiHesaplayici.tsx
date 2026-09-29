@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
 import { tutarOku } from "@/lib/hesaplayici";
-import { olumAyligiPaylari, type CocukDurumu, type OlumCocuk, type OlumEbeveyn } from "@/lib/olumAyligi";
+import { olumAyligiPaylari, type CocukDurumu, type DigerEbeveyn, type EbeveynGeliri, type OlumCocuk, type OlumEbeveyn } from "@/lib/olumAyligi";
 
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
 const para = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -17,16 +17,30 @@ const COCUK_DURUMLARI: [CocukDurumu, string][] = [
   ["hicbiri", "Hiçbiri (evli kız, 25 yaşını geçmiş erkek vb.)"],
 ];
 
+const DIGER_EBEVEYN: [DigerEbeveyn, string][] = [
+  ["es", "Vefat edenin eşi; evliydiler ve yeniden evlenmedi"],
+  ["vefat", "O da vefat etmiş"],
+  ["evli_degil", "Vefat edenle evli değildi (boşanmış ya da hiç evlenmemiş)"],
+  ["evlendi", "Vefat edenin eşiydi, sonradan başkasıyla evlendi"],
+];
+
+const GELIR: [EbeveynGeliri, string][] = [
+  ["bilinmiyor", "Bilmiyorum"],
+  ["dusuk", "Evet: geliri net asgari ücretten az ve kendi aylığı yok"],
+  ["yuksek", "Hayır: geliri bundan fazla ya da kendi aylığı var"],
+];
+
 export function OlumAyligiHesaplayici() {
+  const [sistem, setSistem] = useState<"5510" | "5434">("5510");
   const [aylikMetin, setAylikMetin] = useState("");
   const [esVar, setEsVar] = useState(true);
   const [esCalisiyor, setEsCalisiyor] = useState(false);
   const [cocuklar, setCocuklar] = useState<OlumCocuk[]>([]);
-  const [anne, setAnne] = useState<OlumEbeveyn>({ ad: "Annesi", sag: false, gelirDusuk: false, yas65Ustu: false });
-  const [baba, setBaba] = useState<OlumEbeveyn>({ ad: "Babası", sag: false, gelirDusuk: false, yas65Ustu: false });
+  const [anne, setAnne] = useState<OlumEbeveyn>({ ad: "Annesi", sag: false, gelir: "bilinmiyor", yas65Ustu: false });
+  const [baba, setBaba] = useState<OlumEbeveyn>({ ad: "Babası", sag: false, gelir: "bilinmiyor", yas65Ustu: false });
 
   const aylik = tutarOku(aylikMetin);
-  const sonuc = aylik !== null && aylik > 0 ? olumAyligiPaylari({ aylik, esVar, esCalisiyor, cocuklar, anne, baba }) : null;
+  const sonuc = sistem === "5510" && aylik !== null && aylik > 0 ? olumAyligiPaylari({ aylik, esVar, esCalisiyor, cocuklar, anne, baba }) : null;
 
   const olculdu = useRef(false);
   useEffect(() => {
@@ -40,6 +54,23 @@ export function OlumAyligiHesaplayici() {
     <div className="space-y-8">
       <form className="space-y-8 rounded-2xl bg-yuzey p-5 shadow-kart sm:p-6" onSubmit={(e) => e.preventDefault()}>
         <div>
+          <label htmlFor="sistem" className="block font-semibold">
+            Vefat edenin aylığı hangi kurumdan?
+          </label>
+          <select id="sistem" value={sistem} onChange={(e) => setSistem(e.target.value as "5510" | "5434")} className={`${kutu} mt-2`}>
+            <option value="5510">SSK ya da Bağ-Kur (2008 sonrası memurluk dahil)</option>
+            <option value="5434">Emekli Sandığı (2008 öncesi memur)</option>
+          </select>
+          {sistem === "5434" && (
+            <p className="mt-2 rounded-xl bg-vurgu-acik px-4 py-3 text-base">
+              Emekli Sandığı (5434 sayılı Kanun) kapsamındaki aylıkların paylaşımı farklı kurallara bağlıdır; bu hesaplayıcı
+              bu durumu kapsamaz. Hak sahiplerinin paylarını SGK&apos;ya ya da e-Devlet&apos;teki tahsis başvurusu sonucuna bakarak
+              öğrenebilirsiniz.
+            </p>
+          )}
+        </div>
+
+        <div className="border-t border-cizgi pt-6">
           <label htmlFor="aylik" className="block font-semibold">
             Vefat edenin aylığı (TL)
           </label>
@@ -62,7 +93,7 @@ export function OlumAyligiHesaplayici() {
         <div className="border-t border-cizgi pt-6">
         <fieldset className="space-y-3">
           <legend className="mb-2 font-semibold">Eşi</legend>
-          <Onay etiket="Eşi hayatta" deger={esVar} onChange={setEsVar} />
+          <Onay etiket="Eşi hayatta ve yeniden evlenmedi" deger={esVar} onChange={setEsVar} />
           {esVar && <Onay etiket="Eşi sigortalı çalışıyor ya da kendi emekli maaşını alıyor" deger={esCalisiyor} onChange={setEsCalisiyor} />}
         </fieldset>
         </div>
@@ -82,7 +113,7 @@ export function OlumAyligiHesaplayici() {
           ))}
           <button
             type="button"
-            onClick={() => setCocuklar([...cocuklar, { ad: `${cocuklar.length + 1}. çocuk`, durum: "yas", calisiyor: false, baskaEbeveyn: false }])}
+            onClick={() => setCocuklar([...cocuklar, { ad: `${cocuklar.length + 1}. çocuk`, durum: "yas", calisiyor: false, digerEbeveyn: esVar ? "es" : "vefat" }])}
             className="dugme dugme-ikincil"
           >
             + Çocuk ekle
@@ -103,7 +134,9 @@ export function OlumAyligiHesaplayici() {
         <h2 id="olum-sonuc" className="font-serif text-xl font-semibold text-vurgu-koyu">
           Bağlanacak aylıklar
         </h2>
-        {!sonuc ? (
+        {sistem === "5434" ? (
+          <p className="mt-2 text-metin-ikincil">Emekli Sandığı aylıkları için bu hesaplayıcı sonuç göstermez.</p>
+        ) : !sonuc ? (
           <p className="mt-2 text-metin-ikincil">Sonucu görmek için vefat edenin aylığını yazın.</p>
         ) : sonuc.satirlar.length === 0 ? (
           <p className="mt-2">Girdiğiniz bilgilere göre aylık bağlanacak hak sahibi görünmüyor.</p>
@@ -133,6 +166,12 @@ export function OlumAyligiHesaplayici() {
               <p className="text-base">Paylar toplamı vefat edenin aylığını aştığı için hepsinden aynı oranda indirim yapıldı.</p>
             )}
             {sonuc.alamayanlar.length > 0 && <p className="text-base text-metin-ikincil">Aylık alamayanlar: {sonuc.alamayanlar.join(", ")}.</p>}
+            {sonuc.belirsizler.length > 0 && (
+              <p className="text-base text-metin-ikincil">
+                {sonuc.belirsizler.join(" ve ")} için gelir durumu bilinmediğinden oran hesaplanmadı. Hak kazanırlarsa diğer
+                payların oranı değişebilir.
+              </p>
+            )}
           </div>
         )}
       </section>
@@ -177,9 +216,25 @@ function CocukKarti({ cocuk: c, esVar, onChange, onSil }: { cocuk: OlumCocuk; es
       {c.durum !== "hicbiri" && (
         <div className="flex flex-col gap-3">
           <Onay etiket="Sigortalı çalışıyor ya da kendi aylığını alıyor" deger={c.calisiyor} onChange={(x) => onChange({ ...c, calisiyor: x })} />
-          {esVar && (
-            <Onay etiket="Vefat edenin şimdiki eşinden değil" deger={c.baskaEbeveyn} onChange={(x) => onChange({ ...c, baskaEbeveyn: x })} />
-          )}
+        </div>
+      )}
+      {c.durum !== "hicbiri" && (
+        <div>
+          <label htmlFor={`${id}-e`} className="block font-semibold">
+            Çocuğun diğer annesi ya da babası
+          </label>
+          <select
+            id={`${id}-e`}
+            value={c.digerEbeveyn}
+            onChange={(e) => onChange({ ...c, digerEbeveyn: e.target.value as DigerEbeveyn })}
+            className={`${kutu} mt-2`}
+          >
+            {DIGER_EBEVEYN.filter(([k]) => esVar || k !== "es").map(([k, ad]) => (
+              <option key={k} value={k}>
+                {ad}
+              </option>
+            ))}
+          </select>
         </div>
       )}
     </div>
@@ -192,10 +247,28 @@ function EbeveynSatiri({ e, onChange }: { e: OlumEbeveyn; onChange: (e: OlumEbev
       <Onay etiket={`${e.ad} hayatta`} deger={e.sag} onChange={(x) => onChange({ ...e, sag: x })} />
       {e.sag && (
         <div className="ml-4 flex flex-col gap-3 border-l-2 border-cizgi pl-4">
-          <Onay etiket="Geliri net asgari ücretten az ve kendi aylığı yok" deger={e.gelirDusuk} onChange={(x) => onChange({ ...e, gelirDusuk: x })} />
+          <Gelir e={e} onChange={onChange} />
           <Onay etiket="65 yaşından büyük" deger={e.yas65Ustu} onChange={(x) => onChange({ ...e, yas65Ustu: x })} />
         </div>
       )}
+    </div>
+  );
+}
+
+function Gelir({ e, onChange }: { e: OlumEbeveyn; onChange: (e: OlumEbeveyn) => void }) {
+  const id = useId();
+  return (
+    <div>
+      <label htmlFor={id} className="block font-semibold">
+        Geliri net asgari ücretten az ve kendi aylığı yok mu?
+      </label>
+      <select id={id} value={e.gelir} onChange={(x) => onChange({ ...e, gelir: x.target.value as EbeveynGeliri })} className={`${kutu} mt-2`}>
+        {GELIR.map(([k, ad]) => (
+          <option key={k} value={k}>
+            {ad}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

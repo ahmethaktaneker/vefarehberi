@@ -30,7 +30,7 @@ export default function AnaSayfa() {
             </div>
           </div>
           <ul className="mt-10 grid gap-3 text-base sm:grid-cols-3">
-            {AVUKAT_ROZETI_AKTIF && <Guvence>Avukat ve gelir uzmanı desteğiyle hazırlanır</Guvence>}
+            {AVUKAT_ROZETI_AKTIF && <Guvence>Avukat desteğiyle hazırlanır</Guvence>}
             <Guvence>İsim, T.C. kimlik numarası gibi bilgiler istemez; cevaplarınız cihazınızda kalır</Guvence>
             <Guvence>
               Her bilginin kaynağı ve son kontrol tarihi yazılı.{" "}
