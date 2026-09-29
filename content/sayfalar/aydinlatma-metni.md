@@ -18,7 +18,7 @@ Vefat Rehberi'nin yapılacaklar listesi, hesaplayıcılar, beyanname aracı ve d
 
 Yalnızca şu durumda kişisel veri işlenir:
 
-- **Yeni özelliklerden haber almak için e-posta bırakırsanız:** e-posta adresiniz, kayıt tarihi ve verdiğiniz açık rızanın metin sürümü.
+- **Yeni özelliklerden haber almak için e-posta bırakırsanız:** e-posta adresiniz ve kayıt tarihi.
 
 T.C. kimlik numarası, sağlık bilgisi, adres, banka hesap bilgisi, vefat eden kişinin veya mirasçıların isimleri gibi bilgileri sunucumuzda toplamıyor ve işlemiyoruz.
 
@@ -32,12 +32,13 @@ E-posta adresiniz, sitedeki form aracılığıyla elektronik ortamda ve açık r
 
 ## Aktarım
 
-E-posta adresiniz, siteyi barındıran Vercel Inc. ve veritabanı hizmeti veren Upstash Inc. aracılığıyla yurt dışındaki sunucularda saklanır (KVKK m.9). Bu hizmet sağlayıcılar veriyi yalnızca saklama hizmeti için işler.
+E-posta adresiniz, formu gönderdiğinizde tarayıcınızdan doğrudan e-posta hizmeti sağlayıcımız INBOX'a (useinbox.com) iletilir ve orada saklanır; sitemizin sunucusuna uğramaz. INBOX'ın açıklamasına göre sunucuları Türkiye'dedir. INBOX, veriyi yalnızca bizim adımıza e-posta listesini tutmak ve haber e-postasını göndermek için işler. E-posta adresiniz başka kimseyle paylaşılmaz.
 
 ## Saklama süresi
 
 - Yeni özellikler açılıp size haber e-postası gönderildiğinde kaydınız silinir.
-- Haber verilecek bir özellik 12 ay içinde açılmazsa kaydınız 12. ayın sonunda kendiliğinden silinir; veritabanı kaydı bu sürenin sonunda otomatik silinecek şekilde tutulur. 12 ay, özelliklerin ne zaman açılacağı kesin olmadığı için haber verebilmek adına öngördüğümüz en uzun süredir.
+- Haber verilecek bir özellik 12 ay içinde açılmazsa kaydınız 12. ayın sonunda listeden silinir. 12 ay, özelliklerin ne zaman açılacağı kesin olmadığı için haber verebilmek adına öngördüğümüz en uzun süredir.
+- Gönderdiğimiz her e-postada listeden çıkma bağlantısı bulunur.
 - Rızanızı geri alır ya da silinmesini isterseniz kaydınız, talebinizin bize ulaşmasından itibaren en geç 30 gün içinde silinir ve size bildirilir (KVKK m.13).
 
 ## Haklarınız (KVKK m.11)

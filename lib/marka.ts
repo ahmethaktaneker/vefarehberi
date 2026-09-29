@@ -36,6 +36,13 @@ export const UMAMI_BETIK_AYARLARI = {
  * Paketler için e-posta bırakma formu açık mı? Veritabanı Vercel'e bağlanınca true yapılır.
  */
 export const EPOSTA_TOPLAMA_AKTIF = true;
+/**
+ * E-posta listesi INBOX'ta (useinbox.com; INBOX'ın açıklamasına göre sunucuları Türkiye'de). Form, adresi
+ * tarayıcıdan doğrudan INBOX'ın web formu adresine gönderir; site sunucusuna ve başka bir veritabanına
+ * uğramaz. Adres ve alan adı, INBOX panelindeki "Vefat Rehberi" web formunun yerleştirme kodundan alındı.
+ */
+export const INBOX_FORM_ADRESI = "https://joinbox.today/form/6abc02e5d2a8a60001835ab2/6abc03c05177fb2d30a0a24d";
+export const INBOX_EPOSTA_ALANI = "cf_0";
 
 /**
  * "Kontrol ediliyor" rozetleri ve "hukuk uzmanı kontrolünden geçmedi" notları (Brief 0.5).

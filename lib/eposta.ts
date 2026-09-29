@@ -7,3 +7,8 @@ export function epostaTemizle(e: string): string | null {
   return t.length <= 254 && EPOSTA.test(t) ? t : null;
 }
 
+
+/** INBOX web formuna gönderilecek gövde: yalnızca e-posta adresi, formun kendi alan adıyla. */
+export function inboxGovdesi(eposta: string, alan: string): URLSearchParams {
+  return new URLSearchParams({ [alan]: eposta });
+}

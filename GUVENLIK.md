@@ -12,14 +12,17 @@
 | 6 | JSON-LD'deki `replace(/</g, "\u003c")` hiçbir şey yapmıyordu: kaynakta tek ters eğik çizgiyle yazılan `\u003c` zaten `<` karakteridir. `lib/jsonld.ts` gerçek kaçış dizisini (`\\u003c`) üretir. | `components/RehberSayfasi.tsx` | aynı |
 | 7 | Başka sitelerden tarayıcı isteği (CSRF), gövde boyutu (2 KB) ve içerik türü kontrolü eklendi; Redis hatası 503 döner. | `lib/sunucu/guvenlik.ts` | aynı |
 
+> **Güncelleme (29.09.2026):** E-posta listesi INBOX'a taşındı. `/api/paket-ilgi` ucu ve Upstash'teki e-posta kaydı kaldırıldı (2 ve 5 artık geçersiz); form adresi tarayıcıdan doğrudan `joinbox.today`'e (INBOX) gönderir. Kötüye kullanım koruması artık INBOX tarafında; onay e-postası (çift onay) alan adı alınınca açılacak.
+
 ## Yayında yapılması gerekenler
 
-- Vercel ortam değişkenleri: `KV_REST_API_URL` ve `KV_REST_API_TOKEN` (ya da `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`). Bunlar yoksa e-posta ucu 503 döner, erişim kodu ucunda **hız sınırı uygulanmaz**.
-- Eski biçimde (hash) kayıt varsa sorun olmaz: `SET NX` var olan anahtara dokunmaz, süreleri önceden ayarlıdır.
+- Vercel ortam değişkenleri: `KV_REST_API_URL` ve `KV_REST_API_TOKEN` (ya da `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`). Artık yalnızca erişim kodu ucunun hız sınırı için gerekli; yoksa **hız sınırı uygulanmaz**.
+- Upstash'te eski `paket_ilgi:*` kayıtları varsa silinmeli (INBOX'a taşınacaksa önce taşınmalı).
 
 ## Kalan riskler (sertleştirme önerileri)
 
-- **Doğrulanmamış e-posta:** Biri başkasının adresini yazabilir. Çözüm, e-posta hizmeti seçilince çift onaylı kayıt (onay bağlantısı).
+- **Doğrulanmamış e-posta:** Biri başkasının adresini yazabilir. INBOX formunda "Aktivasyon" (onay e-postası) alan adı doğrulanınca açılmalı.
+- **INBOX'ta 12 ay silme kendiliğinden değil:** Aydınlatma metnindeki süre elle uygulanmalı.
 - **CSP'de `script-src 'unsafe-inline'`:** Next.js'in nonce desteği sayfaları dinamik yapar; şimdilik bırakıldı.
 - **Erişim kodu özetleri depoda:** Tuzsuz SHA-256, kodlar yaklaşık 59 bit. Ücretli kilit açılmadan önce sunucu tarafı gizli anahtarla HMAC'e geçilmeli.
 - **Umami betiği için SRI yok:** Dış betik değişirse CSP dışında bir kontrol yok.

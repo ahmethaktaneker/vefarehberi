@@ -1,24 +1,7 @@
 import type { NextConfig } from "next";
+import { csp } from "./lib/csp";
 
-/**
- * Güvenlik başlıkları. İçerik güvenlik politikası (CSP) yalnızca üretimde uygulanır; geliştirme
- * sunucusunun anlık yenilemesi eval ve websocket kullanır. Dış kaynak olarak yalnızca Umami
- * (çerezsiz ziyaret sayımı) izinlidir: betik cloud.umami.is'ten yüklenir, veri gateway.umami.is'e gider.
- */
-const csp = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://cloud.umami.is",
-  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
-  "font-src 'self' data:",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-  "upgrade-insecure-requests",
-].join("; ");
-
+/** Güvenlik başlıkları; CSP yalnızca üretimde (bkz. lib/csp.ts). */
 const guvenlikBasliklari = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },

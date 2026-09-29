@@ -20,8 +20,10 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
    - Kira sözleşmesini feshetmek, evi boşaltmak mirası kabul sayılır mı?
    - Vefat edenin hesabından para çekmemek, mallarını satmamak.
 5. **KVKK metinleri** (`kvkk.yaml`, `sayfalar/aydinlatma-metni.md`, `/gizlilik`).
-   - E-posta, "paket açılınca haber ver" için açık rızayla toplanıyor ve yurt dışındaki sunucuda
-     (Vercel / Upstash) saklanıyor. Rıza metni ve m.9 dayanağı yeterli mi?
+   - E-posta, "yeni özellik açılınca haber ver" için açık rızayla toplanıyor ve INBOX'ta (useinbox.com;
+     kendi açıklamasına göre Türkiye'deki sunucular) saklanıyor; siteden doğrudan INBOX'a gidiyor. INBOX
+     ile veri işleyen sözleşmesi gerekir mi? Rıza metni yeterli mi? Onay e-postası (çift onay) alan adı
+     alınınca açılacak; o zamana kadar tek adımlı kayıt sorun olur mu?
    - 12 aylık saklama süresi uygun mu?
    - Bu e-posta ticari elektronik ileti sayılır mı? İYS kaydı gerekir mi? VERBİS kaydı gerekir mi?
    - Kullanıcının cevapları ve beyanname araçlarına yazdıkları (T.C. kimlik no dahil) yalnızca kendi

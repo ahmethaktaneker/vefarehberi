@@ -60,9 +60,9 @@ export default function Gizlilik() {
 
       <Bolum baslik="E-posta adresi">
         <p>
-          Yeni özelliklerden haber almak için e-posta bırakırsanız, yalnızca e-posta adresiniz, kayıt
-          tarihi ve rıza metninin sürümü saklanır. Kayıt en geç 12 ay sonra silinir. Ayrıntılar aydınlatma
-          metnindedir.
+          Yeni özelliklerden haber almak için e-posta bırakırsanız, yalnızca e-posta adresiniz ve kayıt
+          tarihi, e-posta hizmeti sağlayıcımız INBOX&apos;ta saklanır. Kayıt en geç 12 ay sonra silinir. Ayrıntılar
+          aydınlatma metnindedir.
         </p>
       </Bolum>
 

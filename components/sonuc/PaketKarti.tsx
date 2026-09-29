@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { olay } from "@/lib/analitik";
 import type { PaketOnerisi } from "@/lib/araclar";
-import { epostaTemizle } from "@/lib/eposta";
-import { EPOSTA_TOPLAMA_AKTIF } from "@/lib/marka";
+import { epostaTemizle, inboxGovdesi } from "@/lib/eposta";
+import { EPOSTA_TOPLAMA_AKTIF, INBOX_EPOSTA_ALANI, INBOX_FORM_ADRESI } from "@/lib/marka";
 import type { Paket } from "@/lib/paket";
 
 type PaketId = Paket["paketler"][number]["id"];
@@ -116,12 +116,11 @@ export function EpostaFormu({ paket, riza }: { paket: IlgiKonusu; riza: { surum:
     setHata("");
     setDurum("gonderiliyor");
     try {
-      const yanit = await fetch("/api/paket-ilgi", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ eposta: temiz, paket, riza: true, riza_surumu: riza.surum, site }),
-      });
-      if (!yanit.ok) throw new Error(String(yanit.status));
+      // Bot tuzağı doluysa göndermeden başarılı görün.
+      if (!site) {
+        // INBOX yanıtı başka bir alan adından geldiği için okunamaz ("no-cors"); ağ hatası yoksa gönderilmiştir.
+        await fetch(INBOX_FORM_ADRESI, { method: "POST", mode: "no-cors", body: inboxGovdesi(temiz, INBOX_EPOSTA_ALANI) });
+      }
       setDurum("tamam");
       olay("eposta_birakildi", { paket });
     } catch {

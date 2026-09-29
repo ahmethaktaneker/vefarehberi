@@ -3,7 +3,6 @@ import { bosVeri, yeniMirasci } from "@/lib/beyanname/hesap";
 import { kaliciNumaraVar, kimlikAyir, kimlikBirlestir } from "@/lib/beyanname/kimlik";
 import { HAREKETSIZ_SILME_GUN, suresiDoldu } from "@/lib/depo";
 import { jsonLdMetni } from "@/lib/jsonld";
-import { kvkkYukle } from "@/lib/kvkk";
 import { UMAMI_BETIK_AYARLARI } from "@/lib/marka";
 import { baskaSitedenMi, istemciIp, jsonGovde } from "@/lib/sunucu/guvenlik";
 
@@ -42,7 +41,7 @@ vi.mock("@upstash/ratelimit", () => ({
 const cerezler = vi.hoisted(() => ({ yazilan: [] as string[] }));
 vi.mock("next/headers", () => ({ cookies: async () => ({ set: (ad: string) => cerezler.yazilan.push(ad), get: () => undefined }) }));
 
-const ADRES = "https://vefatrehberi.com/api/paket-ilgi";
+const ADRES = "https://vefatrehberi.com/api/erisim";
 function istek(govde: unknown, basliklar: Record<string, string> = {}, url = ADRES) {
   const metin = typeof govde === "string" ? govde : JSON.stringify(govde);
   return new Request(url, {
@@ -51,7 +50,6 @@ function istek(govde: unknown, basliklar: Record<string, string> = {}, url = ADR
     body: metin,
   });
 }
-const gecerli = () => ({ eposta: "deneme@example.com", paket: "yenilikler", riza: true, riza_surumu: kvkkYukle().acik_riza.paket_ilgi.surum });
 
 describe("analitik: paylaşım linkindeki cevaplar Umami'ye gitmez", () => {
   it("Umami betiği adresin # ve ? kısımlarını çıkaracak şekilde ayarlı", () => {
@@ -114,48 +112,6 @@ describe("istek korumaları", () => {
   });
 });
 
-describe("e-posta kaydı (/api/paket-ilgi)", () => {
-  beforeEach(() => {
-    process.env.KV_REST_API_URL = "https://sahte.upstash.io";
-    process.env.KV_REST_API_TOKEN = "sahte";
-    redisKayit.veri.clear();
-    redisKayit.komutlar = [];
-    redisKayit.setSecenekleri = [];
-    hiz.kalan = 100;
-  });
-
-  it("kayıt tek atomik SET NX EX ile yazılır; ayrı HSET/EXPIRE yok", async () => {
-    const { POST } = await import("@/app/api/paket-ilgi/route");
-    const y = await POST(istek(gecerli()));
-    expect(y.status).toBe(200);
-    expect(redisKayit.komutlar).toEqual(["set"]);
-    expect(redisKayit.setSecenekleri[0]).toEqual({ nx: true, ex: 60 * 60 * 24 * 365 });
-  });
-
-  it("var olan kaydın üzerine yazılamaz; yanıt aynıdır (adresin kayıtlı olduğu anlaşılmaz)", async () => {
-    const { POST } = await import("@/app/api/paket-ilgi/route");
-    await POST(istek(gecerli()));
-    const ilk = redisKayit.veri.get("paket_ilgi:deneme@example.com");
-    const ikinci = await POST(istek({ ...gecerli(), paket: "aile" }));
-    expect(ikinci.status).toBe(200);
-    expect(redisKayit.veri.get("paket_ilgi:deneme@example.com")).toBe(ilk);
-  });
-
-  it("hız sınırı aşılınca 429 döner ve kayıt yapılmaz", async () => {
-    const { POST } = await import("@/app/api/paket-ilgi/route");
-    hiz.kalan = 0;
-    const y = await POST(istek(gecerli()));
-    expect(y.status).toBe(429);
-    expect(y.headers.get("retry-after")).toBeTruthy();
-    expect(redisKayit.komutlar).toEqual([]);
-  });
-
-  it("başka siteden gelen istek reddedilir", async () => {
-    const { POST } = await import("@/app/api/paket-ilgi/route");
-    expect((await POST(istek(gecerli(), { origin: "https://kotu.example" }))).status).toBe(403);
-  });
-});
-
 describe("erişim kodu (/api/erisim)", () => {
   beforeEach(() => {
     process.env.KV_REST_API_URL = "https://sahte.upstash.io";
@@ -166,8 +122,7 @@ describe("erişim kodu (/api/erisim)", () => {
   it("paralel denemeler hız sınırına takılır", async () => {
     const { POST } = await import("@/app/api/erisim/route");
     hiz.kalan = 2;
-    const url = "https://vefatrehberi.com/api/erisim";
-    const yanitlar = await Promise.all(Array.from({ length: 4 }, () => POST(istek({ kod: "YANLIS-KOD-0000" }, {}, url))));
+    const yanitlar = await Promise.all(Array.from({ length: 4 }, () => POST(istek({ kod: "YANLIS-KOD-0000" }))));
     const durumlar = yanitlar.map((y) => y.status).sort();
     expect(durumlar).toEqual([403, 403, 429, 429]);
     expect(cerezler.yazilan).toEqual([]);
