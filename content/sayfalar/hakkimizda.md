@@ -15,9 +15,9 @@ Türkiye'de her yıl yaklaşık 490 bin kişi vefat ediyor (TÜİK, 2025). Her v
 
 ## Kim hazırlıyor
 
-Vefat Rehberi'ni hukuk öğrencisi Ahmet Haktan Eker hazırlıyor. Hukuki içerikler avukat, vergi ve beyanname içerikleri gelir uzmanı desteğiyle hazırlanır. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur; size bir kurumu ya da ürünü önermek için para almaz.
+2024'te anneannemi kaybettiğimizde, ailemin acının ortasında neyi, ne zaman ve nereye giderek yapacağını bilemediğini gördüm. Kimse bir liste tutamıyordu; bir işi bitirince sıradakini hatırlamak bile zordu, bazı işler son güne kaldı. O günlerde, işlerin sırasını bilen ve son tarihleri bizim yerimize hatırlayan bir yer olsaydı çok şeyin daha kolay geçeceğini düşündüm. Vefat Rehberi'ni bunun için geliştirmeye karar verdim.
 
-<!-- Buraya isterseniz kendi hikâyenizi ekleyebilirsiniz: bu siteyi neden yaptığınız. -->
+Vefat Rehberi'ni hukuk öğrencisi Ahmet Haktan Eker hazırlıyor. Hukuki içerikler avukat, vergi ve beyanname içerikleri gelir uzmanı desteğiyle hazırlanır. Hiçbir kamu kurumuyla, bankayla veya sigorta şirketiyle bağlantısı yoktur; size bir kurumu ya da ürünü önermek için para almaz.
 
 ## Neden ücretsiz
 
