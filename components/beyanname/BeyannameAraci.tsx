@@ -26,6 +26,7 @@ import type { Cevaplar } from "@/lib/sorular";
 import { CihazdaKalir } from "@/components/CihazdaKalir";
 import { ResmiForm } from "./ResmiForm";
 
+const PDF_ADI = "veraset-beyannamesi.pdf";
 const kutu = "min-h-12 w-full rounded-xl border-2 border-cizgi bg-yuzey px-4 text-lg";
 const para = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const tl = (n: number) => `${para.format(n)} TL`;
@@ -65,6 +66,8 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const hamCevaplar = useDepo(ANAHTARLAR.cevaplar);
   const [adim, setAdim] = useState(0);
   const [pdfDurum, setPdfDurum] = useState<"bos" | "hazirlaniyor" | "hata">("bos");
+  const [pdf, setPdf] = useState<{ url: string; dosya: File } | null>(null);
+  useEffect(() => () => void (pdf && URL.revokeObjectURL(pdf.url)), [pdf]);
   const pdfKap = useRef<HTMLDivElement>(null);
   const baslik = useRef<HTMLHeadingElement>(null);
   const ilkCizim = useRef(true);
@@ -94,11 +97,23 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
   const murisAlani = (k: keyof Muris) => ({ deger: v.muris[k], onChange: (x: string) => guncelle((d) => void (d.muris[k] = x)) });
   const ozet = beyannameOzeti(v, parametreler);
   const ekler = ekListesi(v, icerik);
+  async function pdfPaylas() {
+    if (!pdf) return;
+    try {
+      await navigator.share({ files: [pdf.dosya], title: "Veraset beyannamesi" });
+    } catch {
+      // Kullanıcı paylaşım penceresini kapattıysa bir şey yapma.
+    }
+  }
+  const paylasilabilir = typeof navigator !== "undefined" && !!pdf && !!navigator.canShare?.({ files: [pdf.dosya] });
+
   async function pdfIndir() {
     if (!pdfKap.current) return;
     setPdfDurum("hazirlaniyor");
     try {
-      await formuPdfYap(pdfKap.current, "veraset-beyannamesi.pdf");
+      const blob = await formuPdfYap(pdfKap.current);
+      const dosya = new File([blob], PDF_ADI, { type: "application/pdf" });
+      setPdf({ url: URL.createObjectURL(dosya), dosya });
       olay("beyanname_yazdirildi");
       setPdfDurum("bos");
     } catch {
@@ -422,15 +437,36 @@ export function BeyannameAraci({ icerik, parametreler }: { icerik: BeyannameIcer
               <div className="space-y-3">
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <button type="button" onClick={pdfIndir} disabled={pdfDurum === "hazirlaniyor"} className="dugme dugme-birincil">
-                    {pdfDurum === "hazirlaniyor" ? "PDF hazırlanıyor…" : "PDF olarak indir"}
+                    {pdfDurum === "hazirlaniyor" ? "PDF hazırlanıyor…" : pdf ? "PDF'i yeniden hazırla" : "PDF hazırla"}
                   </button>
                   <button type="button" onClick={formuYazdir} className="dugme dugme-ikincil">
                     Doğrudan yazdır
                   </button>
                 </div>
                 <p className="text-base text-metin-ikincil">
-                  Telefondan yazdıracaksanız PDF olarak indirip açın ve oradan yazdırın; form A4 sayfaya tam sığar.
+                  Telefondan yazdıracaksanız önce PDF hazırlayın, indirip açın ve oradan yazdırın; form A4 sayfaya tam sığar.
                 </p>
+                {pdf && (
+                  <div role="status" className="space-y-3 rounded-xl border-2 border-vurgu bg-vurgu-acik p-4">
+                    <p className="font-semibold text-vurgu-koyu">PDF hazır.</p>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                      <a href={pdf.url} download={PDF_ADI} className="dugme dugme-birincil">
+                        PDF&apos;i indir
+                      </a>
+                      {paylasilabilir && (
+                        <button type="button" onClick={pdfPaylas} className="dugme dugme-ikincil">
+                          Paylaş veya kaydet
+                        </button>
+                      )}
+                      <a href={pdf.url} target="_blank" rel="noopener" className="dugme dugme-ikincil">
+                        Yeni sekmede aç<span className="sr-only"> (yeni sekmede açılır)</span>
+                      </a>
+                    </div>
+                    <p className="text-base text-metin-ikincil">
+                      İndirme başlamazsa &ldquo;Paylaş veya kaydet&rdquo; ile Dosyalar&apos;a kaydedin ya da yeni sekmede açıp oradan yazdırın.
+                    </p>
+                  </div>
+                )}
                 {pdfDurum === "hata" && <p className="text-base text-uyari">PDF hazırlanamadı. &ldquo;Doğrudan yazdır&rdquo; düğmesini deneyin.</p>}
                 <ol className="list-decimal space-y-1 pl-5 text-base">
                   <li>Formu iki sayfa olarak yazdırın (arkalı önlü de olur).</li>

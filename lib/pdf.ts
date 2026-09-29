@@ -1,14 +1,16 @@
 "use client";
 
 /**
- * Ekrandaki bir formu A4 PDF'e çevirip indirir. Telefonda tarayıcının yazdırma penceresi sayfayı dar
+ * Ekrandaki bir formu A4 PDF'e çevirir. Telefonda tarayıcının yazdırma penceresi sayfayı dar
  * ekran genişliğinde dizip formun sağını kesebildiği için, form her cihazda aynı genişlikte (A4 içi
  * 190 mm) resme çevrilir ve her ".resmi-form-sayfa" bölümü ayrı bir A4 sayfasına yerleştirilir.
- * Hiçbir bilgi sunucuya gönderilmez; PDF tarayıcıda üretilir.
+ * Hiçbir bilgi sunucuya gönderilmez; PDF tarayıcıda üretilir. İndirme burada başlatılmaz: PDF birkaç saniyede
+ * hazırlandığı için telefon tarayıcıları kendiliğinden başlayan indirmeyi engelleyebilir. Çağıran taraf,
+ * kullanıcının dokunacağı indirme / paylaşma düğmeleri gösterir.
  */
 export const PDF_GENISLIK_PX = 718; // 190 mm, 96 dpi
 
-export async function formuPdfYap(kap: HTMLElement, dosyaAdi: string) {
+export async function formuPdfYap(kap: HTMLElement): Promise<Blob> {
   const [{ default: html2canvas }, { jsPDF }] = await Promise.all([import("html2canvas-pro"), import("jspdf")]);
   const sayfalar = Array.from(kap.querySelectorAll<HTMLElement>(".resmi-form-sayfa"));
   const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
@@ -21,5 +23,5 @@ export async function formuPdfYap(kap: HTMLElement, dosyaAdi: string) {
     if (i > 0) pdf.addPage();
     pdf.addImage(tuval.toDataURL("image/jpeg", 0.92), "JPEG", kenar, kenar, tuval.width * oran, tuval.height * oran);
   }
-  pdf.save(dosyaAdi);
+  return pdf.output("blob");
 }
