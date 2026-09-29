@@ -66,6 +66,15 @@ export function PaylasHatirla({ cevaplar, sonTarihliler }: { cevaplar: Cevaplar;
           bilgisi içermez ve sunucumuza gönderilmez. &ldquo;Yaptım&rdquo; işaretleri herkesin kendi cihazında kalır.
         </p>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`Vefat sonrası yapılacaklar listemiz: ${baglanti}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => olay("paylasim_linki_kopyalandi")}
+            className="dugme dugme-birincil no-underline"
+          >
+            WhatsApp&apos;ta paylaş<span className="sr-only"> (yeni sekmede açılır)</span>
+          </a>
           <button type="button" onClick={kopyala} className={dugme}>
             Bağlantıyı kopyala
           </button>
