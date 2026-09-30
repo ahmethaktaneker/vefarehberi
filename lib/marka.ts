@@ -24,12 +24,14 @@ export const AVUKAT_ROZETI_AKTIF = true;
 export const UMAMI_SITE_KIMLIGI = "6fd3f51a-07b7-4236-b40a-afb4401f54db";
 /**
  * Umami betiğinin ayarları. Paylaşım linkleri cevapları adresin #p=... kısmında taşır; Umami varsayılan
- * olarak adresin tamamını gönderdiği için # ve ? kısımları ölçümden çıkarılır.
+ * olarak adresin tamamını gönderdiği için # ve ? kısımları ölçümden çıkarılır. Yalnızca ana alan adındaki ziyaretler
+ * sayılır; vercel.app ve önizleme adresleri ölçüme karışmaz.
  */
 export const UMAMI_BETIK_AYARLARI = {
   "data-do-not-track": "true",
   "data-exclude-hash": "true",
   "data-exclude-search": "true",
+  "data-domains": "vefatrehberi.com",
 } as const;
 
 /**
