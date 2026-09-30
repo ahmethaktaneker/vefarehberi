@@ -48,6 +48,11 @@
   --font-serif: var(--font-baslik);
 }
 
+/* Telefonda sayfa en üstte ya da en altta esnediğinde görünen zemin, üst ve alt bilginin laciverti olur */
+html {
+  background: var(--vurgu-koyu);
+}
+
 /* "Büyük yazı" seçeneği: tüm ölçüler rem olduğu için site orantılı büyür */
 html[data-yazi="buyuk"] {
   font-size: 118.75%;
@@ -294,6 +299,7 @@ html:has(dialog[open]) {
   .yazdirma-gizle {
     display: none !important;
   }
+  html,
   body {
     background: #fff;
   }
