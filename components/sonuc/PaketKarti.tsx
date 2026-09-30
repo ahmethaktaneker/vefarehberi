@@ -105,7 +105,14 @@ export function EpostaFormu({ paket, riza }: { paket: IlgiKonusu; riza: { surum:
   const [hata, setHata] = useState("");
 
   if (durum === "tamam") {
-    return <p className="font-semibold text-vurgu-koyu">Teşekkürler. Kullanıma açıldığında size haber vereceğiz.</p>;
+    return (
+      <div className="space-y-1">
+        <p className="font-semibold text-vurgu-koyu">Teşekkürler. Son bir adım kaldı.</p>
+        <p className="text-base text-metin-ikincil">
+          E-posta adresinize bir onay bağlantısı gönderdik. Bağlantıya tıkladığınızda kaydınız tamamlanır. Birkaç dakika içinde gelmezse gereksiz (spam) klasörüne bakın.
+        </p>
+      </div>
+    );
   }
 
   async function gonder(e: React.FormEvent) {
