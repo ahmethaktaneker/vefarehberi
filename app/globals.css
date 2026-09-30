@@ -80,10 +80,15 @@ input[type="date"] {
   min-width: 0;
   max-width: 100%;
   text-align: left;
+  /* Görünümü kapatılan tarih kutusunda iPhone yazıyı dikeyde ortalamaz; yükseklik iç boşlukla verilir */
+  padding-block: 0.5rem;
+  line-height: 1.75rem;
 }
 input[type="date"]::-webkit-date-and-time-value {
   margin: 0;
   text-align: left;
+  min-height: 1.75rem;
+  line-height: 1.75rem;
 }
 label,
 .grid > * {
@@ -173,7 +178,9 @@ dialog.panel {
   }
 }
 dialog.panel::backdrop {
-  background: rgb(15 25 40 / 0.45);
+  /* Panel aşağı çekildikçe açılır (Panel.tsx --karartma değişkenini ayarlar) */
+  background: rgb(15 25 40 / calc(0.45 * var(--karartma, 1)));
+  transition: background-color 220ms ease-out;
   /* iPhone Safari, dokunulabilir görünmeyen alanlara dokunuşu tıklama saymaz */
   cursor: pointer;
 }
