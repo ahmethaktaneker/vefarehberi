@@ -24,7 +24,7 @@ describe("arama motoru sayfaları", () => {
       .filter((f) => f.endsWith(".tsx"));
     for (const f of dosyalar) {
       const metin = fs.readFileSync(path.join("components", f), "utf8");
-      expect(metin, f).not.toMatch(/kontrolünden geçme|Kontrol ediliyor<|doğrulanmadı/i);
+      expect(metin, f).not.toMatch(/kontrolünden geçme|kontrol ediliyor|doğrulanmadı|doldurulacak]/i);
     }
   });
 

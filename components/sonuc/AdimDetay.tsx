@@ -20,7 +20,7 @@ const paraBicimi = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, ma
 
 export function TutarSatiri({ bilgi }: { bilgi: TutarBilgisi }) {
   if (bilgi.durum === "guncel_degil") {
-    return <span className="block text-base text-metin-ikincil">Güncel tutar kontrol ediliyor. Resmi kaynaktan teyit edin.</span>;
+    return <span className="block text-base text-metin-ikincil">Güncel tutarı ilgili kurumdan öğrenebilirsiniz.</span>;
   }
   return (
     <span className="block text-base">

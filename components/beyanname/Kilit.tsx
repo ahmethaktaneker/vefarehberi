@@ -76,7 +76,7 @@ export function Kilit({ urun, paket = "Beyanname Paketi", faydalar }: { urun: st
           {durum === "sunucu" && <span className="text-uyari">Şu an doğrulanamadı. Biraz sonra tekrar deneyin.</span>}
         </p>
         <button type="submit" disabled={durum === "gonderiliyor" || kod.trim().length < 8} className="dugme dugme-birincil disabled:opacity-60">
-          {durum === "gonderiliyor" ? "Kontrol ediliyor…" : "Aracı aç"}
+          {durum === "gonderiliyor" ? "Açılıyor…" : "Aracı aç"}
         </button>
       </form>
     </div>

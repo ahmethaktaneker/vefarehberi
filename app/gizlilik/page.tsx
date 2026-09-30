@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sayfa } from "@/components/Sayfa";
+import { kvkkYukle } from "@/lib/kvkk";
 import { URUN_ADI } from "@/lib/marka";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Gizlilik() {
+  const kvkk = kvkkYukle();
   return (
     <Sayfa baslik="Gizlilik">
       <Bolum baslik="Kısaca">
@@ -58,7 +60,13 @@ export default function Gizlilik() {
       </Bolum>
 
       <Bolum baslik="İletişim">
-        <p className="text-metin-ikincil">[Veri sorumlusu ve iletişim adresi: doldurulacak]</p>
+        <p>
+          Veri sorumlusu: {kvkk.veri_sorumlusu}. Gizlilikle ilgili sorularınız ve talepleriniz için{" "}
+          <a href={`mailto:${kvkk.iletisim_eposta}`} className="baglanti">
+            {kvkk.iletisim_eposta}
+          </a>{" "}
+          adresine yazabilirsiniz.
+        </p>
       </Bolum>
     </Sayfa>
   );
