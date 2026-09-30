@@ -55,7 +55,7 @@ export default function AnaSayfa() {
               Yakınınızı kaybettiniz. Vefat sonrası yapılacakları birlikte sıralayalım.
             </h1>
             <p className="mt-5 text-xl leading-relaxed text-metin">
-              Vefat sonrası işlemler bu günlerde çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
+              Bu günlerde yapılacak işler çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
               <Link href="/liste" className="dugme dugme-birincil px-8 text-lg">
