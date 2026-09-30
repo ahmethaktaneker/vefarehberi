@@ -52,7 +52,7 @@ export default function AnaSayfa() {
           <DevamKarti />
           <div className="max-w-2xl">
             <h1 className="font-serif text-4xl font-semibold leading-[1.15] text-vurgu-koyu sm:text-5xl">
-              Yakınınızı kaybettiniz. Sırada ne var, birlikte bakalım.
+              Yakınınızı kaybettiniz. Vefat sonrası yapılacakları birlikte sıralayalım.
             </h1>
             <p className="mt-5 text-xl leading-relaxed text-metin">
               Vefat sonrası işlemler bu günlerde çok gelebilir. Birkaç soruya cevap verin; neyi, ne zaman ve nereye giderek yapacağınızı sırasıyla gösterelim.
