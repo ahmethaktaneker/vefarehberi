@@ -157,11 +157,9 @@ export function SonTarihKartlari({ adimlar, yapilanlar }: { adimlar: Hesaplanmis
               <button
                 type="button"
                 onClick={() => ac({ tur: "adim", id: a.id })}
-                className={`flex h-full w-full flex-col items-start gap-1 rounded-2xl border-t-4 border-uyari p-4 text-left shadow-kart transition-shadow hover:shadow-yuksek ${
-                  b.gecti ? "bg-yuzey" : "bg-yuzey"
-                }`}
+                className="flex h-full w-full flex-col items-start justify-center gap-1 rounded-2xl border-t-4 border-uyari bg-yuzey p-4 text-left shadow-kart transition-shadow hover:shadow-yuksek"
               >
-                <span className="font-serif text-4xl font-semibold leading-none text-uyari tabular-nums">
+                <span className="font-serif text-4xl font-semibold leading-tight text-uyari tabular-nums">
                   {b.gecti ? "Geçti" : b.kalanGun}
                   {!b.gecti && <span className="ml-1 font-sans text-base font-bold">gün</span>}
                 </span>
