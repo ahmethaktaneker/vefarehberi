@@ -128,6 +128,8 @@ export const AdimSemasi = z.strictObject({
   kurum_turleri: z.array(z.enum(KURUM_TURLERI)).default([]),
   ...dogrulukAlanlari,
   ucretli_icerik: z.boolean(),
+  /** true ise adım dosyada kalır ama hiçbir listede, çıktıda ya da panelde gösterilmez. */
+  gizli: z.boolean().default(false),
 });
 
 export const BelgeSemasi = z.strictObject({

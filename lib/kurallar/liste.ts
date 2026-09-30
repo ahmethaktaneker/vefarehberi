@@ -93,7 +93,7 @@ export function listeOlustur(hamCevaplar: Cevaplar, icerik: Icerik, bugun: strin
   const c = gecerliCevaplar(hamCevaplar);
 
   const adimlar: HesaplanmisAdim[] = icerik.adimlar
-    .filter((a) => !a.ucretli_icerik && kosulSaglaniyor(a.kosul, c))
+    .filter((a) => !a.ucretli_icerik && !a.gizli && kosulSaglaniyor(a.kosul, c))
     .map((a) => ({
       ...a,
       sonTarihBilgisi: sonTarihHesapla(a, c, icerik.parametreler, bugun),

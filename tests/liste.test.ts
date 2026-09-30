@@ -60,7 +60,6 @@ describe("persona: Mehmet (emekli baba, çok varlık, kredi)", () => {
       "hesaptan_para_cekmeyin",
       "mirascilik_belgesi",
       "banka_hesaplari",
-      "risk_raporu",
       "kredi_hayat_sigortasi",
       "tasinmazlar",
       "hayat_sigortasi_sorgulama",
@@ -97,7 +96,6 @@ describe("persona: Zeynep (mal yok, kredi kartı borcu olabilir)", () => {
       "olum_belgesi",
       "mirascilik_belgesi",
       "banka_hesaplari",
-      "risk_raporu",
       "hayat_sigortasi_sorgulama",
       "telefon_internet",
       "reddi_miras",
@@ -153,10 +151,14 @@ describe("'Bilmiyorum' cevapları", () => {
     }
   });
 
-  it("borç 'bilmiyorum' → risk raporu ve reddi miras eklenir", () => {
+  it("borç 'bilmiyorum' → reddi miras eklenir", () => {
     const c = { ...AHMET, borc: "bilmiyorum" };
-    expect(idler(c)).toEqual(expect.arrayContaining(["risk_raporu", "reddi_miras"]));
-    expect(adim(c, "risk_raporu")?.belirsiz).toBe(true);
+    expect(idler(c)).toContain("reddi_miras");
+  });
+
+  it("gizli adım (risk raporu) koşulu sağlansa da hiçbir listede görünmez", () => {
+    expect(icerik.adimlar.some((a) => a.id === "risk_raporu" && a.gizli)).toBe(true);
+    for (const c of [MEHMET, ZEYNEP, { ...AHMET, borc: "bilmiyorum" }]) expect(idler(c)).not.toContain("risk_raporu");
   });
 
   it("abonelikler 'bilmiyorum' → abonelik adımı belirsiz işaretli", () => {
