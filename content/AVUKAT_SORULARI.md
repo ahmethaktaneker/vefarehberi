@@ -22,8 +22,8 @@ Cevaplar geldikçe ilgili içerik düzeltilir ve `dogrulandi: true` yapılır.
 5. **KVKK metinleri** (`kvkk.yaml`, `sayfalar/aydinlatma-metni.md`, `/gizlilik`).
    - E-posta, "yeni özellik açılınca haber ver" için açık rızayla toplanıyor ve INBOX'ta (useinbox.com;
      kendi açıklamasına göre Türkiye'deki sunucular) saklanıyor; siteden doğrudan INBOX'a gidiyor. INBOX
-     ile veri işleyen sözleşmesi gerekir mi? Rıza metni yeterli mi? Onay e-postası (çift onay) alan adı
-     alınınca açılacak; o zamana kadar tek adımlı kayıt sorun olur mu?
+     ile veri işleyen sözleşmesi gerekir mi? Rıza metni yeterli mi? Onay e-postası (çift onay) 30.09.2026
+     itibarıyla açık: kişi e-postadaki bağlantıya tıklamadan listeye eklenmiyor.
    - 12 aylık saklama süresi uygun mu?
    - Bu e-posta ticari elektronik ileti sayılır mı? İYS kaydı gerekir mi? VERBİS kaydı gerekir mi?
    - Kullanıcının cevapları ve beyanname araçlarına yazdıkları (T.C. kimlik no dahil) yalnızca kendi
