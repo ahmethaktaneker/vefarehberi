@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { SoruAkisi } from "@/components/akis/SoruAkisi";
 
 export const metadata: Metadata = {
-  title: "Listemi oluştur",
+  title: "Vefat Sonrası Yapılacaklar Listenizi Oluşturun",
+  description:
+    "Birkaç soruya cevap verin; vefat sonrası yapılacak işlemleri size özel sırayla ve son tarihleriyle görün. Cevaplarınız yalnızca kendi cihazınızda kalır.",
   alternates: { canonical: "/liste" },
 };
 

@@ -14,7 +14,7 @@ describe("arama motoru sayfaları", () => {
   });
 
   it("her rehber, Rehberler sayfasında bir konu grubunda", async () => {
-    const kaynak = fs.readFileSync("app/rehber/page.tsx", "utf8");
+    const kaynak = fs.readFileSync("lib/rehberGruplari.ts", "utf8");
     for (const slug of rehberSluglari()) expect(kaynak, slug).toContain(`"rehber/${slug}"`);
   });
 

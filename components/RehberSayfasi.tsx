@@ -4,7 +4,9 @@ import { ARAC_TANIMLARI, aracGorunur } from "@/lib/araclar";
 import { jsonLdMetni } from "@/lib/jsonld";
 import { Sayfa, type Kirinti } from "@/components/Sayfa";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
+import { hazirSayfa } from "@/lib/icerik/sayfalar";
 import { hataBildirBaglantisi, SITE_URL } from "@/lib/marka";
+import { ilgiliRehberler } from "@/lib/rehberGruplari";
 
 const tarih = (t: string) => t.split("-").reverse().join(".");
 
@@ -26,6 +28,7 @@ export function RehberSayfasi({
   children?: React.ReactNode;
 }) {
   const html = marked.parse(sayfa.govde, { async: false });
+  const ilgili = yol ? ilgiliRehberler(yol) : [];
   // Rehberler ve hesaplayıcılar için gezinme yolu; aynısı yapılandırılmış veri olarak da eklenir.
   const kirintilar: Kirinti[] | undefined = yol?.startsWith("/rehber/")
     ? [{ href: "/", ad: "Ana sayfa" }, { href: "/rehber", ad: "Rehberler" }]
@@ -126,6 +129,22 @@ export function RehberSayfasi({
             ))}
           </div>
         </section>
+      )}
+      {ilgili.length > 0 && (
+        <nav aria-labelledby="ilgili-rehberler" className="space-y-3">
+          <h2 id="ilgili-rehberler" className="font-serif text-2xl font-semibold text-vurgu-koyu">
+            İlgili rehberler
+          </h2>
+          <ul className="space-y-2">
+            {ilgili.map(({ href, slug }) => (
+              <li key={href}>
+                <Link href={href} className="inline-block py-1 text-lg font-bold text-vurgu underline underline-offset-4">
+                  {hazirSayfa(slug).baslik}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       )}
       <details className="text-base text-metin-ikincil">
         <summary className="flex min-h-11 cursor-pointer items-center">Kaynaklar</summary>

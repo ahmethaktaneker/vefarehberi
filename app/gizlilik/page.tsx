@@ -3,14 +3,12 @@ import { Sayfa } from "@/components/Sayfa";
 import { URUN_ADI } from "@/lib/marka";
 
 export const metadata: Metadata = {
-  title: "Gizlilik",
+  title: "Gizlilik: Bilgileriniz Cihazınızda Kalır",
+  description:
+    "Vefat Rehberi hangi bilgileri istemez, cevaplarınızı nerede tutar, e-posta bırakırsanız ne olur? Kısa ve açık gizlilik ilkelerimiz.",
   alternates: { canonical: "/gizlilik" },
 };
 
-/*
- * TASLAK. Bu sayfadaki maddeler PROJE_BRIEF.md Bölüm 4.4'teki ürün ilkelerinden alınmıştır.
- * Hukuki metin değildir; avukat kontrolünden sonra kesinleşecektir.
- */
 export default function Gizlilik() {
   return (
     <Sayfa baslik="Gizlilik">

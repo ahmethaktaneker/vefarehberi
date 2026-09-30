@@ -12,13 +12,16 @@ export function generateStaticParams() {
   return sablonlariYukle().map((s) => ({ id: s.id }));
 }
 
+/** Arama sonucunda kesilmemesi için uzun açıklamanın yalnızca ilk cümlesi kullanılır. */
+const kisaAciklama = (m: string) => (m.length > 160 ? m.slice(0, m.indexOf(". ") + 1) || m : m);
+
 function bul(id: string) {
   return sablonlariYukle().find((s) => s.id === id);
 }
 
 export async function generateMetadata({ params }: PageProps<"/sablonlar/[id]">): Promise<Metadata> {
   const s = bul((await params).id);
-  return s ? { title: s.baslik, description: s.aciklama, alternates: { canonical: `/sablonlar/${s.id}` } } : {};
+  return s ? { title: s.baslik, description: kisaAciklama(s.aciklama), alternates: { canonical: `/sablonlar/${s.id}` } } : {};
 }
 
 export default async function Page({ params }: PageProps<"/sablonlar/[id]">) {

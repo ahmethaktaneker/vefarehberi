@@ -4,7 +4,9 @@ import { sayfaYukle } from "@/lib/icerik/metinler";
 import { kvkkDoldur, kvkkYukle } from "@/lib/kvkk";
 
 export const metadata: Metadata = {
-  title: "Aydınlatma metni",
+  title: "KVKK Aydınlatma Metni",
+  description:
+    "Vefat Rehberi'nin kişisel verileri hangi amaçla ve hangi hukuki sebeple işlediğine, verilerin kimlere aktarıldığına ve haklarınıza dair aydınlatma metni.",
   alternates: { canonical: "/aydinlatma-metni" },
 };
 
