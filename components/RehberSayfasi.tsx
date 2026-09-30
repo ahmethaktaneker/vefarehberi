@@ -5,7 +5,7 @@ import { jsonLdMetni } from "@/lib/jsonld";
 import { Sayfa, type Kirinti } from "@/components/Sayfa";
 import type { Sayfa as SayfaIcerigi } from "@/lib/icerik/metinler";
 import { hazirSayfa } from "@/lib/icerik/sayfalar";
-import { hataBildirBaglantisi, SITE_URL } from "@/lib/marka";
+import { hataBildirBaglantisi, SITE_URL, URUN_ADI } from "@/lib/marka";
 import { ilgiliRehberler } from "@/lib/rehberGruplari";
 
 const tarih = (t: string) => t.split("-").reverse().join(".");
@@ -43,7 +43,10 @@ export function RehberSayfasi({
         "@type": "Article",
         headline: sayfa.baslik,
         description: sayfa.aciklama,
-        dateModified: sayfa.son_kontrol,
+        dateModified: `${sayfa.son_kontrol}T00:00:00+03:00`,
+        image: `${SITE_URL}/opengraph-image`,
+        author: { "@type": "Person", name: "Ahmet Haktan Eker", url: `${SITE_URL}/hakkimizda` },
+        publisher: { "@type": "Organization", name: URUN_ADI, url: SITE_URL, logo: `${SITE_URL}/logo-88.png` },
         inLanguage: "tr",
         mainEntityOfPage: `${SITE_URL}${yol}`,
       },
