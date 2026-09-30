@@ -9,7 +9,7 @@ export const SITE_URL = "https://vefatrehberi.com";
  * Site herkese açık yayına hazır mı?
  * false iken tüm sayfalar noindex, robots.txt her şeyi engeller.
  */
-export const YAYINDA = false;
+export const YAYINDA = true;
 
 /**
  * "Hukuk uzmanı kontrolünde hazırlanır" rozeti.
