@@ -22,7 +22,7 @@ kaynak:
 son_kontrol: "2026-09-28"
 dogrulandi: false
 ---
-Genel bilgi olarak: Vefat eden kişinin borçları mal varlığından fazlaysa, mirası reddetmek mirasçıyı bu borçlardan korur. Bu karar kişiye özeldir ve geri dönüşü zordur; karar vermeden önce bir avukata danışmanız önerilir.
+Vefat eden kişinin borçları mal varlığından fazlaysa, mirası reddetmek mirasçıyı bu borçlardan korur. Bu karar kişiye özeldir ve geri dönüşü zordur; karar vermeden önce bir avukata danışmanız önerilir.
 
 ## Süre: 3 ay
 

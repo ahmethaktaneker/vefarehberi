@@ -13,7 +13,7 @@ kaynak:
 son_kontrol: "2026-09-29"
 dogrulandi: false
 ---
-Bir yakınınızı kaybettikten sonra yapılacak işler çok gelebilir. Bu işleri acele etmeden, kendinize de zaman tanıyarak yapmanız normaldir. Listenizdeki son tarihler size neyin bekleyebileceğini gösterir.
+Bir yakınınızı kaybettikten sonra keder, yorgunluk ya da dalgınlık yaşamanız çok doğaldır. Bu günlerde yapılacak işler de çok gelebilir; onları acele etmeden, kendinize zaman tanıyarak yapabilirsiniz.
 
 ## Ücretsiz destek
 

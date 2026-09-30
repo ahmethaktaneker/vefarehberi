@@ -21,7 +21,7 @@ e-Devlet'teki **Mevduat / Katılım Fonu Hesabı Bulunan Banka Sorgulama (Miras�
 
 ## Hesaptan para çekmeyin
 
-Genel bilgi olarak: Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler iade edilmesi gereken tutarlar olabilir. Mirasçılardan birinin kendi başına para çekmesi, diğer mirasçılar açısından sorun doğurabilir.
+Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler iade edilmesi gereken tutarlar olabilir. Mirasçılardan birinin kendi başına para çekmesi, diğer mirasçılar açısından sorun doğurabilir.
 
 ## Paranın mirasçılara ödenmesi
 

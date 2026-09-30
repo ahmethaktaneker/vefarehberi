@@ -63,7 +63,7 @@
       - { varliklar: ["banka", "bilmiyorum"] }
       - { calisma_durumu: "emekli" }
   ne: >
-    Genel bilgi olarak: Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler, iade edilmesi
+    Vefattan sonra hesaba yatan emekli maaşı gibi ödemeler, iade edilmesi
     gereken tutarlar olabilir. Mirasçılardan birinin vefat edenin hesabından kendi başına para
     çekmesi, diğer mirasçılar açısından hukuki sorun doğurabilir.
   neden: "Sonradan iade talebiyle ya da mirasçılar arasında anlaşmazlıkla karşılaşmamak için."

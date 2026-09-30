@@ -19,7 +19,7 @@
       Süre geçmiş görünüyor. Borcun mal varlığını aştığı açıksa, süre geçtikten sonra da
       "hükmen red" yolu olabilir. Bir avukata danışmanız önerilir.
   ne: >
-    Genel bilgi olarak: Vefat eden kişinin borçları mal varlığından fazlaysa, mirası reddetmek
+    Vefat eden kişinin borçları mal varlığından fazlaysa, mirası reddetmek
     mirasçıyı bu borçlardan korur. Mirası reddetmek ölüm aylığını etkilemez.
   neden: "Süre kısadır (3 ay); kaçırılması sonradan sorun yaşatabilir."
   nereye: "Vefat edenin son yerleşim yerindeki Sulh Hukuk Mahkemesi"
@@ -65,7 +65,7 @@
   kosul: { calisma_durumu: ["calisiyordu", "bilmiyorum"] }
   belirsizse: { calisma_durumu: "bilmiyorum" }
   ne: >
-    Genel bilgi olarak: Çalışırken vefat eden kişi kıdem tazminatına hak kazanma koşullarını
+    Çalışırken vefat eden kişi kıdem tazminatına hak kazanma koşullarını
     (en az 1 yıl kıdem) taşıyorsa, tazminat yasal mirasçılarına mirasçılık belgesindeki payları
     oranında ödenir. Ödeme işverenden talep edilir.
   nereye: "Vefat edenin işvereni"

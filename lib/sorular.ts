@@ -35,13 +35,13 @@ export const SORULAR: Soru[] = [
   {
     id: "vefat_tarihi",
     tip: "tarih",
-    soru: "Vefat tarihi nedir?",
+    soru: "Yakınınız hangi tarihte vefat etti?",
     neden: "Reddi miras ve beyanname gibi son tarihleri bu tarihe göre hesaplıyoruz.",
   },
   {
     id: "vefat_yeri",
     tip: "tek",
-    soru: "Vefat nerede gerçekleşti?",
+    soru: "Vefat nerede oldu?",
     neden: "Ölüm belgesi ve beyanname süresi, vefatın Türkiye'de ya da yurtdışında olmasına göre değişir.",
     secenekler: [
       { deger: "turkiye", etiket: "Türkiye'de" },
@@ -62,7 +62,7 @@ export const SORULAR: Soru[] = [
   {
     id: "calisma_durumu",
     tip: "tek",
-    soru: "Vefat eden kişinin çalışma durumu neydi?",
+    soru: "Yakınınız çalışıyor muydu, emekli miydi?",
     neden: "Ölüm aylığı ve kıdem tazminatı gibi ödemeleri doğru göstermek için.",
     secenekler: [
       { deger: "emekli", etiket: "Emekliydi" },
@@ -89,7 +89,7 @@ export const SORULAR: Soru[] = [
   {
     id: "hak_sahipleri",
     tip: "coklu",
-    soru: "Geride eşi veya bakmakla yükümlü olduğu çocuğu var mı?",
+    soru: "Geride eşi veya bakmakla yükümlü olduğu çocuğu kaldı mı?",
     neden: "Ölüm aylığı başvurusunun listenize eklenip eklenmeyeceğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz.",
     secenekler: [
@@ -104,7 +104,7 @@ export const SORULAR: Soru[] = [
   {
     id: "varliklar",
     tip: "coklu",
-    soru: "Aşağıdakilerden hangileri var?",
+    soru: "Yakınınızın adına olanlar hangileri?",
     neden: "Hangi kurumlara gideceğinizi ve beyanname gerekip gerekmediğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz. Tutar sormuyoruz.",
     secenekler: [
@@ -123,7 +123,7 @@ export const SORULAR: Soru[] = [
   {
     id: "borc",
     tip: "tek",
-    soru: "Vefat eden kişinin borcu olabilir mi?",
+    soru: "Yakınınızın borcu olabilir mi?",
     neden: "Mirası reddetme süresi gibi önemli bir tarihi kaçırmamanız için.",
     secenekler: [
       { deger: "evet", etiket: "Evet" },
@@ -134,7 +134,7 @@ export const SORULAR: Soru[] = [
   {
     id: "abonelikler",
     tip: "coklu",
-    soru: "Üzerine kayıtlı abonelik ve sözleşmeler hangileri?",
+    soru: "Yakınınızın adına olan abonelik ve sözleşmeler hangileri?",
     neden: "Listenize hangi kurumların ekleneceğini belirler.",
     aciklama: "Birden fazla seçebilirsiniz.",
     secenekler: [
